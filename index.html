@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="he" alined="center">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>AutoMate - העסק שלך, רק חכם יותר</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Include components -->
+  <div id="header"></div>
+
+  <!-- Services Section -->
+  <section class="services">
+    <h2>מה AutoMate יכולה לעשות בשבילך?</h2>
+    <div class="service-cards">
+      <!-- כרטיס שירות 1 -->
+      <div class="service-card">
+        <img src="assets/images/services/process-automation-icon.svg" alt="אוטומציית תהליכים">
+        <h3>אוטומציית תהליכים</h3>
+        <p>ייעול תהליכים ידניים וחזרתיים, כגון ניהול לקוחות, הזמנות, מלאי ומשימות יומיומיות.</p>
+      </div>
+      <!-- כרטיס שירות 2 -->
+      <div class="service-card">
+        <img src="assets/images/services/crm-chatbot-icon.svg" alt="הקמת מערכות CRM וצ'אטבוטים">
+        <h3>הקמת מערכות CRM וצ'אטבוטים</h3>
+        <p>הישארו זמינים ללקוחות 24/7, וטפלו אוטומטית בפניות והזמנות.</p>
+      </div>
+      <!-- כרטיס שירות 3 -->
+      <div class="service-card">
+        <img src="assets/images/services/performance-consulting-icon.svg" alt="ייעוץ לשיפור ביצועים">
+        <h3>ייעוץ לשיפור ביצועים</h3>
+        <p>המלצות ממוקדות לשיפור וייעול תהליכים עסקיים קיימים באמצעות טכנולוגיות מתקדמות.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Target Audience Section -->
+  <section class="target-audience">
+    <h2>AutoMate מתאימה במיוחד ל:</h2>
+    <div class="audience-list">
+      <div class="audience-item">
+        <img src="assets/images/audience/smb-icon.svg" alt="עסקים קטנים ובינוניים" class="suitable-for-icon">
+        <p>עסקים קטנים ובינוניים (SMBs)</p>
+      </div>
+      <div class="audience-item">
+        <img src="assets/images/audience/freelancers-icon.svg" alt="פרילנסרים ועצמאים" class="suitable-for-icon">
+        <p>פרילנסרים ועצמאים</p>
+      </div>
+      <div class="audience-item">
+        <img src="assets/images/audience/entrepreneurs-icon.svg" alt="יזמים שמחפשים יעילות" class="suitable-for-icon">
+        <p>יזמים שמחפשים יעילות</p>
+      </div>
+      <div class="audience-item">
+        <img src="assets/images/audience/growing-businesses-icon.svg" alt="עסקים בצמיחה" class="suitable-for-icon">
+        <p>עסקים בצמיחה שמעוניינים להתמקד בעיקר</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-us">
+    <h2>למה AutoMate?</h2>
+    <ul>
+      <li><img src="assets/images/features/check-circle.svg" alt="check" class="why-us-icon">התאמה אישית מלאה – פתרונות מותאמים בדיוק לעסק שלך.</li>
+      <li><img src="assets/images/features/service.svg" alt="service" class="why-us-icon">שירות אישי ומקצועי – ליווי צמוד משלב הרעיון ועד ליישום בשטח.</li>
+      <li><img src="assets/images/features/experience.svg" alt="experience" class="why-us-icon">ניסיון מוכח – רקורד עשיר בפיתוח תהליכים עסקיים מתקדמים.</li>
+      <li><img src="assets/images/features/results.svg" alt="results" class="why-us-icon">תוצאות אמיתיות – חסכון בזמן, עלייה בפרודוקטיביות, וצמיחה בהכנסות.</li>
+    </ul>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>הלקוחות שלנו מספרים</h2>
+    <div class="testimonial">
+      <p>מאז שהכנסנו את האוטומציה לעסק, הזמן הפנוי שלנו הוכפל וההכנסות גדלו. מומלץ בחום!</p>
+      <p class="client-name">– שם הלקוח</p>
+    </div>
+    <!-- ניתן להוסיף כאן ציטוטים נוספים -->
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta">
+    <h2>מוכן לקחת את העסק שלך צעד קדימה?</h2>
+    <p>קבעו שיחת ייעוץ ללא עלות, ובואו נגלה איך AutoMate יכולה לעזור לכם לגדול ולהתייעל.</p>
+    <div class="cta-buttons">
+      <a href="https://cal.com/auto-mate/welcome-meeting" class="cta-button primary">לתיאום פגישת ייעוץ חינם</a>
+      <button class="cta-button secondary" onclick="openContactForm()">להשארת פרטים</button>
+    </div>
+  </section>
+
+  <!-- Contact Form Modal -->
+  <div id="contact-form"></div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Load components
+    async function loadComponents() {
+      try {
+        const headerResponse = await fetch('components/header.html');
+        const headerData = await headerResponse.text();
+        document.getElementById('header').innerHTML = headerData;
+
+        const contactFormResponse = await fetch('components/contact-form.html');
+        const contactFormData = await contactFormResponse.text();
+        document.getElementById('contact-form').innerHTML = contactFormData;
+
+        const footerResponse = await fetch('components/footer.html');
+        const footerData = await footerResponse.text();
+        document.getElementById('footer').innerHTML = footerData;
+      } catch (error) {
+        console.error('Error loading components:', error);
+      }
+    }
+
+    loadComponents();
+  </script>
+</body>
+</html>
+
+
