@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הצהרת נגישות - AutoMate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://nagishli.co.il/nagishli_loader.js" id="nagishliScript" defer></script>
+</head>
+<body>
+  <div style="text-align: center;">
+    <a href="index.html" aria-label="AutoMate Home Page">
+      <img src="../assets/images/logos/automate-logo.svg" alt="AutoMate Logo" class="logo-image" loading="lazy" />
+    </a>
+  </div>
+  <section class="services">
+    <h2>הצהרת נגישות</h2>
+    <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem auto;">
+      AutoMate מחויבת להנגשת האתר לכלל הציבור, כולל אנשים עם מוגבלויות.<br> אנו עושים מאמצים להנגיש את כלל רכיבי האתר כך שיהיו נוחים לשימוש עבור כולם.<br>
+      במידה ונתקלתם בבעיה כלשהי הקשורה לנגישות האתר, נשמח שתכתבו לנו בטופס הבא:
+    </p>
+  </section>
+
+  <section class="cta">
+    <form class="modal-content" style="max-width: 600px; margin: 0 auto;">
+      <div class="form-group">
+        <label for="name">שם מלא:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">אימייל:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">תיאור הבעיה:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="cta-button primary">שליחה</button>
+      </div>
+    </form>
+  </section>
+
+  <div id="footer"></div>
+
+  <script>
+    async function loadComponents() {
+      try {
+           const footerRes = await fetch('components/footer.html');
+        document.getElementById('footer').innerHTML = await footerRes.text();
+      } catch (err) {
+        console.error('Component load error:', err);
+      }
+    }
+    loadComponents();
+  </script>
+</body>
+</html>
