@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%; /* מוודא שכל האלמנטים לא יחרגו מרוחב המסך */
   }
   
   body {
@@ -11,6 +12,7 @@
     background-color: #ffffff;
     color: #1a1a1a;
     line-height: 1.6;
+    overflow-x: hidden; /* מונע גלילה אופקית */
   }
   
   /* Hero Section */
@@ -22,6 +24,8 @@
     background-color: #f8f9fa;
     gap: 2rem;
     flex-wrap: wrap;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .hero-content {
@@ -70,6 +74,8 @@
     padding: 4rem 10%;
     background-color: #f8f9fa;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .services h2 {
@@ -188,6 +194,8 @@
     padding: 4rem 10%;
     background-color: #f8f9fa;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .why-us h2 {
@@ -240,6 +248,8 @@
     padding: 4rem 10%;
     background-color: #f8f9fa;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .testimonials h2 {
@@ -308,6 +318,8 @@
     padding: 4rem 10%;
     background-color: #f8f9fa;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .cta h2 {
@@ -555,6 +567,8 @@
     color: white;
     padding: 2rem 10%;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .footer-logo {
