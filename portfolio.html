@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" alined="center">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>תיק עבודות | AutoMate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://nagishli.co.il/nagishli_loader.js" id="nagishliScript" defer></script>
+  <style>
+    .portfolio-section {
+      background-color: #f8f9fa;
+      padding: 4rem 5%;
+      text-align: center;
+    }
+
+    .portfolio-section h2 {
+      font-size: 2.8rem;
+      color: #003366;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .portfolio-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #003366, #00bcd4);
+      border-radius: 2px;
+    }
+
+    .portfolio-intro {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .portfolio-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .portfolio-item {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .portfolio-item h3 {
+      color: #007c91;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: auto;
+      max-height: 240px;
+      object-fit: contain;
+      margin-bottom: 1.2rem;
+      border-radius: 12px;
+    }
+
+    .portfolio-item p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-item button {
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .portfolio-item button:hover {
+      background-color: #0097a7;
+    }
+
+    .portfolio-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .portfolio-modal-content {
+      background: #fff;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      border-radius: 12px;
+      position: relative;
+      text-align: right;
+      direction: rtl;
+    }
+
+    .portfolio-modal-content h4 {
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-modal-content p {
+      color: #333;
+    }
+
+    .modal-close {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1.5rem;
+      color: #999;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Include components -->
+  <div id="header"></div>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section" id="portfolio" dir="rtl" lang="he">
+    <h2>תיק העבודות שלנו</h2>
+    <p class="portfolio-intro">
+      דוגמאות אמיתיות לפתרונות שפיתחנו עבור לקוחות מכל תחום – החל מאוטומציות פשוטות ועד מערכות משולבות מתקדמות.
+    </p>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        <h3>מערכת CRM עם צ'אטבוט וואטסאפ</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-crm-chatbot.svg" alt="CRM + צ'אטבוט"> -->
+        <p>אינטגרציה מלאה בין CRM למענה אוטומטי מבוסס צ'אטבוט.</p>
+        <button onclick="openModal('crm')">למידע נוסף</button>
+      </div>
+
+      <div class="portfolio-item">
+        <h3>תהליך חתימות דיגיטליות אוטומטי</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-automation-signature.svg" alt="חתימות ואוטומציה"> -->
+        <p>שליחת חוזים בלחיצת כפתור ומעקב אחר סטטוס חתימה.</p>
+        <button onclick="openModal('signatures')">למידע נוסף</button>
+      </div>
+
+      <div class="portfolio-item">
+        <h3>מעקב כספים וחשבוניות</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-finance-tracking.svg" alt="ניהול כספים אוטומטי"> -->
+        <p>מעקב גבייה, חשבוניות פתוחות ודוחות כספיים חכמים.</p>
+        <button onclick="openModal('finance')">למידע נוסף</button>
+      </div>
+
+      <div class="portfolio-item">
+        <h3>טפסי קליטה אוטומטיים</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-intake-forms.svg" alt="טופס קליטה חכם"> -->
+        <p>טפסים חכמים שמזינים מידע ישירות ל-CRM.</p>
+        <button onclick="openModal('forms')">למידע נוסף</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="portfolio-modal" id="modal-crm">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('crm')">&times;</span>
+      <h4>CRM עם צ'אטבוט וואטסאפ</h4>
+      <p>הממשק מחבר בין מערכת ה-CRM לצ'אטבוטים פעילים בפלטפורמות כמו וואטסאפ, פייסבוק ודפי נחיתה. המערכת יודעת לזהות לקוחות, לשאול שאלות מכוונות, להעביר מידע, ואפילו לפתוח כרטיס לקוח אוטומטי.</p>
+    </div>
+  </div>
+
+  <div class="portfolio-modal" id="modal-signatures">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('signatures')">&times;</span>
+      <h4>אוטומציה לחתימות דיגיטליות</h4>
+      <p>מהרגע שנשלח חוזה מה-CRM, נוצר מעקב חתימה דינמי שמתריע כשהמסמך נחתם, כולל שליחה אוטומטית חזרה ללקוח והקפצת סטטוס במערכת.</p>
+    </div>
+  </div>
+
+  <div class="portfolio-modal" id="modal-finance">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('finance')">&times;</span>
+      <h4>מערכת כספים משולבת</h4>
+      <p>אינטגרציה בין CRM למערכות הנהלת חשבונות לצפייה בדוחות, תזכורות גבייה אוטומטיות, ושמירה על תזרים מזומנים תקין.</p>
+    </div>
+  </div>
+
+  <div class="portfolio-modal" id="modal-forms">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('forms')">&times;</span>
+      <h4>טפסים חכמים ודיגיטליים</h4>
+      <p>הלקוח ממלא טופס אחד שמייצר כרטיס לקוח מלא במערכת, כולל נתונים, סטטוס ראשוני ומשימות המשך.</p>
+    </div>
+  </div>
+
+  <!-- Call to Action Section -->
+  <section class="cta" id="contact">
+    <h2>רוצים תוצאה דומה גם אצלכם?</h2>
+    <p>נדגים לכם דוגמה מהתיק, נבין את הצורך שלכם, ונבנה פתרון דומה – רק עבורכם.</p>
+    <div class="cta-buttons">
+      <a href="https://cal.com/auto-mate/welcome-meeting" class="cta-button primary">לתיאום שיחה חינם</a>
+      <button class="cta-button secondary" onclick="openContactForm()">להשארת פרטים</button>
+    </div>
+  </section>
+
+  <!-- Contact Form Modal -->
+  <div id="contact-form"></div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function openModal(id) {
+      document.getElementById(`modal-${id}`).style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(`modal-${id}`).style.display = 'none';
+    }
+  </script>
+  <script>
+    async function loadComponents() {
+      try {
+        const headerResponse = await fetch('components/header.html');
+        const headerData = await headerResponse.text();
+        document.getElementById('header').innerHTML = headerData;
+
+        const contactFormResponse = await fetch('components/contact-form.html');
+        const contactFormData = await contactFormResponse.text();
+        document.getElementById('contact-form').innerHTML = contactFormData;
+
+        const footerResponse = await fetch('components/footer.html');
+        const footerData = await footerResponse.text();
+        document.getElementById('footer').innerHTML = footerData;
+      } catch (error) {
+        console.error('Error loading components:', error);
+      }
+    }
+    loadComponents();
+  </script>
+  <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
+</body>
+
+</html>

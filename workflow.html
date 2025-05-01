@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="he" alined="center">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>כך אנחנו עובדים | AutoMate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://nagishli.co.il/nagishli_loader.js" id="nagishliScript" defer></script>
+  <style>
+    .workflow-section {
+      background-color: #f8f9fa;
+      padding: 4rem 5%;
+      text-align: center;
+    }
+
+    .workflow-section h2 {
+      font-size: 2.8rem;
+      color: #003366;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .workflow-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #003366, #00bcd4);
+      border-radius: 2px;
+    }
+
+    .workflow-intro {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .workflow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .workflow-step {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      text-align: right;
+      max-width: 800px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .workflow-step:hover {
+      transform: translateY(-5px);
+    }
+
+    .workflow-step h3 {
+      color: #007c91;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .workflow-step p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .workflow-section {
+        padding: 3rem 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Include components -->
+  <div id="header"></div>
+
+  <!-- Workflow Section -->
+  <section class="workflow-section" id="workflow" dir="rtl" lang="he">
+    <h2>כך אנחנו עובדים – שלבי העבודה עם לקוחות AutoMate</h2>
+    <p class="workflow-intro">
+      אנו ב-AutoMate מאמינים בעבודה מדויקת, מקצועית ומותאמת אישית. כל לקוח מקבל תהליך מסודר, ברור ויעיל.
+    </p>
+
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <h3>1. שיחת היכרות חינמית</h3>
+        <p>נבין את הצורך העסקי, נבחן מה ניתן לשפר או לאוטומט, ונמליץ על כיוון ראשוני.<br><strong>משך זמן:</strong> עד 30 דקות | <strong>באמצעות:</strong> טלפון או זום</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>2. אפיון מקצועי של התהליך</h3>
+        <p>נמפה את התהליכים הקיימים, הכלים בשימוש והאתגרים. נגדיר מטרות מדויקות ותוצאה רצויה.</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>3. הצעת פתרון מותאמת אישית</h3>
+        <p>מסמך מפורט הכולל תיאור הבעיה, הפתרון, שלבי ביצוע, לוחות זמנים והצעת מחיר מותאמת.</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>4. אישור והתחייבות</h3>
+        <p>חתימה דיגיטלית על הסכם שירות מסודר – ויוצאים לדרך.</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>5. ביצוע והקמה</h3>
+        <p>בניית האוטומציות, אינטגרציות עם מערכות קיימות, ווידוא פעילות תקינה עם עדכונים שוטפים.</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>6. הדרכה, הטמעה ותיעוד</h3>
+        <p>הדרכה מקיפה, תיעוד ברור, וליווי לוודא שהמערכת משרתת אתכם.</p>
+      </div>
+
+      <div class="workflow-step">
+        <h3>7. תמיכה ושירותי המשך</h3>
+        <p>ליווי שוטף, תחזוקה חודשית, שדרוגים ועדכונים – כדי שתישארו יעילים לאורך זמן.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta" id="contact">
+    <h2>רוצים להתייעל באמת?</h2>
+    <p>קבעו שיחת ייעוץ ראשונית, נבחן את האפשרויות ונבנה עבורכם פתרון מותאם אישית.</p>
+    <div class="cta-buttons">
+      <a href="https://cal.com/auto-mate/welcome-meeting" class="cta-button primary">לתיאום שיחה חינם</a>
+      <button class="cta-button secondary" onclick="openContactForm()">להשארת פרטים</button>
+    </div>
+  </section>
+
+  <!-- Contact Form Modal -->
+  <div id="contact-form"></div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    async function loadComponents() {
+      try {
+        const headerResponse = await fetch('components/header.html');
+        const headerData = await headerResponse.text();
+        document.getElementById('header').innerHTML = headerData;
+
+        const contactFormResponse = await fetch('components/contact-form.html');
+        const contactFormData = await contactFormResponse.text();
+        document.getElementById('contact-form').innerHTML = contactFormData;
+
+        const footerResponse = await fetch('components/footer.html');
+        const footerData = await footerResponse.text();
+        document.getElementById('footer').innerHTML = footerData;
+      } catch (error) {
+        console.error('Error loading components:', error);
+      }
+    }
+
+    loadComponents();
+  </script>
+  <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
+</body>
+
+</html>
