@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧾 טופס אפיון לקוח | AutoMate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    h1 {
+      color: #003366;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #2c7be5;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 1.2rem;
+      font-family: inherit;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-left: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .multi-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .multi-options label {
+      font-weight: normal;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(45deg, #2c7be5, #00bcd4);
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    button[type="submit"]:hover {
+      background: #007c91;
+    }
+
+    .success-message {
+      text-align: center;
+      display: none;
+      padding: 3rem 1rem;
+      color: #2c7be5;
+      animation: pop 0.6s ease forwards;
+    }
+
+    .success-message h2 {
+      color: #2c7be5;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="formContainer">
+    <h1>🧾 טופס אפיון לקוח – AutoMate</h1>
+    <form id="profileForm">
+
+      <h2>🔹 פרטים כלליים</h2>
+      <div class="form-group">
+        <label>שם מלא:</label>
+        <input type="text" name="fullName" id="fullName" required />
+      </div>
+      <div class="form-group">
+        <label>טלפון:</label>
+        <input type="text" name="phone" id="phone" required />
+      </div>
+      <div class="form-group">
+        <label>דוא"ל:</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label>תפקיד בעסק:</label>
+        <div class="multi-options">
+          <label><input type="radio" name="role" value="בעלים / שותף" required> בעלים / שותף</label>
+          <label><input type="radio" name="role" value="מנהל/ת תפעול"> מנהל/ת תפעול</label>
+          <label><input type="radio" name="role" value="מנהל/ת שיווק"> מנהל/ת שיווק</label>
+          <label><input type="radio" name="role" value="אחר"> אחר</label>
+        </div>
+      </div>
+
+      <h2>🔹 מידע על העסק</h2>
+      <div class="form-group">
+        <label>שם העסק:</label>
+        <input type="text" name="businessName" id="businessName" required />
+      </div>
+      <div class="form-group">
+        <label>תחום פעילות:</label>
+        <div class="multi-options">
+          <label><input type="checkbox" name="industry" value="שירותים"> שירותים</label>
+          <label><input type="checkbox" name="industry" value="מכירות / סחר"> מכירות / סחר</label>
+          <label><input type="checkbox" name="industry" value="ייעוץ / הדרכה"> ייעוץ / הדרכה</label>
+          <label><input type="checkbox" name="industry" value="ייצור"> ייצור</label>
+          <label><input type="checkbox" name="industry" value="אחר"> אחר</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>כמות עובדים:</label>
+        <select name="employeeCount" required>
+          <option value="">בחר</option>
+          <option value="אני לבד">אני לבד</option>
+          <option value="2–5">2–5 עובדים</option>
+          <option value="6–15">6–15 עובדים</option>
+          <option value="מעל 15">מעל 15</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>האם קיימות מערכות דיגיטליות בעסק?</label>
+        <select name="hasSystems" required>
+          <option value="לא">לא</option>
+          <option value="כן">כן</option>
+        </select>
+        <input type="text" name="systemsUsed" placeholder="אם כן – אילו מערכות?" />
+      </div>
+
+      <h2>🔹 תהליכים ואתגרים</h2>
+      <div class="form-group">
+        <label>אילו תהליכים קיימים בעסק?</label>
+        <div class="multi-options">
+          <label><input type="checkbox" name="processes" value="קליטת לידים"> קליטת לידים</label>
+          <label><input type="checkbox" name="processes" value="ניהול פגישות"> ניהול פגישות</label>
+          <label><input type="checkbox" name="processes" value="שליחת הצעות מחיר"> שליחת הצעות מחיר</label>
+          <label><input type="checkbox" name="processes" value="חשבוניות וגבייה"> חשבוניות וגבייה</label>
+          <label><input type="checkbox" name="processes" value="ניהול לקוחות"> ניהול לקוחות</label>
+          <label><input type="checkbox" name="processes" value="תיאום מול עובדים"> תיאום מול עובדים</label>
+          <label><input type="checkbox" name="processes" value="אחר"> אחר</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>מה גוזל מכם הכי הרבה זמן?</label>
+        <textarea name="timeConsuming" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label>האם היו טעויות/עיכובים? אם כן – פרט:</label>
+        <textarea name="mistakes" rows="2"></textarea>
+      </div>
+
+      <h2>🔹 מטרות ויעדים</h2>
+      <div class="form-group">
+        <label>מה תרצו להשיג באוטומציה?</label>
+        <div class="multi-options">
+          <label><input type="checkbox" name="goals" value="חיסכון בזמן"> חיסכון בזמן</label>
+          <label><input type="checkbox" name="goals" value="שיפור השירות"> שיפור השירות</label>
+          <label><input type="checkbox" name="goals" value="הגדלת מכירות"> הגדלת מכירות</label>
+          <label><input type="checkbox" name="goals" value="סדר וארגון"> סדר וארגון</label>
+          <label><input type="checkbox" name="goals" value="שקיפות"> שקיפות</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ספר בקצרה על תהליך שתרצה לאוטומט:</label>
+        <textarea name="topProcess" rows="2"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>מתי תרצה להתחיל?</label>
+        <select name="startTime">
+          <option value="">בחר</option>
+          <option value="מיידית">מיידית</option>
+          <option value="בשבועות הקרובים">בשבועות הקרובים</option>
+          <option value="בחודש הקרוב">בחודש הקרוב</option>
+          <option value="שלב בחינה">רק בוחן אפשרויות</option>
+        </select>
+      </div>
+
+      <h2>🔹 איש קשר</h2>
+      <div class="form-group">
+        <select name="decisionMaker">
+          <option value="">בחר</option>
+          <option value="אני">אני</option>
+          <option value="אני ועוד מישהו">אני ועוד מישהו</option>
+          <option value="מישהו אחר">מישהו אחר</option>
+        </select>
+        <input type="text" name="decisionMakerDetails" placeholder="שם ותפקיד (אם רלוונטי)" />
+      </div>
+      <div class="form-group">
+        <label>איך נחזור אליך?</label>
+        <div class="multi-options">
+          <label><input type="radio" name="preferredContact" value="טלפון" required> טלפון</label>
+          <label><input type="radio" name="preferredContact" value="וואטסאפ"> וואטסאפ</label>
+          <label><input type="radio" name="preferredContact" value="מייל"> מייל</label>
+        </div>
+      </div>
+
+      <button type="submit">שלח טופס אפיון</button>
+    </form>
+  </div>
+
+  <div class="success-message" id="successMessage">
+    <div class="emoji">🎉</div>
+    <h2>הטופס נשלח בהצלחה!</h2>
+    <p>נחזור אליך בהקדם עם רעיונות מותאמים במיוחד לעסק שלך.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('profileForm');
+    const formContainer = document.getElementById('formContainer');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {};
+
+      // מעבר על כל שדה
+      for (let [key, value] of formData.entries()) {
+        if (data[key]) {
+          // אם המפתח כבר קיים, צור מחרוזת מופרדת בפסיקים
+          data[key] += `, ${value}`;
+        } else {
+          data[key] = value;
+        }
+      }
+
+      try {
+        await fetch('https://hook.eu2.make.com/yj8tj6389i568u33rji5v50rd91hn52p', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        formContainer.style.display = 'none';
+        successMessage.style.display = 'block';
+      } catch (err) {
+        alert('שגיאה בשליחת הטופס. נסה שוב מאוחר יותר.');
+        console.error(err);
+      }
+    });
+
+    // מילוי אוטומטי של שדות מתוך פרמטרים ב-URL
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const fieldsToPrefill = ["fullName", "businessName", "email", "phone"];
+
+      fieldsToPrefill.forEach((field) => {
+        const value = params.get(field);
+        if (value) {
+          const input = document.getElementById(field);
+          if (input) {
+            input.value = decodeURIComponent(value);
+            input.readOnly = true;
+            input.style.backgroundColor = "#f1f1f1"; // להמחשה שהשדה לא ניתן לעריכה
+          }
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>
