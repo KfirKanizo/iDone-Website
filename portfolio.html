@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <title>תיק עבודות | AutoMate</title>
+  <title>פתרונות שביצענו ללקוחות | AutoMate</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://nagishli.co.il/nagishli_loader.js" id="nagishliScript" defer></script>
@@ -104,7 +104,7 @@
       top: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       justify-content: center;
       align-items: center;
     }
@@ -155,10 +155,10 @@
     <div class="portfolio-grid">
 
       <div class="portfolio-item">
-        <h3>מערכת CRM עם צ'אטבוט וואטסאפ</h3>
+        <h3>אוטומציה חכמה לניהול לידים</h3>
         <!-- <img src="assets/images/portfolio/portfolio-crm-chatbot.svg" alt="CRM + צ'אטבוט"> -->
-        <p>אינטגרציה מלאה בין CRM למענה אוטומטי מבוסס צ'אטבוט.</p>
-        <button onclick="openModal('crm')">למידע נוסף</button>
+        <p>טיפול אוטומטי בלידים חדשים – משלב הקליטה, תוך תיעוד במערכת CRM ועד לתגובה אישית בוואטסאפ ובמייל</p>
+        <button onclick="openModal('new-lead')">למידע נוסף</button>
       </div>
 
       <div class="portfolio-item">
@@ -182,41 +182,130 @@
         <button onclick="openModal('forms')">למידע נוסף</button>
       </div>
 
+      <div class="portfolio-item">
+        <h3>ניהול פגישות אוטומטי</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-intake-forms.svg" alt="טופס קליטה חכם"> -->
+        <p>אוטומציה לקביעה / עדכון / ביטול פגישות</p>
+        <button onclick="openModal('meetings')">למידע נוסף</button>
+      </div>
+
+
+      <div class="portfolio-item">
+        <h3>הצעות מחיר</h3>
+        <!-- <img src="assets/images/portfolio/portfolio-intake-forms.svg" alt="טופס קליטה חכם"> -->
+        <p>שליחת הצעת מחיר דינאמית במייל / וואטסאפ</p>
+        <button onclick="openModal('price-offer')">למידע נוסף</button>
+      </div>
+
+
     </div>
   </section>
 
   <!-- Modals -->
-  <div class="portfolio-modal" id="modal-crm">
+  <div class="portfolio-modal" id="modal-new-lead">
     <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('crm')">&times;</span>
-      <h4>CRM עם צ'אטבוט וואטסאפ</h4>
-      <p>הממשק מחבר בין מערכת ה-CRM לצ'אטבוטים פעילים בפלטפורמות כמו וואטסאפ, פייסבוק ודפי נחיתה. המערכת יודעת לזהות לקוחות, לשאול שאלות מכוונות, להעביר מידע, ואפילו לפתוח כרטיס לקוח אוטומטי.</p>
+      <span class="modal-close" onclick="closeModal('new-lead')">&times;</span>
+      <h4>מטופס באתר ישירות להודעה אישית – בלי מגע יד אדם</h4>
+      <p>כשלקוח משאיר פרטים באתר, המערכת שלנו נכנסת לפעולה:</p>
+      <p>שולחת את הליד ישירות למערכת ה-CRM שלכם.</p>
+      <p>מזינה את כל הפרטים שהלקוח השאיר בטופס.</p>
+      <p>יוצרת משימות אוטומטיות לסוכן במערכת.</p>
+      <p>יוצרת כרטיס לקוח חדש במערכת.</p>
+      <p>יוצרת או מעדכנת את הרשומה בהתאם.</p>
+      <p>שולחת אוטומטית מייל ו/או הודעת וואטסאפ ללקוח ולסוכן – עם תוכן מותאם אישית שנוצר ב־AI.</p>
+      <p>היתרונות:</p>
+      <p>⚡ תגובה מהירה ומרשימה ללקוח</p>
+      <p>🗂 ניהול מסודר ואוטומטי של כל הלידים</p>
+      <p>🤖 פחות עבודה ידנית – יותר סגירות</p>
     </div>
   </div>
 
   <div class="portfolio-modal" id="modal-signatures">
     <div class="portfolio-modal-content">
       <span class="modal-close" onclick="closeModal('signatures')">&times;</span>
-      <h4>אוטומציה לחתימות דיגיטליות</h4>
-      <p>מהרגע שנשלח חוזה מה-CRM, נוצר מעקב חתימה דינמי שמתריע כשהמסמך נחתם, כולל שליחה אוטומטית חזרה ללקוח והקפצת סטטוס במערכת.</p>
+      <h4>שליחת חוזים בלחיצת כפתור – עם מעקב חכם ועדכון בזמן אמת</h4>
+      <p>ברגע שנשלח חוזה מה־CRM, המערכת שלנו מפעילה תהליך אוטומטי חכם:</p>
+      <p>שולחת את החוזה לחתימה דיגיטלית דרך מערכת ייעודית.</p>
+      <p>פותחת מעקב בזמן אמת אחר סטטוס החתימה.</p>
+      <p>מתריעה אוטומטית כשהמסמך נחתם על ידי הלקוח.</p>
+      <p>שולחת את המסמך החתום ללקוח – בלי שתצטרכו לעשות דבר.</p>
+      <p>מעדכנת את סטטוס הלקוח או העסקה במערכת ה־CRM.</p>
+      <p>היתרונות:</p>
+      <p>✅ חיסכון עצום בזמן ובפעולות ידניות</p>
+      <p>📬 תהליך חתימה חלק ומרשים ללקוח</p>
+      <p>📈 שליטה ובקרה מלאה – בלי לפספס שלבים</p>
     </div>
   </div>
 
   <div class="portfolio-modal" id="modal-finance">
     <div class="portfolio-modal-content">
       <span class="modal-close" onclick="closeModal('finance')">&times;</span>
-      <h4>מערכת כספים משולבת</h4>
-      <p>אינטגרציה בין CRM למערכות הנהלת חשבונות לצפייה בדוחות, תזכורות גבייה אוטומטיות, ושמירה על תזרים מזומנים תקין.</p>
+      <h4>מעקב גבייה, חשבוניות פתוחות ודוחות כספיים חכמים</h4>
+      <p>המערכת שלנו משלבת בין ה־CRM למערכת הנהלת החשבונות שלכם:</p>
+      <p>מציגה בזמן אמת את כל החשבוניות הפתוחות של הלקוחות.</p>
+      <p>שולחת תזכורות גבייה אוטומטיות לפי תאריכים מוגדרים מראש.</p>
+      <p>מציגה דוחות כספיים וסטטוס תשלום בלחיצת כפתור.</p>
+      <p>מעדכנת את הסטטוס של לקוחות או עסקאות לפי תשלום.</p>
+      <p>מסייעת לכם לעקוב אחרי תזרים המזומנים ולצפות חסמים מראש.</p>
+      <p>היתרונות:</p>
+      <p>💸 גבייה מסודרת בלי לרדוף אחרי תשלומים</p>
+      <p>📊 דוחות חכמים שמציגים תמונת מצב ברורה</p>
+      <p>🔄 אוטומציה מלאה שמחברת בין כל המערכות הכספיות</p>
     </div>
   </div>
 
   <div class="portfolio-modal" id="modal-forms">
     <div class="portfolio-modal-content">
       <span class="modal-close" onclick="closeModal('forms')">&times;</span>
-      <h4>טפסים חכמים ודיגיטליים</h4>
-      <p>הלקוח ממלא טופס אחד שמייצר כרטיס לקוח מלא במערכת, כולל נתונים, סטטוס ראשוני ומשימות המשך.</p>
+      <h4>טפסים חכמים שמזינים מידע ישירות ל־CRM</h4>
+      <p>הלקוח ממלא טופס דיגיטלי אחד – ומשם הכול קורה אוטומטית:</p>
+      <p>נוצרים כרטיסי לקוח מלאים במערכת ה־CRM.</p>
+      <p>הפרטים מוזנים אוטומטית לשדות המתאימים.</p>
+      <p>נוצר סטטוס ראשוני שמסווג את הלקוח בהתאם לבחירותיו.</p>
+      <p>נוצרות משימות המשך לסוכן – בלי התעסקות ידנית.</p>
+      <p>מתבצע תיעוד מלא של הפעולה לצורך מעקב וניהול.</p>
+      <p>היתרונות:</p>
+      <p>📝 אין טעויות הקלדה או מידע חסר</p>
+      <p>🚀 חוויית קליטה מהירה ומרשימה ללקוח</p>
+      <p>🔗 חיבור חלק בין האתר למערכת הפנימית שלכם</p>
     </div>
   </div>
+
+  <div class="portfolio-modal" id="modal-meetings">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('meetings')">&times;</span>
+      <h4>תיאום פגישות אוטומטי – בלי שיחות טלפון מיותרות</h4>
+      <p>המערכת שלנו מאפשרת תיאום פגישות חכם עם חוויית לקוח מקצועית:</p>
+      <p>הלקוח בוחר מועד פנוי בטופס דיגיטלי.</p>
+      <p>הפגישה מתעדכנת אוטומטית ביומן (Google / Outlook).</p>
+      <p>הלקוח והסוכן מקבלים אישור ותזכורת אוטומטית.</p>
+      <p>במקרה של שינוי או ביטול – הכול מתבצע מהקישור האישי.</p>
+      <p>הסטטוס במערכת ה־CRM מתעדכן בהתאם לשינויים.</p>
+      <p>היתרונות:</p>
+      <p>📆 אין תיאומים ידניים או פספוסי תורים</p>
+      <p>📲 הלקוח קובע לבד – מתי שנוח לו</p>
+      <p>🔁 תהליך גמיש, חכם ונוח לשני הצדדים</p>
+    </div>
+  </div>
+
+
+  <div class="portfolio-modal" id="modal-price-offer">
+    <div class="portfolio-modal-content">
+      <span class="modal-close" onclick="closeModal('price-offer')">&times;</span>
+      <h4>תיאום פגישות אוטומטי – בלי שיחות טלפון מיותרות</h4>
+      <p>המערכת שלנו מאפשרת תיאום פגישות חכם עם חוויית לקוח מקצועית:</p>
+      <p>הלקוח בוחר מועד פנוי בטופס דיגיטלי.</p>
+      <p>הפגישה מתעדכנת אוטומטית ביומן (Google / Outlook).</p>
+      <p>הלקוח והסוכן מקבלים אישור ותזכורת אוטומטית.</p>
+      <p>במקרה של שינוי או ביטול – הכול מתבצע מהקישור האישי.</p>
+      <p>הסטטוס במערכת ה־CRM מתעדכן בהתאם לשינויים.</p>
+      <p>היתרונות:</p>
+      <p>📆 אין תיאומים ידניים או פספוסי תורים</p>
+      <p>📲 הלקוח קובע לבד – מתי שנוח לו</p>
+      <p>🔁 תהליך גמיש, חכם ונוח לשני הצדדים</p>
+    </div>
+  </div>
+
 
   <!-- Call to Action Section -->
   <section class="cta" id="contact">
@@ -242,6 +331,15 @@
     function closeModal(id) {
       document.getElementById(`modal-${id}`).style.display = 'none';
     }
+  </script>
+  <script>
+    document.querySelectorAll('.portfolio-modal').forEach(modal => {
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
   </script>
   <script>
     async function loadComponents() {
