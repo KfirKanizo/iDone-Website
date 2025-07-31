@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <title>טיוטת הסכם שירות – iDone</title>
+  <title>הסכם שירות – iDone</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
@@ -24,7 +24,7 @@
       text-align: center;
       margin-bottom: 30px;
       padding-bottom: 20px;
-      border-bottom: 2px solid #007bff;
+      border-bottom: 2px solid #8e52db;
     }
 
     .agreement-title {
@@ -46,7 +46,7 @@
     }
 
     .agreement-content h3 {
-      color: #007bff;
+      color: #8e52db;
       margin-top: 25px;
       margin-bottom: 15px;
       font-size: 1.3em;
@@ -68,7 +68,7 @@
     .signature-section {
       margin-top: 40px;
       padding-top: 30px;
-      border-top: 2px solid #007bff;
+      border-top: 2px solid #8e52db;
     }
 
     .signature-container {
@@ -105,7 +105,7 @@
     }
 
     .signature-controls button {
-      background: #007bff;
+      background: #8e52db;
       color: white;
       border: none;
       padding: 8px 16px;
@@ -120,11 +120,11 @@
     }
 
     .signature-controls button.clear {
-      background: #dc3545;
+      background: #5a2d8a;
     }
 
     .signature-controls button.clear:hover {
-      background: #c82333;
+      background: #4a2573;
     }
 
     .form-section {
@@ -156,7 +156,7 @@
 
     .form-group input:focus {
       outline: none;
-      border-color: #007bff;
+      border-color: #8e52db;
     }
 
     .submit-section {
@@ -165,7 +165,7 @@
     }
 
     .submit-btn {
-      background: #28a745;
+      background: #8e52db;
       color: white;
       border: none;
       padding: 15px 30px;
@@ -177,7 +177,7 @@
     }
 
     .submit-btn:hover {
-      background: #218838;
+      background: #7a47c7;
     }
 
     .submit-btn:disabled {
@@ -197,7 +197,7 @@
       width: 20px;
       height: 20px;
       border: 3px solid #f3f3f3;
-      border-top: 3px solid #007bff;
+      border-top: 3px solid #8e52db;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
@@ -228,17 +228,17 @@
     }
 
     .dynamic-field {
-      background: #e3f2fd;
+      background: rgba(142, 82, 219, 0.2);
       padding: 5px 10px;
       border-radius: 3px;
       font-weight: 700;
-      color: #1976d2;
+      color: #8e52db;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
     .dynamic-field:hover {
-      background: #bbdefb;
+      background: rgba(142, 82, 219, 0.3);
     }
 
     .popup-modal {
@@ -298,7 +298,7 @@
 
     .popup-content input:focus {
       outline: none;
-      border-color: #007bff;
+      border-color: #8e52db;
     }
 
     @media (max-width: 768px) {
@@ -332,7 +332,7 @@
 
     <div class="agreement-content" id="agreement-content">
       <p>
-        הסכם זה נערך ונחתם בתאריך <span class="dynamic-field" id="agreement-date"></span> (להלן: "מועד החתימה"), בין חברת iDone (להלן: "הספק") מצד אחד, לבין <span class="dynamic-field" id="client-name">______________</span> ת.ז. <span class="dynamic-field" id="client-id">________</span> (להלן: "הלקוח") מן הצד השני.
+        הסכם זה נערך ונחתם בתאריך <span id="agreement-date"></span> (להלן: "מועד החתימה"), בין חברת iDone (להלן: "הספק") מצד אחד, לבין <span class="dynamic-field" id="client-name">______________</span> ת.ז. <span class="dynamic-field" id="client-id">________</span> (להלן: "הלקוח") מן הצד השני.
       </p>
 
       <p>
