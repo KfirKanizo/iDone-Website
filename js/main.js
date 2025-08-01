@@ -101,7 +101,7 @@ async function submitContactForm(event) {
     }
 
     try {
-        const response = await fetch('https://hook.eu2.make.com/phdu0pso9md6ogphh0hiofv2ui6qms0w', {
+        const response = await fetch('https://hook.eu2.make.com/vw2rx48gi7dolcizrjmcexe9wmh6v63g', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

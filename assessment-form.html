@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>אפיון ראשוני - iDone</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/assessment-form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="assessment-form">
+    <div class="form-header">
+      <h1>אפיון ראשוני</h1>
+      <p>נשמח להבין מה חשוב לך כדי להציע פתרון בול בשבילך. הטופס הזה יעזור לנו להבין את הצרכים שלך ולעצב פתרון מותאם אישית.</p>
+    </div>
+
+    <form id="assessmentForm">
+      <!-- פרטי קשר -->
+      <div class="form-section">
+        <h3>פרטי קשר</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="full_name">שם מלא *</label>
+            <input type="text" id="full_name" name="full_name" required>
+          </div>
+          <div class="form-group">
+            <label for="business_name">שם העסק *</label>
+            <input type="text" id="business_name" name="business_name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="business_id">ת.ז / ח.פ *</label>
+            <input type="text" id="business_id" name="business_id" required>
+          </div>
+          <div class="form-group">
+            <label for="email">כתובת מייל *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">מספר טלפון *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+
+      <!-- שאלה 1 -->
+      <div class="form-section">
+        <h3>מה סוג העסק שלך ומה השירות העיקרי שאתה מספק?</h3>
+        <div class="form-group">
+          <textarea name="business_type" rows="3" placeholder="תאר את העסק שלך והשירותים שאתה מספק..." required></textarea>
+        </div>
+      </div>
+
+      <!-- שאלה 2 -->
+      <div class="form-section">
+        <h3>אילו משימות חוזרות בעסק היית רוצה להפוך לאוטומטיות?</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="task1" name="automation_tasks" value="שליחה וארגון חשבוניות">
+            <label for="task1">שליחה וארגון חשבוניות</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="task2" name="automation_tasks" value="ניהול לידים ולקוחות">
+            <label for="task2">ניהול לידים ולקוחות</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="task3" name="automation_tasks" value="ניהול פגישות ואירועים">
+            <label for="task3">ניהול פגישות ואירועים</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="task4" name="automation_tasks" value="הודעות וואטסאפ אוטומטיות">
+            <label for="task4">הודעות וואטסאפ אוטומטיות</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="task5" name="automation_tasks" value="ניהול מלאי והזמנות">
+            <label for="task5">ניהול מלאי והזמנות</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="task6" name="automation_tasks" value="אחר">
+            <label for="task6">אחר</label>
+          </div>
+        </div>
+        <div class="form-group" id="other_tasks_group" style="display: none;">
+          <textarea name="other_automation_tasks" rows="2" placeholder="תאר את המשימות הנוספות שתרצה להפוך לאוטומטיות..."></textarea>
+        </div>
+      </div>
+
+      <!-- שאלה 3 -->
+      <div class="form-section">
+        <h3>מהי הבעיה המרכזית שאתה רוצה לפתור בעסק שלך?</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="problem1" name="main_problems" value="מבזבזים זמן על משימות ידניות">
+            <label for="problem1">מבזבזים זמן על משימות ידניות</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="problem2" name="main_problems" value="לא שומרים על קשר עם לידים">
+            <label for="problem2">לא שומרים על קשר עם לידים</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="problem3" name="main_problems" value="אין מעקב אחרי תהליכים">
+            <label for="problem3">אין מעקב אחרי תהליכים</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="problem4" name="main_problems" value="קשה לנהל את הצוות">
+            <label for="problem4">קשה לנהל את הצוות</label>
+          </div>
+        </div>
+        <div class="form-group additional-field">
+          <textarea name="other_problems" rows="2" placeholder="בעיות נוספות שתרצה לציין..."></textarea>
+        </div>
+      </div>
+
+      <!-- שאלה 4 -->
+      <div class="form-section">
+        <h3>האם יש לך תשתית דיגיטלית קיימת?</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra1" name="digital_infrastructure" value="אתר אינטרנט">
+            <label for="infra1">אתר אינטרנט</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra2" name="digital_infrastructure" value="מערכת CRM">
+            <label for="infra2">מערכת CRM</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra3" name="digital_infrastructure" value="טפסים דיגיטליים">
+            <label for="infra3">טפסים דיגיטליים</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra4" name="digital_infrastructure" value="חנות אונליין">
+            <label for="infra4">חנות אונליין</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra5" name="digital_infrastructure" value="אין לי כלום עדיין">
+            <label for="infra5">אין לי כלום עדיין</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="infra6" name="digital_infrastructure" value="אחר">
+            <label for="infra6">אחר</label>
+          </div>
+        </div>
+        <div class="form-group" id="other_infrastructure_group" style="display: none;">
+          <textarea name="other_digital_infrastructure" rows="2" placeholder="תאר את התשתית הדיגיטלית הנוספת שיש לך..."></textarea>
+        </div>
+      </div>
+
+      <!-- שאלה 5 -->
+      <div class="form-section">
+        <h3>כמה עובדים יש לך בצוות?</h3>
+        <div class="range-slider">
+          <input type="range" id="team_size" name="team_size" min="1" max="50" value="5">
+          <div class="range-value" id="team_size_value">5 עובדים</div>
+        </div>
+      </div>
+
+      <!-- שאלה 6 -->
+      <div class="form-section">
+        <h3>האם יש תהליך עבודה קבוע או שהכל מאולתר?</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="radio" id="process1" name="work_process" value="יש תהליך ברור" required>
+            <label for="process1">יש תהליך ברור</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="process2" name="work_process" value="בערך" required>
+            <label for="process2">בערך</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="process3" name="work_process" value="כל פעם מאלתרים" required>
+            <label for="process3">כל פעם מאלתרים</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="process4" name="work_process" value="אין לי מושג" required>
+            <label for="process4">אין לי מושג</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- שאלה 7 -->
+      <div class="form-section">
+        <h3>מתי הכי מתאים לך להתחיל בתהליך?</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="radio" id="timing1" name="start_timing" value="בשבוע הקרוב" required>
+            <label for="timing1">בשבוע הקרוב</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="timing2" name="start_timing" value="במהלך החודש" required>
+            <label for="timing2">במהלך החודש</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="timing3" name="start_timing" value="ברבעון הקרוב" required>
+            <label for="timing3">ברבעון הקרוב</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="timing4" name="start_timing" value="רק בודק מה יש" required>
+            <label for="timing4">רק בודק מה יש</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="submit-btn">
+          <span>שלח אפיון ראשוני</span>
+        </button>
+      </div>
+    </form>
+
+    <div class="result-section" id="resultSection">
+      <h3>תודה! כבר מתחילים לחשוב על הפתרון בשבילך...</h3>
+      <p>תבסס על התשובות שלך, הנה ההצעה שלנו:</p>
+      <div class="solution-card" id="solutionCard">
+        <!-- התוכן יוכנס דינמית -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/assessment-form.js"></script>
+</body>
+
+</html> 
