@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <title>נשלח אפיון לליד - יש לעקוב אחר מילוי!</title>
+    <style>
+      body {
+        background: #eaf2fb;
+        font-family: 'Assistant', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        direction: rtl;
+      }
+      .container {
+        max-width: 520px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px #0002;
+        padding: 32px 28px;
+        border-right: 8px solid #8e52db;
+      }
+      .logo {
+        text-align: left;
+        margin-bottom: 18px;
+      }
+      .logo img {
+        height: 100px;
+      }
+      h2 {
+        color: #8e52db;
+        font-size: 24px;
+        margin: 0 0 18px 0;
+        font-weight: bold;
+        direction: rtl;
+      }
+      .content {
+        font-size: 18px;
+        color: #212529;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        direction: rtl;
+      }
+      .meeting-info {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        border-right: 4px solid #8e52db;
+      }
+      .meeting-title {
+        color: #8e52db;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .meeting-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .meeting-details li {
+        padding: 8px 0;
+        position: relative;
+        padding-right: 25px;
+      }
+      .meeting-details li:before {
+        content: "•";
+        color: #8e52db;
+        font-weight: bold;
+        position: absolute;
+        right: 0;
+      }
+      .call-summary {
+        background: #e8f4fd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        border-right: 4px solid #145eb8;
+      }
+      .call-title {
+        color: #145eb8;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .actions {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 14px 38px;
+        background: #8e52db;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px #0001;
+        transition: background 0.2s;
+        margin: 10px 8px;
+      }
+      .btn:hover {
+        background: #145eb8;
+      }
+      .btn-desc {
+        font-size: 15px;
+        color: #626262;
+        margin-bottom: 4px;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: 14px;
+        color: #8b9bac;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <a href="https://www.idone.co.il" target="_blank">
+          <img src="https://www.idone.co.il/assets/images/logos/idone-logo.png" alt="iDone"/>
+        </a>
+      </div>
+      <h2>📋 נשלח אפיון לליד - יש לעקוב אחר מילוי!</h2>
+      <div class="content">
+        נשלח ללקוח טופס אפיון למילוי!<br><br>
+        יש לעקוב אחר מילוי הטופס ולעדכן את המערכת בהתאם.
+      </div>
+      
+      <div class="meeting-info">
+        <div class="meeting-title">👤 פרטי הלקוח</div>
+        <div class="content">
+          <ul class="meeting-details">
+            <li><strong>מזהה ליד באיירטייבל:</strong> {מזהה ליד}</li>
+            <li><strong>שם לקוח:</strong> {שם לקוח}</li>
+            <li><strong>אימייל:</strong> {אימייל לקוח}</li>
+            <li><strong>טלפון:</strong> {טלפון לקוח}</li>
+            <li><strong>חברה:</strong> {שם חברה}</li>
+            <li><strong>תאריך שליחת אפיון:</strong> {תאריך שליחה}</li>
+            <li><strong>שעת שליחה:</strong> {שעת שליחה}</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="call-summary">
+        <div class="call-title">📞 פרטי השיחה הקודמת</div>
+        <div class="content">
+          <ul class="meeting-details">
+            <li><strong>תאריך שיחה:</strong> {תאריך שיחה}</li>
+            <li><strong>נושאים שנדונו:</strong> {נושאים שנדונו}</li>
+            <li><strong>אתגרים שזוהו:</strong> {אתגרים שזוהו}</li>
+            <li><strong>פתרונות שהוצעו:</strong> {פתרונות שהוצעו}</li>
+            <li><strong>תקציב משוער:</strong> {תקציב משוער}</li>
+            <li><strong>התלבטויות הלקוח:</strong> {התלבטויות לקוח}</li>
+            <li><strong>הערות נוספות:</strong> {הערות נוספות}</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="content">
+        <strong>פעולות נדרשות:</strong><br>
+        1. מעקב אחר מילוי האפיון<br>
+        2. הכנת הצעה ראשונית לאחר מילוי<br>
+        3. יצירת קשר עם הלקוח לדיון בהצעה
+      </div>
+      
+      <div class="footer">
+        זכור לעקוב אחר מילוי האפיון ולעדכן את המערכת בהתאם.<br>
+        <b>צוות iDone</b>
+      </div>
+    </div>
+  </body>
+</html> 

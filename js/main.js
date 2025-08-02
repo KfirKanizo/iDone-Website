@@ -108,7 +108,8 @@ async function submitContactForm(event) {
             },
             body: JSON.stringify({
                 ...data,
-                services: services
+                services: services,
+                source: "אתר תדמיתי"
             })
         });
 
