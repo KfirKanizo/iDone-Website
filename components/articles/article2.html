@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">5 תהליכים שכל עסק חייב להפוך לאוטומטיים – כדי להרוויח זמן, שליטה וצמיחה</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>אם אתה מרגיש שהעסק שלך כל הזמן "רץ על הזמן" – אתה לא לבד. בעלי עסקים קטנים ובינוניים משקיעים שעות על גבי שעות
+        במשימות שחוזרות על עצמן: שליחת מיילים, תיאום פגישות, טיפול בלידים, גבייה. אלה פעולות הכרחיות – אבל הן לא חייבות
+        להתבצע ידנית.</p>
+      <p>הבשורה היא שאפשר להפוך את כל אלה (ועוד) לתהליכים אוטומטיים, שפועלים ברקע בצורה מדויקת, חכמה – ובעיקר בלי שתצטרך
+        להתעסק בהם כל יום מחדש. הנה 5 תהליכים שכל עסק יכול וצריך לאוטומט – גם אם התקציב מוגבל, גם אם אתה לא טכנולוגי
+        במיוחד.</p>
+
+      <h2>1. שליחת אימיילים אוטומטיים – לגעת בלקוח בדיוק בזמן הנכון</h2>
+      <p>אימיילים שיווקיים שנשלחים באופן ידני הם גוזלי זמן ולא עקביים. במקום זה, תוכל להקים סדרת אימיילים שמתבססת על
+        טריגרים – פעולות שהלקוח מבצע.</p>
+      <ul>
+        <li><strong>לקוח נרשם לניוזלטר?</strong> נשלחת סדרת הכרות אוטומטית.</li>
+        <li><strong>נטש עגלת קנייה?</strong> נשלחת תזכורת עם הצעה.</li>
+        <li><strong>עבר חודש בלי רכישה?</strong> נשלחת תזכורת שיווקית חכמה.</li>
+      </ul>
+      <p>כלים מומלצים: <strong>Mailchimp, ActiveCampaign, Klaviyo</strong>. מערכות אלו מאפשרות לך לבנות תרחישים מורכבים
+        בקלות, עם מעקב אחרי פתיחה, הקלקות והמרות.</p>
+
+      <h2>2. ניהול לידים אוטומטי – מרגע ההתעניינות ועד השיחה עם איש המכירות</h2>
+      <p>כמה לידים הלכו לאיבוד כי לא חזרת אליהם בזמן? כשהניהול ידני – זה קורה הרבה. אבל אם תחבר את הטפסים באתר שלך
+        למערכת CRM, תוכל לוודא שלעולם לא תפספס אף ליד.</p>
+      <ul>
+        <li>טופס באתר → נכנס אוטומטית ל-CRM (כמו Pipedrive או Zoho)</li>
+        <li>המערכת שולחת לך התראה + מייל ללקוח</li>
+        <li>נקבע תהליך אוטומטי: שליחת הצעה, מעקב, סגירת עסקה</li>
+      </ul>
+      <p>כלים מומלצים: <strong>Zapier, Make</strong> לחיבור בין טפסים (Google Forms, Elementor, Typeform) לבין מערכות
+        CRM.</p>
+
+      <h2>3. הפקת חשבוניות וקבלות – בלי לרדוף אחרי ניירת</h2>
+      <p>סגרת עסקה? ברגע שהלקוח משלם, ניתן להפיק קבלה אוטומטית. סיימת פרויקט? חשבונית נשלחת אוטומטית עם פרטי העסקה. כל
+        זה בלי לפתוח את המערכת ידנית בכל פעם.</p>
+      <ul>
+        <li><strong>חיסכון בזמן:</strong> אין צורך להזין כל פרטי עסקה מחדש</li>
+        <li><strong>עקביות והתאמה לרגולציה:</strong> המערכת עושה את זה בשבילך</li>
+      </ul>
+      <p>כלים פופולריים בישראל: <strong>חשבונית ירוקה, EZcount, iCount</strong> – כולם מאפשרים חיבורים ל-PayPal, Stripe,
+        CRM ועוד.</p>
+
+      <h2>4. תיאום ותזכורות לפגישות – בלי משחקי טלפונים</h2>
+      <p>אם אתה קובע פגישות דרך הודעות, וואטסאפ או מייל – אתה מבזבז שעות בשבוע. כל זה נפתר על ידי חיבור ליומן אונליין.
+      </p>
+      <ul>
+        <li>לקוח בוחר זמן פנוי דרך Calendly או Calendesk</li>
+        <li>נשלח לו אישור + תזכורת אוטומטית (במייל או וואטסאפ)</li>
+        <li>הפגישה נוספת אוטומטית ליומן שלך (Google Calendar)</li>
+      </ul>
+      <p>התוצאה: פחות ביטולים, פחות שכחה, פחות התעסקות.</p>
+
+      <h2>5. מעקב אחר פניות לקוחות – שליטה מלאה בלי עומס</h2>
+      <p>רוצה לדעת מי פנה, מה הובטח לו, מתי צריך לחזור אליו – בלי לנבור באימיילים? הכל יכול להיכנס למערכת ניהול פשוטה
+        שמרכזת את המידע.</p>
+      <ul>
+        <li><strong>Airtable:</strong> ניהול דינמי של פניות, סטטוסים, תיעוד.</li>
+        <li><strong>Notion:</strong> משימות, מעקבים, אינטגרציות מותאמות.</li>
+        <li><strong>ClickUp:</strong> ניהול פרויקטים, משימות ושירות לקוחות במקום אחד.</li>
+      </ul>
+      <p>כשתהליך המעקב מסודר – אתה שולט בעסק שלך ולא רודף אחריו.</p>
+
+      <h2>איך מתחילים בלי להיבהל?</h2>
+      <p>הסוד הוא <strong>לא לנסות לאוטומט הכל בבת אחת</strong>. זה מתכון לתסכול. במקום זה – בחר תהליך אחד שמבזבז לך הכי
+        הרבה זמן בשבוע. זה יכול להיות תיאום פגישות, שליחת הצעות מחיר, או מענה ללידים.</p>
+      <p>בנה תהליך פשוט, תפעיל אותו, תראה איך הוא עובד – ואז תעבור הלאה. זה השלב שבו תתחיל להרגיש את ההקלה.</p>
+
+      <h2>לסיכום – לא רק חיסכון בזמן, אלא שינוי חשיבה</h2>
+      <p>אוטומציה היא לא רק טכנולוגיה – היא צורת חשיבה. ברגע שאתה לוקח שליטה על הזמן שלך, אתה לוקח שליטה על העסק שלך. כל
+        משימה שמבוצעת אוטומטית – מפנה לך מקום להתמקד בדברים החשובים באמת: לקוחות, מכירות, פיתוח.</p>
+      <p><strong>גם אם אתה עסק של אדם אחד – אתה לא חייב לעשות הכל בעצמך.</strong></p>
+      <p><em>רוצה עזרה בזיהוי התהליכים הנכונים לאוטומציה בעסק שלך?</em> אנחנו כאן בדיוק בשביל זה.</p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>

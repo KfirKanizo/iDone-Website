@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">מהי אוטומציה עסקית – ואיך היא יכולה להקפיץ את העסק שלך קדימה</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>בעולם שבו הזמן הוא המשאב היקר ביותר, ובמיוחד אצל בעלי עסקים קטנים ובינוניים – כל דקה קובעת. משימות שחוזרות על
+        עצמן, שירות לקוחות, שיווק, גבייה, תפעול – הכל על הכתפיים שלך. אבל מה אם חלק מהעומס הזה יכול היה פשוט... לקרות
+        מעצמו? לא מדע בדיוני. קוראים לזה אוטומציה עסקית.</p>
+
+      <h2>מה זה בעצם אוטומציה עסקית – ואיך זה עובד?</h2>
+      <p>אוטומציה עסקית היא השלב שבו העסק שלך מפסיק "לרדוף אחרי הזנב", ומתחיל לעבוד בצורה חכמה, מדויקת וחוזרת על עצמה.
+        תהליכים שמבוצעים שוב ושוב, כמו שליחת מיילים, קביעת פגישות, הפקת חשבוניות, או ניהול לידים – מתבצעים אוטומטית, בלי
+        שתצטרך להתעסק בכל פרט קטן בעצמך.</p>
+      <p>זה מתאפשר באמצעות כלים דיגיטליים כמו <strong>Zapier</strong>, <strong>Make</strong> (לשעבר Integromat),
+        פלטפורמות CRM מתקדמות, בוטים, מערכות דיוור, מערכות סליקה ועוד. החיבור בין המערכות האלו מאפשר ליצור תהליכים
+        עסקיים חלקים, שחוסכים זמן, טעויות, ועצבים.</p>
+
+      <h2>5 יתרונות קריטיים לאוטומציה בעסקים קטנים ובינוניים</h2>
+      <ul>
+        <li><strong>חיסכון בזמן:</strong> מה שהעסיק אותך שעתיים ביום – פתאום קורה אוטומטית.</li>
+        <li><strong>שירות עקבי ומדויק ללקוחות:</strong> לקוחות מקבלים מענה מיידי, גם כשאתה לא זמין.</li>
+        <li><strong>פחות טעויות אנוש:</strong> אין שכחתי, אין פספסתי. המערכת תמיד מתפקדת לפי הכללים שהגדרת.</li>
+        <li><strong>יכולת לגדול בלי להישחק:</strong> גם אם תכפיל את כמות הלקוחות – לא תצטרך עוד כוח אדם.</li>
+        <li><strong>מעקב ובקרה:</strong> אתה יודע מה קורה בעסק בזמן אמת, כולל מדדים, שלבים, ודוחות.</li>
+      </ul>
+
+      <h2>דוגמאות אמיתיות מאחורי הקלעים</h2>
+      <p>כדי להבין באמת את העוצמה, הנה כמה תהליכים נפוצים שאפשר לאפיין, לבנות ולהריץ תוך ימים ספורים:</p>
+      <ul>
+        <li><strong>טיפול בלידים חדשים:</strong> ליד מגיע מטופס באתר → נכנס אוטומטית ל-CRM → נשלחת הודעה אישית ללקוח +
+          התראה לצוות המכירות.</li>
+        <li><strong>שליחת הצעת מחיר:</strong> לחיצה אחת והלקוח מקבל הצעה מעוצבת, עם כפתור לאישור אוטומטי והפנייה לתשלום.
+        </li>
+        <li><strong>חשבוניות ותזכורות גבייה:</strong> תהליך המכירה נסגר → מופקת חשבונית אוטומטית → נשלחת ללקוח עם
+          תזכורות חכמות אם לא שולמה.</li>
+        <li><strong>ניהול פגישות:</strong> הלקוח בוחר מועד פנוי → מקבל אישור + לינק לזום + תזכורת לפני הפגישה – הכל
+          אוטומטי.</li>
+      </ul>
+
+      <h2>למה דווקא עסקים קטנים מרוויחים הכי הרבה מהאוטומציה?</h2>
+      <p>עסקים גדולים יכולים להרשות לעצמם עובדים ייעודיים לכל תחום. אבל בעסק קטן – בעל העסק הוא איש השיווק, השירות,
+        הנהלת החשבונות והמנכ"ל גם יחד. לכן, כל משימה שמתבצעת אוטומטית חוסכת לא רק זמן, אלא גם אנרגיה נפשית והתעסקות
+        יומיומית.</p>
+      <p>האוטומציה הופכת לעובד הנאמן ביותר שלך: לא חולה, לא מתלונן, תמיד זמין ותמיד מדויק. כל שקל שתשקיע בבניית תהליך
+        נכון – חוזר אליך דרך שקט תפעולי, חוויית לקוח טובה יותר והכנסות יציבות.</p>
+
+      <h2>טעויות נפוצות בהטמעת אוטומציה – ואיך להימנע מהן</h2>
+      <ul>
+        <li><strong>רוצים יותר מדי מהר מדי:</strong> לא צריך לאוטומט הכל בבת אחת. עדיף להתחיל בתהליך אחד, לבדוק שהוא
+          עובד – ואז להרחיב.</li>
+        <li><strong>בחירת כלים לא נכונים:</strong> חשוב להתאים את הכלים לצרכים ולתקציב של העסק. אין פתרון אחד שמתאים
+          לכולם.</li>
+        <li><strong>חוסר תיעוד:</strong> בלי תיעוד, קשה להבין מה קורה כשיש תקלה. כל תהליך צריך להיות מתועד, ברור ומובן
+          לצוות.</li>
+      </ul>
+
+      <h2>איך מתחילים? פשוט. מתחילים בקטן – וחכמים.</h2>
+      <p>הצעד הראשון לא חייב להיות דרמטי. אפילו פעולה אחת שתעשה אוטומטית – כמו תזכורת לפגישה או שליחת מייל תודה – יכולה
+        לשנות את התחושה הכללית בעסק.</p>
+      <p>אם אתה מרגיש שאתה טובע במשימות, אבל יודע שהעסק שלך יכול לגדול – אוטומציה היא הדרך שלך להשתחרר מהבלגן ולחזור למה
+        שאתה באמת טוב בו: לפתח, למכור, להוביל.</p>
+
+      <h2>לסיכום – פחות עומס, יותר שליטה</h2>
+      <p>אוטומציה עסקית היא לא רק כלי טכנולוגי – היא גישה. גישה של בעל עסק שלא מוכן להתפשר על איכות החיים שלו, על שירות
+        הלקוחות שלו, או על היכולת שלו לגדול.</p>
+      <p><strong>אל תחכה. תבחר תהליך אחד בעסק שלך, ותשאל את עצמך – האם אפשר להפוך אותו לאוטומטי? כמעט תמיד התשובה היא
+          כן.</strong></p>
+      <p><em>ואם אתה לא יודע מאיפה להתחיל – אנחנו כאן כדי לעזור.</em></p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</body>
+
+</html>

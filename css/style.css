@@ -36,7 +36,7 @@ body {
 
 .hero h1 {
   font-size: 3.5rem;
-  background: linear-gradient(45deg,  #8e52db, #00c48c);
+  background: linear-gradient(45deg, #8e52db, #00c48c);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -606,9 +606,11 @@ footer .copyright {
   font-size: 0.9rem;
 }
 
-.copyright, .copyright-text {
+.copyright,
+.copyright-text {
   color: #fff;
 }
+
 .footer-link {
   color: #fff !important;
 }
@@ -805,21 +807,29 @@ h3 {
 
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  background: #003366;
-  color: white;
-  border: none;
-  padding: 0.75rem 1rem;
+  bottom: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  font-size: 1.2rem;
+  border: none;
+  background: linear-gradient(45deg, #3b86f7, #8e52db);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: none;
+  /* מופיע רק בגלילה */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1000;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .back-to-top:hover {
-  background-color: #0055aa;
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:active {
+  transform: scale(0.95);
 }

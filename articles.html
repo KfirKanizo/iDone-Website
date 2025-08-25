@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+    }
+
+    .hero-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      text-align: center;
+      color: #444;
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      transition: transform .2s ease, box-shadow .2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: #003366;
+    }
+
+    .card p {
+      color: #333;
+      line-height: 1.6;
+      min-height: 3.8em;
+    }
+
+    .cta-row {
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .btn:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="hero-title">כתבות מומלצות: אוטומציה, AI וכלים חכמים לעסק שלך</h1>
+    <p class="hero-sub">עמוד הבלוג הרשמי של iDone – תכנים פרקטיים, פשוטים ליישום ומותאמים לעסקים קטנים ובינוניים.</p>
+
+    <section class="card-grid" aria-label="רשימת כתבות">
+      <article class="card">
+        <h3>מהי אוטומציה עסקית ולמה היא קריטית לעסקים קטנים ובינוניים?</h3>
+        <p>הסבר פשוט ומעשי על אוטומציה עסקית, יתרונותיה ויישומים מידיים.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article1.html" aria-label="מעבר לכתבה: מהי אוטומציה עסקית">קרא למה
+            זה חשוב →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>5 תהליכים שכל עסק חייב להפוך לאוטומטיים</h3>
+        <p>מדריך ממוקד להצגת 5 תהליכים נפוצים שכל עסק יכול (וצריך) לאוטומט.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article2.html" aria-label="מעבר לכתבה: 5 תהליכים לאוטומציה">ראה את
+            הרשימה →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>איך להשתמש בבינה מלאכותית לשירות לקוחות חכם יותר</h3>
+        <p>שימושים מעשיים ב-AI לשיפור חוויית שירות לקוחות בעסקים קטנים.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article3.html" aria-label="מעבר לכתבה: AI לשירות לקוחות">למד איך
+            עושים את זה →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>מדריך: שילוב Airtable ו‑Make לניהול לידים יעיל</h3>
+        <p>מדריך טכני פשוט לשילוב בין Airtable ו‑Make לניהול תהליך מכירה.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article4.html" aria-label="מעבר לכתבה: Airtable ו‑Make">פתח את
+            המדריך →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>צ’אטבוטים – לא רק לשאלות תשובות, אלא ככלי מכירה אוטומטי</h3>
+        <p>איך לבנות צ’אטבוט שמוכר, לא רק עונה – עם דוגמאות פרקטיות.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article5.html" aria-label="מעבר לכתבה: צ׳אטבוטים למכירה">גלה את
+            הפוטנציאל →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>כמה באמת עולה לא לאוטומט תהליכים? (רמז: הרבה יותר ממה שחשבת)</h3>
+        <p>הזמן, הכסף והעצבים שאתה מבזבז כל חודש בגלל פעולות שחוזרות על עצמן – וניתן היה לפתור בלחיצת כפתור.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article6.html"
+            aria-label="מעבר לכתבה: כמה באמת עולה לא לאוטומט תהליכים">גלה כמה זה עולה לך באמת →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <h3>זה מה שמעכב את העסק שלך – והגיע הזמן לחסל אותו</h3>
+        <p>כך תאתר את הנקודה שבה העסק נתקע, תבין מה חוסם אותך, ותטפל בזה חכם – עם אוטומציה שתשחרר אותך קדימה.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article7.html"
+            aria-label="מעבר לכתבה: איך לזהות את צוואר הבקבוק התפעולי שלך">מצא את צוואר הבקבוק שלך עכשיו →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>ליד שלא ראית בזמן = כסף שלא תראה בכלל</h3>
+        <p>הזדמנויות נופלות בין הכיסאות בגלל חוסר התראה. כמה זה עולה לך בחודש – ואיך מתקנים את זה ביום אחד.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article8.html"
+            aria-label="מעבר לכתבה: כמה כסף אתה מפסיד על כל ליד שלא קיבלת עליו התראה בזמן">חשב כמה כסף אתה מפסיד →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>מה עושים כשהצוות לא בעניין של אוטומציה?</h3>
+        <p>איך מגשרים על התנגדות, יוצרים שיתוף פעולה – והופכים שינוי טכני לשיפור אמיתי בתרבות העבודה.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article9.html"
+            aria-label="מעבר לכתבה: מה עושים כשהצוות לא בעניין של אוטומציה">למד איך להוביל שינוי חכם →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>10 תהליכים שאוטומציה שינתה לנו את החיים – סיפורים אמיתיים מלקוחות</h3>
+        <p>סטודיו, קליניקה, יועצת, חנות אונליין – כך עסקים קטנים חסכו זמן, סגרו עסקאות והורידו לחץ בזכות אוטומציה חכמה.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article10.html"
+            aria-label="מעבר לכתבה: 10 תהליכים שאוטומציה שינתה לנו את החיים">קרא את הסיפורים המלאים →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>צ׳קליסט: האם העסק שלך מוכן לאוטומציה? גלה תוך 3 דקות</h3>
+        <p>10 שאלות פשוטות שיעזרו לך להבין אם אתה מבזבז זמן יקר על משימות שאפשר להפוך לאוטומטיות כבר עכשיו.</p>
+        <div class="cta-row">
+          <a class="btn" href="/components/articles/article11.html"
+            aria-label="מעבר לכתבה: צ׳קליסט – האם העסק שלך מוכן לאוטומציה">ענה על הצ׳קליסט עכשיו →</a>
+        </div>
+      </article>
+
+
+
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    async function loadComponents() {
+      try {
+        const headerResponse = await fetch('components/header.html');
+        document.getElementById('header').innerHTML = await headerResponse.text();
+
+        const footerResponse = await fetch('components/footer.html');
+        document.getElementById('footer').innerHTML = await footerResponse.text();
+      } catch (err) {
+        console.error('Error loading components', err);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadComponents);
+
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">צ׳קליסט: האם העסק שלך מוכן לאוטומציה? גלה תוך 3 דקות</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>רבים שואלים אותנו: "איך אני יודע אם העסק שלי מוכן לאוטומציה?"
+        והתשובה היא – אם אתה שואל את זה, כנראה שכן.</p>
+      <p>אבל כדי לעזור לך לראות את התמונה בצורה מסודרת, ריכזנו כאן צ׳קליסט קצר. לא טכני. לא מסובך. רק שאלות פשוטות
+        שיעזרו לך להבין: האם יש לך מקום לאוטומציה – ואיפה בדיוק.</p>
+
+      <h2>תענה לעצמך בכנות – כן או לא:</h2>
+      <ol>
+        <li>האם יש לך משימות חוזרות על עצמן כל שבוע? (כמו שליחת חשבוניות, תזכורות, פולואפים)</li>
+        <li>האם אתה שומר מידע ביותר ממקום אחד? (לדוגמה: וואטסאפ, מייל, אקסל)</li>
+        <li>האם אתה מפספס פניות או מגיב ללידים באיחור?</li>
+        <li>האם אתה מבזבז זמן על תיאום פגישות מול לקוחות?</li>
+        <li>האם אתה מרגיש שהעסק תלוי בך יותר מדי – גם בדברים קטנים?</li>
+        <li>האם קורה שאתה שוכח לחזור ללקוח / להוציא מסמך / לעדכן מעקב?</li>
+        <li>האם אתה כותב שוב ושוב את אותו מייל או הודעה?</li>
+        <li>האם אתה או הצוות שלך "טובעים" בניירת או בלוגיסטיקה?</li>
+        <li>האם אתה מרגיש שהמערכות שלך לא מדברות אחת עם השנייה?</li>
+        <li>האם אתה רוצה לגדול – אבל פוחד מהעומס שיגיע עם זה?</li>
+      </ol>
+
+      <h2>תוצאות:</h2>
+      <ul>
+        <li><strong>0–3 תשובות "כן":</strong> אתה בשליטה יחסית – אבל יש כמה נקודות לשפר.</li>
+        <li><strong>4–6 תשובות "כן":</strong> העסק שלך מוכן מאוד לאוטומציה – ויש לך הרבה מה להרוויח.</li>
+        <li><strong>7 ומעלה:</strong> אתה כנראה עובד קשה פי שתיים ממה שצריך. זה הזמן לעשות שינוי.</li>
+      </ul>
+
+      <h2>מה עכשיו?</h2>
+      <p>אוטומציה לא צריכה להיות מהפכה. היא יכולה להתחיל מצעד קטן – אחד שמקל עליך כבר השבוע.
+        לדוגמה: להפסיק לתאם פגישות ידנית, או לקבל התראה אוטומטית על כל ליד חדש.</p>
+      <p><strong>הכי חשוב:</strong> לא צריך להיות טכנולוג כדי לאוטומט. צריך רק להבין מה מעכב אותך – ולבחור את הפתרון
+        הנכון.</p>
+
+      <h2>לסיכום – העסק שלך לא צריך לעבוד קשה כדי לעבוד טוב</h2>
+      <p>אם סימנת יותר מ־4 "כן" – סימן שהאוטומציה כבר מחכה לך מעבר לפינה.
+        לא כדי להחליף אותך – אלא כדי לעזור לך להתמקד בדברים שבאמת דורשים אותך.</p>
+      <p><em>רוצה שנעבור יחד על התוצאות שלך ונבין איפה הכי משתלם להתחיל?</em> תיאום שיחה קצרה – ואנחנו שם.</p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>

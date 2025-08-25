@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">מדריך מעשי: שילוב Airtable ו‑Make לניהול לידים אוטומטי, חכם ויעיל</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>אם אתה מנהל לידים בגיליונות אקסל ידניים או פשוט מסתמך על זיכרון והתראות בטלפון – אתה כנראה מפסיד הזדמנויות כל
+        שבוע. אבל החדשות הטובות: לא צריך מערכת CRM מסורבלת ויקרה כדי לנהל לידים בצורה מקצועית.</p>
+      <p>השילוב בין <strong>Airtable</strong> – טבלת-על עם יכולות עוצמתיות – לבין <strong>Make</strong> (לשעבר
+        Integromat) – מערכת אוטומציות גמישה וחזקה – מאפשר לך להקים מערכת לניהול לידים שעובדת עבורך, 24/7, בדיוק כמו שאתה
+        רוצה. בלי קוד, בלי צוות IT, ובלי כאב ראש.</p>
+
+      <h2>למה דווקא Airtable ו‑Make?</h2>
+      <p><strong>Airtable</strong> נותן לך שליטה מלאה על מבנה נתונים, שדות, תצוגות, פילוחים ודוחות – בגמישות שמרגישה כמו
+        אקסל, אבל עם כוח של מערכת CRM.</p>
+      <p><strong>Make</strong> מאפשר לחבר בין הכלים שאתה כבר משתמש בהם (כמו טפסים, מייל, Slack, WhatsApp, Google Sheets
+        ועוד), ולהפעיל אוטומציות שמזרימות מידע, שולחות התראות, ומטפלות בלידים בצורה חכמה.</p>
+
+      <h2>הנה מדריך פרקטי: איך לבנות את התהליך שלך מ‑0 ל‑100</h2>
+      <ol>
+        <li><strong>הכנת טופס והטבלה ב‑Airtable</strong><br>
+          צור טבלה חדשה בשם "לידים". שדות מומלצים:
+          <ul>
+            <li>שם מלא</li>
+            <li>טלפון</li>
+            <li>אימייל</li>
+            <li>מקור ליד (פייסבוק, אתר, כנס וכו')</li>
+            <li>סטטוס (חדש, נוצר קשר, במעקב, סגור)</li>
+            <li>תאריך קבלה</li>
+            <li>הערות</li>
+          </ul>
+          תוכל גם ליצור תצוגות לפי סטטוס, תאריך, או לפי איש צוות.
+        </li>
+
+        <li><strong>טריגר ב‑Make</strong><br>
+          חיבור הטופס למערכת. 2 דרכים פופולריות:
+          <ul>
+            <li><strong>Webhook:</strong> אם אתה עובד עם Typeform או טופס מותאם – צור Webhook ב‑Make שיאסוף את הנתונים
+              בזמן אמת.</li>
+            <li><strong>חיבור ישיר:</strong> טפסים כמו Jotform או Elementor יכולים להתחבר אוטומטית ל‑Make.</li>
+          </ul>
+          הפעולה הראשונה: יצירת רשומה חדשה בטבלת Airtable עם כל הנתונים מהטופס.
+        </li>
+
+        <li><strong>תגובה ללקוח – מייל תודה אוטומטי</strong><br>
+          מיד לאחר שהליד נכנס, שלח מייל תודה אישי עם שם פרטי, מסר חם והסבר על השלבים הבאים. זה יוצר רושם מקצועי ואמינות
+          מהשנייה הראשונה.
+          <br>אפשר להשתמש ב־Gmail Module בתוך Make או ב־Mailerlite למשלוח מיילים מעוצבים.
+        </li>
+
+        <li><strong>התראה לצוות – לא לפספס לידים חמים</strong><br>
+          צרף שלב נוסף באוטומציה: שליחת הודעה ב-Slack, וואטסאפ עסקי, או מייל פנימי – עם כל פרטי הליד + קישור ישיר לשורה
+          בטבלה.
+          <br>הצוות שלך ידע מיידית מי פנה ומתי, בלי להיכנס למערכת.
+        </li>
+
+        <li><strong>אוטומציות המשך – תזכורות, מעקבים, סגירות</strong><br>
+          זה המקום שבו הקסם קורה:
+          <ul>
+            <li>אם ליד נשאר בסטטוס "חדש" מעל 48 שעות – שלח תזכורת לנציג.</li>
+            <li>אם סטטוס עבר ל"במעקב" – שלח מייל ללקוח עם הצעה.</li>
+            <li>אם הליד "סגור" – הזן אותו אוטומטית לטבלת לקוחות או שלח אותו לניוזליסט.</li>
+          </ul>
+          הכול אוטומטי. אין צורך לעקוב ידנית.
+        </li>
+      </ol>
+
+      <h2>שכבות מתקדמות למי שרוצה לקחת את זה רחוק</h2>
+      <p>כשהמערכת עובדת – תוכל להתחיל להוסיף שכבות חכמות:</p>
+      <ul>
+        <li>חישוב ערך ליד ממוצע לפי מקור</li>
+        <li>מדדים של זמן תגובה ממוצע</li>
+        <li>פילוחים אוטומטיים ללידים לפי תחום עניין</li>
+        <li>הפקת גרפים ב-Airtable Interface או חיבור ל-Google Looker Studio</li>
+      </ul>
+      <p>כך תוכל לא רק לנהל – אלא לנתח, להסיק ולשפר.</p>
+
+      <h2>לסיכום – מערכת חכמה שמאפשרת לך לישון בשקט</h2>
+      <p>לידים לא צריכים להסתובב לך בראש, בתיבת מייל או בוואטסאפ. כשהכול מחובר, מתועד ומתוזמן – אתה מפנה מקום להתמקד במה
+        שאתה באמת טוב בו: מכירה, שירות, ניהול.</p>
+      <p><strong>השילוב של Airtable ו‑Make הוא מהפכה לעסקים קטנים – בלי עלויות גבוהות ובלי תלות בגורמים
+          חיצוניים.</strong></p>
+      <p><em>אם אתה רוצה לעבור לניהול לידים מדויק, חכם ואוטומטי – זה הזמן להתחיל.</em></p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>

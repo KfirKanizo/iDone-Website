@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">כמה באמת עולה לא לאוטומט תהליכים? ניתוח זמן, כסף ועצבים</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>כולם מדברים על מה מרוויחים מאוטומציה, אבל בוא נדבר רגע על מה <strong>מפסידים</strong> כשלא מאוטומטים.</p>
+      <p>בעלי עסקים רבים ממשיכים לנהל תהליכים ידניים מתוך הרגל: כי זה "בסדר בינתיים", כי אין זמן להתעסק, או כי הם מפחדים
+        מהלא נודע. אבל המחיר האמיתי של אי-אוטומציה? גבוה בהרבה ממה שנראה על פני השטח.</p>
+
+      <h2>1. זמן – ההוצאה הכי לא מדודה שלך</h2>
+      <p>נשמע מוכר?</p>
+      <ul>
+        <li>להעתיק פרטי ליד ממייל לגוגל שיטס – 3 דקות</li>
+        <li>לשלוח חשבונית ידנית – 5 דקות</li>
+        <li>לתזכר לקוח על פגישה – 2 דקות</li>
+        <li>לשלוח מייל פולואפ – 4 דקות</li>
+      </ul>
+      <p>זה אולי נשמע קטן – אבל תכפיל את זה ביום, בשבוע, בחודש. פתאום אתה מגלה שאתה מבזבז <strong>5–10 שעות
+          בשבוע</strong> רק על משימות שחוזרות על עצמן. זה אומר <strong>40 שעות בחודש</strong> – שבוע עבודה שלם. ואם הזמן
+        שלך שווה 200 ש"ח לשעה, אתה "משלם" 8,000 ש"ח על עבודות טכניות. כל חודש.</p>
+
+      <h2>2. כסף – הפסדים שקטים שאף אחד לא מדווח עליהם</h2>
+      <p>אי-אוטומציה פוגעת לא רק ביעילות אלא גם בהכנסות:</p>
+      <ul>
+        <li><strong>לידים שמתפספסים</strong> – כי לא היה מענה מהיר בזמן אמת.</li>
+        <li><strong>פגישות שלא מתואמות בזמן</strong> – כי לא היה לינק קבוע לקביעת מועד.</li>
+        <li><strong>חשבוניות שלא נשלחות בזמן</strong> – מה שמעכב תשלום.</li>
+        <li><strong>לקוחות עוזבים</strong> – בגלל תהליך מסורבל או שירות איטי.</li>
+      </ul>
+      <p>אם כל אחד מהדברים האלה קורה אפילו פעמיים בשבוע – אתה מפסיד בפועל אלפי שקלים שלא נרשמים באף דוח. זה כסף שהולך
+        מתחת לרדאר – אבל הוא הולך.</p>
+
+      <h2>3. עצבים, שחיקה ועומס רגשי</h2>
+      <p>מעבר לזמן וכסף – יש גם מחיר מנטלי. כשאתה צריך לזכור כל דבר, לבדוק אם שלחת, לעקוב אחרי כל פעולה – זה שוחק. לא
+        פעם בעלי עסקים מרגישים שהם עובדים "במקום העסק שלהם" ולא עליו.</p>
+      <p>אוטומציה מפחיתה את רמת המיקרו-ניהול. אתה לא צריך לזכור הכל – המערכת עושה את זה בשבילך. זה משחרר מקום מנטלי
+        לחשוב, לתכנן ולהתפתח.</p>
+
+      <h2>השוואה פשוטה – עם ובלי אוטומציה</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>תהליך</th>
+            <th>ללא אוטומציה</th>
+            <th>עם אוטומציה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>קבלת ליד מהאתר</td>
+            <td>העתקה ידנית ל-CRM + שליחת מייל</td>
+            <td>נכנס אוטומטית + מייל נשלח מיידית</td>
+          </tr>
+          <tr>
+            <td>הפקת חשבונית</td>
+            <td>פתיחה ידנית בכל עסקה</td>
+            <td>נשלחת אוטומטית לאחר תשלום</td>
+          </tr>
+          <tr>
+            <td>תיאום פגישה</td>
+            <td>וואטסאפ, מייל, טלפונים</td>
+            <td>Calendly עם זמינות אוטומטית</td>
+          </tr>
+          <tr>
+            <td>מעקב אחרי לקוח</td>
+            <td>תזכורות ידניות, פתקים</td>
+            <td>הודעות מעקב אוטומטיות לפי סטטוס</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>אז למה בכל זאת לא עושים את זה?</h2>
+      <p>הרבה בעלי עסקים נתקעים במקום בגלל:</p>
+      <ul>
+        <li><strong>"אין לי זמן עכשיו להתעסק בזה"</strong> – אבל ממשיכים לבזבז זמן כל יום.</li>
+        <li><strong>"זה בטח מסובך מדי"</strong> – בפועל, רוב התהליכים האוטומטיים לוקחים יום עבודה אחד להקים.</li>
+        <li><strong>"אני רגיל לעשות את זה ככה"</strong> – אבל האם ההרגל הזה באמת משרת אותך?</li>
+      </ul>
+
+      <h2>לסיכום – אי-אוטומציה היא הוצאה סמויה</h2>
+      <p>זה לא ש"אין לך מערכת אוטומטית". יש לך – והיא קוראים לה <strong>אתה</strong>. אתה זה שמבצע את כל הפעולות
+        הידניות, בזבוזי הזמן, וההתעסקויות. אבל אתה לא אמור להיות המערכת – אתה אמור לנהל אותה.</p>
+      <p><strong>אוטומציה היא לא הוצאה – היא חיסכון. היא לא מותרות – היא הכרח לעסק שרוצה לגדול בלי להישחק.</strong></p>
+      <p><em>רוצה לגלות איזה תהליך בעסק שלך הכי משתלם לאוטומט קודם?</em> אפשר לבדוק את זה יחד – בשיחה אחת קצרה.</p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>iDone - כתבות מומלצות</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Heebo', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .page-wrap {
+      padding: 3rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      color: #8e52db;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p {
+      margin: 0 0 1rem 0;
+      color: #222;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      padding-right: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .article-content li {
+      margin-bottom: .5rem;
+    }
+
+    .article-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #8e52db;
+      border: 2px solid #8e52db;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      /* מופיע רק בגלילה */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top:active {
+      transform: scale(0.95);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="page-wrap">
+    <h1 class="article-title">איך לזהות את צוואר הבקבוק התפעולי שלך ולהרוג אותו באוטומציה</h1>
+    <div class="article-meta">פורסם בבלוג iDone</div>
+    <article class="article-content">
+      <p>אתה עובד קשה. העסק רץ, לקוחות נכנסים, הצוות מתפקד. ובכל זאת – משהו תקוע. תהליכים נמרחים, פגישות נדחות, לידים
+        נופלים בין הכיסאות. זה לא בהכרח בעיה של אנשים – אלא של מערכת.</p>
+      <p>החדשות הטובות? כמעט תמיד יש <strong>צוואר בקבוק אחד מרכזי</strong> שמעכב את כל העסק. והחדשות הטובות יותר? אפשר
+        למצוא אותו – ולחסל אותו – בעזרת אוטומציה חכמה.</p>
+
+      <h2>מה זה בכלל צוואר בקבוק תפעולי?</h2>
+      <p>צוואר בקבוק הוא נקודת חיכוך בתהליך – שלב אחד שגוזל יותר מדי זמן, גורם לעיכובים, מייצר תסכולים או פשוט מגביל את
+        הקצב שבו העסק יכול להתקדם.</p>
+      <p>זה יכול להיות:</p>
+      <ul>
+        <li>מענה איטי ללידים</li>
+        <li>קביעת פגישות ידנית</li>
+        <li>תזכורות שנשכחות</li>
+        <li>חשבוניות שלא נשלחות בזמן</li>
+        <li>ריכוז מידע מלקוחות שמפוזר בוואטסאפ, מייל וטפסים</li>
+      </ul>
+
+      <h2>שלב ראשון: לזהות את צוואר הבקבוק</h2>
+      <p>כדי לאתר אותו, תשאל את עצמך (או את הצוות שלך):</p>
+      <ul>
+        <li><strong>איפה הכי הרבה זמן הולך לאיבוד?</strong></li>
+        <li><strong>מה מצריך הכי הרבה מעקב ידני?</strong></li>
+        <li><strong>איפה הכי הרבה טעויות קורות?</strong></li>
+        <li><strong>מה הפעולה שהכי שונאים לעשות?</strong></li>
+      </ul>
+      <p>אם תענה בכנות – בדרך כלל תמצא דפוס. לדוגמה: כל ליד חדש עובר דרך שלושה אנשים, מתעכב יומיים, ואף אחד לא בטוח אם
+        חזרו אליו. זו בדיוק הנקודה שדורשת טיפול.</p>
+
+      <h2>שלב שני: למפות את התהליך הבעייתי</h2>
+      <p>צייר לעצמך את השלבים מ‑A ועד תוצאה. למשל: טופס באתר → קבלת ליד → יצירת קשר → שליחת הצעה → מעקב. עכשיו סמן איפה
+        הדברים נתקעים.</p>
+      <p>הדבר שאתה עושה עליו הכי הרבה Copy-Paste או התעסקות חוזרת – הוא כנראה הבעיה. והפתרון: אוטומציה.</p>
+
+      <h2>שלב שלישי: "לחסל" את צוואר הבקבוק עם אוטומציה</h2>
+      <p>הנה דוגמאות קלאסיות לפתרונות אוטומטיים לצווארי בקבוק נפוצים:</p>
+      <ul>
+        <li><strong>לידים נופלים? →</strong> חבר טפסים ישירות ל‑CRM עם Make או Zapier, ושלח מענה ראשוני אוטומטי תוך
+          שניות.</li>
+        <li><strong>קביעת פגישות בבלגן? →</strong> שלח לינק קבוע לקביעת פגישה (Calendly), עם תזכורת אוטומטית בוואטסאפ.
+        </li>
+        <li><strong>חשבוניות מתעכבות? →</strong> הפק חשבונית אוטומטית בכל תשלום דרך מערכת סליקה.</li>
+        <li><strong>שירות לקוחות תקוע? →</strong> צור מערכת טפסים + צ׳אטבוט שמעבירים את הפנייה ל-Airtable או Notion +
+          שליחת עדכונים אוטומטית.</li>
+      </ul>
+
+      <h2>היתרון הגדול: לא צריך לשנות את כל העסק</h2>
+      <p>מספיק <strong>תהליך אחד</strong> שמשתפר – כדי לראות הבדל דרמטי. פחות עיכובים, פחות בלבול, יותר שליטה. זה מורגש
+        בשטח. פתאום דברים קורים מהר יותר, מדויק יותר, בלי מאמץ נוסף.</p>
+
+      <h2>ומה אם אתה לא בטוח מה בדיוק התקוע?</h2>
+      <p>במקרים כאלה, אנחנו ממליצים לקיים <strong>שיחת מיפוי קצרה</strong> שבה מסתכלים על 3–5 תהליכים בעסק ומזהים יחד מה
+        המקום הראשון שבו כדאי להתמקד.</p>
+      <p>בדרך כלל, תוך 20 דקות כבר ברור איפה מתחילים – ואיך נראה הפתרון.</p>
+
+      <h2>לסיכום – אל תחכה לקריסה כדי לטפל בצוואר הבקבוק</h2>
+      <p>צוואר הבקבוק הוא לא בעיה של מחר – הוא מה שמעכב אותך היום. ההבדל בין עסק שמתפקד טוב לבין עסק שצומח – הוא בדרך
+        שבה מטפלים בנקודות האלה. </p>
+      <p><strong>אוטומציה היא המפתח לא רק ליעילות – אלא ליכולת לגדול בלי להישחק.</strong></p>
+      <p><em>אם אתה מרגיש שמשהו תקוע אבל לא יודע מה – דבר איתנו. נמצא את זה יחד.</em></p>
+    </article>
+    <div class="article-cta">
+      <a class="btn" href="../../articles.html">חזרה לכל הכתבות</a>
+      <a class="btn secondary" href="../../meeting.html">לתיאום שיחת ייעוץ</a>
+    </div>
+  </main>
+
+
+
+
+  <div id="footer"></div>
+
+  <script>
+    // Back to top button behavior if exists in global CSS
+    document.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+    });
+  </script>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+
+</html>
