@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <title>iDone - כתבות מומלצות</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
@@ -171,14 +171,9 @@
 
   <div id="footer"></div>
 
-  <script>
-    // Back to top button behavior if exists in global CSS
-    document.addEventListener('scroll', () => {
-      const btn = document.querySelector('.back-to-top');
-      if (!btn) return;
-      if (window.scrollY > 300) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
-    });
-  </script>
+  <script src="../../js/components.js"></script> <!-- במאמרים -->
+  <script>loadComponentsAuto();</script>
+  
   <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 </body>
