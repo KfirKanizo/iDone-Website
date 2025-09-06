@@ -101,7 +101,7 @@ async function submitContactForm(event) {
     }
 
     try {
-        const response = await fetch('https://hook.eu2.make.com/vw2rx48gi7dolcizrjmcexe9wmh6v63g', {
+        const response = await fetch('https://n8n.idone.co.il/webhook/3426c7c0-5223-447d-913e-4b4c1d855591', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Send to webhook
-        fetch('https://hook.eu2.make.com/l5jafipk98bfo1p7wxoj8jdcr90at97o', {
+        fetch('https://n8n.idone.co.il/webhook/82709af9-89a1-42d2-919c-65817bee18cc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
