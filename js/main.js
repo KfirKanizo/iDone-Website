@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate = document.querySelectorAll(
         '.service-card, .audience-item, .why-us li, .testimonial, .workflow-step, .portfolio-item, .article-content > *'
     );
-    
+
     // הוספת קלאס ההכנה לכל האלמנטים והפעלת המעקב
     elementsToAnimate.forEach((el) => {
         el.classList.add('fade-in-section');
@@ -110,24 +110,51 @@ function closeContactForm() {
 async function submitContactForm(event) {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    // קבלת רכיבי הטופס
+    const form = event.target;
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const successMessage = document.getElementById('formSuccessMessage');
+    const errorMessage = document.getElementById('formErrorMessage');
 
-    // בדיקת תקינות אימייל
+    // הפעלת מצב ולידציה ויזואלית
+    form.classList.add('was-validated');
+
+    // איפוס הודעות והפעלת מצב טעינה
+    submitBtn.disabled = true;
+
+    // איפוס הודעות והפעלת מצב טעינה
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-loading');
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    // איסוף הנתונים
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    const services = formData.getAll('services');
+
+    // ולידציות (נשארות כפי שהיו)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-        alert('אנא הזן כתובת אימייל תקינה');
+        // alert('אנא הזן כתובת אימייל תקינה'); // הוחלף
+        errorMessage.innerText = 'אנא הזן כתובת אימייל תקינה.';
+        errorMessage.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
         return;
     }
 
-    // בדיקת בחירת לפחות שירות אחד
-    const services = formData.getAll('services');
     if (services.length === 0) {
-        alert('אנא בחר לפחות שירות אחד');
+        // alert('אנא בחר לפחות שירות אחד'); // הוחלף
+        errorMessage.innerText = 'אנא בחר לפחות שירות אחד.';
+        errorMessage.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
         return;
     }
 
     try {
+        // שליחת הנתונים ל-Webhook
         const response = await fetch('https://n8n.idone.co.il/webhook/3426c7c0-5223-447d-913e-4b4c1d855591', {
             method: 'POST',
             headers: {
@@ -141,19 +168,38 @@ async function submitContactForm(event) {
         });
 
         if (!response.ok) {
-            throw new Error('שגיאה בשליחת הטופס');
+            throw new Error('שגיאה בתקשורת עם השרת');
         }
 
-        alert('תודה! נציג יחזור אליך בהקדם');
-        closeContactForm();
+        // הצלחה!
+        // alert('תודה! נציג יחזור אליך בהקדם'); // הוחלף
+        successMessage.style.display = 'block';
+        form.reset(); // איפוס הטופס
+
+        // השארת ההודעה לשתי שניות ואז סגירת המודאל
+        setTimeout(() => {
+            closeContactForm();
+            // איפוס הכפתור וההודעה לפעם הבאה
+            successMessage.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('is-loading');
+        }, 2500); // 2.5 שניות
+
     } catch (error) {
+        // כישלון
         console.error('Error:', error);
-        alert('אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר');
+        // alert('אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר'); // הוחלף
+        errorMessage.innerText = 'אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.';
+        errorMessage.style.display = 'block';
+
+        // החזרת הכפתור למצב רגיל כדי לאפשר ניסיון נוסף
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
     }
 }
 
 // סגירת המודל כאשר לוחצים מחוץ לטופס או לוחצים על Escape
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target === document.getElementById('contactFormModal')) {
         closeContactForm();
     }

@@ -513,14 +513,14 @@ body {
   margin: 0 auto;
 }
 
-/* עדכון סגנון השדות */
-.form-group input:invalid,
-.form-group textarea:invalid {
+/* עדכון סגנון השדות - יופעל רק לאחר ניסיון שליחה */
+.was-validated .form-group input:invalid,
+.was-validated .form-group textarea:invalid {
   border-color: #ff4444;
 }
 
-.form-group input:invalid:focus,
-.form-group textarea:invalid:focus {
+.was-validated .form-group input:invalid:focus,
+.was-validated .form-group textarea:invalid:focus {
   box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.1);
 }
 
@@ -869,4 +869,64 @@ h3 {
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   line-height: 1.8;
+}
+
+/* עיצוב הודעות המשוב */
+.form-feedback {
+  display: none;
+  /* מוסתר כברירת מחדל */
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-feedback.success {
+  background-color: #e6f9f0;
+  color: #008a4c;
+  border: 1px solid #b6e9d2;
+}
+
+.form-feedback.error {
+  background-color: #fdeeee;
+  color: #d93030;
+  border: 1px solid #f8c6c6;
+}
+
+/* עיצוב ה-Spinner שיהיה בתוך הכפתור */
+.btn-spinner {
+  display: none;
+  /* מוסתר כברירת מחדל */
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* אנימציית הסיבוב של ה-Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* מצב טעינה של הכפתור */
+.cta-button.is-loading {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* כשהכפתור בטעינה, הסתר את הטקסט */
+.cta-button.is-loading .btn-text {
+  display: none;
+}
+
+/* כשהכפתור בטעינה, הצג את ה-Spinner */
+.cta-button.is-loading .btn-spinner {
+  display: block;
+  margin: 0 auto;
+  /* ממקם את ה-Spinner באמצע הכפתור */
 }

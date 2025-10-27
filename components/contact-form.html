@@ -13,7 +13,7 @@
           <input type="text" id="lastName" name="lastName" required>
         </div>
       </div>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label for="phone">טלפון:</label>
@@ -69,7 +69,17 @@
       </div>
 
       <div class="form-submit">
-        <button type="submit" class="cta-button primary">שליחה</button>
+        <button type="submit" class="cta-button primary" id="contactSubmitBtn">
+          <span class="btn-text">שליחה</span>
+          <span class="btn-spinner"></span>
+        </button>
+      </div>
+
+      <div id="formSuccessMessage" class="form-feedback success">
+        תודה! נציג יחזור אליך בהקדם.
+      </div>
+      <div id="formErrorMessage" class="form-feedback error">
+        אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.
       </div>
     </form>
   </div>
