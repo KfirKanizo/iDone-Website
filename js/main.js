@@ -62,6 +62,33 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // יצירת Observer חדש
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // הוספת הקלאס כשהאלמנט נכנס למסך
+                entry.target.classList.add('is-visible');
+                // אופציונלי: הפסקת המעקב אחרי שהאנימציה בוצעה
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // 10% מהאלמנט צריך להיראות כדי להפעיל
+    });
+
+    // בחירת כל האלמנטים שנרצה להנפיש
+    // (אפשר להוסיף עוד סלקטורים לפי הצורך)
+    const elementsToAnimate = document.querySelectorAll(
+        '.service-card, .audience-item, .why-us li, .testimonial, .workflow-step, .portfolio-item, .article-content > *'
+    );
+    
+    // הוספת קלאס ההכנה לכל האלמנטים והפעלת המעקב
+    elementsToAnimate.forEach((el) => {
+        el.classList.add('fade-in-section');
+        observer.observe(el);
+    });
+
 });
 
 function toggleMenu() {

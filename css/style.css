@@ -113,11 +113,12 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 2rem;
   width: 300px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(142, 82, 219, 0.15);
 }
 
 .service-card img {
@@ -634,6 +635,12 @@ h3 {
   top: 0;
   z-index: 999;
   border-bottom: 1px solid #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.85);
+  /* רקע חצי-שקוף */
+  backdrop-filter: blur(10px);
+  /* אפקט הטשטוש */
+  -webkit-backdrop-filter: blur(10px);
+  /* תמיכה בספארי */
 }
 
 .top-nav .logo img {
@@ -832,4 +839,34 @@ h3 {
 
 .back-to-top:active {
   transform: scale(0.95);
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.article-content p {
+  font-size: 1.1rem;
+  /* מעט גדול יותר (17-18px) */
+  line-height: 1.8;
+  /* ריווח שורות נדיב יותר */
+  color: #333;
+  /* צבע טקסט כהה וברור */
+  margin-bottom: 1.5rem;
+  /* ריווח בין פסקאות */
+}
+
+.article-content ul,
+.article-content ol {
+  padding-right: 20px;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
