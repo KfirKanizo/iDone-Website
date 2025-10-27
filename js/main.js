@@ -104,7 +104,27 @@ function openContactForm() {
 }
 
 function closeContactForm() {
-    document.getElementById('contactFormModal').style.display = 'none';
+    const modal = document.getElementById('contactFormModal');
+    const form = document.getElementById('contactForm');
+
+    if (modal) {
+        modal.style.display = 'none';
+    }
+
+    // איפוס מצב הולידציה וההודעות של הטופס
+    if (form) {
+        form.classList.remove('was-validated');
+
+        const successMessage = document.getElementById('formSuccessMessage');
+        const errorMessage = document.getElementById('formErrorMessage');
+
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    }
 }
 
 async function submitContactForm(event) {
