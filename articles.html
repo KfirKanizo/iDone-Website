@@ -4,16 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
-  <title>iDone - כתבות מומלצות</title>
+  <title>iDone - בלוג | אוטומציה, AI וכלים חכמים לעסק</title>
+  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    /* --- סגנונות קיימים (מועתק מ-articles.html שהעלית) --- */
     body {
       direction: rtl;
       font-family: 'Heebo', sans-serif;
-      background: #fff;
+      background: #f8f9fa;
+      /* רקע בהיר יותר לעמוד */
       color: #1a1a1a;
     }
 
@@ -23,66 +25,133 @@
 
     .hero-title {
       text-align: center;
-      font-size: 2.2rem;
-      color: #8e52db;
-      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      /* מעט גדול יותר */
+      color: #003366;
+      /* כחול כהה */
+      margin-bottom: 1rem;
     }
 
     .hero-sub {
       text-align: center;
       color: #444;
       max-width: 900px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 3rem;
+      /* רווח גדול יותר מתחת */
+      font-size: 1.2rem;
     }
 
-    .card-grid {
+    /* --- סגנונות חדשים / מעודכנים --- */
+
+    /* קטע כתבות מומלצות */
+    .featured-articles {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .featured-articles h2 {
+      font-size: 1.8rem;
+      color: #8e52db;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .featured-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
+      /* שתי עמודות, או אחת במסכים קטנים */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
-    @media (max-width: 1024px) {
-      .card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    /* עיצוב כרטיסיית כתבה - שדרוג */
     .card {
       background: #fff;
       border: 1px solid #e6e6e6;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      /* פינות מעוגלות יותר */
+      /* padding: 1.5rem; - יוסר, ניתן padding נפרד לתמונה ולתוכן */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
       transition: transform .2s ease, box-shadow .2s ease;
       display: flex;
       flex-direction: column;
-      gap: .8rem;
+      overflow: hidden;
+      /* חשוב לפינות מעוגלות של התמונה */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* חשוב מאוד לפינות מעוגלות ול-object-fit */
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+      /* אפקט עדין יותר */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-image {
+      width: 100%;
+      /* תופס את כל רוחב הכרטיסייה */
+      height: 180px;
+      /* גובה קבוע ואחיד לכל התמונות - אפשר לשנות לפי הצורך */
+      object-fit: cover;
+      /* **זו התכונה החשובה!** שומרת פרופורציות וחותכת עודפים */
+      display: block;
+      /* מונע רווח מיותר */
+      background-color: #eee;
+      /* צבע רקע למקרה שהתמונה לא נטענת */
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      /* ריפוד פנימי לטקסט */
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      /* דוחף את הכפתור לתחתית */
+      gap: .8rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: .8rem;
+    }
+
+    .card-category {
+      display: inline-block;
+      background-color: rgba(142, 82, 219, 0.1);
+      /* רקע סגלגל בהיר */
+      color: #8e52db;
+      /* טקסט סגול */
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      /* רווח מהכותרת */
+      align-self: flex-start;
+      /* שיתחיל מימין */
     }
 
     .card h3 {
       font-size: 1.25rem;
       color: #003366;
+      margin: 0;
+      /* איפוס margin */
     }
 
     .card p {
       color: #333;
       line-height: 1.6;
-      min-height: 3.8em;
+      margin: 0;
+      /* איפוס margin */
+      min-height: 3.2em;
+      /* קצת פחות גובה מינימלי */
     }
 
     .cta-row {
       margin-top: auto;
+      /* דוחף את הכפתור לתחתית */
     }
 
     .btn {
@@ -101,6 +170,32 @@
       opacity: .9;
       transform: translateY(-1px);
     }
+
+    /* רשת הכתבות הרגילה */
+    .card-grid {
+      display: grid;
+      /* שלוש עמודות כברירת מחדל */
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* התאמות רספונסיביות לרשת הכתבות */
+    @media (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+        /* גם המומלצים בעמודה אחת */
+      }
+    }
   </style>
 
 </head>
@@ -109,122 +204,132 @@
   <div id="header"></div>
 
   <main class="page-wrap">
-    <h1 class="hero-title">כתבות מומלצות: אוטומציה, AI וכלים חכמים לעסק שלך</h1>
-    <p class="hero-sub">עמוד הבלוג הרשמי של iDone – תכנים פרקטיים, פשוטים ליישום ומותאמים לעסקים קטנים ובינוניים.</p>
+    <h1 class="hero-title">הבלוג של iDone: אוטומציה, AI וכלים חכמים לעסק שלך</h1>
+    <p class="hero-sub">תכנים פרקטיים, מדריכים פשוטים ליישום ורעיונות שיעזרו לך לחסוך זמן ולהגדיל רווחים - מותאם במיוחד
+      לעסקים קטנים ובינוניים.</p>
 
-    <section class="card-grid" aria-label="רשימת כתבות">
+    <section class="featured-articles">
+      <h2>כתבות שכדאי להתחיל איתן</h2>
+      <div class="featured-grid">
+        <article class="card">
+          <img src="/assets/images/blog/article1-thumb.jpg" alt="אוטומציה עסקית" class="card-image" loading="lazy">
+          <div class="card-content">
+            <span class="card-category">יסודות האוטומציה</span>
+            <h3>מהי אוטומציה עסקית ולמה היא קריטית לעסקים קטנים?</h3>
+            <p>הסבר פשוט ומעשי על אוטומציה עסקית, יתרונותיה ויישומים מידיים.</p>
+            <div class="cta-row">
+              <a class="btn" href="/components/articles/article1.html" aria-label="מעבר לכתבה: מהי אוטומציה עסקית">קרא
+                את המבוא →</a>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/assets/images/blog/article7-thumb.jpg" alt="צוואר בקבוק" class="card-image" loading="lazy">
+          <div class="card-content">
+            <span class="card-category">ייעול תהליכים</span>
+            <h3>איך לזהות את צוואר הבקבוק התפעולי שלך ולהרוג אותו?</h3>
+            <p>כך תאתר את הנקודה שבה העסק נתקע, ותטפל בה חכם – עם אוטומציה שתשחרר אותך קדימה.</p>
+            <div class="cta-row">
+              <a class="btn" href="/components/articles/article7.html"
+                aria-label="מעבר לכתבה: איך לזהות צוואר בקבוק">מצא את צוואר הבקבוק שלך →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card-grid" aria-label="רשימת כל הכתבות">
+
       <article class="card">
-        <h3>מהי אוטומציה עסקית ולמה היא קריטית לעסקים קטנים ובינוניים?</h3>
-        <p>הסבר פשוט ומעשי על אוטומציה עסקית, יתרונותיה ויישומים מידיים.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article1.html" aria-label="מעבר לכתבה: מהי אוטומציה עסקית">קרא למה
-            זה חשוב →</a>
+        <img src="/assets/images/blog/article1-thumb.jpg" alt="אוטומציה בסיסית" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">יסודות האוטומציה</span>
+          <h3>מהי אוטומציה עסקית ולמה היא קריטית לעסקים קטנים ובינוניים?</h3>
+          <p>הסבר פשוט ומעשי על אוטומציה עסקית, יתרונותיה ויישומים מידיים.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article1.html" aria-label="מעבר לכתבה: מהי אוטומציה עסקית">קרא למה
+              זה חשוב →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>5 תהליכים שכל עסק חייב להפוך לאוטומטיים</h3>
-        <p>מדריך ממוקד להצגת 5 תהליכים נפוצים שכל עסק יכול (וצריך) לאוטומט.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article2.html" aria-label="מעבר לכתבה: 5 תהליכים לאוטומציה">ראה את
-            הרשימה →</a>
+        <img src="/assets/images/blog/article2-thumb.jpg" alt="תהליכים לאוטומציה" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">יישומים פרקטיים</span>
+          <h3>5 תהליכים שכל עסק חייב להפוך לאוטומטיים</h3>
+          <p>מדריך ממוקד להצגת 5 תהליכים נפוצים שכל עסק יכול (וצריך) לאוטומט.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article2.html" aria-label="מעבר לכתבה: 5 תהליכים לאוטומציה">ראה את
+              הרשימה →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>איך להשתמש בבינה מלאכותית לשירות לקוחות חכם יותר</h3>
-        <p>שימושים מעשיים ב-AI לשיפור חוויית שירות לקוחות בעסקים קטנים.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article3.html" aria-label="מעבר לכתבה: AI לשירות לקוחות">למד איך
-            עושים את זה →</a>
+        <img src="/assets/images/blog/article3-thumb.jpg" alt="AI בשירות לקוחות" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">בינה מלאכותית (AI)</span>
+          <h3>איך להשתמש בבינה מלאכותית לשירות לקוחות חכם יותר</h3>
+          <p>שימושים מעשיים ב-AI לשיפור חוויית שירות לקוחות בעסקים קטנים.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article3.html" aria-label="מעבר לכתבה: AI לשירות לקוחות">למד איך
+              עושים את זה →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>מדריך: שילוב Airtable ו‑Make לניהול לידים יעיל</h3>
-        <p>מדריך טכני פשוט לשילוב בין Airtable ו‑Make לניהול תהליך מכירה.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article4.html" aria-label="מעבר לכתבה: Airtable ו‑Make">פתח את
-            המדריך →</a>
+        <img src="/assets/images/blog/article4-thumb.jpg" alt="Airtable ו-Make" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">כלים ומדריכים</span>
+          <h3>מדריך: שילוב Airtable ו‑Make לניהול לידים יעיל</h3>
+          <p>מדריך טכני פשוט לשילוב בין Airtable ו‑Make לניהול תהליך מכירה.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article4.html" aria-label="מעבר לכתבה: Airtable ו‑Make">פתח את
+              המדריך →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>צ’אטבוטים – לא רק לשאלות תשובות, אלא ככלי מכירה אוטומטי</h3>
-        <p>איך לבנות צ’אטבוט שמוכר, לא רק עונה – עם דוגמאות פרקטיות.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article5.html" aria-label="מעבר לכתבה: צ׳אטבוטים למכירה">גלה את
-            הפוטנציאל →</a>
+        <img src="/assets/images/blog/article5-thumb.jpg" alt="צ'אטבוטים למכירה" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">שיווק ומכירות</span>
+          <h3>צ’אטבוטים – לא רק לשאלות, אלא ככלי מכירה אוטומטי</h3>
+          <p>איך לבנות צ’אטבוט שמוכר, לא רק עונה – עם דוגמאות פרקטיות.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article5.html" aria-label="מעבר לכתבה: צ׳אטבוטים למכירה">גלה את
+              הפוטנציאל →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>כמה באמת עולה לא לאוטומט תהליכים? (רמז: הרבה יותר ממה שחשבת)</h3>
-        <p>הזמן, הכסף והעצבים שאתה מבזבז כל חודש בגלל פעולות שחוזרות על עצמן – וניתן היה לפתור בלחיצת כפתור.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article6.html"
-            aria-label="מעבר לכתבה: כמה באמת עולה לא לאוטומט תהליכים">גלה כמה זה עולה לך באמת →</a>
-        </div>
-      </article>
-
-
-      <article class="card">
-        <h3>זה מה שמעכב את העסק שלך – והגיע הזמן לחסל אותו</h3>
-        <p>כך תאתר את הנקודה שבה העסק נתקע, תבין מה חוסם אותך, ותטפל בזה חכם – עם אוטומציה שתשחרר אותך קדימה.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article7.html"
-            aria-label="מעבר לכתבה: איך לזהות את צוואר הבקבוק התפעולי שלך">מצא את צוואר הבקבוק שלך עכשיו →</a>
+        <img src="/assets/images/blog/article6-thumb.jpg" alt="עלות אי-אוטומציה" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">אסטרטגיה עסקית</span>
+          <h3>כמה באמת עולה לא לאוטומט תהליכים? (רמז: הרבה יותר)</h3>
+          <p>הזמן, הכסף והעצבים שאתה מבזבז כל חודש בגלל פעולות שחוזרות על עצמן.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article6.html"
+              aria-label="מעבר לכתבה: כמה באמת עולה לא לאוטומט תהליכים">גלה כמה זה עולה לך →</a>
+          </div>
         </div>
       </article>
 
       <article class="card">
-        <h3>ליד שלא ראית בזמן = כסף שלא תראה בכלל</h3>
-        <p>הזדמנויות נופלות בין הכיסאות בגלל חוסר התראה. כמה זה עולה לך בחודש – ואיך מתקנים את זה ביום אחד.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article8.html"
-            aria-label="מעבר לכתבה: כמה כסף אתה מפסיד על כל ליד שלא קיבלת עליו התראה בזמן">חשב כמה כסף אתה מפסיד →</a>
+        <img src="/assets/images/blog/article7-thumb.jpg" alt="צוואר בקבוק" class="card-image" loading="lazy">
+        <div class="card-content">
+          <span class="card-category">ייעול תהליכים</span>
+          <h3>זה מה שמעכב את העסק שלך – והגיע הזמן לחסל אותו</h3>
+          <p>כך תאתר את הנקודה שבה העסק נתקע, ותטפל בזה חכם – עם אוטומציה.</p>
+          <div class="cta-row">
+            <a class="btn" href="/components/articles/article7.html"
+              aria-label="מעבר לכתבה: איך לזהות את צוואר הבקבוק">מצא את צוואר הבקבוק →</a>
+          </div>
         </div>
       </article>
-
-      <article class="card">
-        <h3>מה עושים כשהצוות לא בעניין של אוטומציה?</h3>
-        <p>איך מגשרים על התנגדות, יוצרים שיתוף פעולה – והופכים שינוי טכני לשיפור אמיתי בתרבות העבודה.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article9.html"
-            aria-label="מעבר לכתבה: מה עושים כשהצוות לא בעניין של אוטומציה">למד איך להוביל שינוי חכם →</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>10 תהליכים שאוטומציה שינתה לנו את החיים – סיפורים אמיתיים מלקוחות</h3>
-        <p>סטודיו, קליניקה, יועצת, חנות אונליין – כך עסקים קטנים חסכו זמן, סגרו עסקאות והורידו לחץ בזכות אוטומציה חכמה.
-        </p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article10.html"
-            aria-label="מעבר לכתבה: 10 תהליכים שאוטומציה שינתה לנו את החיים">קרא את הסיפורים המלאים →</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>צ׳קליסט: האם העסק שלך מוכן לאוטומציה? גלה תוך 3 דקות</h3>
-        <p>10 שאלות פשוטות שיעזרו לך להבין אם אתה מבזבז זמן יקר על משימות שאפשר להפוך לאוטומטיות כבר עכשיו.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article11.html"
-            aria-label="מעבר לכתבה: צ׳קליסט – האם העסק שלך מוכן לאוטומציה">ענה על הצ׳קליסט עכשיו →</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>מה זה CRM, ולמה זה לא רק לעסקים גדולים?</h3>
-        <p>הכלי שעוזר לעסק שלך לזכור כל ליד, לנהל כל פנייה, ולעבוד חכם יותר – גם אם אתה עסק של אדם אחד.</p>
-        <div class="cta-row">
-          <a class="btn" href="/components/articles/article12.html"
-            aria-label="מעבר לכתבה: מה זה CRM ולמה זה לא רק לעסקים גדולים">למד איך CRM עובד בשבילך →</a>
-        </div>
-      </article>
-
-
-
 
     </section>
   </main>
@@ -232,6 +337,7 @@
   <div id="footer"></div>
 
   <script>
+    // הפונקציה לטעינת רכיבים נשארת כפי שהיא
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');
@@ -245,7 +351,7 @@
     }
     document.addEventListener('DOMContentLoaded', loadComponents);
 
-    // Back to top button behavior if exists in global CSS
+    // Back to top button behavior (נשאר כפי שהיה)
     document.addEventListener('scroll', () => {
       const btn = document.querySelector('.back-to-top');
       if (!btn) return;
