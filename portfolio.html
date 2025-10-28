@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
   <title>פתרונות שביצענו ללקוחות | iDone</title>
+  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* סגנונות בסיסיים לעמוד הפורטפוליו */
     .portfolio-section {
       background-color: #f8f9fa;
       padding: 4rem 5%;
@@ -42,272 +43,479 @@
       color: #333;
     }
 
-    .portfolio-grid {
+    /* המבנה החדש של סיפורי המקרה עם כפתור Toggle */
+    .portfolio-casestudies {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.5rem;
       align-items: center;
+      margin-top: 3rem;
     }
 
-    .portfolio-item {
+    .portfolio-item-new {
       background-color: #ffffff;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      text-align: center;
-      padding: 2rem;
-      max-width: 600px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+      padding: 2.5rem;
+      max-width: 800px;
       width: 100%;
-    }
-
-    .portfolio-item h3 {
-      color: #8e52db;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .portfolio-item img {
-      width: 100%;
-      height: auto;
-      max-height: 240px;
-      object-fit: contain;
-      margin-bottom: 1.2rem;
-      border-radius: 12px;
-    }
-
-    .portfolio-item p {
-      font-size: 1rem;
-      color: #333;
-      margin-bottom: 1rem;
-    }
-
-    .portfolio-item button {
-      background-color: #00bcd4;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.95rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .portfolio-item button:hover {
-      background-color: #0097a7;
-    }
-
-    .portfolio-modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .portfolio-modal-content {
-      background: #fff;
-      padding: 2rem;
-      max-width: 600px;
-      width: 90%;
-      border-radius: 12px;
-      position: relative;
       text-align: right;
-      direction: rtl;
+      border-right: 5px solid #8e52db;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      /* חשוב לאנימציה חלקה */
     }
 
-    .portfolio-modal-content h4 {
+    .portfolio-item-new:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+    }
+
+    .portfolio-item-new h3 {
       color: #8e52db;
-      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
-    .portfolio-modal-content p {
+    .portfolio-item-new .divider {
+      height: 3px;
+      width: 70px;
+      background: linear-gradient(90deg, #8e52db, #00c48c);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-item-new h4 {
+      font-size: 1.3rem;
+      color: #003366;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .portfolio-item-new p,
+    .portfolio-item-new li {
+      font-size: 1.1rem;
       color: #333;
+      line-height: 1.7;
     }
 
-    .modal-close {
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      font-size: 1.5rem;
-      color: #999;
+    /* עיצוב הכפתור */
+    .toggle-solution-btn {
+      display: block;
+      /* שיהיה ברוחב מלא */
+      width: 100%;
+      background-color: #f0f0f5;
+      /* צבע רקע עדין */
+      color: #8e52db;
+      /* צבע הטקסט */
+      border: none;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      text-align: center;
+      /* ממורכז */
+    }
+
+    .toggle-solution-btn:hover {
+      background-color: #e6e6f0;
+      color: #7a47c7;
+    }
+
+    /* התוכן הנסתר והאנימציה */
+    .solution-content {
+      max-height: 0;
+      /* מוסתר בהתחלה */
+      overflow: hidden;
+      /* מונע הצגת תוכן עודף */
+      transition: max-height 0.5s ease-out;
+      /* אנימציית גלילה חלקה */
+      margin-top: 1.5rem;
+      /* ריווח מהכפתור */
+      border-top: 1px solid #eee;
+      /* קו הפרדה עדין */
+      padding-top: 1.5rem;
+      /* ריווח מעל התוכן */
+    }
+
+    .solution-content.show {
+      max-height: 1000px;
+      /* גובה מקסימלי מספיק גדול להכיל את התוכן */
+      transition: max-height 0.7s ease-in;
+      /* אנימציה איטית יותר בפתיחה */
+    }
+
+    .portfolio-item-new ul {
+      padding-right: 20px;
+      margin: 0;
+      list-style-type: '✓  ';
+    }
+
+    .portfolio-item-new li {
+      padding-right: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-item-new .result {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .portfolio-item-new .result p {
+      font-weight: 600;
+      color: #007c91;
+      margin: 0;
+      line-height: 1.8;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Include components -->
   <div id="header"></div>
 
-  <!-- Portfolio Section -->
   <section class="portfolio-section" id="portfolio" dir="rtl" lang="he">
     <h2>פתרונות מהשטח</h2>
     <p class="portfolio-intro">
       דוגמאות אמיתיות לפתרונות שפיתחנו עבור לקוחות מכל תחום – החל מאוטומציות פשוטות ועד מערכות משולבות מתקדמות.
+      אנחנו מאמינים בהצגת ערך: לא רק "מה עשינו", אלא "איזו בעיה פתרנו".
     </p>
 
-    <div class="portfolio-grid">
+    <div class="portfolio-casestudies">
 
-      <div class="portfolio-item">
-        <h3>אוטומציה חכמה לניהול לידים</h3>
-        <img src="assets/images/portfolio/portfolio-new-lead.jpg" alt="ליד חדש">
-        <p>טיפול אוטומטי בלידים חדשים – משלב הקליטה, תוך תיעוד במערכת CRM ועד לתגובה אישית בוואטסאפ ובמייל</p>
-        <button onclick="openModal('new-lead')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>🚀 אוטומציה חכמה לניהול לידים</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          לקוחות השאירו פרטים בטופס האתר אך המענה התעכב. לידים "התקררו", פנו למתחרים, ונוצר חוסר סדר בטיפול בפניות שגרם
+          לאובדן הכנסה.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>חיבור אוטומטי של טופס הפניות ישירות למערכת ה-CRM של הלקוח.</li>
+            <li>יצירת כרטיס לקוח חדש או עדכון רשומה קיימת עם כל הפרטים מהטופס.</li>
+            <li>שליחת הודעת וואטסאפ ומייל אישי ללקוח תוך שניות (עם תוכן מותאם ב-AI).</li>
+            <li>יצירת משימה אוטומטית לסוכן המכירות במערכת הניהול הפנימית.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>⚡ תגובה מהירה ומרשימה ללקוח שבונה אמון מהשנייה הראשונה.</p>
+            <p>🗂 ניהול מסודר ואוטומטי של 100% מהלידים - שום פנייה לא נופלת בין הכיסאות.</p>
+            <p>🤖 פחות עבודה ידנית של "קופי-פייסט" ויותר זמן לסגירת עסקאות.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="portfolio-item">
-        <h3>תהליך חתימות דיגיטליות אוטומטי</h3>
-        <img src="assets/images/portfolio/portfolio-automation-signature.jpg" alt="חתימות ואוטומציה">
-        <p>שליחת חוזים בלחיצת כפתור ומעקב אחר סטטוס חתימה.</p>
-        <button onclick="openModal('signatures')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>✍️ תהליך חתימות דיגיטליות אוטומטי</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          שליחת חוזים והסכמים לחתימה נעשתה ידנית. התהליך היה מסורבל, דרש מעקב צמוד במיילים, ועיכב את סגירת העסקאות.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>הטמעת תהליך שליחת חוזה לחתימה דיגיטלית בלחיצת כפתור מתוך ה-CRM.</li>
+            <li>פתיחת מעקב אוטומטי בזמן אמת אחר סטטוס החתימה (נצפה, נחתם, נדחה).</li>
+            <li>שליחת תזכורות אוטומטיות ללקוח במידה והמסמך לא נחתם.</li>
+            <li>לאחר חתימה: המסמך החתום נשלח אוטומטית ללקוח ומעדכן את סטטוס העסקה ב-CRM.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>✅ חיסכון עצום בזמן ובפעולות ידניות בתהליך המכירה.</p>
+            <p>📬 תהליך חתימה חלק, מקצועי ומרשים עבור הלקוח.</p>
+            <p>📈 שליטה ובקרה מלאה על כל החוזים הפתוחים, ללא פספוסים.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="portfolio-item">
-        <h3>מעקב כספים וחשבוניות</h3>
-        <img src="assets/images/portfolio/portfolio-finance-tracking.jpg" alt="ניהול כספים אוטומטי">
-        <p>מעקב גבייה, חשבוניות פתוחות ודוחות כספיים חכמים.</p>
-        <button onclick="openModal('finance')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>💰 מעקב כספים וחשבוניות חכם</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          קושי במעקב אחר גבייה, חשבוניות פתוחות שהלכו לאיבוד, והיעדר תמונת מצב כספית ברורה וזמינה בתוך מערכת ניהול
+          הלקוחות.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>אינטגרציה בין מערכת ה-CRM למערכת הנהלת החשבונות.</li>
+            <li>הצגת סטטוס חשבוניות פתוחות ויתרת לקוח ישירות בכרטיס הלקוח ב-CRM.</li>
+            <li>שליחת תזכורות גבייה אוטומטיות ללקוחות לפי תאריכים מוגדרים מראש.</li>
+            <li>הפקת דוחות כספיים וסטטוס תשלום בלחיצת כפתור.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>💸 גבייה מסודרת ויעילה בלי "לרדוף" אחרי תשלומים.</p>
+            <p>📊 דוחות חכמים שמציגים תמונת מצב כספית ברורה ועדכנית.</p>
+            <p>🔄 אוטומציה מלאה המחברת בין מחלקת המכירות למחלקת הכספים.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="portfolio-item">
-        <h3>טפסי קליטה אוטומטיים</h3>
-        <img src="assets/images/portfolio/portfolio-intake-forms.jpg" alt="טופס קליטה חכם">
-        <p>טפסים חכמים שמזינים מידע ישירות ל-CRM.</p>
-        <button onclick="openModal('forms')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>📝 טפסי קליטה אוטומטיים (Intake)</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          קליטת לקוח חדש דרשה מילוי טפסים ידני, הקלדת נתונים כפולה למערכות, וגרמה לטעויות אנוש ומידע חסר בתהליך.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>בניית טופס דיגיטלי חכם (Webform) שהלקוח ממלא פעם אחת.</li>
+            <li>המידע מהטופס יוצר אוטומטית כרטיס לקוח מלא במערכת ה-CRM.</li>
+            <li>הפרטים מוזנים אוטומטית לשדות המתאימים (שם, טלפון, צרכים וכו').</li>
+            <li>יצירת משימות המשך אוטומטיות לצוות הרלוונטי (למשל, "לקבוע שיחת אפיון").</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>🚫 אפס טעויות הקלדה או מידע חסר בתהליך קליטת הלקוח.</p>
+            <p>🚀 חוויית קליטה מהירה, מקצועית ומרשימה ללקוח החדש.</p>
+            <p>🔗 חיבור חלק ומיידי בין האתר למערכת הפנימית של העסק.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="portfolio-item">
-        <h3>ניהול פגישות אוטומטי</h3>
-        <img src="assets/images/portfolio/portfolio-meetings.jpg" alt="טופס קליטה חכם">
-        <p>אוטומציה לקביעה / עדכון / ביטול פגישות</p>
-        <button onclick="openModal('meetings')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>📅 ניהול פגישות אוטומטי</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          תיאום פגישות בוצע ב"פינג-פונג" של מיילים והודעות וואטסאפ, מה שבזבז זמן יקר וגרם לביטולים ואי-הבנות.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>הטמעת מערכת לזימון פגישות (כמו Calendly) מסונכרנת ליומן הארגוני.</li>
+            <li>הלקוח בוחר מועד פנוי בטופס דיגיטלי וקובע פגישה בעצמו.</li>
+            <li>הפגישה מתעדכנת אוטומטית ביומן (Google / Outlook) של הלקוח ושל הסוכן.</li>
+            <li>שליחת אישור הרשמה ותזכורות אוטומטיות (במייל ובוואטסאפ) לפני הפגישה.</li>
+            <li>עדכון סטטוס אוטומטי ב-CRM לאחר קביעת הפגישה.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>📆 אפס זמן מבוזבז על תיאומים ידניים.</p>
+            <p>📲 הלקוח קובע לבד, 24/7, מתי שנוח לו.</p>
+            <p>🔁 ירידה משמעותית בכמות ביטולי הפגישות בזכות התזכורות.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item-new">
+        <h3>📄 אוטומציה לשליחת הצעות מחיר</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          הכנת הצעות מחיר הייתה תהליך ידני, איטי, ודרשה העתקת נתונים מה-CRM למסמך Word או PDF. לא היה מעקב מסודר אחרי
+          הצעות שנשלחו.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>יצירת תבנית הצעת מחיר דינאמית שמושכת נתונים אוטומטית מכרטיס הלקוח ב-CRM.</li>
+            <li>שליחת ההצעה ללקוח במייל ובוואטסאפ בלחיצת כפתור.</li>
+            <li>תיעוד אוטומטי ב-CRM שההצעה נשלחה, כולל עותק של המסמך.</li>
+            <li>הגדרת תזכורת פולואפ אוטומטית לסוכן לאחר 3 ימים במידה והלקוח לא הגיב.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>⏱️ קיצור זמן הכנת הצעה משעה שלמה לדקה אחת.</p>
+            <p>📈 מעקב אוטומטי המבטיח שכל הצעה מקבלת פולואפ בזמן.</p>
+            <p>🎨 מראה מקצועי ואחיד לכל הצעות המחיר היוצאות מהארגון.</p>
+          </div>
+        </div>
       </div>
 
 
-      <div class="portfolio-item">
-        <h3>הצעות מחיר</h3>
-        <img src="assets/images/portfolio/portfolio-price-offer.jpg" alt="טופס קליטה חכם">
-        <p>שליחת הצעת מחיר דינאמית במייל / וואטסאפ</p>
-        <button onclick="openModal('price-offer')">למידע נוסף</button>
+      <div class="portfolio-item-new">
+        <h3>🎯 בניית דפי נחיתה ממירים ומחוברים</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          קמפיינים שיווקיים הופנו לעמוד הבית הכללי או לעמודים לא ממוקדים באתר, מה שהוביל לאחוזי נטישה גבוהים וקושי למדוד
+          תוצאות. בניית דפי נחיתה ייעודיים הייתה איטית, יקרה או דרשה ידע טכני שלא היה זמין.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>עיצוב ובניית דפי נחיתה ממוקדי-מטרה, עם מסר ברור וקריאה לפעולה (CTA) חזקה.</li>
+            <li>שימוש בפלטפורמות גמישות (כמו Webflow, Carrd, או קוד מותאם) המאפשרות עיצוב ייחודי ומהירות טעינה גבוהה.
+            </li>
+            <li>חיבור אוטומטי של טפסי ההרשמה/יצירת קשר בדף הנחיתה ישירות למערכת ה-CRM או לרשימת הדיוור.</li>
+            <li>הטמעת פיקסלים וכלי אנליטיקס למעקב מדויק אחר ביצועי הקמפיין.</li>
+            <li>יצירת תהליכי המשך אוטומטיים (למשל, שליחת מייל תודה, הוספת הליד לסדרת מסרים) לאחר המרה בדף הנחיתה.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>📈 עלייה משמעותית באחוזי ההמרה מקמפיינים שיווקיים.</p>
+            <p>🚀 השקה מהירה של מבצעים והצעות חדשות עם עמודים ייעודיים ומדויקים.</p>
+            <p>📊 מדידה מדויקת של ROI ויעילות הקמפיינים השונים.</p>
+            <p>🔗 חווית משתמש חלקה מהמודעה ועד להשארת הפרטים, ללא "חיכוכים".</p>
+          </div>
+        </div>
       </div>
 
+      <div class="portfolio-item-new">
+        <h3>✍️ יצירת טפסים דיגיטליים חכמים ומחוברים</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          העסק הסתמך על טפסי PDF מסורבלים, טפסים מודפסים או טפסים אינטרנטיים בסיסיים שלא היו מחוברים לשום מערכת. התוצאה:
+          איסוף נתונים איטי, טעויות הקלדה רבות, קושי בעיבוד המידע וחוויה מיושנת למשתמשים.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>בניית טפסים דיגיטליים אינטראקטיביים (באמצעות כלים כמו Typeform, Jotform, Airtable Forms, Google Forms)
+              עם עיצוב מודרני.</li>
+            <li>הטמעת לוגיקה חכמה בטפסים (שדות מותנים - Conditional Logic) המציגה שאלות רלוונטיות בלבד למשתמש.</li>
+            <li>הוספת אימות נתונים (Validations) למניעת טעויות במילוי.</li>
+            <li>חיבור אוטומטי של הנתונים הנאספים מהטופס ישירות למערכות הרלוונטיות (CRM, Google Sheets, Airtable, מערכת
+              ניהול פרויקטים).</li>
+            <li>הפעלת תהליכים אוטומטיים על בסיס הנתונים שנשלחו (למשל, שליחת מייל אישור, יצירת משימה, עדכון סטטוס).</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>✅ צמצום דרסטי של טעויות בהזנת נתונים ושיפור איכות המידע הנאסף.</p>
+            <p>⏱️ קיצור משמעותי בזמן עיבוד הטפסים והפניות.</p>
+            <p>👍 חווית משתמש נעימה, מהירה ומודרנית לממלאי הטפסים (לקוחות או עובדים).</p>
+            <p>🔗 אינטגרציה מלאה של איסוף הנתונים בתהליכי העבודה הקיימים של העסק.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="portfolio-item-new">
+        <h3>🤝 אוטומציה לתהליך קליטת לקוח חדש (Onboarding)</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          לאחר סגירת עסקה, תהליך ההתחלה עם הלקוח היה ידני ומפוזר – שליחת מיילים, איסוף פרטים, קביעת פגישות, יצירת
+          תיקיות. זה יצר עיכובים ותחושה לא מקצועית בתחילת העבודה המשותפת.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>עם סימון העסקה כ"סגורה" ב-CRM, הופעל תהליך אוטומטי מלא.</li>
+            <li>נשלח מייל "ברוכים הבאים" אישי ללקוח עם הסבר על השלבים הבאים וקישור לטופס פרטים נוספים.</li>
+            <li>נוצרה אוטומטית תיקייה משותפת ב-Google Drive / OneDrive עבור הלקוח.</li>
+            <li>נוצרה משימה במערכת ניהול הפרויקטים (למשל ClickUp, Monday) למנהל הפרויקט הרלוונטי.</li>
+            <li>נשלח ללקוח קישור לקביעת פגישת התנעה (Kick-off) בזמנו הפנוי.</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>🚀 חווית Onboarding חלקה, מהירה ומקצועית שיוצרת רושם ראשוני מצוין.</p>
+            <p>⏳ חיסכון משמעותי בזמן אדמיניסטרטיבי יקר לצוות.</p>
+            <p>📋 אפס טעויות או שכחה של שלבים קריטיים בתהליך קליטת הלקוח.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item-new">
+        <h3>⭐ אוטומציה לאיסוף משוב וביקורות מלקוחות</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          לאחר סיום פרויקט, לא היה תהליך מסודר לאיסוף משוב. העסק פספס הזדמנויות ללמוד, להשתפר ובעיקר לאסוף ביקורות
+          חיוביות שיכולות למשוך לקוחות חדשים מגוגל או פייסבוק.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>עם סימון הפרויקט כ"הושלם", נשלח אוטומטית מייל/SMS ללקוח עם בקשה למילוי סקר שביעות רצון קצר.</li>
+            <li>אם המשוב חיובי (למשל, ציון 9-10): נשלחה בקשה אוטומטית נוספת להשאיר ביקורת בגוגל/פייסבוק עם קישור ישיר.
+            </li>
+            <li>אם המשוב שלילי (למשל, ציון נמוך): נוצרה התראה אוטומטית למנהל השירות לבדיקה ויצירת קשר אישי עם הלקוח.
+            </li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>📊 איסוף שיטתי של משוב המאפשר שיפור מתמיד של השירות והמוצר.</p>
+            <p>🌟 הגדלה משמעותית בכמות הביקורות החיוביות בפלטפורמות החשובות (שיפור SEO מקומי).</p>
+            <p>❤️‍🩹 טיפול מהיר וממוקד בלקוחות לא מרוצים לפני שהבעיה מחריפה או מגיעה לרשתות.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item-new">
+        <h3>🔔 אוטומציה לניהול משימות ותזכורות לצוות</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          משימות ותאריכי יעד הלכו לאיבוד בין מיילים, פתקים והודעות וואטסאפ. הצוות התקשה לעקוב אחר סדרי עדיפויות,
+          ופרויקטים התעכבו בגלל חוסר סנכרון ותקשורת לקויה.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>חיבור כל מקורות המשימה (מיילים, טפסים, CRM) למערכת ניהול משימות מרכזית (כמו ClickUp, Asana, Monday).
+            </li>
+            <li>יצירת משימות אוטומטית עם תאריך יעד, אחראי ותיוג מתאים לכל פנייה/פרויקט חדש.</li>
+            <li>שליחת תזכורות אוטומטיות (ב-Slack/מייל) לצוות על משימות שמתקרבות לדד-ליין או שעבר זמנן.</li>
+            <li>עדכון סטטוס אוטומטי של משימות על סמך פעולות במערכות אחרות (למשל, סגירת משימה כשהלקוח אישר הצעה).</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>🎯 כל המשימות מרוכזות במקום אחד, עם סדר עדיפויות ברור ושקיפות מלאה לצוות.</p>
+            <p>⏰ הפחתה משמעותית בעיכובים וב"נפילה בין הכיסאות" של משימות חשובות.</p>
+            <p>🤝 שיפור התקשורת, הסנכרון והאחריות בין חברי הצוות.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item-new">
+        <h3>📈 אוטומציה להפקת דוחות וניתוח נתונים</h3>
+        <div class="divider"></div>
+        <h4>הבעיה:</h4>
+        <p>
+          הפקת דוחות חודשיים/שבועיים דרשה איסוף ידני של נתונים ממספר מערכות (CRM, Google Analytics, מערכת חשבונאות), מה
+          שהיה גוזל זמן יקר, פתוח לטעויות אנוש, ומספק תובנות באיחור.
+        </p>
+        <button class="toggle-solution-btn">איך פתרנו את זה? הצג פתרון ותוצאות ▼</button>
+        <div class="solution-content">
+          <h4>הפתרון של iDone:</h4>
+          <ul>
+            <li>הגדרת תהליך אוטומטי (ב-Make/Zapier) ששואב נתונים קריטיים מהמערכות השונות באמצעות API.</li>
+            <li>ריכוז הנתונים באופן מסודר בבסיס נתונים מרכזי (Google Sheets / Airtable).</li>
+            <li>יצירת דשבורד ויזואלי ודינמי (ב-Google Looker Studio / Power BI / Airtable Interfaces) שמתעדכן אוטומטית.
+            </li>
+            <li>שליחת סיכום הדוח המרכזי במייל למנהלים הרלוונטיים בתדירות קבועה (יומי/שבועי/חודשי).</li>
+          </ul>
+          <h4>התוצאה:</h4>
+          <div class="result">
+            <p>📊 קבלת החלטות עסקיות מבוססת על נתונים עדכניים, אמינים וזמינים בזמן אמת.</p>
+            <p>⏱️ חיסכון של עשרות שעות עבודה חודשיות שהושקעו באיסוף והכנת דוחות ידנית.</p>
+            <p>💡 יכולת זיהוי מהירה של מגמות, בעיות והזדמנויות עסקיות שלא נראו קודם.</p>
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
 
-  <!-- Modals -->
-  <div class="portfolio-modal" id="modal-new-lead">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('new-lead')">&times;</span>
-      <h4>מטופס באתר ישירות להודעה אישית – בלי מגע יד אדם</h4>
-      <p>כשלקוח משאיר פרטים באתר, המערכת שלנו נכנסת לפעולה:</p>
-      <p>שולחת את הליד ישירות למערכת ה-CRM שלכם.</p>
-      <p>מזינה את כל הפרטים שהלקוח השאיר בטופס.</p>
-      <p>יוצרת משימות אוטומטיות לסוכן במערכת.</p>
-      <p>יוצרת כרטיס לקוח חדש במערכת.</p>
-      <p>יוצרת או מעדכנת את הרשומה בהתאם.</p>
-      <p>שולחת אוטומטית מייל ו/או הודעת וואטסאפ ללקוח ולסוכן – עם תוכן מותאם אישית שנוצר ב־AI.</p>
-      <p>היתרונות:</p>
-      <p>⚡ תגובה מהירה ומרשימה ללקוח</p>
-      <p>🗂 ניהול מסודר ואוטומטי של כל הלידים</p>
-      <p>🤖 פחות עבודה ידנית – יותר סגירות</p>
-    </div>
-  </div>
 
-  <div class="portfolio-modal" id="modal-signatures">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('signatures')">&times;</span>
-      <h4>שליחת חוזים בלחיצת כפתור – עם מעקב חכם ועדכון בזמן אמת</h4>
-      <p>ברגע שנשלח חוזה מה־CRM, המערכת שלנו מפעילה תהליך אוטומטי חכם:</p>
-      <p>שולחת את החוזה לחתימה דיגיטלית דרך מערכת ייעודית.</p>
-      <p>פותחת מעקב בזמן אמת אחר סטטוס החתימה.</p>
-      <p>מתריעה אוטומטית כשהמסמך נחתם על ידי הלקוח.</p>
-      <p>שולחת את המסמך החתום ללקוח – בלי שתצטרכו לעשות דבר.</p>
-      <p>מעדכנת את סטטוס הלקוח או העסקה במערכת ה־CRM.</p>
-      <p>היתרונות:</p>
-      <p>✅ חיסכון עצום בזמן ובפעולות ידניות</p>
-      <p>📬 תהליך חתימה חלק ומרשים ללקוח</p>
-      <p>📈 שליטה ובקרה מלאה – בלי לפספס שלבים</p>
-    </div>
-  </div>
-
-  <div class="portfolio-modal" id="modal-finance">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('finance')">&times;</span>
-      <h4>מעקב גבייה, חשבוניות פתוחות ודוחות כספיים חכמים</h4>
-      <p>המערכת שלנו משלבת בין ה־CRM למערכת הנהלת החשבונות שלכם:</p>
-      <p>מציגה בזמן אמת את כל החשבוניות הפתוחות של הלקוחות.</p>
-      <p>שולחת תזכורות גבייה אוטומטיות לפי תאריכים מוגדרים מראש.</p>
-      <p>מציגה דוחות כספיים וסטטוס תשלום בלחיצת כפתור.</p>
-      <p>מעדכנת את הסטטוס של לקוחות או עסקאות לפי תשלום.</p>
-      <p>מסייעת לכם לעקוב אחרי תזרים המזומנים ולצפות חסמים מראש.</p>
-      <p>היתרונות:</p>
-      <p>💸 גבייה מסודרת בלי לרדוף אחרי תשלומים</p>
-      <p>📊 דוחות חכמים שמציגים תמונת מצב ברורה</p>
-      <p>🔄 אוטומציה מלאה שמחברת בין כל המערכות הכספיות</p>
-    </div>
-  </div>
-
-  <div class="portfolio-modal" id="modal-forms">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('forms')">&times;</span>
-      <h4>טפסים חכמים שמזינים מידע ישירות ל־CRM</h4>
-      <p>הלקוח ממלא טופס דיגיטלי אחד – ומשם הכול קורה אוטומטית:</p>
-      <p>נוצרים כרטיסי לקוח מלאים במערכת ה־CRM.</p>
-      <p>הפרטים מוזנים אוטומטית לשדות המתאימים.</p>
-      <p>נוצר סטטוס ראשוני שמסווג את הלקוח בהתאם לבחירותיו.</p>
-      <p>נוצרות משימות המשך לסוכן – בלי התעסקות ידנית.</p>
-      <p>מתבצע תיעוד מלא של הפעולה לצורך מעקב וניהול.</p>
-      <p>היתרונות:</p>
-      <p>📝 אין טעויות הקלדה או מידע חסר</p>
-      <p>🚀 חוויית קליטה מהירה ומרשימה ללקוח</p>
-      <p>🔗 חיבור חלק בין האתר למערכת הפנימית שלכם</p>
-    </div>
-  </div>
-
-  <div class="portfolio-modal" id="modal-meetings">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('meetings')">&times;</span>
-      <h4>תיאום פגישות אוטומטי – בלי שיחות טלפון מיותרות</h4>
-      <p>המערכת שלנו מאפשרת תיאום פגישות חכם עם חוויית לקוח מקצועית:</p>
-      <p>הלקוח בוחר מועד פנוי בטופס דיגיטלי.</p>
-      <p>הפגישה מתעדכנת אוטומטית ביומן (Google / Outlook).</p>
-      <p>הלקוח והסוכן מקבלים אישור ותזכורת אוטומטית.</p>
-      <p>במקרה של שינוי או ביטול – הכול מתבצע מהקישור האישי.</p>
-      <p>הסטטוס במערכת ה־CRM מתעדכן בהתאם לשינויים.</p>
-      <p>היתרונות:</p>
-      <p>📆 אין תיאומים ידניים או פספוסי תורים</p>
-      <p>📲 הלקוח קובע לבד – מתי שנוח לו</p>
-      <p>🔁 תהליך גמיש, חכם ונוח לשני הצדדים</p>
-    </div>
-  </div>
-
-
-  <div class="portfolio-modal" id="modal-price-offer">
-    <div class="portfolio-modal-content">
-      <span class="modal-close" onclick="closeModal('price-offer')">&times;</span>
-      <h4>תיאום פגישות אוטומטי – בלי שיחות טלפון מיותרות</h4>
-      <p>המערכת שלנו מאפשרת תיאום פגישות חכם עם חוויית לקוח מקצועית:</p>
-      <p>הלקוח בוחר מועד פנוי בטופס דיגיטלי.</p>
-      <p>הפגישה מתעדכנת אוטומטית ביומן (Google / Outlook).</p>
-      <p>הלקוח והסוכן מקבלים אישור ותזכורת אוטומטית.</p>
-      <p>במקרה של שינוי או ביטול – הכול מתבצע מהקישור האישי.</p>
-      <p>הסטטוס במערכת ה־CRM מתעדכן בהתאם לשינויים.</p>
-      <p>היתרונות:</p>
-      <p>📆 אין תיאומים ידניים או פספוסי תורים</p>
-      <p>📲 הלקוח קובע לבד – מתי שנוח לו</p>
-      <p>🔁 תהליך גמיש, חכם ונוח לשני הצדדים</p>
-    </div>
-  </div>
-
-
-  <!-- Call to Action Section -->
   <section class="cta" id="contact">
     <h2>רוצים תוצאה דומה גם אצלכם?</h2>
     <p>נדגים לכם דוגמה מהתיק, נבין את הצורך שלכם, ונבנה פתרון דומה – רק עבורכם.</p>
@@ -317,31 +525,14 @@
     </div>
   </section>
 
-  <!-- Contact Form Modal -->
   <div id="contact-form"></div>
 
-  <!-- Footer -->
   <div id="footer"></div>
 
   <script src="js/main.js"></script>
+
   <script>
-    function openModal(id) {
-      document.getElementById(`modal-${id}`).style.display = 'flex';
-    }
-    function closeModal(id) {
-      document.getElementById(`modal-${id}`).style.display = 'none';
-    }
-  </script>
-  <script>
-    document.querySelectorAll('.portfolio-modal').forEach(modal => {
-      modal.addEventListener('click', function (event) {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-    });
-  </script>
-  <script>
+    // הפונקציה הזו נשארת כפי שהיא, היא טוענת את הרכיבים
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');
@@ -359,10 +550,35 @@
         console.error('Error loading components:', error);
       }
     }
-    loadComponents();
+
+    // קריאה לפונקציה בטעינת העמוד
+    document.addEventListener('DOMContentLoaded', loadComponents);
+
+    // JavaScript לטיפול בכפתורי ה-Toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButtons = document.querySelectorAll('.toggle-solution-btn');
+
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const content = this.nextElementSibling; // האלמנט הבא אחרי הכפתור (solution-content)
+          const isOpen = content.classList.contains('show');
+
+          if (isOpen) {
+            // סגירה
+            content.classList.remove('show');
+            this.textContent = 'איך פתרנו את זה? הצג פתרון ותוצאות ▼';
+          } else {
+            // פתיחה
+            content.classList.add('show');
+            this.textContent = 'הסתר פתרון ותוצאות ▲';
+          }
+        });
+      });
+    });
   </script>
+
   <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
-  <button class="back-to-top" aria-label="חזרה לראש הדף">↑</button>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 
 </html>
