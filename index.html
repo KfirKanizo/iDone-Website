@@ -4,141 +4,208 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
-  <title>iDone - העסק שלך, רק חכם יותר</title>
+  <title>iDone - חסוך זמן, הגדל רווחים | פתרונות אוטומציה לעסק שלך</title>
+  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css?v=202508291">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ניתן להוסיף כאן סגנונות CSS נוספים או לשנות קיימים ב-style.css */
+    .hero h1 {
+      /* אולי להגדיל מעט את הגופן או לשנות ריווח */
+      line-height: 1.2;
+    }
+
+    .hero p.lead-text {
+      /* הוספת קלאס לפסקה המובילה */
+      font-size: 1.35rem;
+      /* גופן מעט גדול יותר */
+      color: #333;
+      /* צבע כהה יותר */
+      max-width: 650px;
+      /* רוחב מוגדר */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .target-audience .section-subtitle,
+    .why-us .section-subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+      margin: -1rem auto 2.5rem auto;
+      /* רווח מתחת לכותרת */
+    }
+
+    .why-us ul li {
+      font-weight: normal;
+      /* הורדת הדגשה מהטקסט הרגיל */
+    }
+
+    .why-us ul li strong {
+      font-weight: 700;
+      /* הדגשת מילות המפתח */
+      color: #003366;
+    }
+
+    /* סגנון לקטע 'דוגמאות נוספות' */
+    .more-sections-cta {
+      padding: 4rem 5%;
+      background-color: #ffffff;
+      /* רקע לבן נקי */
+      text-align: center;
+    }
+
+    .more-sections-cta h2 {
+      font-size: 2.5rem;
+      /* מעט קטן יותר מהכותרות הראשיות */
+      color: #8e52db;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .more-sections-cta h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, #8e52db, #00c48c);
+      border-radius: 2px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Include components -->
-  <div id="header"></div>
+  <div id="header">
+    <script>
+      // פונקציה לעדכון טקסטים ב-Hero אחרי טעינת ה-Header
+      function updateHeroTexts() {
+        const heroTitle = document.querySelector('.hero h1');
+        const heroSubtitle = document.querySelector('.hero p'); // נניח שיש רק פסקה אחת
 
-  <!-- Services Section -->
+        if (heroTitle) {
+          heroTitle.innerHTML = "חסוך שעות עבודה והגדל רווחים<br>עם אוטומציה חכמה לעסק שלך";
+        }
+        if (heroSubtitle) {
+          heroSubtitle.innerHTML = "נמאס לך לבזבז זמן יקר על משימות שחוזרות על עצמן? אנחנו כאן כדי להפוך תהליכים מורכבים לפשוטים ואוטומטיים, כדי שתוכל להתמקד בצמיחה האמיתית של העסק.";
+          heroSubtitle.classList.add('lead-text'); // הוספת קלאס לעיצוב
+        }
+      }
+
+      // קריאה לפונקציה לאחר טעינת רכיבים (בפונקציה loadComponents למטה)
+    </script>
+  </div>
+
   <section class="services" id="services" dir="rtl" lang="he">
     <h2>מה iDone יכולה לעשות בשבילך?</h2>
     <div class="service-cards">
-
-      <!-- כרטיס שירות 1 -->
       <div class="service-card">
         <img src="assets/images/services/process-automation-icon.svg" alt="אוטומציית תהליכים">
         <h3>אוטומציית תהליכים</h3>
         <p>ניהול אוטומטי למשימות חוזרות, תזכורות, לידים, ומעקב לקוחות – חוסכים זמן ומשפרים ביצועים.</p>
       </div>
-
-      <!-- כרטיס שירות 2 -->
       <div class="service-card">
         <img src="assets/images/services/crm-chatbot-icon.svg" alt="CRM וצ'אטבוטים חכמים">
         <h3>CRM וצ'אטבוטים</h3>
         <p>הקמה וחיבור של מערכות CRM עם צ'אטבוטים מתקדמים לוואטסאפ, פייסבוק ודפי נחיתה – מענה מהיר, סגירת מעגל.</p>
       </div>
-
-      <!-- כרטיס שירות 3 -->
       <div class="service-card">
         <img src="assets/images/services/performance-consulting-icon.svg" alt="ייעוץ טכנולוגי ואסטרטגי">
         <h3>ייעוץ לשיפור ביצועים</h3>
         <p>ניתוח תהליכים קיימים והצעות לאוטומציה חכמה שתורמת לצמיחה, יעילות ושיפור חוויית לקוח.</p>
       </div>
-
-      <!-- כרטיס שירות 4 -->
       <div class="service-card">
         <img src="assets/images/services/forms-landing-icon.svg" alt="טפסים חכמים ודפי נחיתה">
         <h3>טפסים חכמים ודפי נחיתה</h3>
         <p>בניית טפסים אינטראקטיביים, דפי נחיתה מחוברים ל־CRM ואיסוף מידע אוטומטי בלחיצת כפתור.</p>
       </div>
-
-      <!-- כרטיס שירות 5 -->
       <div class="service-card">
         <img src="assets/images/services/custom-integrations-icon.svg" alt="אינטגרציות מותאמות אישית">
         <h3>אינטגרציות מותאמות</h3>
         <p>חיבורים חכמים בין מערכות: Google Workspace, Make, Airtable, Fireberry, GreenAPI – בלי קוד.</p>
       </div>
-
     </div>
   </section>
 
 
-  <!-- Target Audience Section -->
   <section class="target-audience" id="target-audience" dir="rtl" lang="he">
     <h2>למי iDone מתאימה במיוחד?</h2>
+    <p class="section-subtitle">
+      אנחנו מתמחים בעזרה לעסקים שרוצים לגדול ולהתייעל, בלי להוסיף כאבי ראש תפעוליים מיותרים.
+    </p>
     <div class="audience-list">
-
       <div class="audience-item">
         <img src="assets/images/audience/smb-icon.svg" alt="עסקים קטנים ובינוניים" class="suitable-for-icon">
         <p><strong>עסקים קטנים ובינוניים</strong><br>
           שחייבים לייעל תהליכים, לחסוך זמן ולשפר שירות – בלי להקים מחלקת טכנולוגיה.</p>
       </div>
-
       <div class="audience-item">
         <img src="assets/images/audience/freelancers-icon.svg" alt="פרילנסרים ועצמאים" class="suitable-for-icon">
         <p><strong>פרילנסרים ועצמאים</strong><br>
           שמנהלים הכל לבד – לידים, תיאומים, גבייה – וצריכים שהמערכת תעבוד במקומם.</p>
       </div>
-
       <div class="audience-item">
         <img src="assets/images/audience/entrepreneurs-icon.svg" alt="יזמים שמחפשים יעילות" class="suitable-for-icon">
         <p><strong>יזמים ונותני שירות</strong><br>
           שמבינים שטכנולוגיה חכמה תאפשר להם לצמוח מהר יותר ולתת שירות מצוין.</p>
       </div>
-
       <div class="audience-item">
         <img src="assets/images/audience/growing-businesses-icon.svg" alt="עסקים בצמיחה" class="suitable-for-icon">
         <p><strong>חברות בצמיחה</strong><br>
           שכבר לא יכולות להרשות לעצמן תהליכים ידניים, ומוכנים לעשות סדר חכם ויעיל.</p>
       </div>
-
     </div>
   </section>
 
-
-  <!-- Why Choose Us Section -->
   <section class="why-us" id="why-us" dir="rtl" lang="he">
-    <h2>למה לבחור בנו?</h2>
-    <ul>
+    <h2>למה לבחור דווקא ב-iDone?</h2>
+    <p class="section-subtitle">
+      אנחנו יותר מסתם טכנולוגיה - אנחנו שותפים להצלחה העסקית שלך.
+    </p>
 
-      <li>
-        <img src="assets/images/features/check-circle.svg" alt="check" class="why-us-icon">
-        התאמה אישית מלאה – אנחנו בונים את הפתרון שלך בדיוק לפי הצרכים והכלים של העסק שלך, בלי פתרונות מדף.
-      </li>
+    <div class="why-us-cards-grid">
+      <div class="why-us-card">
+        <img src="assets/images/features/check-circle.svg" alt="התאמה אישית" class="why-us-icon-card">
+        <h3>פתרון שנבנה בדיוק בשבילך</h3>
+        <p>אנו יוצרים פתרונות אוטומציה <strong>מותאמים אישית</strong> לצרכים ולכלים הייחודיים של העסק שלך, לא פתרונות
+          מדף גנריים.</p>
+      </div>
 
-      <li>
-        <img src="assets/images/features/service.svg" alt="service" class="why-us-icon">
-        שירות אישי ומקצועי – ליווי אמיתי, בגובה העיניים, מהשלב הרעיוני ועד שהמערכת עובדת עבורך בשטח.
-      </li>
+      <div class="why-us-card">
+        <img src="assets/images/features/service.svg" alt="שירות אישי" class="why-us-icon-card">
+        <h3>ליווי אישי ומקצועי</h3>
+        <p>תקבל <strong>שירות צמוד ותמיכה אמיתית</strong>, החל מהרעיון הראשוני ועד שהמערכת עובדת בצורה חלקה עבורך בשטח,
+          בגובה העיניים.</p>
+      </div>
 
-      <li>
-        <img src="assets/images/features/experience.svg" alt="experience" class="why-us-icon">
-        חשיבה עסקית לפני טכנולוגיה – לא סתם מקשרים כלים, אלא מבינים איך העסק שלך עובד ואיך להפוך אותו ליעיל יותר.
-      </li>
+      <div class="why-us-card">
+        <img src="assets/images/features/experience.svg" alt="חשיבה עסקית" class="why-us-icon-card">
+        <h3>חשיבה עסקית לפני הכל</h3>
+        <p>אנחנו לא רק "מחברים כלים", אלא מתעמקים בהבנת <strong>התהליכים העסקיים שלך</strong> כדי להפוך אותם ליעילים
+          ורווחיים יותר.</p>
+      </div>
 
-      <li>
-        <img src="assets/images/features/results.svg" alt="results" class="why-us-icon">
-        תוצאות אמיתיות – חיסכון בזמן, סגירת מעגלים אוטומטית, שירות טוב יותר וצמיחה מדידה בהכנסות.
-      </li>
+      <div class="why-us-card">
+        <img src="assets/images/features/results.svg" alt="תוצאות" class="why-us-icon-card">
+        <h3>תוצאות שרואים בשטח</h3>
+        <p>המטרה שלנו היא לייצר לך <strong>חיסכון מדיד בזמן</strong>, לשפר את חווית הלקוח, לסגור מעגלים תפעוליים ולתרום
+          ישירות <strong>לצמיחה בהכנסות</strong>.</p>
+      </div>
 
-    </ul>
-  </section>
-
-  <section class="services" id="more-sections" dir="rtl" lang="he">
-    <h2>דוגמאות, תהליכים וסיפורים אמיתיים מהשטח</h2>
-    <div class="cta-buttons" style="margin-top: 2rem;">
-      <a href="portfolio.html" class="cta-button primary">תיק עבודות – לראות תוצאות אמיתיות</a>
-      <a href="workflow.html" class="cta-button secondary">כך אנחנו עובדים – שלב אחר שלב</a>
-      <a href="articles.html" class="cta-button primary">איך אחרים עושים את זה – קרא עוד</a>
     </div>
   </section>
-  
 
-  <!-- Testimonials Section -->
   <section class="testimonials" id="testimonials">
-    <h2>הלקוחות שלנו מספרים</h2>
+    <h2>הלקוחות שלנו מספרים (והם יודעים הכי טוב)</h2>
     <div class="testimonial">
       <p>
         "מאז שהטמענו את iDone, תהליכים שבעבר לקחו שעות הפכו לאוטומטיים ומהירים. החיבור בין ה-CRM למערכת החתימות לא רק
         ייעל את העבודה, אלא גם יצר חווית לקוח טובה יותר."
       </p>
-
       <div class="testimonial-footer">
         <div class="client-info">
           <p class="client-name">
@@ -153,16 +220,14 @@
     </div>
     <div class="testimonial">
       <p>
-        "לפני שהטמענו את הצ'אטבוט, היינו קורסים תחת עומס של שאלות חוזרות ונשנות שמגיעות מהמדיות החברתיות. הלקוחות המתינו
-        למענה, והצוות שלנו עבד שעות נוספות רק כדי לעמוד בקצב. מאז שהמערכת עלתה לאוויר, הלקוחות מקבלים תגובות מהירות,
-        ענייניות ומקצועיות – ואנחנו מרוויחים גם זמן פנימי יקר וגם לקוחות מרוצים ונאמנים יותר."
+        "לפני שהטמענו את הצ'אטבוט, היינו קורסים תחת עומס של שאלות חוזרות... מאז שהמערכת עלתה לאוויר, הלקוחות מקבלים
+        תגובות מהירות, ענייניות ומקצועיות – ואנחנו מרוויחים גם זמן פנימי יקר וגם לקוחות מרוצים ונאמנים יותר."
       </p>
-
       <div class="testimonial-footer">
         <div class="client-info">
           <p class="client-name">
             שלומי, מנכ"ל<br>
-            <span style="font-size: 0.9em;">קו המים – מערכות טיהור מים מתקדמות</span>
+            <span style="font-size: 0.9em;">קו המים – מערכות טיהור מים</span>
           </p>
         </div>
         <div class="client-logo">
@@ -170,39 +235,54 @@
         </div>
       </div>
     </div>
-
-    <!-- ניתן להוסיף כאן ציטוטים נוספים -->
   </section>
 
-  <!-- Call to Action Section -->
+  <section class="more-sections-cta" id="more-sections" dir="rtl" lang="he">
+    <h2>רוצה לראות איך זה עובד בפועל?</h2>
+    <p class="portfolio-intro" style="margin-bottom: 2rem;">
+      גלה דוגמאות אמיתיות מהשטח, הבן את תהליך העבודה המדויק שלנו, וקרא תכנים שיעזרו לך להבין את עולם האוטומציה.
+    </p>
+    <div class="cta-buttons" style="flex-direction: row; justify-content: center; gap: 1.5rem;"> <a
+        href="portfolio.html" class="cta-button primary">ראה פתרונות אמיתיים (תיק עבודות)</a>
+      <a href="workflow.html" class="cta-button secondary">כך אנחנו עובדים (שלב אחר שלב)</a>
+      <a href="articles.html" class="cta-button primary"
+        style="background: linear-gradient(45deg, #00c48c, #3b86f7);">קרא עוד בבלוג שלנו</a>
+    </div>
+  </section>
+
   <section class="cta" id="contact">
     <h2>מוכן לקחת את העסק שלך צעד קדימה?</h2>
-    <p>קבעו שיחת ייעוץ ללא עלות, ובואו נגלה איך iDone יכולה לעזור לכם לגדול ולהתייעל.</p>
+    <p>קבע/י שיחת ייעוץ ללא עלות, ובוא/י נגלה יחד איך iDone יכולה לעזור לך לגדול ולהתייעל.</p>
     <div class="cta-buttons">
       <a href="meeting.html" class="cta-button primary">לתיאום פגישת ייעוץ חינם</a>
       <button class="cta-button secondary" onclick="openContactForm()">להשארת פרטים</button>
     </div>
   </section>
 
-  <!-- Contact Form Modal -->
   <div id="contact-form"></div>
 
-  <!-- Footer -->
   <div id="footer"></div>
 
   <script src="js/main.js?v=202508291"></script>
   <script>
-    // Load components
+    // פונקציה לטעינת רכיבים + עדכון טקסט Hero
     async function loadComponents() {
       try {
+        // טעינת Header
         const headerResponse = await fetch('components/header.html');
         const headerData = await headerResponse.text();
         document.getElementById('header').innerHTML = headerData;
 
+        // --- קריאה לעדכון טקסט Hero ---
+        updateHeroTexts();
+        // --- ---
+
+        // טעינת טופס יצירת קשר
         const contactFormResponse = await fetch('components/contact-form.html');
         const contactFormData = await contactFormResponse.text();
         document.getElementById('contact-form').innerHTML = contactFormData;
 
+        // טעינת Footer
         const footerResponse = await fetch('components/footer.html');
         const footerData = await footerResponse.text();
         document.getElementById('footer').innerHTML = footerData;
@@ -211,10 +291,11 @@
       }
     }
 
-    loadComponents();
+    // קריאה לפונקציה הראשית בטעינת העמוד
+    document.addEventListener('DOMContentLoaded', loadComponents);
   </script>
   <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
-  <button class="back-to-top" aria-label="חזרה לראש הדף">↑</button>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 
 </html>
