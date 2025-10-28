@@ -75,6 +75,38 @@
       background: linear-gradient(90deg, #8e52db, #00c48c);
       border-radius: 2px;
     }
+
+    /* --- תיקון למובייל עבור הכפתורים בקטע 'דוגמאות נוספות' - גרסה מחוזקת --- */
+    @media (max-width: 768px) {
+
+      /* שימוש בסלקטור ספציפי יותר */
+      section.more-sections-cta .cta-buttons {
+        display: flex;
+        flex-direction: column !important;
+        /* הוספת !important ליתר ביטחון (ננסה להסיר אח"כ) */
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 0 10px;
+        /* הוספת ריווח קטן בצדדים למניעת היצמדות לקצוות */
+        box-sizing: border-box;
+        /* לוודא שריווח נכלל ברוחב */
+      }
+
+      /* גרם לכל כפתור לתפוס רוחב כמעט מלא */
+      section.more-sections-cta .cta-buttons .cta-button {
+        width: 100%;
+        /* שינוי ל-100% כדי שיתפוס את הרוחב שהוגדר לקונטיינר */
+        max-width: 400px;
+        margin-right: 0;
+        /* איפוס margin קודם אם היה */
+        margin-left: 0;
+        /* איפוס margin קודם אם היה */
+        box-sizing: border-box;
+        text-align: center;
+        /* וידוא שהטקסט ממורכז */
+      }
+    }
   </style>
 </head>
 
