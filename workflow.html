@@ -4,20 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
-  <title>כך אנחנו עובדים | iDone</title>
+  <title>כך אנחנו עובדים | iDone - תהליך העבודה שלנו</title>
+  <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* סגנונות בסיסיים לעמוד תהליך העבודה */
     .workflow-section {
       background-color: #f8f9fa;
+      /* רקע בהיר */
       padding: 4rem 5%;
       text-align: center;
     }
 
     .workflow-section h2 {
       font-size: 2.8rem;
-      color: #8e52db;
+      color: #003366;
+      /* כחול כהה מקצועי */
       margin-bottom: 1rem;
       position: relative;
       padding-bottom: 15px;
@@ -31,7 +34,8 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, #8e52db, #00c48c);
+      background: linear-gradient(90deg, #003366, #00bcd4);
+      /* מעבר צבעים */
       border-radius: 2px;
     }
 
@@ -42,42 +46,134 @@
       color: #333;
     }
 
-    .workflow-steps {
+    /* עיצוב חדש לכל שלב בתהליך */
+    .workflow-steps-new {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      /* רווח בין השלבים */
       align-items: center;
+      /* ממורכז */
+      margin-top: 3rem;
     }
 
-    .workflow-step {
+    .workflow-step-new {
+      display: flex;
+      /* סידור פנימי גמיש */
+      align-items: flex-start;
+      /* יישור לחלק העליון */
+      gap: 1.5rem;
+      /* רווח בין המספר לתוכן */
       background-color: #ffffff;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      /* צל עדין */
       padding: 2rem;
       text-align: right;
+      /* טקסט לימין */
       max-width: 800px;
+      /* רוחב אחיד וקריא */
       width: 100%;
-      transition: transform 0.3s ease;
+      border-right: 5px solid #8e52db;
+      /* פס צד סגול */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .workflow-step:hover {
-      transform: translateY(-5px);
+    .workflow-step-new:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     }
 
-    .workflow-step h3 {
-      color: #8e52db;
+    .step-number-icon {
+      flex-shrink: 0;
+      /* מונע התכווצות */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40px;
+      /* רוחב קבוע רק למספר */
+      padding-top: 5px;
+      /* ריווח קל מהקצה העליון */
+    }
+
+    .step-number {
+      background: #8e52db;
+      /* רקע סגול למספר */
+      color: white;
+      border-radius: 50%;
+      /* עיגול */
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-weight: bold;
+      /* margin-bottom הוסר - אין צורך ברווח מתחת למספר */
     }
 
-    .workflow-step p {
-      font-size: 1rem;
+    /* הוסר העיצוב של .step-icon */
+
+    .step-content {
+      flex-grow: 1;
+      /* לוקח את שאר הרוחב */
+    }
+
+    .step-content h3 {
+      color: #003366;
+      /* כותרת בכחול כהה */
+      font-size: 1.6rem;
+      margin-top: 0;
+      /* אין רווח מיותר למעלה */
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      font-size: 1.1rem;
       color: #333;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
     }
 
-    @media (max-width: 768px) {
-      .workflow-section {
-        padding: 3rem 2rem;
+    .step-content .why-important {
+      font-size: 0.95rem;
+      color: #555;
+      /* צבע אפרפר */
+      background-color: #f8f9fa;
+      /* רקע בהיר להדגשה */
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      display: inline-block;
+      /* שיתאים לרוחב הטקסט */
+    }
+
+    .step-content .why-important strong {
+      color: #8e52db;
+      /* הדגשת המפתח */
+    }
+
+    /* רספונסיביות */
+    @media (max-width: 600px) {
+      .workflow-step-new {
+        flex-direction: column;
+        /* סידור אנכי במסכים קטנים */
+        align-items: center;
+        /* ממורכז */
+        text-align: center;
+        /* טקסט במרכז */
+        padding: 1.5rem;
+      }
+
+      .step-number-icon {
+        margin-bottom: 1rem;
+        /* רווח מהתוכן */
+        width: auto;
+        /* מאפשר למספר להיות ממורכז */
+      }
+
+      .step-content {
+        text-align: center;
+        /* גם התוכן ממורכז */
       }
     }
   </style>
@@ -85,72 +181,153 @@
 
 <body>
 
-  <!-- Include components -->
   <div id="header"></div>
 
-  <!-- Workflow Section -->
   <section class="workflow-section" id="workflow" dir="rtl" lang="he">
-    <h2>כך אנחנו עובדים – שלבי העבודה עם לקוחות iDone</h2>
+    <h2>כך אנחנו עובדים – המסע המשותף שלנו לייעול העסק שלך</h2>
     <p class="workflow-intro">
-      אנו ב-iDone מאמינים בעבודה מדויקת, מקצועית ומותאמת אישית. כל לקוח מקבל תהליך מסודר, ברור ויעיל.
+      אנו ב-iDone מאמינים בשקיפות, מקצועיות ותהליך מותאם אישית. כל לקוח עובר מסע מסודר, ברור ויעיל, מההיכרות הראשונית
+      ועד להטמעה מלאה ותמיכה.
     </p>
 
-    <div class="workflow-steps">
-      <div class="workflow-step">
-        <h3>1. שיחת היכרות חינמית</h3>
-        <p>נבין את הצורך העסקי, נבחן מה ניתן לשפר או לאוטומט, ונמליץ על כיוון ראשוני.<br><strong>משך זמן:</strong> עד 30 דקות | <strong>באמצעות:</strong> טלפון או זום</p>
+    <div class="workflow-steps-new">
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">1</div>
+        </div>
+        <div class="step-content">
+          <h3>שיחת היכרות ובחינת היתכנות (חינם)</h3>
+          <p>
+            בשיחה קצרה (עד 30 דקות בזום או בטלפון), נקשיב לצרכים ולאתגרים שלך, נזהה יחד הזדמנויות מרכזיות לייעול בעסק,
+            ונבדוק אם הפתרונות שלנו מתאימים לך - ללא כל התחייבות.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כדי שנוכל להבין את התמונה הגדולה ולוודא שאנחנו יכולים לספק לך ערך אמיתי לפני
+            שנמשיך.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>2. אפיון מקצועי של התהליך</h3>
-        <p>נמפה את התהליכים הקיימים, הכלים בשימוש והאתגרים. נגדיר מטרות מדויקות ותוצאה רצויה.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">2</div>
+        </div>
+        <div class="step-content">
+          <h3>אפיון מקצועי ומעמיק</h3>
+          <p>
+            נצלול יחד לתהליכים הקיימים בעסק שלך: נמפה את הכלים בהם אתה משתמש, נבין את נקודות הכאב והאתגרים, ונגדיר מטרות
+            מדידות ותוצאה רצויה מהאוטומציה.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כי הבנה מעמיקה של המצב הקיים היא הבסיס לבניית פתרון מדויק שיענה על הצרכים
+            האמיתיים שלך.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>3. הצעת פתרון מותאמת אישית</h3>
-        <p>מסמך מפורט הכולל תיאור הבעיה, הפתרון, שלבי ביצוע, לוחות זמנים והצעת מחיר מותאמת.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">3</div>
+        </div>
+        <div class="step-content">
+          <h3>הצעת פתרון מותאמת אישית</h3>
+          <p>
+            נכין עבורך מסמך מפורט הכולל תיאור הבעיה כפי שהוגדרה, הפתרון המוצע (כולל הטכנולוגיות והכלים), שלבי ביצוע
+            ברורים, לוחות זמנים ריאליים והצעת מחיר שקופה ומותאמת.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כדי שתקבל תמונה מלאה וברורה של מה תקבל, איך נעבוד יחד, וכמה זה יעלה - לפני כל
+            התחייבות.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>4. אישור והתחייבות</h3>
-        <p>חתימה דיגיטלית על הסכם שירות מסודר – ויוצאים לדרך.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">4</div>
+        </div>
+        <div class="step-content">
+          <h3>אישור והתחייבות הדדית</h3>
+          <p>
+            לאחר שתעבור על ההצעה ותאשר אותה, נחתום על הסכם שירות מסודר (חתימה דיגיטלית נוחה) - ואנחנו מוכנים לצאת לדרך
+            ולהתחיל בעבודה על הפרויקט שלך!
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כדי להבטיח ששני הצדדים מבינים את ההתחייבויות ומסכימים על תנאי העבודה בצורה
+            ברורה.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>5. ביצוע והקמה</h3>
-        <p>בניית האוטומציות, אינטגרציות עם מערכות קיימות, ווידוא פעילות תקינה עם עדכונים שוטפים.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">5</div>
+        </div>
+        <div class="step-content">
+          <h3>ביצוע, הקמה ובדיקות</h3>
+          <p>
+            הצוות שלנו יבנה את האוטומציות, יבצע את האינטגרציות הנדרשות עם המערכות הקיימות שלך, ויבצע בדיקות מקיפות
+            לווידוא פעילות תקינה. נעדכן אותך באופן שוטף לאורך כל התהליך.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> זה השלב שבו הרעיון הופך למציאות. עבודה מדויקת ובדיקות קפדניות מבטיחות שהמערכת
+            תעבוד כמצופה.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>6. הדרכה, הטמעה ותיעוד</h3>
-        <p>הדרכה מקיפה, תיעוד ברור, וליווי לוודא שהמערכת משרתת אתכם.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">6</div>
+        </div>
+        <div class="step-content">
+          <h3>הדרכה, הטמעה ותיעוד</h3>
+          <p>
+            לאחר שהמערכת מוכנה, נקיים הדרכה מקיפה לך ולצוות שלך, נספק תיעוד ברור של התהליכים, ונלווה אתכם בשלבי ההטמעה
+            הראשונים כדי לוודא שהמערכת החדשה משרתת אתכם בצורה מיטבית.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כדי שהצוות שלך ידע להשתמש בכלים החדשים בצורה נכונה ויפיק מהם את המקסימום.
+          </p><br>
+        </div>
       </div>
 
-      <div class="workflow-step">
-        <h3>7. תמיכה ושירותי המשך</h3>
-        <p>ליווי שוטף, תחזוקה חודשית, שדרוגים ועדכונים – כדי שתישארו יעילים לאורך זמן.</p>
+      <div class="workflow-step-new">
+        <div class="step-number-icon">
+          <div class="step-number">7</div>
+        </div>
+        <div class="step-content">
+          <h3>תמיכה, ליווי ושירותי המשך</h3>
+          <p>
+            אנחנו כאן בשבילך גם אחרי שהפרויקט מסתיים. אנו מציעים ליווי שוטף, חבילות תחזוקה חודשיות, שדרוגים ועדכונים -
+            כדי שהמערכות שלך ימשיכו לשרת אותך ביעילות לאורך זמן.
+          </p>
+          <p class="why-important">
+            <strong>למה זה חשוב?</strong><br> כי הטכנולוגיה והצרכים משתנים. אנחנו דואגים שהפתרונות שלנו ימשיכו להיות
+            רלוונטיים ויעילים עבורך.
+          </p><br>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Call to Action Section -->
   <section class="cta" id="contact">
-    <h2>רוצים להתייעל באמת?</h2>
-    <p>קבעו שיחת ייעוץ ראשונית, נבחן את האפשרויות ונבנה עבורכם פתרון מותאם אישית.</p>
+    <h2>מוכנים להתחיל בשלב הראשון?</h2>
+    <p>קבעו שיחת היכרות ללא עלות וללא התחייבות, נבחן יחד את האפשרויות, ונצא למסע משותף לייעול העסק שלכם.</p>
     <div class="cta-buttons">
-      <a href="meeting.html" class="cta-button primary">לתיאום שיחה חינם</a>
-      <button class="cta-button secondary" onclick="openContactForm()">להשארת פרטים</button>
+      <a href="meeting.html" class="cta-button primary">כן, בואו נקבע שיחה חינם!</a>
+      <button class="cta-button secondary" onclick="openContactForm()">אני מעדיף להשאיר פרטים</button>
     </div>
   </section>
 
-  <!-- Contact Form Modal -->
   <div id="contact-form"></div>
 
-  <!-- Footer -->
   <div id="footer"></div>
 
   <script src="js/main.js"></script>
   <script>
+    // הפונקציה לטעינת רכיבים נשארת כפי שהיא
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');
@@ -169,10 +346,11 @@
       }
     }
 
-    loadComponents();
+    // קריאה לפונקציה בטעינת העמוד
+    document.addEventListener('DOMContentLoaded', loadComponents);
   </script>
   <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
-  <button class="back-to-top" aria-label="חזרה לראש הדף">↑</button>
+  <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 
 </html>
