@@ -175,7 +175,7 @@ async function submitContactForm(event) {
 
     try {
         // שליחת הנתונים ל-Webhook
-        const response = await fetch('https://n8n.idone.co.il/webhook/3426c7c0-5223-447d-913e-4b4c1d855591', {
+        const response = await fetch('https://n8n.idone.co.il/webhook/website-form', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
