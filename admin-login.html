@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
+    <title>ניהול | iDone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: #f0f2f5;
+            /* גוון רקע מעט יותר בהיר ומודרני */
+            color: #333;
+            /* צבע טקסט כללי כהה יותר לקריאות טובה */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            /* ריפוד קטן למקרה של מסכים קטנים */
+            box-sizing: border-box;
+            /* חשוב לשליטה בגודל אלמנטים */
+        }
+
+        .login-container {
+            max-width: 480px;
+            /* הגדלת רוחב הטופס */
+            width: 100%;
+            /* שימוש ברוחב מלא למסכים קטנים */
+            margin: 2rem auto;
+            background: #fff;
+            padding: 3.5rem 3rem;
+            /* הגדלת הריפוד הפנימי */
+            border-radius: 20px;
+            /* פינות יותר מעוגלות */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            /* צל עמוק יותר אך עדין */
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .logo-image {
+            max-width: 180px;
+            /* הגדלת לוגו */
+            margin-bottom: 2rem;
+            /* רווח גדול יותר מתחת ללוגו */
+        }
+
+        h2 {
+            color: #003366;
+            font-size: 2.2rem;
+            /* גודל כותרת גדול יותר */
+            margin-bottom: 2rem;
+            font-weight: 700;
+            /* מודגש יותר */
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+            /* רווח בין שדות */
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            /* רווח בין תווית לשדה */
+            font-weight: bold;
+            color: #555;
+            /* צבע לתווית */
+            font-size: 1.1rem;
+            /* גודל פונט לתווית */
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            width: calc(100% - 24px);
+            /* פחות ריפוד פנימי */
+            padding: 1rem 12px;
+            /* הגדלת ריפוד לשדה, יישור טוב יותר */
+            border: 1px solid #ddd;
+            /* גבול עדין יותר */
+            border-radius: 12px;
+            /* פינות מעוגלות לשדה */
+            font-family: inherit;
+            font-size: 1.1rem;
+            /* גודל פונט לשדה */
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            border-color: #00bcd4;
+            /* הדגשה בצבע כחול-טורקיז בפוקוס */
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+            /* צל עדין בפוקוס */
+            outline: none;
+            /* הסרת גבול ברירת מחדל של הדפדפן */
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(45deg, #2c7be5 0%, #00bcd4 100%);
+            /* גרדיאנט חדש ומודרני */
+            border: none;
+            color: white;
+            padding: 1.2rem 2.5rem;
+            /* הגדלת ריפוד לכפתור */
+            font-size: 1.25rem;
+            /* גודל פונט לכפתור */
+            border-radius: 50px;
+            /* כפתור עגול יותר */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* אנימציה חלקה יותר לכל השינויים */
+            width: 100%;
+            margin-top: 2rem;
+            /* רווח גדול יותר מעל הכפתור */
+            font-weight: 700;
+            /* מודגש יותר */
+            letter-spacing: 0.5px;
+            /* מרווח קטן בין אותיות */
+            box-shadow: 0 8px 20px rgba(44, 123, 229, 0.25);
+            /* צל לכפתור */
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(45deg, #00bcd4 0%, #2c7be5 100%);
+            /* היפוך גרדיאנט בריחוף */
+            box-shadow: 0 10px 25px rgba(0, 188, 212, 0.35);
+            /* צל מוגבר בריחוף */
+            transform: translateY(-2px);
+            /* אפקט עדין של "קפיצה" */
+        }
+
+        .error-message {
+            color: #d93030;
+            background-color: #fdeeee;
+            border: 1px solid #f8c6c6;
+            padding: 0.9rem;
+            /* הגדלת ריפוד להודעת שגיאה */
+            border-radius: 10px;
+            /* פינות מעוגלות להודעת שגיאה */
+            display: none;
+            margin-top: 1.8rem;
+            /* רווח גדול יותר */
+            font-size: 1rem;
+        }
+
+        /* התאמות למסכים קטנים */
+        @media (max-width: 600px) {
+            .login-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .logo-image {
+                max-width: 140px;
+            }
+
+            button[type="submit"] {
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <img src="/assets/images/logos/idone-logo.svg" alt="iDone Logo" class="logo-image" loading="lazy" />
+        <h2>כניסת מנהלים</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">שם משתמש:</label>
+                <input type="text" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+                <label for="password">סיסמה:</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+            <button type="submit">התחבר</button>
+            <div id="errorMessage" class="error-message">
+                שם המשתמש או הסיסמה שגויים.
+            </div>
+        </form>
+    </div>
+
+    <script src="js/admin-login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
+    <title>לוח בקרה | iDone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            margin: 0;
+        }
+
+        .admin-header {
+            background: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-header .logo-image {
+            max-height: 40px;
+        }
+
+        #logout-button {
+            background: #fdeeee;
+            color: #d93030;
+            border: 1px solid #f8c6c6;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        #logout-button:hover {
+            background: #d93030;
+            color: #fff;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .widget-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            padding: 2.5rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .widget-card h3 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: bold;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 0.9rem 12px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+            outline: none;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #2c7be5 0%, #00bcd4 100%);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(44, 123, 229, 0.2);
+        }
+
+        .submit-button:hover {
+            box-shadow: 0 10px 25px rgba(0, 188, 212, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* סגנון להודעות משוב */
+        .feedback-message {
+            padding: 0.9rem;
+            border-radius: 10px;
+            display: none;
+            /* מוסתר בהתחלה */
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .feedback-message.success {
+            color: #008a4c;
+            background-color: #e6f9f0;
+            border: 1px solid #b6e9d2;
+            display: block;
+        }
+
+        .feedback-message.error {
+            color: #d93030;
+            background-color: #fdeeee;
+            border: 1px solid #f8c6c6;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // בדוק אם המשתמש מורשה (כלומר, עבר דרך עמוד ההתחברות)
+        if (sessionStorage.getItem('adminAuthenticated') !== 'true') {
+            // אם לא, החזר אותו מיד לעמוד ההתחברות
+            alert('אין לך הרשאת גישה. אנא התחבר.');
+            window.location.href = 'admin-login.html';
+        }
+    </script>
+    <header class="admin-header">
+        <img src="/assets/images/logos/idone-logo.svg" alt="iDone Logo" class="logo-image" loading="lazy" />
+        <button id="logout-button">התנתק</button>
+    </header>
+
+    <main class="dashboard-container">
+
+        <div class="widget-card">
+            <h3>שליחת מייל "תודה על השיחה"</h3>
+            <form id="form-post-call">
+                <div class="form-group">
+                    <label for="post-call-name">שם לקוח:</label>
+                    <input type="text" id="post-call-name" required />
+                </div>
+                <div class="form-group">
+                    <label for="post-call-email">אימייל לקוח:</label>
+                    <input type="email" id="post-call-email" required />
+                </div>
+                <button type="submit" class="submit-button">שלח מייל</button>
+                <div id="feedback-post-call" class="feedback-message"></div>
+            </form>
+        </div>
+
+        <div class="widget-card">
+            <h3>שליחת הסכם שירות</h3>
+            <form id="form-send-agreement">
+
+                <div class="form-group">
+                    <label for="agreement-name">שם לקוח:</label>
+                    <input type="text" id="agreement-name" required />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-email">אימייל לקוח:</label>
+                    <input type="email" id="agreement-email" required />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-phone">טלפון לקוח:</label>
+                    <input type="text" id="agreement-phone" />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-company">שם חברה:</label>
+                    <input type="text" id="agreement-company" />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-id">ת.ז / ח.פ:</label>
+                    <input type="text" id="agreement-id" required />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-industry">תחום עיסוק:</label>
+                    <input type="text" id="agreement-industry" />
+                </div>
+                <div class="form-group">
+                    <label for="agreement-price">תעריף שעתי (לצורך ההסכם):</label>
+                    <input type="text" id="agreement-price" required />
+                </div>
+
+                <button type="submit" class="submit-button">שלח הסכם ללקוח</button>
+                <div id="feedback-agreement" class="feedback-message"></div>
+            </form>
+        </div>
+
+        <div class="widget-card">
+            <h3>שליחת מייל מותאם (בקרוב)</h3>
+            <p>כאן יהיה הטופס לשליחת מייל מותאם...</p>
+        </div>
+
+    </main>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+
+</html>
