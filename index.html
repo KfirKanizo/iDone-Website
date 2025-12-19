@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <title>iDone - חסוך זמן, הגדל רווחים | פתרונות אוטומציה לעסק שלך</title>
   <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=202508291">
+  <link rel="stylesheet" href="css/style.css?v=202512191">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* ניתן להוסיף כאן סגנונות CSS נוספים או לשנות קיימים ב-style.css */
@@ -81,7 +81,7 @@
 
       /* שימוש בסלקטור ספציפי יותר */
       section.more-sections-cta .cta-buttons {
-        display: flex; 
+        display: flex;
         flex-direction: column !important;
         /* הוספת !important ליתר ביטחון (ננסה להסיר אח"כ) */
         align-items: center;
@@ -295,38 +295,9 @@
 
   <div id="footer"></div>
 
-  <script src="js/main.js?v=202508291"></script>
-  <script>
-    // פונקציה לטעינת רכיבים + עדכון טקסט Hero
-    async function loadComponents() {
-      try {
-        // טעינת Header
-        const headerResponse = await fetch('components/header.html');
-        const headerData = await headerResponse.text();
-        document.getElementById('header').innerHTML = headerData;
-
-        // --- קריאה לעדכון טקסט Hero ---
-        updateHeroTexts();
-        // --- ---
-
-        // טעינת טופס יצירת קשר
-        const contactFormResponse = await fetch('components/contact-form.html');
-        const contactFormData = await contactFormResponse.text();
-        document.getElementById('contact-form').innerHTML = contactFormData;
-
-        // טעינת Footer
-        const footerResponse = await fetch('components/footer.html');
-        const footerData = await footerResponse.text();
-        document.getElementById('footer').innerHTML = footerData;
-      } catch (error) {
-        console.error('Error loading components:', error);
-      }
-    }
-
-    // קריאה לפונקציה הראשית בטעינת העמוד
-    document.addEventListener('DOMContentLoaded', loadComponents);
-  </script>
-  <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
+  <script src="js/main.js?v=202512191"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/chatbot.js" defer></script>
   <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 

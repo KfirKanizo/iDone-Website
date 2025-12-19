@@ -1051,3 +1051,312 @@ h3 {
   margin: 0 auto;
   /* ממקם את ה-Spinner באמצע הכפתור */
 }
+
+/* --- עיצוב צ'אטבוט iDone - גרסה מתוקנת --- */
+#idone-chat-widget {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  font-family: 'Heebo', sans-serif;
+  direction: rtl;
+}
+
+/* כפתור הפתיחה העגול */
+#chat-toggle-btn {
+  width: 65px;
+  /* הגדלה קלה */
+  height: 65px;
+  border-radius: 50%;
+  background: white;
+  /* רקע לבן נקי כדי להבליט את הרובוט */
+  border: 1px solid #eee;
+  /* מסגרת עדינה */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chat-toggle-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(142, 82, 219, 0.25);
+}
+
+#chat-toggle-btn img {
+  width: 45px;
+  /* תמונה גדולה יותר */
+  height: 45px;
+  /* הוסר הפילטר שהפך את התמונה ללבנה - כעת יראו את המקור */
+}
+
+/* הגדרות בסיס לחלונית הצ'אט (תצוגת מחשב) */
+#chat-window {
+  position: fixed;
+  /* קיבוע ביחס למסך כולו ולא לכפתור */
+  bottom: 100px;
+  /* מיקום: 25px מרווח תחתון + 65px גובה כפתור + 10px רווח */
+  right: 25px;
+  /* צמוד לימין, בקו אחד עם הכפתור */
+  width: 380px;
+  /* רוחב סטנדרטי ונוח למחשב */
+  height: 600px;
+  /* גובה המאפשר ראיית היסטוריה */
+  max-height: 80vh;
+  /* הגבלה שלא יעבור 80% מגובה המסך */
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10000;
+  /* שכבה עליונה תמיד */
+
+  /* אנימציית פתיחה */
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transform-origin: bottom right;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* מצב מוסתר */
+#chat-window.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.95);
+}
+
+/* כותרת הצ'אט */
+.chat-header {
+  background: linear-gradient(135deg, #8e52db, #00c48c);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-header-info img {
+  width: 40px;
+  height: 40px;
+  background: white;
+  /* רקע לבן סביב הלוגו בכותרת */
+  border-radius: 50%;
+  padding: 4px;
+  object-fit: contain;
+  /* שומר על פרופורציות התמונה */
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.chat-header span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+#chat-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 0.5;
+  padding: 0 5px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+#chat-close-btn:hover {
+  opacity: 1;
+}
+
+/* אזור ההודעות */
+#chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f4f6f8;
+  /* צבע רקע אפור בהיר מאוד ונעים */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* גלילה מותאמת אישית לאזור ההודעות */
+#chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bot-message {
+  background-color: #ffffff;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-right-radius: 2px;
+  border: 1px solid #ebebeb;
+}
+
+.user-message {
+  background: linear-gradient(135deg, #8e52db, #7a46bd);
+  color: white;
+  align-self: flex-end;
+  border-bottom-left-radius: 2px;
+}
+
+.typing-indicator {
+  font-size: 0.85rem;
+  color: #666;
+  margin-right: 15px;
+  margin-top: 5px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* אזור ההקלדה */
+.chat-input-area {
+  padding: 15px;
+  background: white;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#chat-input {
+  flex: 1;
+  border: 1px solid #e1e1e1;
+  border-radius: 25px;
+  padding: 12px 20px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  background-color: #f8f9fa;
+}
+
+#chat-input:focus {
+  border-color: #8e52db;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(142, 82, 219, 0.1);
+}
+
+#chat-send-btn {
+  background: linear-gradient(135deg, #8e52db, #7a46bd);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 196, 140, 0.3);
+}
+
+#chat-send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 196, 140, 0.4);
+}
+
+#chat-send-btn svg {
+  margin-right: -2px;
+  /* תיקון אופטי קטן לאייקון */
+}
+
+/* התאמה קריטית למובייל */
+@media (max-width: 480px) {
+  #chat-window {
+    position: fixed;
+    /* במובייל - מתנתק מהכפתור ומתייחס למסך כולו */
+    bottom: 90px;
+    /* גובה מהתחתית */
+    right: 5vw;
+    /* מרווח מימין (5% מרוחב המסך) */
+    width: 90vw;
+    /* רוחב של 90% מהמסך - פותר את בעיית הכיווץ */
+    height: 60vh;
+    /* גובה יחסי למסך */
+    max-height: 600px;
+    z-index: 10000;
+    /* מוודא שהוא תמיד למעלה */
+  }
+}
+
+#chat-toggle-btn {
+  width: 55px;
+  height: 55px;
+}
+
+/* --- עיצוב תוכן הודעות הבוט (Markdown) --- */
+
+/* הסרת רווחים מיותרים מהפסקאות שהבוט יוצר */
+.bot-message p {
+  margin: 0 0 8px 0;
+}
+
+.bot-message p:last-child {
+  margin-bottom: 0;
+}
+
+/* עיצוב רשימות (בולטים) */
+.bot-message ul,
+.bot-message ol {
+  margin: 5px 0;
+  padding-right: 20px;
+  /* הזחה לימין כי אנחנו בעברית */
+}
+
+.bot-message li {
+  margin-bottom: 4px;
+}
+
+/* הדגשות */
+.bot-message strong {
+  font-weight: 700;
+  color: #8e52db;
+  /* צבע סגול להדגשות, אופציונלי */
+}
+
+/* קישורים (אם הבוט שולח לינקים) */
+.bot-message a {
+  color: #00c48c;
+  text-decoration: underline;
+}
