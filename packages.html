@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+    <title>iDone - חבילות אוטומציה במחיר קבוע</title>
+    <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css?v=202512191">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Packages Hero */
+        .packages-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e6e9f0 100%);
+            padding: 6rem 5% 4rem;
+            text-align: center;
+        }
+
+        .packages-hero h1 {
+            font-size: 3rem;
+            color: #8e52db;
+            margin-bottom: 1rem;
+        }
+
+        .packages-hero p {
+            font-size: 1.25rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Packages Grid */
+        .packages-section {
+            padding: 4rem 5%;
+            background-color: #fff;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Package Card Design */
+        .package-card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e1e1e1;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(142, 82, 219, 0.15);
+            border-color: #8e52db;
+        }
+
+        /* Popular Badge */
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(90deg, #8e52db, #00c48c);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .package-card h3 {
+            font-size: 1.6rem;
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-subtitle {
+            color: #00c48c;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .price-tag {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .price-tag span {
+            font-size: 0.9rem;
+            color: #777;
+            font-weight: 400;
+        }
+
+        /* Uniform Content Structure */
+        .package-details {
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .detail-item {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: #8e52db;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .detail-content {
+            color: #555;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: #f0f4f8;
+            color: #003366;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Buttons */
+        .card-footer {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .package-btn {
+            width: 100%;
+            display: block;
+            padding: 12px;
+            text-align: center;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8e52db, #3b86f7);
+            color: white;
+            box-shadow: 0 4px 15px rgba(142, 82, 219, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 82, 219, 0.3);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid #8e52db;
+            color: #8e52db;
+        }
+
+        .btn-outline:hover {
+            background: #f8f9fa;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: #f9f9f9;
+            padding: 4rem 5%;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .faq-item h4 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .packages-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .package-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <header class="packages-hero">
+        <h1>חבילות אוטומציה במחיר קבוע</h1>
+        <p>פתרונות "מהמדף" לבעיות נפוצות בעסק. מחיר ידוע מראש, זמן אספקה מהיר, ותוצאות מיידיות.</p>
+    </header>
+
+    <section class="packages-section">
+        <div class="packages-grid">
+
+            <div class="package-card">
+                <div class="popular-badge">הכי נמכרת 🔥</div>
+                <h3>ליד חם בכיס</h3>
+                <span class="package-subtitle">מענה מיידי ללידים + תיעוד</span>
+                <div class="price-tag">
+                    1,100 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">לידים מתקררים כי לוקח זמן לחזור אליהם, והם בורחים למתחרים.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">
+                            1. לקוח משאיר פרטים באתר/פייסבוק.<br>
+                            2. <strong>הפרטים נשמרים אוטומטית</strong> (CRM/Sheets).<br>
+                            3. הודעת וואטסאפ אישית נשלחת ללקוח מיד.<br>
+                            4. התראה נשלחת אליך לנייד.
+                        </span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: עד 2 ימי עסקים</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-primary" onclick="openPackageContact('ליד חם בכיס')">אני רוצה את
+                        זה</button>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <h3>חשבונית בקליק</h3>
+                <span class="package-subtitle">אוטומציה פיננסית</span>
+                <div class="price-tag">
+                    1,200 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">בזבוז שעות על הפקה ידנית של חשבוניות ושליחתן.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">סליקה בוצעה? המערכת מפיקה חשבונית, שולחת למייל הלקוח, ומתעדת את
+                            העסקה ב-Sheets לרואה החשבון.</span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: עד 3 ימי עסקים</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-outline" onclick="openPackageContact('חשבונית בקליק')">חסוך לי
+                        ניירת</button>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <h3>מונע ההברזות</h3>
+                <span class="package-subtitle">תזכורות אוטומטיות לפגישות</span>
+                <div class="price-tag">
+                    1,100 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">לקוחות קובעים פגישה ושוכחים להגיע (No-Show).</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">חיבור היומן לוואטסאפ: תזכורת נשלחת יום לפני + שעה לפני הפגישה באופן
+                            אוטומטי לחלוטין.</span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: עד 2 ימי עסקים</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-outline" onclick="openPackageContact('מונע ההברזות')">סדר לי את
+                        היומן</button>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <h3>מגנט הביקורות</h3>
+                <span class="package-subtitle">הגדלת מוניטין בגוגל</span>
+                <div class="price-tag">
+                    850 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">לקוחות מרוצים שוכחים לפרגן בביקורת כי לא ביקשת בזמן.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">סיום שירות -> המתנה של יומיים -> שליחת הודעה אישית: "נהנית? נשמח
+                            לפרגון בקישור הבא...".</span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: יום עסקים אחד</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-outline" onclick="openPackageContact('מגנט הביקורות')">הגדל לי
+                        חשיפה</button>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <h3>חוזה טס</h3>
+                <span class="package-subtitle">החתמה דיגיטלית מהירה</span>
+                <div class="price-tag">
+                    1,450 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">פינג-פונג מתיש של הדפסה, חתימה וסריקת הסכמים.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">מילוי טופס -> יצירת חוזה PDF אישי -> שליחה לחתימה בנייד -> תיוק
+                            החוזה החתום בדרייב.</span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: עד 3 ימי עסקים</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-outline" onclick="openPackageContact('חוזה טס')">קצר תהליכים</button>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <h3>הרשמה חכמה</h3>
+                <span class="package-subtitle">לאירועים, סדנאות ווובינרים</span>
+                <div class="price-tag">
+                    1,300 ₪ <span>+ מע"מ</span>
+                </div>
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">הבעיה:</span>
+                        <span class="detail-content">בלאגן ברישום משתתפים ווידוא הגעה לאירוע.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">הפתרון:</span>
+                        <span class="detail-content">הרשמה בטופס -> מייל אישור עם זימון ליומן (Invite) -> תזכורת וואטסאפ
+                            בבוקר האירוע עם קישור/מיקום.</span>
+                    </div>
+                    <div class="time-badge">⏱ זמן הקמה: עד 2 ימי עסקים</div>
+                </div>
+                <div class="card-footer">
+                    <button class="package-btn btn-outline" onclick="openPackageContact('הרשמה חכמה')">תנהל לי את
+                        האירוע</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="faq-section" dir="rtl">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: #8e52db;">שאלות נפוצות</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h4>האם המחיר הוא חד פעמי?</h4>
+                <p>כן! התשלום עבור ההקמה הוא חד פעמי.<br> עם זאת, חלק מהאוטומציות דורשות מנוי לכלים חיצוניים (כמו Make או
+                    מערכת וואטסאפ) בעלות חודשית נמוכה (לרוב 10$-30$).</p>
+            </div>
+            <div class="faq-item">
+                <h4>מה קורה אם אני צריך התאמה אישית?</h4>
+                <p>החבילות בנויות כפתרון "מפתח", אם יש צורך בשינויים קלים - בדרך כלל אין בעיה.<br>אם מדובר באפיון
+                    שונה לחלוטין, נוכל להתאים עבורך פתרון מותאם אישית.</p>
+            </div>
+            <div class="faq-item">
+                <h4>איך מתחילים?</h4>
+                <p>לוחצים על הכפתור בחבילה הרצויה, משאירים פרטים, ואנחנו חוזרים אליך לשיחת התנעה קצרה וקבלת גישות.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" style="background: #fff; border-top: 1px solid #eee;">
+        <h2>לא מצאת את מה שחיפשת?</h2>
+        <p>בוא נבנה פתרון שתפור בדיוק למידות שלך.</p>
+        <div class="cta-buttons">
+            <a href="meeting.html" class="cta-button primary">תיאום שיחת ייעוץ חינם</a>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="js/main.js?v=202512191"></script>
+    <script src="js/chatbot.js" defer></script>
+
+    <script>
+        // פונקציית עזר לטעינת ה-Header וה-Footer כמו בשאר האתר
+        // (הערה: אם ב-main.js כבר יש לוגיקה כזו, ייתכן שאין צורך בקוד הזה)
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                    // עדכון הלינק הפעיל בתפריט
+                    const navLinks = document.querySelectorAll('.nav-links a');
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === 'packages.html') {
+                            link.style.color = '#8e52db';
+                            link.style.fontWeight = 'bold';
+                        }
+                    });
+                });
+
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
+        });
+
+        // פונקציה למעבר ליצירת קשר עם נושא החבילה
+        function openPackageContact(packageName) {
+            // מעבר לעמוד הפגישה/צור קשר עם פרמטר ב-URL
+            window.location.href = `meeting.html?package=${encodeURIComponent(packageName)}`;
+        }
+    </script>
+</body>
+
+</html>
