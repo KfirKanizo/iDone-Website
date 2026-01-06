@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <title>iDone - חסוך זמן, הגדל רווחים | פתרונות אוטומציה לעסק שלך</title>
   <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=202512191">
+  <link rel="stylesheet" href="css/style.css?v=202601061">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* ניתן להוסיף כאן סגנונות CSS נוספים או לשנות קיימים ב-style.css */
@@ -112,25 +112,7 @@
 
 <body>
 
-  <div id="header">
-    <script>
-      // פונקציה לעדכון טקסטים ב-Hero אחרי טעינת ה-Header
-      function updateHeroTexts() {
-        const heroTitle = document.querySelector('.hero h1');
-        const heroSubtitle = document.querySelector('.hero p'); // נניח שיש רק פסקה אחת
-
-        if (heroTitle) {
-          heroTitle.innerHTML = "חסוך שעות עבודה והגדל רווחים<br>עם אוטומציה חכמה לעסק שלך";
-        }
-        if (heroSubtitle) {
-          heroSubtitle.innerHTML = "נמאס לך לבזבז זמן יקר על משימות שחוזרות על עצמן? אנחנו כאן כדי להפוך תהליכים מורכבים לפשוטים ואוטומטיים, כדי שתוכל להתמקד בצמיחה האמיתית של העסק.";
-          heroSubtitle.classList.add('lead-text'); // הוספת קלאס לעיצוב
-        }
-      }
-
-      // קריאה לפונקציה לאחר טעינת רכיבים (בפונקציה loadComponents למטה)
-    </script>
-  </div>
+  <div id="header"></div>
 
   <section class="services" id="services" dir="rtl" lang="he">
     <h2>מה iDone יכולה לעשות בשבילך?</h2>
@@ -294,10 +276,39 @@
   <div id="contact-form"></div>
 
   <div id="footer"></div>
-
-  <script src="js/main.js?v=202512191"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js?v=202601061"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="js/chatbot.js" defer></script>
+  <script>
+    // הגדרת הפונקציה לעדכון טקסטים (הוזזה לכאן כדי שלא תימחק)
+    function updateHeroTexts() {
+      const heroTitle = document.querySelector('.hero h1');
+      const heroSubtitle = document.querySelector('.hero p');
+
+      if (heroTitle) {
+        heroTitle.innerHTML = "חסוך שעות עבודה והגדל רווחים<br>עם אוטומציה חכמה לעסק שלך";
+      }
+      if (heroSubtitle) {
+        heroSubtitle.innerHTML = "נמאס לך לבזבז זמן יקר על משימות שחוזרות על עצמן? אנחנו כאן כדי להפוך תהליכים מורכבים לפשוטים ואוטומטיים, כדי שתוכל להתמקד בצמיחה האמיתית של העסק.";
+        heroSubtitle.classList.add('lead-text');
+      }
+    }
+
+    // הפעלת הטעינה ברגע שהדף מוכן
+    document.addEventListener('DOMContentLoaded', async () => {
+      // בדיקה שהפונקציה קיימת בקובץ components.js
+      if (typeof loadComponentsAuto === 'function') {
+        // מחכים שה-Header וה-Footer ייטענו
+        await loadComponentsAuto();
+
+        // רק אחרי שהם נטענו (והאלמנטים קיימים), מריצים את עדכון הטקסט
+        updateHeroTexts();
+      } else {
+        console.error("loadComponentsAuto function is missing!");
+      }
+    });
+  </script>
   <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 
