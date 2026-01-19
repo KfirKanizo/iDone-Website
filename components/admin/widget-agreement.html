@@ -1,0 +1,48 @@
+<div class="widget-card">
+    <h3>
+        <span class="material-icons-round" style="color:var(--secondary);">description</span>
+        שליחת הסכם שירות
+    </h3>
+    <form id="form-send-agreement">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="form-group">
+                <label for="agreement-name">שם לקוח</label>
+                <input type="text" id="agreement-name" required />
+            </div>
+            <div class="form-group">
+                <label for="agreement-phone">טלפון</label>
+                <input type="text" id="agreement-phone" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="agreement-email">אימייל לקוח</label>
+            <input type="email" id="agreement-email" required />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="form-group">
+                <label for="agreement-company">שם חברה</label>
+                <input type="text" id="agreement-company" />
+            </div>
+            <div class="form-group">
+                <label for="agreement-id">ח.פ / ת.ז</label>
+                <input type="text" id="agreement-id" required />
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+            <div class="form-group">
+                <label for="agreement-industry">תחום עיסוק</label>
+                <input type="text" id="agreement-industry" />
+            </div>
+            <div class="form-group">
+                <label for="agreement-price">תעריף (₪)</label>
+                <input type="text" id="agreement-price" required />
+            </div>
+        </div>
+
+        <button type="submit" class="submit-button">צור ושלח הסכם 📄</button>
+        <div id="feedback-agreement" class="feedback-message"></div>
+    </form>
+</div>

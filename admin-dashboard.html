@@ -6,392 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
     <title>לוח בקרה מנהל | iDone Admin</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-    <style>
-        /* --- משתנים ואיפוס כללי --- */
-        :root {
-            --primary: #8e52db;
-            --secondary: #00c48c;
-            --bg-body: #f4f6f9;
-            --sidebar-width: 260px;
-            --text-dark: #344767;
-            --text-muted: #8392ab;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --transition-speed: 0.3s;
-        }
-
-        * {
-            box-sizing: border-box; /* חשוב מאוד למניעת גלישה */
-        }
-
-        body {
-            font-family: 'Heebo', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            overflow-x: hidden; /* מניעת גלילה רוחבית */
-        }
-
-        /* --- Sidebar Navigation --- */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: #fff;
-            position: fixed;
-            right: 0;
-            top: 0;
-            height: 100%;
-            padding: 1.5rem;
-            box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            transition: transform var(--transition-speed) ease;
-            /* בדסקטופ: מוצג כברירת מחדל */
-            transform: translateX(0);
-        }
-
-        /* מצב מכווץ בדסקטופ (אם נרצה להסתיר) */
-        .sidebar.collapsed {
-            transform: translateX(100%);
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #f0f2f5;
-        }
-
-        .brand-logo img {
-            height: 35px;
-        }
-
-        .brand-logo span {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex: 1;
-        }
-
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            transition: all 0.2s ease;
-            gap: 12px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background-color: #fff;
-            box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
-            color: var(--text-dark);
-        }
-
-        .nav-link.active .material-icons-round {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logout-btn {
-            margin-top: auto;
-            background: #fdeeee;
-            color: #d93030;
-            border: none;
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: inherit;
-            transition: 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #d93030;
-            color: white;
-        }
-
-        .close-sidebar-btn {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-            display: none; /* מוסתר בדסקטופ */
-        }
-
-        /* --- Main Content --- */
-        .main-content {
-            /* התיקון הקריטי: דוחף את התוכן שמאלה בגודל התפריט */
-            margin-right: var(--sidebar-width);
-            padding: 2rem;
-            transition: margin-right var(--transition-speed) ease;
-            width: auto; /* תופס את מה שנשאר */
-        }
-
-        /* כשהתפריט סגור בדסקטופ, התוכן נפרס על הכל */
-        .main-content.expanded {
-            margin-right: 0;
-        }
-
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .menu-toggle-btn {
-            background: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-toggle-btn:hover {
-            background-color: #f8f9fa;
-        }
-
-        .page-header h1 {
-            font-size: 1.6rem;
-            margin: 0;
-            color: var(--text-dark);
-        }
-
-        /* --- Stats Row --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.2rem;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stat-info h4 {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .stat-info p {
-            margin: 5px 0 0 0;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* --- Widgets Grid --- */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .widget-card {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .widget-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .widget-card h3 {
-            color: var(--text-dark);
-            font-size: 1.3rem;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1px solid #e0e6ed;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            background: #f8f9fa;
-            transition: all 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(142, 82, 219, 0.1);
-        }
-
-        .submit-button {
-            background: linear-gradient(135deg, var(--primary) 0%, #7a46bd 100%);
-            border: none;
-            color: white;
-            padding: 0.9rem 2rem;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-top: 1rem;
-            box-shadow: 0 4px 10px rgba(142, 82, 219, 0.3);
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(142, 82, 219, 0.4);
-        }
-        
-        .submit-button:disabled {
-            background: #ccc;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .feedback-message {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            display: none;
-            text-align: center;
-        }
-        .feedback-message.success { background-color: #e6f9f0; color: #008a4c; border: 1px solid #b6e9d2; }
-        .feedback-message.error { background-color: #fdeeee; color: #d93030; border: 1px solid #f8c6c6; }
-        .feedback-message.pending { background-color: #fff8e1; color: #f57f17; border: 1px solid #ffe0b2; }
-
-        /* --- Mobile / Responsive Design --- */
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(100%); /* מוסתר כברירת מחדל */
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0); /* החלקה פנימה */
-            }
-
-            .main-content {
-                margin-right: 0 !important; /* ביטול הדחיפה במובייל */
-                width: 100%;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .close-sidebar-btn {
-                display: block;
-            }
-            
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.5);
-                z-index: 999;
-            }
-            .overlay.active {
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
 </head>
 
 <body>
 
     <script>
-        // בדיקת הרשאות
+        // בדיקת הרשאות ראשונית
         if (sessionStorage.getItem('adminAuthenticated') !== 'true') {
             window.location.href = 'admin-login.html';
         }
@@ -399,57 +24,16 @@
 
     <div class="overlay" id="overlay"></div>
 
-    <aside class="sidebar" id="sidebar">
-        <button class="close-sidebar-btn" id="close-sidebar-mobile">
-            <span class="material-icons-round">close</span>
-        </button>
-
-        <div class="brand-logo">
-            <img src="/assets/images/logos/idone-logo.svg" alt="iDone Logo" />
-            <span>Admin Panel</span>
-        </div>
-        
-        <ul class="nav-links">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <span class="material-icons-round">dashboard</span>
-                    <span>לוח בקרה</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span class="material-icons-round">history</span>
-                    <span>היסטוריית פעולות</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span class="material-icons-round">settings</span>
-                    <span>הגדרות מערכת</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="index.html" class="nav-link">
-                    <span class="material-icons-round">public</span>
-                    <span>מעבר לאתר</span>
-                </a>
-            </li>
-        </ul>
-
-        <button id="logout-button" class="logout-btn">
-            <span class="material-icons-round">logout</span>
-            התנתק
-        </button>
-    </aside>
+    <div id="sidebar-container"></div>
 
     <main class="main-content" id="main-content">
-        
+
         <div class="page-header">
             <div class="header-left">
                 <button class="menu-toggle-btn" id="toggle-sidebar-btn">
                     <span class="material-icons-round">menu_open</span>
                 </button>
-                
+
                 <div>
                     <h1>שלום, כפיר 👋</h1>
                     <p style="color: #8392ab; margin-top: 5px; font-size: 0.95rem;">מה תרצה לעשות באוטומציות היום?</p>
@@ -457,109 +41,19 @@
             </div>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h4>לידים החודש</h4>
-                    <p>24</p>
-                </div>
-                <div class="stat-icon">
-                    <span class="material-icons-round">trending_up</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h4>הסכמים שנשלחו</h4>
-                    <p>12</p>
-                </div>
-                <div class="stat-icon" style="background: linear-gradient(135deg, #2c7be5, #4dabf5);">
-                    <span class="material-icons-round">assignment_turned_in</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h4>משימות פתוחות</h4>
-                    <p>5</p>
-                </div>
-                <div class="stat-icon" style="background: linear-gradient(135deg, #fb8c00, #ffa726);">
-                    <span class="material-icons-round">pending_actions</span>
-                </div>
-            </div>
-        </div>
+        <div id="stats-container"></div>
 
         <div class="dashboard-grid">
-            
-            <div class="widget-card">
-                <h3>
-                    <span class="material-icons-round" style="color:var(--primary);">mail</span>
-                    שליחת מייל "תודה על השיחה"
-                </h3>
-                <form id="form-post-call">
-                    <div class="form-group">
-                        <label for="post-call-name">שם לקוח</label>
-                        <input type="text" id="post-call-name" placeholder="הכנס שם מלא" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="post-call-email">אימייל לקוח</label>
-                        <input type="email" id="post-call-email" placeholder="client@example.com" required />
-                    </div>
-                    <button type="submit" class="submit-button">שגר אוטומציה 🚀</button>
-                    <div id="feedback-post-call" class="feedback-message"></div>
-                </form>
-            </div>
 
-            <div class="widget-card">
-                <h3>
-                    <span class="material-icons-round" style="color:var(--secondary);">description</span>
-                    שליחת הסכם שירות
-                </h3>
-                <form id="form-send-agreement">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group">
-                            <label for="agreement-name">שם לקוח</label>
-                            <input type="text" id="agreement-name" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="agreement-phone">טלפון</label>
-                            <input type="text" id="agreement-phone" />
-                        </div>
-                    </div>
+            <div id="widget-post-call-container"></div>
 
-                    <div class="form-group">
-                        <label for="agreement-email">אימייל לקוח</label>
-                        <input type="email" id="agreement-email" required />
-                    </div>
+            <div id="widget-agreement-container"></div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group">
-                            <label for="agreement-company">שם חברה</label>
-                            <input type="text" id="agreement-company" />
-                        </div>
-                        <div class="form-group">
-                            <label for="agreement-id">ח.פ / ת.ז</label>
-                            <input type="text" id="agreement-id" required />
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
-                        <div class="form-group">
-                            <label for="agreement-industry">תחום עיסוק</label>
-                            <input type="text" id="agreement-industry" />
-                        </div>
-                        <div class="form-group">
-                            <label for="agreement-price">תעריף (₪)</label>
-                            <input type="text" id="agreement-price" required />
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submit-button">צור ושלח הסכם 📄</button>
-                    <div id="feedback-agreement" class="feedback-message"></div>
-                </form>
-            </div>
-            
-            <div class="widget-card" style="opacity: 0.7; border: 2px dashed #e0e6ed; background: transparent; box-shadow: none;">
-                 <div style="text-align: center; padding: 2rem 0;">
-                    <span class="material-icons-round" style="font-size: 3rem; color: #cbd5e1;">add_circle_outline</span>
+            <div class="widget-card"
+                style="opacity: 0.7; border: 2px dashed #e0e6ed; background: transparent; box-shadow: none;">
+                <div style="text-align: center; padding: 2rem 0;">
+                    <span class="material-icons-round"
+                        style="font-size: 3rem; color: #cbd5e1;">add_circle_outline</span>
                     <h3 style="justify-content: center; margin-bottom: 0.5rem; color: #8392ab;">בקרוב</h3>
                     <p style="color: #8392ab;">עוד אוטומציות בדרך...</p>
                 </div>
@@ -569,51 +63,7 @@
 
     </main>
 
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-        const toggleBtn = document.getElementById('toggle-sidebar-btn');
-        const closeBtnMobile = document.getElementById('close-sidebar-mobile');
-        const overlay = document.getElementById('overlay');
-
-        // פונקציה לשינוי מצב התפריט
-        function toggleSidebar() {
-            // בדיקה אם אנחנו במובייל (לפי רוחב מסך)
-            const isMobile = window.innerWidth <= 992;
-
-            if (isMobile) {
-                // לוגיקת מובייל: הוספת/הסרת מחלקה 'active' + Overlay
-                const isActive = sidebar.classList.contains('active');
-                if (isActive) {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                } else {
-                    sidebar.classList.add('active');
-                    overlay.classList.add('active');
-                }
-            } else {
-                // לוגיקת דסקטופ: הוספת/הסרת מחלקה 'collapsed' + הרחבת התוכן
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('expanded');
-            }
-        }
-
-        // אירועים
-        toggleBtn.addEventListener('click', toggleSidebar);
-        
-        // סגירה במובייל
-        closeBtnMobile.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-    </script>
-
     <script src="js/admin-dashboard.js"></script>
 </body>
+
 </html>

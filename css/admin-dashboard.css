@@ -1,0 +1,399 @@
+/* --- משתנים ואיפוס כללי --- */
+:root {
+    --primary: #8e52db;
+    --secondary: #00c48c;
+    --bg-body: #f4f6f9;
+    --sidebar-width: 260px;
+    --text-dark: #344767;
+    --text-muted: #8392ab;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    /* חשוב מאוד למניעת גלישה */
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* מניעת גלילה רוחבית */
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background: #fff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 1.5rem;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-speed) ease;
+    /* בדסקטופ: מוצג כברירת מחדל */
+    transform: translateX(0);
+}
+
+/* מצב מכווץ בדסקטופ (אם נרצה להסתיר) */
+.sidebar.collapsed {
+    transform: translateX(100%);
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.brand-logo img {
+    height: 35px;
+}
+
+.brand-logo span {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: #fff;
+    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+    color: var(--text-dark);
+}
+
+.nav-link.active .material-icons-round {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: #fdeeee;
+    color: #d93030;
+    border: none;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #d93030;
+    color: white;
+}
+
+.close-sidebar-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: none;
+    /* מוסתר בדסקטופ */
+}
+
+/* --- Main Content --- */
+.main-content {
+    /* התיקון הקריטי: דוחף את התוכן שמאלה בגודל התפריט */
+    margin-right: var(--sidebar-width);
+    padding: 2rem;
+    transition: margin-right var(--transition-speed) ease;
+    width: auto;
+    /* תופס את מה שנשאר */
+}
+
+/* כשהתפריט סגור בדסקטופ, התוכן נפרס על הכל */
+.main-content.expanded {
+    margin-right: 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle-btn {
+    background: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.page-header h1 {
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* --- Stats Row --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-info h4 {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.stat-info p {
+    margin: 5px 0 0 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Widgets Grid --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 1.5rem;
+}
+
+.widget-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.widget-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.widget-card h3 {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #f8f9fa;
+    transition: all 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(142, 82, 219, 0.1);
+}
+
+.submit-button {
+    background: linear-gradient(135deg, var(--primary) 0%, #7a46bd 100%);
+    border: none;
+    color: white;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(142, 82, 219, 0.3);
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(142, 82, 219, 0.4);
+}
+
+.submit-button:disabled {
+    background: #ccc;
+    transform: none;
+    box-shadow: none;
+}
+
+.feedback-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+    text-align: center;
+}
+
+.feedback-message.success {
+    background-color: #e6f9f0;
+    color: #008a4c;
+    border: 1px solid #b6e9d2;
+}
+
+.feedback-message.error {
+    background-color: #fdeeee;
+    color: #d93030;
+    border: 1px solid #f8c6c6;
+}
+
+.feedback-message.pending {
+    background-color: #fff8e1;
+    color: #f57f17;
+    border: 1px solid #ffe0b2;
+}
+
+/* --- Mobile / Responsive Design --- */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(100%);
+        /* מוסתר כברירת מחדל */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        /* החלקה פנימה */
+    }
+
+    .main-content {
+        margin-right: 0 !important;
+        /* ביטול הדחיפה במובייל */
+        width: 100%;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .close-sidebar-btn {
+        display: block;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+}
