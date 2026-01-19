@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // אם אין היסטוריה, הצג הודעת פתיחה
         if (history.length === 0) {
-            appendMessage('היי! אני הבוט של iDone. איך אני יכול לעזור לך לייעל את העסק היום? 🤖', 'bot', false);
+            appendMessage('היי! אני הבוט של iDone. איך אני יכול לעזור לך להתייעל היום? 🤖', 'bot', false);
         } else {
             // אם יש היסטוריה, טען את 5 האחרונות
             const messagesToShow = history.slice(-5);
