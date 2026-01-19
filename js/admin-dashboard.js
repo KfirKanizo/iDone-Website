@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // טעינת כל החלקים במקביל
     // שים לב: הנתיבים יחסיים לקובץ ה-HTML שמריץ את הסקריפט (בתיקייה הראשית)
     await Promise.all([
+        loadComponent('preview-modal-container', 'components/admin/preview-modal.html'),
         loadComponent('sidebar-container', 'components/admin/sidebar.html'),
         loadComponent('stats-container', 'components/admin/stats.html'),
         loadComponent('widget-post-call-container', 'components/admin/widget-post-call.html'),
@@ -84,6 +85,97 @@ function initializeDashboardLogic() {
             sessionStorage.removeItem('adminAuthenticated');
             alert('התנתקת בהצלחה.');
             window.location.href = 'admin-login.html';
+        });
+    }
+
+    // === לוגיקת תצוגה מקדימה (Preview Logic) ===
+    const modalBackdrop = document.getElementById('preview-modal');
+    const closePreviewBtn = document.getElementById('close-preview-btn');
+    const previewFrame = document.getElementById('preview-frame');
+
+    // סגירת המודאל
+    if (closePreviewBtn && modalBackdrop) {
+        closePreviewBtn.addEventListener('click', () => {
+            modalBackdrop.classList.remove('open');
+            setTimeout(() => { modalBackdrop.style.display = 'none'; }, 300);
+        });
+
+        // סגירה בלחיצה בחוץ
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) closePreviewBtn.click();
+        });
+    }
+
+    // פונקציה גנרית ליצירת תצוגה מקדימה
+    async function showEmailPreview(templatePath, replacements) {
+        try {
+            // הצגת המודאל עם אנימציה
+            if (modalBackdrop) {
+                modalBackdrop.style.display = 'flex';
+                // Timeout קטן כדי לאפשר ל-CSS Transition לעבוד
+                setTimeout(() => modalBackdrop.classList.add('open'), 10);
+            }
+
+            // טעינת התבנית
+            const response = await fetch(templatePath);
+            if (!response.ok) throw new Error('Failed to load template');
+
+            let htmlContent = await response.text();
+
+            // ביצוע ההחלפות
+            for (const [key, value] of Object.entries(replacements)) {
+                // יצירת Regex גלובלי כדי להחליף את כל המופעים
+                // מניח שהמפתחות הם בדיוק מה שיש ב-HTML, למשל "{שם לקוח}"
+                // אם המפתח הוא Regex string, נשתמש בו ישירות
+                if (key.startsWith('{') || key.startsWith('\\')) {
+                    htmlContent = htmlContent.replace(new RegExp(key, 'g'), value || '---');
+                } else {
+                    // ברירת מחדל: חיפוש טקסט רגיל
+                    htmlContent = htmlContent.replaceAll(key, value || '---');
+                }
+            }
+
+            // הזרקת ה-HTML לתוך ה-iframe
+            const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            doc.open();
+            doc.write(htmlContent);
+            doc.close();
+
+        } catch (err) {
+            console.error('Preview Error:', err);
+            alert('שגיאה בטעינת תצוגה מקדימה: ' + err.message);
+        }
+    }
+
+    // === חיבור כפתורי התצוגה ===
+
+    // 1. תצוגה מקדימה - מייל סיכום שיחה
+    const btnPreviewPostCall = document.getElementById('btn-preview-post-call');
+    if (btnPreviewPostCall) {
+        btnPreviewPostCall.addEventListener('click', () => {
+            const name = document.getElementById('post-call-name').value;
+
+            showEmailPreview('assets/emails/client/post-call-assessment-email.html', {
+                '{שם לקוח}': name
+            });
+        });
+    }
+
+    // 2. תצוגה מקדימה - הסכם שירות
+    const btnPreviewAgreement = document.getElementById('btn-preview-agreement');
+    if (btnPreviewAgreement) {
+        btnPreviewAgreement.addEventListener('click', () => {
+            const name = document.getElementById('agreement-name').value;
+            const id = document.getElementById('agreement-id').value;
+            const price = document.getElementById('agreement-price').value;
+
+            // יצירת לינק דמה לתצוגה
+            const mockUrl = `https://www.idone.co.il/agreement.html?name=${encodeURIComponent(name)}...`;
+
+            showEmailPreview('assets/emails/client/send-service-agreement-email.html', {
+                '{שם לקוח}': name,
+                '{{4.shortURL}}': mockUrl // חשוב: להשתמש בדיוק באותו מחזיק מקום שיש בקובץ
+            });
         });
     }
 

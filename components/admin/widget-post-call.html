@@ -12,7 +12,13 @@
             <label for="post-call-email">אימייל לקוח</label>
             <input type="email" id="post-call-email" placeholder="client@example.com" required />
         </div>
-        <button type="submit" class="submit-button">שגר אוטומציה 🚀</button>
+        <div class="form-actions">
+            <button type="button" class="preview-button" id="btn-preview-post-call">
+                <span class="material-icons-round">visibility</span> תצוגה
+            </button>
+            <button type="submit" class="submit-button" style="margin-top: 0;">שגר 🚀</button>
+        </div>
+        <div id="feedback-post-call" class="feedback-message"></div>
         <div id="feedback-post-call" class="feedback-message"></div>
     </form>
 </div>
