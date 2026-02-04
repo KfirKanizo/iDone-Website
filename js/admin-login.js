@@ -3,11 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById('errorMessage');
 
     // הדבק כאן את ה-Production URL של ה-Webhook שיצרת ב-n8n
-    const N8N_LOGIN_WEBHOOK_URL = 'https://n8n.idone.co.il/webhook/admin-login'; 
+    const N8N_LOGIN_WEBHOOK_URL = 'https://n8n.idone.co.il/webhook/admin-login';
+
+    const loginButton = loginForm.querySelector('button[type="submit"]');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         errorMessage.style.display = 'none'; // הסתר הודעת שגיאה קודמת
+
+        // Show spinner and disable button
+        loadingSpinner.style.display = 'flex';
+        loginButton.disabled = true;
+        loginButton.style.opacity = '0.7';
 
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
@@ -33,13 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = 'admin-dashboard.html';
 
             } else {
-                // --- ההתחברות נכשלה ---
+                // --- ההתחברות נכשלה --- 
+                errorMessage.textContent = 'שם משתמש או סיסמה שגויים';
                 errorMessage.style.display = 'block';
             }
         } catch (err) {
             console.error('Error during login:', err);
             errorMessage.textContent = 'אירעה שגיאה בתקשורת עם השרת.';
             errorMessage.style.display = 'block';
+        } finally {
+            // Hide spinner and re-enable button (unless redirected)
+            if (!sessionStorage.getItem('adminAuthenticated')) {
+                loadingSpinner.style.display = 'none';
+                loginButton.disabled = false;
+                loginButton.style.opacity = '1';
+            }
         }
     });
 });

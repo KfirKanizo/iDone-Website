@@ -10,7 +10,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin-dashboard.css">
+    <style>
+        /* Modern Tech Overrides for Dashboard */
+        body {
+            background-color: var(--background-light);
+            background-image: var(--gradient-bg);
+            color: var(--text-color);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .widget-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-toggle-btn {
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +74,7 @@
 
     <div id="sidebar-container"></div>
 
-    <main class="main-content" id="main-content">
+    <main class="main-content fade-in-section" id="main-content">
 
         <div class="page-header">
             <div class="header-left">
@@ -36,7 +84,8 @@
 
                 <div>
                     <h1>שלום, כפיר 👋</h1>
-                    <p style="color: #8392ab; margin-top: 5px; font-size: 0.95rem;">מה תרצה לעשות באוטומציות היום?</p>
+                    <p style="color: var(--text-muted); margin-top: 5px; font-size: 0.95rem;">מה תרצה לעשות באוטומציות
+                        היום?</p>
                 </div>
             </div>
         </div>
@@ -50,12 +99,12 @@
             <div id="widget-agreement-container"></div>
 
             <div class="widget-card"
-                style="opacity: 0.7; border: 2px dashed #e0e6ed; background: transparent; box-shadow: none;">
+                style="opacity: 0.7; border: 2px dashed var(--glass-border); background: transparent; box-shadow: none; display: flex; align-items: center; justify-content: center;">
                 <div style="text-align: center; padding: 2rem 0;">
                     <span class="material-icons-round"
-                        style="font-size: 3rem; color: #cbd5e1;">add_circle_outline</span>
-                    <h3 style="justify-content: center; margin-bottom: 0.5rem; color: #8392ab;">בקרוב</h3>
-                    <p style="color: #8392ab;">עוד אוטומציות בדרך...</p>
+                        style="font-size: 3rem; color: var(--text-muted);">add_circle_outline</span>
+                    <h3 style="justify-content: center; margin-bottom: 0.5rem; color: var(--text-muted);">בקרוב</h3>
+                    <p style="color: var(--text-muted);">עוד אוטומציות בדרך...</p>
                 </div>
             </div>
 
