@@ -9,15 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS ייעודי לעמוד התהליך כדי להבטיח מראה הנדסי ונקי */
+    /* Dedicated CSS for Workflow Page */
     .workflow-hero {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e6e9f0 100%);
+      background: var(--gradient-bg);
       padding: 5rem 10% 3rem;
       text-align: center;
     }
 
     .workflow-hero h1 {
-      color: #8e52db;
+      color: var(--primary-color);
       font-size: 3rem;
       margin-bottom: 1rem;
     }
@@ -35,7 +35,7 @@
       background: #fff;
     }
 
-    /* קו ציר הזמן */
+    /* Timeline Line */
     .timeline-line {
       position: absolute;
       right: 50%;
@@ -56,12 +56,14 @@
 
     .timeline-content {
       width: 45%;
-      background: #fff;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      border-right: 4px solid #8e52db;
-      /* צבע המותג */
+      border-right: 4px solid var(--primary-color);
       text-align: right;
       position: relative;
     }
@@ -72,7 +74,7 @@
       transform: translateX(50%);
       width: 50px;
       height: 50px;
-      background: #8e52db;
+      background: var(--primary-color);
       color: #fff;
       border-radius: 50%;
       display: flex;
@@ -90,8 +92,7 @@
 
     .timeline-item:nth-child(even) .timeline-content {
       border-right: none;
-      border-left: 4px solid #8e52db;
-      /* גיוון בצבעים */
+      border-left: 4px solid var(--primary-color);
     }
 
     .timeline-content h3 {
@@ -109,13 +110,13 @@
       border-radius: 4px;
       margin-bottom: 1rem;
       font-family: monospace;
-      /* מראה של קוד */
     }
 
     /* Tech Stack Section */
     .tech-stack {
       background: #a07ccf;
-      /* רקע כהה */
+      /* Could use a var but this matches brand */
+      background: linear-gradient(135deg, #a07ccf 0%, #8e52db 100%);
       padding: 4rem 10%;
       text-align: center;
       color: #fff;
@@ -137,7 +138,6 @@
       font-weight: bold;
       font-size: 1.1rem;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      /* צל עדין */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: default;
     }
@@ -145,8 +145,7 @@
     .stack-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(142, 82, 219, 0.15);
-      /* צל סגול בריחוף */
-      border-color: #8e52db;
+      border-color: var(--primary-color);
     }
 
     @media (max-width: 768px) {
@@ -187,10 +186,10 @@
     </p>
   </section>
 
-  <section class="timeline-section">
+  <main class="timeline-section">
     <div class="timeline-line"></div>
 
-    <div class="timeline-item">
+    <article class="timeline-item">
       <div class="timeline-number">1</div>
       <div class="timeline-content">
         <h3>אפיון וארכיטקטורה</h3>
@@ -198,9 +197,9 @@
         <p>אנחנו לא כותבים שורת קוד אחת לפני שאנחנו מבינים את התמונה המלאה. נמפה את זרימת המידע בארגון, נבחר את
           הטכנולוגיה המתאימה (Tech Stack), ונתכנן את מסד הנתונים (Database Schema) כך שיתמוך בגדילה עתידית.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="timeline-item">
+    <article class="timeline-item">
       <div class="timeline-number">2</div>
       <div class="timeline-content">
         <h3>פיתוח בסביבה סטרילית</h3>
@@ -208,9 +207,9 @@
         <p>אנחנו לא עושים ניסויים על הלקוחות שלכם. כל הפיתוח מתבצע ב"סביבת ארגז חול" (Sandbox) מנותקת, כדי להגן על המידע
           הקיים שלכם ולמנוע שיבושים במהלך העבודה.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="timeline-item">
+    <article class="timeline-item">
       <div class="timeline-number">3</div>
       <div class="timeline-content">
         <h3>בדיקות קצה ועומסים</h3>
@@ -218,9 +217,9 @@
         <p>לפני העלייה לאוויר, אנחנו מריצים סימולציות של מקרי קיצון: מה קורה אם האינטרנט נופל? מה קורה אם 100 לידים
           נכנסים בבת אחת? אנחנו מוודאים שהמערכת יודעת להתאושש (Error Handling) לבד.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="timeline-item">
+    <article class="timeline-item">
       <div class="timeline-number">4</div>
       <div class="timeline-content">
         <h3>עלייה לאוויר ואחריות</h3>
@@ -228,9 +227,9 @@
         <p>העברה מבוקרת לייצור (Production), הדרכה מסודרת לצוות שלכם, ומסירת תיעוד טכני מלא. אנחנו נשארים איתכם לתקופת
           אחריות ("Hyper-Care") כדי לוודא שכלום לא חורק.</p>
       </div>
-    </div>
+    </article>
 
-  </section>
+  </main>
 
   <section class="tech-stack">
     <h2>הארגז הכלים הטכנולוגי שלנו</h2>
@@ -255,7 +254,7 @@
   <div id="footer"></div>
   <script src="js/main.js"></script>
   <script>
-    // טעינת רכיבים כמו בשאר האתר
+    // Load components
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');

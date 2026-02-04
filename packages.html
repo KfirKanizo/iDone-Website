@@ -12,14 +12,14 @@
     <style>
         /* Packages Hero */
         .packages-hero {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e6e9f0 100%);
+            background: var(--gradient-bg);
             padding: 6rem 5% 4rem;
             text-align: center;
         }
 
         .packages-hero h1 {
             font-size: 3rem;
-            color: #8e52db;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
@@ -46,21 +46,23 @@
 
         /* Package Card Design */
         .package-card {
-            background: #fff;
-            border-radius: 16px;
-            border: 1px solid #e1e1e1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--glass-border);
             padding: 2.5rem 2rem;
             position: relative;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-md);
         }
 
         .package-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(142, 82, 219, 0.15);
-            border-color: #8e52db;
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         /* Popular Badge */
@@ -68,13 +70,13 @@
             position: absolute;
             top: -12px;
             right: 20px;
-            background: linear-gradient(90deg, #8e52db, #00c48c);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .package-card h3 {
@@ -84,7 +86,7 @@
         }
 
         .package-subtitle {
-            color: #00c48c;
+            color: var(--secondary-color);
             font-weight: 600;
             font-size: 1rem;
             margin-bottom: 1.5rem;
@@ -121,7 +123,7 @@
 
         .detail-label {
             font-weight: 700;
-            color: #8e52db;
+            color: var(--primary-color);
             display: block;
             margin-bottom: 2px;
         }
@@ -162,7 +164,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #8e52db, #3b86f7);
+            background: var(--gradient-primary);
             color: white;
             box-shadow: 0 4px 15px rgba(142, 82, 219, 0.2);
         }
@@ -174,8 +176,8 @@
 
         .btn-outline {
             background: white;
-            border: 2px solid #8e52db;
-            color: #8e52db;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
         }
 
         .btn-outline:hover {
@@ -227,10 +229,10 @@
         <p>פתרונות "מהמדף" לבעיות נפוצות בעסק. מחיר ידוע מראש, זמן אספקה מהיר, ותוצאות מיידיות.</p>
     </header>
 
-    <section class="packages-section">
+    <main class="packages-section">
         <div class="packages-grid">
 
-            <div class="package-card">
+            <article class="package-card">
                 <div class="popular-badge">המומלצת ביותר 🏆</div>
                 <h3>אוטומציה פיננסית</h3>
                 <span class="package-subtitle">סנכרון מלא: סליקה ⟷ חשבונית ⟷ CRM</span>
@@ -258,9 +260,9 @@
                     <button class="package-btn btn-primary" onclick="openPackageContact('אוטומציה פיננסית')">בוא נעשה
                         סדר בכספים</button>
                 </div>
-            </div>
+            </article>
 
-            <div class="package-card">
+            <article class="package-card">
                 <h3>מערכת חוזים חכמה</h3>
                 <span class="package-subtitle">מחולל מסמכים וחתימה דיגיטלית</span>
                 <div class="price-tag">
@@ -287,9 +289,9 @@
                     <button class="package-btn btn-outline" onclick="openPackageContact('מערכת חוזים')">קצר לי תהליכי
                         חתימה</button>
                 </div>
-            </div>
+            </article>
 
-            <div class="package-card">
+            <article class="package-card">
                 <h3>קליטת לקוח (Onboarding)</h3>
                 <span class="package-subtitle">טיפול בליד חדש מא' ועד ת'</span>
                 <div class="price-tag">
@@ -315,9 +317,9 @@
                     <button class="package-btn btn-outline" onclick="openPackageContact('קליטת לקוח')">שפר לי את חווית
                         הלקוח</button>
                 </div>
-            </div>
+            </article>
 
-            <div class="package-card">
+            <article class="package-card">
                 <h3>ניהול יומן ותורים</h3>
                 <span class="package-subtitle">סנכרון פגישות ומניעת No-Show</span>
                 <div class="price-tag">
@@ -344,10 +346,10 @@
                     <button class="package-btn btn-outline" onclick="openPackageContact('ניהול יומן')">סדר לי את
                         הלו"ז</button>
                 </div>
-            </div>
+            </article>
 
         </div>
-    </section>
+    </main>
 
     <section class="faq-section" dir="rtl">
         <h2 style="text-align: center; margin-bottom: 2rem; color: #8e52db;">שאלות נפוצות</h2>
@@ -384,14 +386,14 @@
     <script src="js/chatbot.js" defer></script>
 
     <script>
-        // פונקציית עזר לטעינת ה-Header וה-Footer כמו בשאר האתר
-        // (הערה: אם ב-main.js כבר יש לוגיקה כזו, ייתכן שאין צורך בקוד הזה)
+        // Helper function to load Header and Footer like the rest of the site
+        // (Note: if main.js already has this logic, this code might be redundant)
         document.addEventListener("DOMContentLoaded", function () {
             fetch('components/header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header').innerHTML = data;
-                    // עדכון הלינק הפעיל בתפריט
+                    // Update active link in menu
                     const navLinks = document.querySelectorAll('.nav-links a');
                     navLinks.forEach(link => {
                         if (link.getAttribute('href') === 'packages.html') {
@@ -406,9 +408,9 @@
                 .then(data => document.getElementById('footer').innerHTML = data);
         });
 
-        // פונקציה למעבר ליצירת קשר עם נושא החבילה
+        // Function to scroll to contact with package subject
         function openPackageContact(packageName) {
-            // מעבר לעמוד הפגישה/צור קשר עם פרמטר ב-URL
+            // Navigate to meeting/contact page with URL parameter
             window.location.href = `meeting.html?package=${encodeURIComponent(packageName)}`;
         }
     </script>

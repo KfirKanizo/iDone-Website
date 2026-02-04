@@ -12,8 +12,8 @@
     body {
       direction: rtl;
       font-family: 'Heebo', sans-serif;
-      background: #fff;
-      color: #1a1a1a;
+      /* background: #fff; - Removed to allow global gradient */
+      color: var(--text-color);
     }
 
     .page-wrap {
@@ -24,12 +24,12 @@
 
     .article-title {
       font-size: 2.2rem;
-      color: #8e52db;
+      color: var(--primary-color);
       margin-bottom: 1rem;
     }
 
     .article-meta {
-      color: #666;
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
     }
 
@@ -58,18 +58,24 @@
     .btn {
       display: inline-block;
       padding: .75rem 1.1rem;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 700;
-      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      background: var(--gradient-primary);
       color: #fff;
       border: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
     .btn.secondary {
       background: #fff;
-      color: #8e52db;
-      border: 2px solid #8e52db;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
     }
 
     .back-to-top {
@@ -80,21 +86,21 @@
       height: 50px;
       border-radius: 50%;
       border: none;
-      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      background: var(--gradient-primary);
       color: #fff;
       font-size: 1.4rem;
       font-weight: bold;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-md);
       cursor: pointer;
       display: none;
-      /* מופיע רק בגלילה */
+      /* Only appears on scroll */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       z-index: 1000;
     }
 
     .back-to-top:hover {
       transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow-lg);
     }
 
     .back-to-top:active {
@@ -173,7 +179,7 @@
 
   <script src="../../js/components.js"></script> <!-- במאמרים -->
   <script>loadComponentsAuto();</script>
-  
+
   <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 </body>

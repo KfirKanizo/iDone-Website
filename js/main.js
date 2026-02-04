@@ -1,29 +1,31 @@
-// הגדרת פונקציונליות בסיסית
+// Basic functionality definition
 
 document.addEventListener('DOMContentLoaded', () => {
-    // קישור כפתור ייעוץ חינם
+    // Link for free consultation button
     const consultationButtons = document.querySelectorAll('a[href="#consultation"]');
     consultationButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            // כאן תוכל להוסיף לוגיקה לטיפול בלחיצה על כפתור הייעוץ
+            // Logic for consultation button click can be added here
         });
     });
 
-    // טיפול באנימציית האייקונים
-    const suitableIcons = document.querySelectorAll('.suitable-for-icon');
-    suitableIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', () => {
-            icon.style.transform = 'scale(1.2)';
-            icon.style.transition = 'transform 0.3s ease';
-        });
+    // Handle icon animation
+    // Use event delegation for better performance and dynamic elements
+    document.body.addEventListener('mouseenter', (e) => {
+        if (e.target.classList && e.target.classList.contains('suitable-for-icon')) {
+            e.target.style.transform = 'scale(1.2)';
+            e.target.style.transition = 'transform 0.3s ease';
+        }
+    }, true);
 
-        icon.addEventListener('mouseleave', () => {
-            icon.style.transform = 'scale(1)';
-        });
-    });
+    document.body.addEventListener('mouseleave', (e) => {
+        if (e.target.classList && e.target.classList.contains('suitable-for-icon')) {
+            e.target.style.transform = 'scale(1)';
+        }
+    }, true);
 
-    // מעקב אחר מספר התווים בהודעה
+    // Character count for message textarea
     const messageTextarea = document.getElementById('message');
     const charCount = document.getElementById('charCount');
 
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ולידציה לטלפון - רק מספרים
+    // Phone validation - numbers only
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
         phoneInput.addEventListener('input', (e) => {
@@ -42,16 +44,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // סגירת תפריט נייד לאחר לחיצה על קישור
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+    // Close mobile menu after clicking a link (using event delegation)
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.nav-links a')) {
             const navLinks = document.getElementById('navLinks');
-            navLinks.classList.remove('active');
-            document.querySelector('.hamburger').setAttribute('aria-expanded', false);
-        });
+            const hamburger = document.querySelector('.hamburger');
+            if (navLinks && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                if (hamburger) hamburger.setAttribute('aria-expanded', false);
+            }
+        }
     });
 
-    // הצגת כפתור חזרה למעלה
+    // Smooth Scrolling with Event Delegation
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href*="#"]');
+        if (!anchor) return;
+
+        const href = anchor.getAttribute('href');
+        // Check if it's an anchor link to an ID
+        if (href.includes('#') && !href.startsWith('http')) {
+            // Extract ID
+            const targetId = href.split('#')[1];
+            if (!targetId) return;
+
+            // Logic: If on index page (or asking for index page anchor), try to scroll
+            const isIndex = location.pathname.includes('index.html') || location.pathname === '/' || location.pathname === '';
+
+            if (isIndex && (href.startsWith('#') || href.includes('index.html'))) {
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = 100; // Adjust for sticky header
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // Close mobile menu if open
+                    const navLinks = document.getElementById('navLinks');
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const hamburger = document.querySelector('.hamburger');
+                        if (hamburger) hamburger.setAttribute('aria-expanded', false);
+                    }
+                }
+            }
+        }
+    });
+
+    // Show back to top button
     const backToTop = document.querySelector('.back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -63,40 +108,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // יצירת Observer חדש
+    // Create new Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // הוספת הקלאס כשהאלמנט נכנס למסך
+                // Add class when element enters viewport
                 entry.target.classList.add('is-visible');
-                // אופציונלי: הפסקת המעקב אחרי שהאנימציה בוצעה
+                // Optional: Stop observing after animation is done
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // 10% מהאלמנט צריך להיראות כדי להפעיל
+        threshold: 0.1 // 10% of element needs to be visible to trigger
     });
 
-    // בחירת כל האלמנטים שנרצה להנפיש
-    // (אפשר להוסיף עוד סלקטורים לפי הצורך)
-    const elementsToAnimate = document.querySelectorAll(
-        '.service-card, .audience-item, .why-us li, .testimonial, .workflow-step, .portfolio-item, .article-content > *'
-    );
+    // Select all elements to animate
+    // We used a timeout to ensure dynamic elements are loaded (though components.js handles loading, redundancy helps)
+    setTimeout(() => {
+        const elementsToAnimate = document.querySelectorAll(
+            '.service-card, .audience-item, .why-us li, .testimonial, .workflow-step, .portfolio-item, .article-content > *, .card, .package-card, .timeline-item, .benefit-item, .meeting-container, .portfolio-item-new'
+        );
 
-    // הוספת קלאס ההכנה לכל האלמנטים והפעלת המעקב
-    elementsToAnimate.forEach((el) => {
-        el.classList.add('fade-in-section');
-        observer.observe(el);
-    });
+        // Add preparation class to all elements and start observing
+        elementsToAnimate.forEach((el) => {
+            el.classList.add('fade-in-section');
+            observer.observe(el);
+        });
+    }, 500); // Small delay to allow component injection if race condition occurs
 
 });
 
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+    const hamburger = document.querySelector('.hamburger');
 
-    const isOpen = navLinks.classList.contains('active');
-    document.querySelector('.hamburger').setAttribute('aria-expanded', isOpen);
+    if (navLinks) {
+        navLinks.classList.toggle('active');
+        const isOpen = navLinks.classList.contains('active');
+
+        if (hamburger) {
+            hamburger.setAttribute('aria-expanded', isOpen);
+        }
+    }
 }
 
 function openContactForm() {
@@ -111,7 +164,7 @@ function closeContactForm() {
         modal.style.display = 'none';
     }
 
-    // איפוס מצב הולידציה וההודעות של הטופס
+    // Reset validation state and form messages
     if (form) {
         form.classList.remove('was-validated');
 
@@ -130,34 +183,31 @@ function closeContactForm() {
 async function submitContactForm(event) {
     event.preventDefault();
 
-    // קבלת רכיבי הטופס
+    // Get form elements
     const form = event.target;
     const submitBtn = document.getElementById('contactSubmitBtn');
     const successMessage = document.getElementById('formSuccessMessage');
     const errorMessage = document.getElementById('formErrorMessage');
 
-    // הפעלת מצב ולידציה ויזואלית
+    // Enable visual validation state
     form.classList.add('was-validated');
 
-    // איפוס הודעות והפעלת מצב טעינה
-    submitBtn.disabled = true;
-
-    // איפוס הודעות והפעלת מצב טעינה
+    // Reset messages and enable loading state
     submitBtn.disabled = true;
     submitBtn.classList.add('is-loading');
     successMessage.style.display = 'none';
     errorMessage.style.display = 'none';
 
-    // איסוף הנתונים
+    // Collect data
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     const services = formData.getAll('services');
 
-    // ולידציות (נשארות כפי שהיו)
+    // Validations (remain as they were)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-        // alert('אנא הזן כתובת אימייל תקינה'); // הוחלף
-        errorMessage.innerText = 'אנא הזן כתובת אימייל תקינה.';
+        // alert('Please enter a valid email address'); // Replaced
+        errorMessage.innerText = 'אנא הזן כתובת אימייל תקינה.'; // Keeping Hebrew text for user facing messages
         errorMessage.style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
@@ -165,8 +215,8 @@ async function submitContactForm(event) {
     }
 
     if (services.length === 0) {
-        // alert('אנא בחר לפחות שירות אחד'); // הוחלף
-        errorMessage.innerText = 'אנא בחר לפחות שירות אחד.';
+        // alert('Please select at least one service'); // Replaced
+        errorMessage.innerText = 'אנא בחר לפחות שירות אחד.'; // Keeping Hebrew text for user facing messages
         errorMessage.style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
@@ -174,7 +224,7 @@ async function submitContactForm(event) {
     }
 
     try {
-        // שליחת הנתונים ל-Webhook
+        // Send data to Webhook
         const response = await fetch('https://n8n.idone.co.il/webhook/website-form', {
             method: 'POST',
             headers: {
@@ -188,37 +238,37 @@ async function submitContactForm(event) {
         });
 
         if (!response.ok) {
-            throw new Error('שגיאה בתקשורת עם השרת');
+            throw new Error('Server communication error');
         }
 
-        // הצלחה!
-        // alert('תודה! נציג יחזור אליך בהקדם'); // הוחלף
+        // Success!
+        // alert('Thank you! A representative will contact you shortly'); // Replaced
         successMessage.style.display = 'block';
-        form.reset(); // איפוס הטופס
+        form.reset(); // Reset form
 
-        // השארת ההודעה לשתי שניות ואז סגירת המודאל
+        // Keep message for 2 seconds then close modal
         setTimeout(() => {
             closeContactForm();
-            // איפוס הכפתור וההודעה לפעם הבאה
+            // Reset button and message for next time
             successMessage.style.display = 'none';
             submitBtn.disabled = false;
             submitBtn.classList.remove('is-loading');
-        }, 2500); // 2.5 שניות
+        }, 2500); // 2.5 seconds
 
     } catch (error) {
-        // כישלון
+        // Failure
         console.error('Error:', error);
-        // alert('אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר'); // הוחלף
-        errorMessage.innerText = 'אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.';
+        // alert('An error occurred while sending the form, please try again later'); // Replaced
+        errorMessage.innerText = 'אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.'; // Keeping Hebrew text for user facing messages
         errorMessage.style.display = 'block';
 
-        // החזרת הכפתור למצב רגיל כדי לאפשר ניסיון נוסף
+        // Return button to normal state to allow retry
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
     }
 }
 
-// סגירת המודל כאשר לוחצים מחוץ לטופס או לוחצים על Escape
+// Close modal when clicking outside form or pressing Escape
 window.onclick = function (event) {
     if (event.target === document.getElementById('contactFormModal')) {
         closeContactForm();

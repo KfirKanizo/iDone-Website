@@ -7,133 +7,162 @@
     <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/x-icon">
     <title>ניהול | iDone</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             font-family: 'Heebo', sans-serif;
-            background: #f0f2f5;
-            /* גוון רקע מעט יותר בהיר ומודרני */
-            color: #333;
-            /* צבע טקסט כללי כהה יותר לקריאות טובה */
+            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            /* ריפוד קטן למקרה של מסכים קטנים */
-            box-sizing: border-box;
-            /* חשוב לשליטה בגודל אלמנטים */
+            /* Background handled by style.css but we can enforce it */
+            background-color: var(--background-light);
+            background-image: var(--gradient-bg);
         }
 
         .login-container {
             max-width: 480px;
-            /* הגדלת רוחב הטופס */
             width: 100%;
-            /* שימוש ברוחב מלא למסכים קטנים */
-            margin: 2rem auto;
-            background: #fff;
+            margin: 2rem;
             padding: 3.5rem 3rem;
-            /* הגדלת הריפוד הפנימי */
-            border-radius: 20px;
-            /* פינות יותר מעוגלות */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            /* צל עמוק יותר אך עדין */
+            border-radius: var(--radius-lg);
+            /* Glassmorphism */
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
             text-align: center;
-            box-sizing: border-box;
+            position: relative;
+            /* For spinner overlay */
+            overflow: hidden;
+            /* Ensure spinner stays inside */
+        }
+
+        /* --- Loading Spinner --- */
+        .spinner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(3px);
+            z-index: 10;
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: var(--primary-color);
+            border-bottom-color: var(--secondary-color);
+            animation: spin 1.2s linear infinite;
+            box-shadow: 0 0 15px rgba(142, 82, 219, 0.2);
+        }
+
+        .spinner-text {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
         }
 
         .logo-image {
             max-width: 180px;
-            /* הגדלת לוגו */
             margin-bottom: 2rem;
-            /* רווח גדול יותר מתחת ללוגו */
         }
 
         h2 {
-            color: #003366;
+            color: var(--primary-color);
             font-size: 2.2rem;
-            /* גודל כותרת גדול יותר */
             margin-bottom: 2rem;
             font-weight: 700;
-            /* מודגש יותר */
         }
 
         .form-group {
             margin-bottom: 1.8rem;
-            /* רווח בין שדות */
             text-align: right;
         }
 
         label {
             display: block;
             margin-bottom: 0.6rem;
-            /* רווח בין תווית לשדה */
             font-weight: bold;
-            color: #555;
-            /* צבע לתווית */
+            color: var(--text-color);
             font-size: 1.1rem;
-            /* גודל פונט לתווית */
         }
 
         input[type="password"],
         input[type="text"] {
-            width: calc(100% - 24px);
-            /* פחות ריפוד פנימי */
+            width: 100%;
             padding: 1rem 12px;
-            /* הגדלת ריפוד לשדה, יישור טוב יותר */
-            border: 1px solid #ddd;
-            /* גבול עדין יותר */
-            border-radius: 12px;
-            /* פינות מעוגלות לשדה */
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
             font-family: inherit;
             font-size: 1.1rem;
-            /* גודל פונט לשדה */
-            color: #333;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.5);
+            /* Semi-transparent input */
+            transition: all 0.3s ease;
         }
 
         input[type="password"]:focus,
         input[type="text"]:focus {
-            border-color: #00bcd4;
-            /* הדגשה בצבע כחול-טורקיז בפוקוס */
-            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
-            /* צל עדין בפוקוס */
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(142, 82, 219, 0.2);
             outline: none;
-            /* הסרת גבול ברירת מחדל של הדפדפן */
+            background: #fff;
         }
 
         button[type="submit"] {
-            background: linear-gradient(45deg, #2c7be5 0%, #00bcd4 100%);
-            /* גרדיאנט חדש ומודרני */
+            background: var(--gradient-primary);
             border: none;
             color: white;
             padding: 1.2rem 2.5rem;
-            /* הגדלת ריפוד לכפתור */
             font-size: 1.25rem;
-            /* גודל פונט לכפתור */
-            border-radius: 50px;
-            /* כפתור עגול יותר */
+            border-radius: var(--radius-full);
             cursor: pointer;
             transition: all 0.3s ease;
-            /* אנימציה חלקה יותר לכל השינויים */
             width: 100%;
             margin-top: 2rem;
-            /* רווח גדול יותר מעל הכפתור */
             font-weight: 700;
-            /* מודגש יותר */
-            letter-spacing: 0.5px;
-            /* מרווח קטן בין אותיות */
-            box-shadow: 0 8px 20px rgba(44, 123, 229, 0.25);
-            /* צל לכפתור */
+            box-shadow: var(--shadow-md);
         }
 
         button[type="submit"]:hover {
-            background: linear-gradient(45deg, #00bcd4 0%, #2c7be5 100%);
-            /* היפוך גרדיאנט בריחוף */
-            box-shadow: 0 10px 25px rgba(0, 188, 212, 0.35);
-            /* צל מוגבר בריחוף */
+            box-shadow: var(--shadow-lg);
             transform: translateY(-2px);
-            /* אפקט עדין של "קפיצה" */
+            opacity: 0.95;
         }
 
         .error-message {
@@ -141,34 +170,10 @@
             background-color: #fdeeee;
             border: 1px solid #f8c6c6;
             padding: 0.9rem;
-            /* הגדלת ריפוד להודעת שגיאה */
-            border-radius: 10px;
-            /* פינות מעוגלות להודעת שגיאה */
+            border-radius: var(--radius-md);
             display: none;
             margin-top: 1.8rem;
-            /* רווח גדול יותר */
             font-size: 1rem;
-        }
-
-        /* התאמות למסכים קטנים */
-        @media (max-width: 600px) {
-            .login-container {
-                margin: 1rem;
-                padding: 2rem 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .logo-image {
-                max-width: 140px;
-            }
-
-            button[type="submit"] {
-                font-size: 1.1rem;
-                padding: 1rem 2rem;
-            }
         }
     </style>
 </head>
@@ -177,6 +182,10 @@
     <div class="login-container">
         <img src="/assets/images/logos/idone-logo.svg" alt="iDone Logo" class="logo-image" loading="lazy" />
         <h2>כניסת מנהלים</h2>
+        <div id="loadingSpinner" class="spinner-overlay">
+            <div class="spinner"></div>
+            <div class="spinner-text">מתחבר למערכת...</div>
+        </div>
         <form id="loginForm">
             <div class="form-group">
                 <label for="username">שם משתמש:</label>

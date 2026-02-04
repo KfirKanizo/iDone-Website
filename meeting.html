@@ -10,61 +10,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* סגנונות ספציפיים לעמוד הפגישה */
+    /* Specific styles for the meeting page */
     body {
-      background-color: #f8f9fa;
-      /* רקע בהיר לכל העמוד */
+      background-color: var(--background-light);
     }
 
     .meeting-container {
       max-width: 900px;
-      /* רוחב גדול יותר להכיל יותר תוכן בנוחות */
       margin: 2rem auto;
-      /* רווח למעלה ולמטה */
       padding: 2.5rem;
-      /* ריפוד פנימי נדיב */
-      background: white;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      /* צל מודגש יותר */
-      border-radius: 16px;
-      /* פינות מעוגלות יותר */
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lg);
+      border-radius: var(--radius-lg);
     }
 
     .meeting-header {
       text-align: center;
       margin-bottom: 2.5rem;
       padding-bottom: 1.5rem;
-      border-bottom: 2px solid #8e52db;
+      border-bottom: 2px solid var(--primary-color);
     }
 
     .meeting-title {
       font-size: 2.5em;
       font-weight: 700;
       color: #003366;
-      /* כחול כהה */
       margin-bottom: 1rem;
       line-height: 1.2;
     }
 
     .meeting-subtitle {
       font-size: 1.25em;
-      /* מעט גדול יותר */
       color: #444;
-      /* אפור כהה יותר */
       line-height: 1.7;
       max-width: 700px;
       margin: 0 auto;
     }
 
-    /* אזור תוכן הפגישה */
+    /* Meeting Value Section */
     .meeting-value-section {
-      background: #f8f9fa;
-      /* רקע אפרפר עדין */
+      background: var(--background-light);
       border-radius: 12px;
       padding: 1.5rem;
       margin-bottom: 2rem;
-      border-right: 4px solid #00c48c;
-      /* פס ירוק */
+      border-right: 4px solid var(--secondary-color);
     }
 
     .meeting-value-section h3 {
@@ -90,9 +82,7 @@
 
     .meeting-value-section li::before {
       content: '✓';
-      /* סימן V */
-      color: #00c48c;
-      /* צבע ירוק */
+      color: var(--secondary-color);
       font-weight: bold;
       position: absolute;
       right: 0;
@@ -107,18 +97,16 @@
       font-style: italic;
     }
 
-    /* אזור חיזוק אמון */
+    /* Trust Section */
     .trust-section {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       padding: 1.5rem;
       background: linear-gradient(135deg, rgba(142, 82, 219, 0.05), rgba(0, 196, 140, 0.05));
-      /* רקע גרדיאנט עדין */
       border-radius: 12px;
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      /* מעבר שורה במסכים קטנים */
     }
 
     .trust-quote {
@@ -128,13 +116,12 @@
       color: #333;
       position: relative;
       padding-right: 30px;
-      /* מקום לגרשיים */
     }
 
     .trust-quote::before {
       content: '“';
       font-size: 3em;
-      color: #8e52db;
+      color: var(--primary-color);
       position: absolute;
       right: -10px;
       top: -10px;
@@ -172,9 +159,9 @@
       margin-top: 5px;
     }
 
-    /* אזור היומן */
+    /* Calendar Section */
     .calendar-container {
-      background: #f8f9fa;
+      background: var(--background-light);
       border-radius: 10px;
       padding: 20px;
       margin-top: 2rem;
@@ -193,15 +180,13 @@
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid #ddd;
-      /* מסגרת עדינה */
     }
 
-    /* אזור התועלות ("למה כדאי?") */
+    /* Benefits Section */
     .meeting-benefits {
       margin-top: 3rem;
       padding: 2rem;
       background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
-      /* רקע תכלת עדין */
       border-radius: 12px;
     }
 
@@ -215,7 +200,6 @@
     .benefits-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      /* גמיש יותר */
       gap: 1.5rem;
     }
 
@@ -234,13 +218,9 @@
     }
 
     .benefit-icon {
-      /* עיצוב לאייקון (אם תוסיפו) */
       font-size: 2rem;
-      /* גודל אייקון */
-      color: #8e52db;
-      /* צבע סגול */
+      color: var(--primary-color);
       margin-bottom: 0.75rem;
-      /* לדוגמה, אם משתמשים ב-FontAwesome: <i class="benefit-icon fas fa-lightbulb"></i> */
     }
 
     .benefit-item h4 {
@@ -255,7 +235,7 @@
       font-size: 1em;
     }
 
-    /* אזור שאלות נפוצות (FAQ) */
+    /* FAQ Section */
     .faq-section {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -275,7 +255,6 @@
       margin-bottom: 1rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       overflow: hidden;
-      /* חשוב לאנימציה */
     }
 
     .faq-question {
@@ -286,12 +265,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #f8f9fa;
-      /* רקע עדין לשאלה */
+      background: var(--background-light);
     }
 
     .faq-question::after {
-      /* חץ קטן */
       content: '▼';
       font-size: 0.8em;
       transition: transform 0.3s ease;
@@ -303,36 +280,31 @@
 
     .faq-answer {
       max-height: 0;
-      /* מוסתר בהתחלה */
       overflow: hidden;
       transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-      /* אנימציה חלקה */
       font-size: 1em;
       color: #444;
       line-height: 1.7;
       padding: 0 1.5rem;
-      /* ריפוד יתווסף בפתיחה */
     }
 
     .faq-item.open .faq-answer {
       max-height: 300px;
-      /* גובה מקסימלי מספיק */
       padding: 1.5rem;
       transition: max-height 0.5s ease-in, padding 0.5s ease-in;
     }
 
-    /* פרטי יצירת קשר */
+    /* Contact Info */
     .contact-info {
       margin-top: 3rem;
       text-align: center;
       padding: 1.5rem;
       background: rgba(142, 82, 219, 0.05);
-      /* רקע סגלגל עדין */
       border-radius: 8px;
     }
 
     .contact-info h4 {
-      color: #8e52db;
+      color: var(--primary-color);
       margin-bottom: 1rem;
       font-size: 1.3em;
     }
@@ -343,7 +315,7 @@
     }
 
     .contact-info a {
-      color: #8e52db;
+      color: var(--primary-color);
       text-decoration: none;
       font-weight: 700;
     }
@@ -352,7 +324,7 @@
       text-decoration: underline;
     }
 
-    /* רספונסיביות */
+    /* Responsiveness */
     @media (max-width: 768px) {
       .meeting-container {
         margin: 1rem;
@@ -371,7 +343,6 @@
         grid-template-columns: 1fr;
       }
 
-      /* עמודה אחת במובייל */
       #my-cal-inline-30min {
         min-height: 500px;
       }
@@ -381,7 +352,6 @@
         text-align: center;
       }
 
-      /* עמודה אחת במובייל */
       .trust-quote::before {
         right: 50%;
         transform: translateX(50%);
@@ -399,7 +369,7 @@
 
   <div id="header"></div>
 
-  <div class="meeting-container">
+  <main class="meeting-container">
     <div class="meeting-header">
       <h1 class="meeting-title">צעד ראשון לייעול העסק שלך:<br>פגישת ייעוץ אסטרטגית (חינם)</h1>
       <p class="meeting-subtitle">
@@ -407,7 +377,7 @@
       </p>
     </div>
 
-    <div class="meeting-value-section">
+    <section class="meeting-value-section">
       <h3>מה תקבל/י מהפגישה?</h3>
       <ul>
         <li>נזהה יחד את 2-3 "זוללי הזמן" המרכזיים שמעכבים את העסק שלך כיום.</li>
@@ -418,9 +388,9 @@
       <p class="meeting-disclaimer">
         * זו אינה שיחת מכירה אגרסיבית, אלא פגישת אבחון מקצועית וממוקדת בערך עבורך.
       </p>
-    </div>
+    </section>
 
-    <div class="trust-section">
+    <section class="trust-section">
       <div class="consultant-photo">
         <img src="/assets/images/logos/kfir.svg" alt="כפיר">
         <span>כפיר, מומחה לאוטומציה עסקית</span>
@@ -430,9 +400,9 @@
         שאפשר לעשות אוטומטית."
         <span class="trust-quote-author">– צהלי, סמנכ"ל שיווק, AGN נדל"ן</span>
       </div>
-    </div>
+    </section>
 
-    <div class="calendar-container">
+    <section class="calendar-container">
       <h3 class="calendar-headline">בחר/י את המועד הנוח לך לקיום הפגישה:</h3>
       <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
       <script type="text/javascript">
@@ -442,14 +412,14 @@
         Cal.ns["30min"]("inline", {
           elementOrSelector: "#my-cal-inline-30min",
           config: { "layout": "month_view", "theme": "light" },
-          calLink: "idone-automations/30min", // ודא שזה שם הקישור הנכון שלך ב-Cal.com
+          calLink: "idone-automations/30min", // Verify this is your correct link
         });
 
         Cal.ns["30min"]("ui", { "theme": "light", "cssVarsPerTheme": { "light": { "cal-brand": "#8e52db" }, "dark": { "cal-brand": "#8e52db" } }, "hideEventTypeDetails": false, "layout": "month_view" });
       </script>
-    </div>
+    </section>
 
-    <div class="meeting-benefits">
+    <section class="meeting-benefits">
       <h3>למה להשקיע 30 דקות בפגישה הזו?</h3>
       <div class="benefits-grid">
         <div class="benefit-item">
@@ -465,9 +435,9 @@
           <p>הפגישה לגמרי בחינם וללא כל התחייבות להמשיך. המטרה היא לתת לך ערך.</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="faq-section">
+    <section class="faq-section">
       <h3>שאלות נפוצות</h3>
       <div class="faq-item">
         <div class="faq-question">למי מיועדת הפגישה?</div>
@@ -517,7 +487,7 @@
             החלטה מושכלת.</p>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="contact-info">
       <h4>📞 עדיין מתלבט/ת או שיש לך שאלה דחופה?</h4>
@@ -528,8 +498,9 @@
           קשר</a> ונחזור אליך בהקדם.</p>
     </div>
 
-  </div>
+  </main>
   <div id="footer"></div>
+  <div id="contact-form"></div>
 
   <script src="js/main.js"></script>
   <script>
@@ -539,18 +510,15 @@
         const headerData = await headerResponse.text();
         document.getElementById('header').innerHTML = headerData;
 
-        // --- הוספה ---
+        // Load contact form dynamically when needed, or check if already in main.js
         const contactFormResponse = await fetch('components/contact-form.html');
         const contactFormData = await contactFormResponse.text();
-        // ודא שיש לך div ריק עם id="contact-form" ב-HTML שלך
         const contactFormContainer = document.getElementById('contact-form');
         if (contactFormContainer) {
           contactFormContainer.innerHTML = contactFormData;
         } else {
-          // אם אין דיב ייעודי, הוסף את הטופס לסוף ה-body
           document.body.insertAdjacentHTML('beforeend', contactFormData);
         }
-        // --- סוף הוספה ---
 
         const footerResponse = await fetch('components/footer.html');
         const footerData = await footerResponse.text();
@@ -560,10 +528,10 @@
       }
     }
 
-    // קריאה לפונקציה בטעינת העמוד
+    // Call on load
     document.addEventListener('DOMContentLoaded', loadComponents);
 
-    // JavaScript פשוט לאקורדיון של ה-FAQ
+    // Simple FAQ Accordion
     document.addEventListener('DOMContentLoaded', function () {
       const faqItems = document.querySelectorAll('.faq-item');
 
@@ -573,14 +541,14 @@
         question.addEventListener('click', () => {
           const isOpen = item.classList.contains('open');
 
-          // סגור את כל הפריטים האחרים (אופציונלי)
+          // Close others (optional)
           faqItems.forEach(otherItem => {
             if (otherItem !== item) {
               otherItem.classList.remove('open');
             }
           });
 
-          // פתח או סגור את הפריט הנוכחי
+          // Toggle current
           if (isOpen) {
             item.classList.remove('open');
           } else {

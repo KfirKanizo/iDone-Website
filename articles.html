@@ -10,13 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* --- סגנונות קיימים (מועתק מ-articles.html שהעלית) --- */
+    /* --- Existing Styles --- */
     body {
       direction: rtl;
       font-family: 'Heebo', sans-serif;
-      background: #f8f9fa;
-      /* רקע בהיר יותר לעמוד */
-      color: #1a1a1a;
+      background: var(--background-light);
+      /* Refactored to use variable */
+      color: var(--text-color);
     }
 
     .page-wrap {
@@ -26,9 +26,8 @@
     .hero-title {
       text-align: center;
       font-size: 2.5rem;
-      /* מעט גדול יותר */
       color: #003366;
-      /* כחול כהה */
+      /* Need to verify if this matches a var, strictly it's dark blue */
       margin-bottom: 1rem;
     }
 
@@ -37,13 +36,12 @@
       color: #444;
       max-width: 900px;
       margin: 0 auto 3rem;
-      /* רווח גדול יותר מתחת */
       font-size: 1.2rem;
     }
 
-    /* --- סגנונות חדשים / מעודכנים --- */
+    /* --- New / Updated Styles --- */
 
-    /* קטע כתבות מומלצות */
+    /* Featured Articles Section */
     .featured-articles {
       margin-bottom: 3rem;
       padding-bottom: 2rem;
@@ -52,64 +50,49 @@
 
     .featured-articles h2 {
       font-size: 1.8rem;
-      color: #8e52db;
+      color: var(--primary-color);
       text-align: center;
       margin-bottom: 2rem;
     }
 
     .featured-grid {
       display: grid;
-      /* שתי עמודות, או אחת במסכים קטנים */
+      /* Two columns, or one on small screens */
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
 
-    /* עיצוב כרטיסיית כתבה - שדרוג */
+    /* Card Design Upgrade with Glassmorphism */
     .card {
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 12px;
-      /* פינות מעוגלות יותר */
-      /* padding: 1.5rem; - יוסר, ניתן padding נפרד לתמונה ולתוכן */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      transition: transform .2s ease, box-shadow .2s ease;
+      background: var(--glass-bg);
+      /* Use glass variable */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s ease, box-shadow .3s ease;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      /* חשוב לפינות מעוגלות של התמונה */
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      /* חשוב מאוד לפינות מעוגלות ול-object-fit */
     }
 
     .card:hover {
       transform: translateY(-5px);
-      /* אפקט עדין יותר */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+      /* Subtle highlight */
     }
 
     .card-image {
       width: 100%;
-      /* תופס את כל רוחב הכרטיסייה */
       height: 180px;
-      /* גובה קבוע ואחיד לכל התמונות - אפשר לשנות לפי הצורך */
       object-fit: cover;
-      /* **זו התכונה החשובה!** שומרת פרופורציות וחותכת עודפים */
       display: block;
-      /* מונע רווח מיותר */
       background-color: #eee;
-      /* צבע רקע למקרה שהתמונה לא נטענת */
     }
 
     .card-content {
-      padding: 1.5rem;
-      /* ריפוד פנימי לטקסט */
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      /* דוחף את הכפתור לתחתית */
-      gap: .8rem;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
@@ -120,47 +103,39 @@
     .card-category {
       display: inline-block;
       background-color: rgba(142, 82, 219, 0.1);
-      /* רקע סגלגל בהיר */
-      color: #8e52db;
-      /* טקסט סגול */
+      color: var(--primary-color);
       padding: 0.25rem 0.6rem;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
-      /* רווח מהכותרת */
       align-self: flex-start;
-      /* שיתחיל מימין */
     }
 
     .card h3 {
       font-size: 1.25rem;
       color: #003366;
       margin: 0;
-      /* איפוס margin */
     }
 
     .card p {
       color: #333;
       line-height: 1.6;
       margin: 0;
-      /* איפוס margin */
       min-height: 3.2em;
-      /* קצת פחות גובה מינימלי */
     }
 
     .cta-row {
       margin-top: auto;
-      /* דוחף את הכפתור לתחתית */
     }
 
     .btn {
       display: inline-block;
       padding: .75rem 1.1rem;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 700;
-      background: linear-gradient(45deg, #3b86f7, #8e52db);
+      background: var(--gradient-primary);
       color: #fff;
       border: none;
       transition: opacity .2s ease, transform .2s ease;
@@ -171,15 +146,14 @@
       transform: translateY(-1px);
     }
 
-    /* רשת הכתבות הרגילה */
+    /* Regular Article Grid */
     .card-grid {
       display: grid;
-      /* שלוש עמודות כברירת מחדל */
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.5rem;
     }
 
-    /* התאמות רספונסיביות לרשת הכתבות */
+    /* Responsive Adjustments */
     @media (max-width: 1024px) {
       .card-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -193,7 +167,6 @@
 
       .featured-grid {
         grid-template-columns: 1fr;
-        /* גם המומלצים בעמודה אחת */
       }
     }
   </style>
@@ -337,7 +310,7 @@
   <div id="footer"></div>
 
   <script>
-    // הפונקציה לטעינת רכיבים נשארת כפי שהיא
+    // Component loading function
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');
@@ -351,7 +324,7 @@
     }
     document.addEventListener('DOMContentLoaded', loadComponents);
 
-    // Back to top button behavior (נשאר כפי שהיה)
+    // Back to top button behavior
     document.addEventListener('scroll', () => {
       const btn = document.querySelector('.back-to-top');
       if (!btn) return;

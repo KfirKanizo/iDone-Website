@@ -1,7 +1,7 @@
 // js/components.js
 async function loadComponentsAuto() {
   try {
-    // מזהה אם אנחנו בתוך תיקיית components/articles
+    // Detect if we are inside components/articles folder
     const isArticle = location.pathname.includes('/components/articles/');
     const componentsPath = isArticle ? '../../components/' : 'components/';
 
@@ -23,7 +23,7 @@ async function loadComponentsAuto() {
   }
 }
 
-// כפתור חזרה לראש הדף
+// Back to top button
 document.addEventListener('scroll', () => {
   const btn = document.querySelector('.back-to-top');
   if (!btn) return;

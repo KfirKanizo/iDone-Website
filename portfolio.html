@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" alined="center">
+<html lang="he" dir="rtl">
 
 <head>
   <meta charset="UTF-8">
@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* סגנונות בסיסיים לעמוד הפורטפוליו */
+    /* --- Base Portfolio Styles --- */
     .portfolio-section {
-      background-color: #f8f9fa;
+      background-color: var(--background-light);
       padding: 4rem 5%;
       text-align: center;
     }
@@ -32,7 +32,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, #003366, #00bcd4);
+      background: var(--gradient-primary);
       border-radius: 2px;
     }
 
@@ -43,7 +43,7 @@
       color: #333;
     }
 
-    /* המבנה החדש של סיפורי המקרה עם כפתור Toggle */
+    /* --- Case Studies (New Structure) --- */
     .portfolio-casestudies {
       display: flex;
       flex-direction: column;
@@ -53,26 +53,29 @@
     }
 
     .portfolio-item-new {
-      background-color: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+      background-color: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
       padding: 2.5rem;
       max-width: 800px;
       width: 100%;
       text-align: right;
-      border-right: 5px solid #8e52db;
+      border-right: 5px solid var(--primary-color);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
-      /* חשוב לאנימציה חלקה */
+      /* Important for smooth animation */
     }
 
     .portfolio-item-new:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+      box-shadow: var(--shadow-md);
     }
 
     .portfolio-item-new h3 {
-      color: #8e52db;
+      color: var(--primary-color);
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
@@ -80,7 +83,7 @@
     .portfolio-item-new .divider {
       height: 3px;
       width: 70px;
-      background: linear-gradient(90deg, #8e52db, #00c48c);
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
       border-radius: 2px;
       margin-bottom: 1.5rem;
     }
@@ -99,15 +102,12 @@
       line-height: 1.7;
     }
 
-    /* עיצוב הכפתור */
+    /* Toggle Button Styles */
     .toggle-solution-btn {
       display: block;
-      /* שיהיה ברוחב מלא */
       width: 100%;
       background-color: #f0f0f5;
-      /* צבע רקע עדין */
-      color: #8e52db;
-      /* צבע הטקסט */
+      color: var(--primary-color);
       border: none;
       padding: 1rem;
       margin-top: 1.5rem;
@@ -118,35 +118,28 @@
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
       text-align: center;
-      /* ממורכז */
     }
 
     .toggle-solution-btn:hover {
       background-color: #e6e6f0;
-      color: #7a47c7;
+      color: var(--primary-dark);
     }
 
-    /* התוכן הנסתר והאנימציה */
+    /* Hidden Content and Animation */
     .solution-content {
       max-height: 0;
-      /* מוסתר בהתחלה */
+      /* Initially hidden */
       overflow: hidden;
-      /* מונע הצגת תוכן עודף */
       transition: max-height 0.5s ease-out;
-      /* אנימציית גלילה חלקה */
       margin-top: 1.5rem;
-      /* ריווח מהכפתור */
       border-top: 1px solid #eee;
-      /* קו הפרדה עדין */
       padding-top: 1.5rem;
-      /* ריווח מעל התוכן */
     }
 
     .solution-content.show {
       max-height: 1000px;
-      /* גובה מקסימלי מספיק גדול להכיל את התוכן */
+      /* Max height large enough to fit content */
       transition: max-height 0.7s ease-in;
-      /* אנימציה איטית יותר בפתיחה */
     }
 
     .portfolio-item-new ul {
@@ -180,7 +173,7 @@
 
   <div id="header"></div>
 
-  <section class="portfolio-section" id="portfolio" dir="rtl" lang="he">
+  <main class="portfolio-section" id="portfolio">
     <h2>פתרונות מהשטח</h2>
     <p class="portfolio-intro">
       דוגמאות אמיתיות לפתרונות שפיתחנו עבור לקוחות מכל תחום – החל מאוטומציות פשוטות ועד מערכות משולבות מתקדמות.
@@ -189,7 +182,7 @@
 
     <div class="portfolio-casestudies">
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>🚀 אוטומציה חכמה לניהול לידים</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -213,9 +206,9 @@
             <p>🤖 פחות עבודה ידנית של "קופי-פייסט" ויותר זמן לסגירת עסקאות.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>✍️ תהליך חתימות דיגיטליות אוטומטי</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -238,9 +231,9 @@
             <p>📈 שליטה ובקרה מלאה על כל החוזים הפתוחים, ללא פספוסים.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>💰 מעקב כספים וחשבוניות חכם</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -264,9 +257,9 @@
             <p>🔄 אוטומציה מלאה המחברת בין מחלקת המכירות למחלקת הכספים.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>📝 טפסי קליטה אוטומטיים (Intake)</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -289,9 +282,9 @@
             <p>🔗 חיבור חלק ומיידי בין האתר למערכת הפנימית של העסק.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>📅 ניהול פגישות אוטומטי</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -315,9 +308,9 @@
             <p>🔁 ירידה משמעותית בכמות ביטולי הפגישות בזכות התזכורות.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>📄 אוטומציה לשליחת הצעות מחיר</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -341,10 +334,10 @@
             <p>🎨 מראה מקצועי ואחיד לכל הצעות המחיר היוצאות מהארגון.</p>
           </div>
         </div>
-      </div>
+      </article>
 
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>🎯 בניית דפי נחיתה ממירים ומחוברים</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -371,9 +364,9 @@
             <p>🔗 חווית משתמש חלקה מהמודעה ועד להשארת הפרטים, ללא "חיכוכים".</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>✍️ יצירת טפסים דיגיטליים חכמים ומחוברים</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -401,10 +394,10 @@
             <p>🔗 אינטגרציה מלאה של איסוף הנתונים בתהליכי העבודה הקיימים של העסק.</p>
           </div>
         </div>
-      </div>
+      </article>
 
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>🤝 אוטומציה לתהליך קליטת לקוח חדש (Onboarding)</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -429,9 +422,9 @@
             <p>📋 אפס טעויות או שכחה של שלבים קריטיים בתהליך קליטת הלקוח.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>⭐ אוטומציה לאיסוף משוב וביקורות מלקוחות</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -456,9 +449,9 @@
             <p>❤️‍🩹 טיפול מהיר וממוקד בלקוחות לא מרוצים לפני שהבעיה מחריפה או מגיעה לרשתות.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>🔔 אוטומציה לניהול משימות ותזכורות לצוות</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -483,9 +476,9 @@
             <p>🤝 שיפור התקשורת, הסנכרון והאחריות בין חברי הצוות.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="portfolio-item-new">
+      <article class="portfolio-item-new">
         <h3>📈 אוטומציה להפקת דוחות וניתוח נתונים</h3>
         <div class="divider"></div>
         <h4>הבעיה:</h4>
@@ -510,10 +503,10 @@
             <p>💡 יכולת זיהוי מהירה של מגמות, בעיות והזדמנויות עסקיות שלא נראו קודם.</p>
           </div>
         </div>
-      </div>
+      </article>
 
     </div>
-  </section>
+  </main>
 
 
   <section class="cta" id="contact">
@@ -532,7 +525,7 @@
   <script src="js/main.js"></script>
 
   <script>
-    // הפונקציה הזו נשארת כפי שהיא, היא טוענת את הרכיבים
+    // Include the same component loading script
     async function loadComponents() {
       try {
         const headerResponse = await fetch('components/header.html');
@@ -551,24 +544,24 @@
       }
     }
 
-    // קריאה לפונקציה בטעינת העמוד
+    // Call on load
     document.addEventListener('DOMContentLoaded', loadComponents);
 
-    // JavaScript לטיפול בכפתורי ה-Toggle
+    // Toggle button handler
     document.addEventListener('DOMContentLoaded', function () {
       const toggleButtons = document.querySelectorAll('.toggle-solution-btn');
 
       toggleButtons.forEach(button => {
         button.addEventListener('click', function () {
-          const content = this.nextElementSibling; // האלמנט הבא אחרי הכפתור (solution-content)
+          const content = this.nextElementSibling; // content element
           const isOpen = content.classList.contains('show');
 
           if (isOpen) {
-            // סגירה
+            // Close
             content.classList.remove('show');
             this.textContent = 'איך פתרנו את זה? הצג פתרון ותוצאות ▼';
           } else {
-            // פתיחה
+            // Open
             content.classList.add('show');
             this.textContent = 'הסתר פתרון ותוצאות ▲';
           }
