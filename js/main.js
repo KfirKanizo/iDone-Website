@@ -173,9 +173,11 @@ function closeContactForm() {
 
         if (successMessage) {
             successMessage.style.display = 'none';
+            successMessage.classList.remove('success');
         }
         if (errorMessage) {
             errorMessage.style.display = 'none';
+            errorMessage.classList.remove('error');
         }
     }
 }
@@ -196,7 +198,9 @@ async function submitContactForm(event) {
     submitBtn.disabled = true;
     submitBtn.classList.add('is-loading');
     successMessage.style.display = 'none';
+    successMessage.classList.remove('success');
     errorMessage.style.display = 'none';
+    errorMessage.classList.remove('error');
 
     // Collect data
     const formData = new FormData(form);
@@ -208,6 +212,7 @@ async function submitContactForm(event) {
     if (!emailRegex.test(data.email)) {
         // alert('Please enter a valid email address'); // Replaced
         errorMessage.innerText = 'אנא הזן כתובת אימייל תקינה.'; // Keeping Hebrew text for user facing messages
+        errorMessage.classList.add('error');
         errorMessage.style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
@@ -217,6 +222,7 @@ async function submitContactForm(event) {
     if (services.length === 0) {
         // alert('Please select at least one service'); // Replaced
         errorMessage.innerText = 'אנא בחר לפחות שירות אחד.'; // Keeping Hebrew text for user facing messages
+        errorMessage.classList.add('error');
         errorMessage.style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
@@ -243,6 +249,7 @@ async function submitContactForm(event) {
 
         // Success!
         // alert('Thank you! A representative will contact you shortly'); // Replaced
+        successMessage.classList.add('success');
         successMessage.style.display = 'block';
         form.reset(); // Reset form
 
@@ -260,6 +267,7 @@ async function submitContactForm(event) {
         console.error('Error:', error);
         // alert('An error occurred while sending the form, please try again later'); // Replaced
         errorMessage.innerText = 'אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.'; // Keeping Hebrew text for user facing messages
+        errorMessage.classList.add('error');
         errorMessage.style.display = 'block';
 
         // Return button to normal state to allow retry

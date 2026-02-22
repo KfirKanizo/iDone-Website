@@ -2386,12 +2386,12 @@ section + section::before {
 .modern-footer .footer-logo {
   max-width: 160px;
   margin-bottom: var(--space-4);
-  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.25));
+  filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.45));
   transition: filter var(--transition-normal) var(--ease-out);
 }
 
 .modern-footer .footer-logo:hover {
-  filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.40));
+  filter: drop-shadow(0 14px 40px rgba(255, 255, 255, 0.60));
 }
 
 .modern-footer .tagline {
