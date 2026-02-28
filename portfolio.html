@@ -6,19 +6,27 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <title>פתרונות שביצענו ללקוחות | iDone</title>
   <link rel="icon" href="/assets/images/logos/robot-only.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://www.idone.co.il/portfolio.html">
+  <meta property="og:title" content="פתרונות שביצענו ללקוחות | iDone">
+  <meta property="og:description" content="דוגמאות אמיתיות לפתרונות אוטומציה שפיתחנו עבור לקוחות - מניהול לידים ועד דוחות אוטומטיים.">
+  <meta property="og:image" content="https://www.idone.co.il/assets/images/og-share.jpg">
+  <meta property="og:url" content="https://www.idone.co.il/portfolio.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* --- Base Portfolio Styles --- */
     .portfolio-section {
-      background-color: var(--background-light);
+      background-color: var(--bg-secondary);
       padding: 4rem 5%;
       text-align: center;
     }
 
     .portfolio-section h2 {
       font-size: 2.8rem;
-      color: #003366;
+      color: var(--primary-dark);
       margin-bottom: 1rem;
       position: relative;
       padding-bottom: 15px;
@@ -40,7 +48,7 @@
       max-width: 800px;
       margin: 0 auto 3rem;
       font-size: 1.2rem;
-      color: #333;
+      color: var(--text-color);
     }
 
     /* --- Case Studies (New Structure) --- */
@@ -53,10 +61,10 @@
     }
 
     .portfolio-item-new {
-      background-color: var(--glass-bg);
+      background-color: var(--glass-bg-medium);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--glass-border-light);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm);
       padding: 2.5rem;
@@ -90,7 +98,7 @@
 
     .portfolio-item-new h4 {
       font-size: 1.3rem;
-      color: #003366;
+      color: var(--primary-dark);
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
     }
@@ -98,7 +106,7 @@
     .portfolio-item-new p,
     .portfolio-item-new li {
       font-size: 1.1rem;
-      color: #333;
+      color: var(--text-color);
       line-height: 1.7;
     }
 
@@ -106,7 +114,7 @@
     .toggle-solution-btn {
       display: block;
       width: 100%;
-      background-color: #f0f0f5;
+      background-color: var(--bg-tertiary);
       color: var(--primary-color);
       border: none;
       padding: 1rem;
@@ -121,7 +129,7 @@
     }
 
     .toggle-solution-btn:hover {
-      background-color: #e6e6f0;
+      background-color: var(--bg-tertiary);
       color: var(--primary-dark);
     }
 
@@ -132,7 +140,7 @@
       overflow: hidden;
       transition: max-height 0.5s ease-out;
       margin-top: 1.5rem;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--glass-border-light);
       padding-top: 1.5rem;
     }
 
@@ -154,7 +162,7 @@
     }
 
     .portfolio-item-new .result {
-      background: #f8f9fa;
+      background: var(--bg-secondary);
       border-radius: 8px;
       padding: 1rem 1.5rem;
       margin-top: 1.5rem;
@@ -162,11 +170,12 @@
 
     .portfolio-item-new .result p {
       font-weight: 600;
-      color: #007c91;
+      color: var(--secondary-dark);
       margin: 0;
       line-height: 1.8;
     }
   </style>
+  <script src="components/seo-schema.html"></script>
 </head>
 
 <body>
@@ -522,31 +531,10 @@
 
   <div id="footer"></div>
 
+  <script src="js/components.js"></script>
   <script src="js/main.js"></script>
 
   <script>
-    // Include the same component loading script
-    async function loadComponents() {
-      try {
-        const headerResponse = await fetch('components/header.html');
-        const headerData = await headerResponse.text();
-        document.getElementById('header').innerHTML = headerData;
-
-        const contactFormResponse = await fetch('components/contact-form.html');
-        const contactFormData = await contactFormResponse.text();
-        document.getElementById('contact-form').innerHTML = contactFormData;
-
-        const footerResponse = await fetch('components/footer.html');
-        const footerData = await footerResponse.text();
-        document.getElementById('footer').innerHTML = footerData;
-      } catch (error) {
-        console.error('Error loading components:', error);
-      }
-    }
-
-    // Call on load
-    document.addEventListener('DOMContentLoaded', loadComponents);
-
     // Toggle button handler
     document.addEventListener('DOMContentLoaded', function () {
       const toggleButtons = document.querySelectorAll('.toggle-solution-btn');
@@ -570,7 +558,6 @@
     });
   </script>
 
-  <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cm9csoyhz1o6tn8lwerr44wsk"></script>
   <button class="back-to-top" aria-label="חזרה לראש הדף" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 
