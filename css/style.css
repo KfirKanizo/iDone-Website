@@ -5,6 +5,67 @@
    ============================================ */
 
 /* ==========================================
+   ACCESSIBILITY - SKIP LINK
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   ACCESSIBILITY - TOUCH TARGETS (44px minimum)
+   ============================================ */
+a, button, input, select, textarea, label {
+  min-height: 44px;
+}
+
+.cta-button,
+.hamburger,
+.nav-links a,
+.footer-links a,
+.social-media a,
+.checkbox-item label,
+.form-group label {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cta-button {
+  justify-content: center;
+}
+
+.hamburger {
+  width: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.nav-links a {
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ==========================================
+   PHASE 1: CSS VARIABLES FOUNDATION
+   ============================================ */
+
+/* ==========================================
    PHASE 1: CSS VARIABLES FOUNDATION
    ========================================== */
 :root {
@@ -180,6 +241,16 @@
   --tracking-tight: -0.025em;
   --tracking-normal: 0;
   --tracking-wide: 0.025em;
+  
+  /* --------------------------------------
+     FLUID TYPOGRAPHY (Mobile-First)
+     -------------------------------------- */
+  --fluid-h1: clamp(2rem, 5vw, 4.5rem);
+  --fluid-h2: clamp(1.75rem, 4vw, 3rem);
+  --fluid-h3: clamp(1.5rem, 3vw, 2.25rem);
+  --fluid-h4: clamp(1.25rem, 2.5vw, 1.875rem);
+  --fluid-body: clamp(1rem, 2vw, 1.125rem);
+  --fluid-small: clamp(0.875rem, 1.5vw, 0.875rem);
   
   /* --------------------------------------
      Z-INDEX SCALE
@@ -366,7 +437,7 @@ h1 {
 }
 
 h2 {
-  font-size: var(--text-4xl);
+  font-size: var(--fluid-h2);
   margin-bottom: var(--space-8);
   position: relative;
   text-align: center;
@@ -387,12 +458,12 @@ h2::after {
 }
 
 h3 {
-  font-size: var(--text-2xl);
+  font-size: var(--fluid-h3);
   font-weight: var(--font-bold);
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: var(--fluid-h4);
   font-weight: var(--font-semibold);
 }
 
@@ -410,12 +481,13 @@ h6 {
    PARAGRAPH & BODY TEXT
    -------------------------------------- */
 p {
+  font-size: var(--fluid-body);
   margin-bottom: var(--space-4);
   line-height: var(--leading-relaxed);
 }
 
 .lead-text {
-  font-size: var(--text-xl);
+  font-size: var(--fluid-body);
   font-weight: var(--font-normal);
   color: var(--text-muted);
   line-height: 1.7;
@@ -1052,7 +1124,7 @@ small,
     visibility: hidden;
     transform: translateX(20px);
     transition: all var(--transition-normal) var(--ease-out);
-    z-index: var(--z-modal);
+    z-index: calc(var(--z-modal) + 100);
   }
   
   .nav-links.active {
@@ -1160,7 +1232,7 @@ small,
 }
 
 .hero h1 {
-  font-size: clamp(var(--text-4xl), 5vw, var(--text-7xl));
+  font-size: var(--fluid-h1);
   font-weight: var(--font-extrabold);
   line-height: 1.05;
   margin-bottom: var(--space-6);
@@ -2778,6 +2850,63 @@ footer .footer-nav a:hover {
   accent-color: var(--primary-color);
   cursor: pointer;
   box-shadow: none;
+}
+
+/* --------------------------------------
+   FIELDSET & LEGEND (Accessibility)
+   -------------------------------------- */
+fieldset.form-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-6) 0;
+}
+
+fieldset.form-group legend {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  color: var(--text-color);
+  margin-bottom: var(--space-3);
+  padding: 0;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.checkbox-item label {
+  font-weight: var(--font-normal);
+  cursor: pointer;
+}
+
+/* --------------------------------------
+   INLINE VALIDATION STYLES
+   -------------------------------------- */
+.form-group input.valid,
+.form-group textarea.valid {
+  border-color: var(--secondary-color);
+  background-color: rgba(0, 196, 140, 0.05);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #e53935;
+  background-color: rgba(229, 57, 53, 0.05);
+}
+
+.field-error {
+  display: block;
+  color: #e53935;
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+  padding-right: var(--space-1);
 }
 
 /* --------------------------------------

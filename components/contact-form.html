@@ -1,8 +1,8 @@
 <div id="contactFormModal" class="modal">
   <div class="modal-content">
-    <span class="close-button" onclick="closeContactForm()">&times;</span>
+    <span class="close-button" onclick="closeContactForm()" aria-label="סגירה">&times;</span>
     <h2>השאירו פרטים ונחזור אליכם</h2>
-    <form id="contactForm" onsubmit="submitContactForm(event)">
+    <form id="contactForm" onsubmit="submitContactForm(event)" aria-describedby="formErrorMessage">
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">שם פרטי:</label>
@@ -36,8 +36,8 @@
         </div>
       </div>
 
-      <div class="form-group services-checkboxes">
-        <label>באילו שירותים התעניינת:</label>
+      <fieldset class="form-group services-checkboxes">
+        <legend>באילו שירותים התעניינת:</legend>
         <div class="checkbox-group">
           <div class="checkbox-item">
             <input type="checkbox" id="automation" name="services" value="אוטומציות">
@@ -57,10 +57,10 @@
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="websites" name="services" value="דפי נחיתה">
-            <label for="forms">דפי נחיתה</label>
+            <label for="websites">דפי נחיתה</label>
           </div>
         </div>
-      </div>
+      </fieldset>
 
       <div class="form-group">
         <label for="message">הודעת לקוח:</label>
@@ -75,10 +75,10 @@
         </button>
       </div>
 
-      <div id="formSuccessMessage" class="form-feedback">
+      <div id="formSuccessMessage" class="form-feedback" role="status" aria-live="polite">
         תודה! נציג יחזור אליך בהקדם.
       </div>
-      <div id="formErrorMessage" class="form-feedback">
+      <div id="formErrorMessage" class="form-feedback" role="alert" aria-live="polite">
         אירעה שגיאה בשליחת הטופס, אנא נסה שוב מאוחר יותר.
       </div>
     </form>
