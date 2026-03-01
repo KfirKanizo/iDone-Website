@@ -1106,6 +1106,19 @@ small,
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+  }
+  
+  .top-nav {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  
+  .top-nav .logo {
+    flex-shrink: 0;
   }
   
   .nav-links {

@@ -155,7 +155,13 @@
     .portfolio-item-new ul {
       padding-right: 20px;
       margin: 0;
-      list-style-type: '✓  ';
+      list-style: none;
+      list-style-type: none;
+    }
+
+    .portfolio-item-new ul li::marker {
+      content: '✓  ';
+      color: var(--primary-color);
     }
 
     .portfolio-item-new li {
@@ -553,6 +559,12 @@
   <div id="footer"></div>
 
   <script src="js/components.js"></script>
+  <script>
+    // Initialize components after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      loadComponentsAuto();
+    });
+  </script>
   <script src="js/main.js"></script>
 
   <script>
