@@ -14,7 +14,8 @@
 
     function loadChatbotLogic() {
         // Continue with original code
-        const API_URL = 'https://n8n.idone.co.il/webhook/chat';
+        const API_URL = 'https://n8n.idone.co.il/webhook/idone-website-chat';
+        const API_KEY = 'oo3zMrv8nbBe0AVsOHuwAxIPTUhymaB5CKtRc0SokdqAZkcwUAKzPGxITRjbXhz8';
 
         function injectChatWidget() {
             const chatHTML = `
@@ -152,8 +153,9 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        message: text,
-                        user_id: currentUserId
+                        api_key: API_KEY,
+                        user_id: currentUserId,
+                        message: text
                     })
                 });
 
