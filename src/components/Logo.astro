@@ -1,0 +1,44 @@
+---
+/**
+ * Brand logo. Renders the <idone-logo> web component (theme="inherit" so it follows
+ * the site's light/dark tokens) with a static <picture> fallback inside it:
+ * the fallback is what you see without JavaScript, and it is hidden as soon as
+ * the component upgrades (the `html.js` class is set before first paint).
+ */
+type Layout = 'mark' | 'horizontal' | 'stacked';
+interface Props {
+  layout?: Layout;
+  animation?: 'intro' | 'loop' | 'none';
+  trigger?: 'load' | 'visible' | 'hover' | 'manual';
+  tap?: boolean;
+  animatedFallback?: boolean; // use the CSS-animated SVG as the no-JS fallback
+  label?: string;
+  class?: string;
+  id?: string;
+}
+const { layout = 'horizontal', animation = 'none', trigger, tap = false, animatedFallback = false, label = 'iDone Technologies', class: cls = '', id } = Astro.props;
+const ratio = { horizontal: '182.92 / 64', stacked: '123.29 / 134', mark: '1 / 1' }[layout];
+const file = layout === 'mark' ? 'idone-mark' : `idone-logo-${layout}`;
+const light = animatedFallback
+  ? (layout === 'mark' ? '/brand/animation/idone-mark-intro.svg' : '/brand/animation/idone-logo-intro.svg')
+  : `/brand/logo/${file}.svg`;
+const dark = animatedFallback
+  ? (layout === 'mark' ? '/brand/animation/idone-mark-intro.svg' : '/brand/animation/idone-logo-intro-dark.svg')
+  : `/brand/logo/${file}-dark.svg`;
+const extra: Record<string, string | boolean> = {};
+if (trigger) extra.trigger = trigger;
+if (tap) extra.tap = true;
+if (id) extra.id = id;
+---
+<idone-logo layout={layout} animation={animation} theme="inherit" label={label} class:list={['logo', cls]} style={`aspect-ratio:${ratio}`} {...extra}>
+  <picture class="logo-fallback">
+    <source srcset={dark} media="(prefers-color-scheme: dark)" />
+    <img src={light} alt={label} style={`aspect-ratio:${ratio}`} />
+  </picture>
+</idone-logo>
+
+<style>
+  idone-logo { display: block; line-height: 0; inline-size: 100%; block-size: auto; }
+  .logo-fallback img { inline-size: 100%; block-size: 100%; }
+  :global(html.js) .logo-fallback { display: none; }
+</style>

@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FlowDiagram from './FlowDiagram.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { entry: CollectionEntry<'work'>; locale: Locale; large?: boolean }
+const { entry, locale, large = false } = Astro.props;
+const t = useTranslations(locale);
+const slug = entry.id.split('/').slice(1).join('/');
+const href = localePath(locale, `/work/${slug}`);
+const d = entry.data;
+const serviceName = { web: t.nav.web, video: t.nav.video, automation: t.nav.automation };
+---
+<article class:list={['work-card', { large }]} data-services={d.services.join(' ')}>
+  <a class="media" href={href} tabindex="-1" aria-hidden="true" style={`--ratio:${d.media.ratio}`}>
+    {d.media.type === 'video' && d.media.src ? (
+      <video class="vid" muted playsinline loop preload="none" poster={d.media.poster} data-hover-video>
+        <source data-src={d.media.src} type="video/mp4" />
+      </video>
+    ) : d.media.type === 'image' && d.media.src ? (
+      <img src={d.media.src} alt="" loading="lazy" />
+    ) : d.media.type === 'flow' && d.flow ? (
+      <FlowDiagram nodes={d.flow} compact class="flow-media" />
+    ) : (
+      <div class="placeholder"><span class="mono">{d.services.map((s) => serviceName[s]).join(' · ')}</span><span class="tbd">[TBD: media]</span></div>
+    )}
+  </a>
+  <div class="body">
+    <p class="tags">{d.services.map((s) => (<span class="tag">{serviceName[s]}</span>))}<span class="muted mono">{d.year}</span></p>
+    <h3 class="title t-2"><a href={href}>{d.title}</a></h3>
+    <p class="summary muted">{d.summary}</p>
+    <a class="link-arrow" href={href}>{t.cta.readCase}<span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</article>
+
+<style>
+  .work-card { display: grid; gap: var(--site-space-4); align-content: start; }
+  .media { display: block; aspect-ratio: var(--ratio, 16 / 9); max-block-size: 520px; border-radius: var(--idone-radius-md); overflow: hidden; background: var(--idone-surface-raised); border: 1px solid var(--idone-line); position: relative; }
+  .media img, .media video { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .media :global(.flow-media) { aspect-ratio: auto; block-size: 100%; border: 0; border-radius: 0; }
+  .placeholder { position: absolute; inset: 0; display: grid; place-content: center; gap: 8px; justify-items: center; color: var(--idone-muted); background: repeating-linear-gradient(135deg, var(--idone-surface-raised) 0 14px, var(--idone-surface) 14px 28px); }
+  .tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .title a { text-decoration: none; }
+  .title a:hover { text-decoration: underline; }
+  .body { display: grid; gap: var(--site-space-3); }
+  .large { grid-template-columns: 1fr; }
+  @media (min-width: 900px) {
+    .large { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--site-space-12); align-items: center; }
+    .large .media { justify-self: center; inline-size: 100%; max-inline-size: 420px; }
+  }
+</style>

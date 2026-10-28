@@ -1,0 +1,77 @@
+/* iDone Technologies — design tokens (Spine identity)
+   Import once at the top of the site's global CSS:  @import "/brand/tokens/tokens.css";  */
+
+@import url("https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  /* ---- brand palette (fixed values) */
+  --idone-ink-900: #0E1A2B;   /* Ink: symbol, text, dark surfaces */
+  --idone-ink-700: #24324A;
+  --idone-ink-500: #4A5870;
+  --idone-ink-300: #A3ADBD;
+  --idone-mist-100: #F4F6FA;  /* Mist: light surfaces */
+  --idone-white: #FFFFFF;
+  --idone-cobalt-600: #2F5BFF; /* Cobalt: the dot, on light */
+  --idone-cobalt-700: #2448D6; /* hover/pressed on light */
+  --idone-cobalt-300: #7D97FF; /* the dot, on dark */
+
+  /* ---- semantic tokens (light) */
+  --idone-surface: var(--idone-mist-100);
+  --idone-surface-raised: var(--idone-white);
+  --idone-ink: var(--idone-ink-900);
+  --idone-muted: var(--idone-ink-500);
+  --idone-line: #DCE1EA;
+  --idone-accent: var(--idone-cobalt-600);
+  --idone-accent-hover: var(--idone-cobalt-700);
+  --idone-on-accent: var(--idone-white);
+
+  /* ---- type */
+  --idone-font-latin: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;     /* Latin headings */
+  --idone-font-he: "IBM Plex Sans Hebrew", "Familjen Grotesk", Arial, sans-serif;  /* body + Hebrew; includes Latin */
+  --idone-font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* ---- space & shape (4px grid, same rhythm as the 64-unit logo grid) */
+  --idone-unit: 4px;
+  --idone-radius-sm: 4px;
+  --idone-radius-md: 6px;
+  --idone-radius-pill: 999px;
+  --idone-logo-clearspace: 0.25; /* × mark height, on every side */
+
+  /* ---- motion (curves match the logo animation) */
+  --idone-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --idone-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --idone-ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);  /* the "lock-in" overshoot */
+  --idone-dur-fast: 160ms;
+  --idone-dur-base: 280ms;
+  --idone-dur-slow: 420ms;
+  --idone-dur-logo-intro: 1900ms;
+  --idone-dur-logo-loop: 1800ms;
+}
+
+/* dark theme: follows the OS unless the site sets data-theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --idone-surface: var(--idone-ink-900);
+    --idone-surface-raised: #16243A;
+    --idone-ink: var(--idone-mist-100);
+    --idone-muted: var(--idone-ink-300);
+    --idone-line: #26344B;
+    --idone-accent: var(--idone-cobalt-300);
+    --idone-accent-hover: #9DB0FF;
+    --idone-on-accent: var(--idone-ink-900);
+  }
+}
+:root[data-theme="dark"] {
+  --idone-surface: var(--idone-ink-900);
+  --idone-surface-raised: #16243A;
+  --idone-ink: var(--idone-mist-100);
+  --idone-muted: var(--idone-ink-300);
+  --idone-line: #26344B;
+  --idone-accent: var(--idone-cobalt-300);
+  --idone-accent-hover: #9DB0FF;
+  --idone-on-accent: var(--idone-ink-900);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --idone-dur-fast: 0ms; --idone-dur-base: 0ms; --idone-dur-slow: 0ms; }
+}

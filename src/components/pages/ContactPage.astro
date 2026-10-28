@@ -1,0 +1,36 @@
+---
+import Base from '@/layouts/Base.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+import { type Locale, useTranslations } from '@/i18n';
+import { SITE, isPlaceholder } from '@/lib/site';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<Base locale={locale} title={t.contact.title} description={t.contact.description} path="/contact">
+  <section class="section-tight">
+    <div class="container-narrow stack">
+      <h1 class="t-4">{t.contact.h1}</h1>
+      <p class="lead">{t.contact.lead}</p>
+    </div>
+  </section>
+  <CtaBlock locale={locale} />
+  <section class="section-tight surface-mist">
+    <div class="container direct">
+      <h2 class="t-3">{t.contact.direct}</h2>
+      <dl>
+        <div><dt>{t.contact.email}</dt><dd>{isPlaceholder(SITE.email) ? <span class="tbd">{SITE.email}</span> : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>}</dd></div>
+        <div><dt>{t.contact.phone}</dt><dd>{isPlaceholder(SITE.phone) ? <span class="tbd">{SITE.phone}</span> : <a class="ltr" href={`tel:${SITE.phone}`}>{SITE.phone}</a>}</dd></div>
+        <div><dt>{t.contact.social}</dt><dd><a href={SITE.social.facebook} target="_blank" rel="noopener">Facebook</a> · <a href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></dd></div>
+      </dl>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stack { --stack: var(--site-space-6); padding-block-start: var(--site-space-8); }
+  .direct { display: grid; gap: var(--site-space-8); }
+  dl { display: grid; gap: var(--site-space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); margin: 0; }
+  dt { color: var(--idone-muted); font-size: var(--site-step--1); }
+  dd { margin: 4px 0 0; font-weight: 600; }
+</style>

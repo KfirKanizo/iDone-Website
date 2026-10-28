@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+import { SITE, isPlaceholder } from '@/lib/site';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+const links = [
+  { href: localePath(locale, '/services/web'), label: t.nav.web },
+  { href: localePath(locale, '/services/video'), label: t.nav.video },
+  { href: localePath(locale, '/services/automation'), label: t.nav.automation },
+  { href: localePath(locale, '/about'), label: t.nav.about },
+  { href: localePath(locale, '/contact'), label: t.nav.contact },
+];
+---
+<footer class="site-footer surface-ink">
+  <div class="container grid">
+    <div class="brand">
+      <div class="footer-logo"><Logo layout="stacked" animation="none" /></div>
+      <p class="muted">{t.home.hero.eyebrow}</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul role="list" class="links">
+        {links.map((l) => (<li><a href={l.href}>{l.label}</a></li>))}
+      </ul>
+    </nav>
+    <address class="contact">
+      <ul role="list">
+        <li>{isPlaceholder(SITE.email) ? <span class="tbd">{SITE.email}</span> : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>}</li>
+        <li>{isPlaceholder(SITE.phone) ? <span class="tbd">{SITE.phone}</span> : <a href={`tel:${SITE.phone}`} class="ltr">{SITE.phone}</a>}</li>
+        <li class="social">
+          <a href={SITE.social.facebook} rel="me noopener" target="_blank">Facebook</a>
+          <a href={SITE.social.instagram} rel="me noopener" target="_blank">Instagram</a>
+          {SITE.social.linkedin && <a href={SITE.social.linkedin} rel="me noopener" target="_blank">LinkedIn</a>}
+        </li>
+      </ul>
+    </address>
+  </div>
+  <div class="container legal">
+    <p>© <span class="ltr">{year}</span> {SITE.name}. {t.footer.rights}</p>
+    <p><a href={localePath(locale, '/accessibility')}>{t.footer.accessibility}</a> · <a href={localePath(locale, '/privacy')}>{t.footer.privacy}</a></p>
+    <p class="muted">{t.footer.madeBy}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--site-space-16) var(--site-space-8); margin-block-start: 0; }
+  .grid { display: grid; gap: var(--site-space-12); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); align-items: start; }
+  .brand { display: grid; gap: var(--site-space-4); justify-items: start; }
+  .footer-logo { inline-size: 110px; direction: ltr; }
+  .links { display: grid; gap: var(--site-space-2); }
+  .links a, .contact a { text-decoration: none; }
+  .links a:hover, .contact a:hover { text-decoration: underline; }
+  address { font-style: normal; }
+  .contact ul { display: grid; gap: var(--site-space-2); }
+  .social { display: flex; gap: var(--site-space-4); flex-wrap: wrap; }
+  .legal { margin-block-start: var(--site-space-16); padding-block-start: var(--site-space-6); border-block-start: 1px solid var(--idone-line); display: flex; flex-wrap: wrap; gap: var(--site-space-4) var(--site-space-8); font-size: var(--site-step--1); color: var(--idone-muted); }
+  .legal a { color: inherit; }
+</style>

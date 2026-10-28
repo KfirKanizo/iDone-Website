@@ -1,0 +1,115 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { LOCALES, DEFAULT_LOCALE, dirOf, localePath, useTranslations, type Locale } from '@/i18n';
+import { SITE } from '@/lib/site';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Locale-independent path, e.g. "/work/boostcoach". Used for canonical + hreflang. */
+  path: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+  bodyClass?: string;
+}
+const { locale, title, description, path, ogImage = '/brand/png/og-image.png', ogType = 'website', noindex = false, jsonLd = [], bodyClass = '' } = Astro.props;
+const t = useTranslations(locale);
+const dir = dirOf(locale);
+const canonical = new URL(localePath(locale, path), SITE.url).href;
+const alternates = LOCALES.map((l) => ({ lang: l === 'he' ? 'he-IL' : 'en', href: new URL(localePath(l, path), SITE.url).href }));
+const xDefault = new URL(localePath(DEFAULT_LOCALE, path), SITE.url).href;
+const ogImageAbs = new URL(ogImage, SITE.url).href;
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#org`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/brand/png/idone-mark-1024.png`,
+  image: ogImageAbs,
+  description: t.home.description,
+  sameAs: [SITE.social.facebook, SITE.social.instagram].filter(Boolean),
+  address: { '@type': 'PostalAddress', addressLocality: SITE.address.locality, addressCountry: SITE.address.country },
+  areaServed: ['IL', 'Worldwide'],
+  availableLanguage: ['he', 'en'],
+  knowsAbout: ['Web development', 'Mobile apps', 'Video production', 'Business automation', 'CRM integration', 'Chatbots'],
+};
+---
+<!doctype html>
+<html lang={locale} dir={dir} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (<link rel="alternate" hreflang={a.lang} href={a.href} />))}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+
+    <!-- brand head code (brand/README.md) -->
+    <link rel="icon" href="/brand/favicon/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/brand/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#0E1A2B" />
+    <meta property="og:image" content={ogImageAbs} />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="/brand/tokens/tokens.css" />
+    <script type="module" src="/brand/animation/idone-logo.js" is:inline></script>
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={locale === 'he' ? 'en_US' : 'he_IL'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <!-- fonts: brand fonts load from tokens.css; Heebo is the marked Hebrew display extension -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800&display=swap" /></noscript>
+
+    <!-- before paint: js flag, theme, motion, intro state -->
+    <script is:inline>
+      (function () {
+        var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+        try {
+          var th = localStorage.getItem('idone-theme'); if (th === 'dark' || th === 'light') d.setAttribute('data-theme', th);
+          if (localStorage.getItem('idone-motion') === 'reduced') d.setAttribute('data-motion', 'reduced');
+          if (sessionStorage.getItem('idone-intro') === 'seen') d.setAttribute('data-intro', 'seen');
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify([org, ...jsonLd])} />
+    <ClientRouter />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">{t.a11y.skip}</a>
+    <Header locale={locale} path={path} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <div id="dot" aria-hidden="true" transition:persist transition:name="dot"></div>
+    <script src="../scripts/main.ts"></script>
+  </body>
+</html>

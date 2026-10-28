@@ -1,0 +1,49 @@
+---
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section class="together" id="scene-together" data-scene="together" aria-labelledby="together-title">
+  <div class="pin" data-pin>
+    <div class="container layout">
+      <div class="ring-wrap" data-ring-wrap>
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="base" cx="100" cy="100" r="86" />
+          <circle class="lit" cx="100" cy="100" r="86" data-ring-path />
+        </svg>
+        <ul role="list" class="tiles">
+          {t.home.together.tiles.map((name, i) => (<li class="tile" data-tile={i}><span>{name}</span></li>))}
+        </ul>
+        <span class="dot-slot orbit" data-dot-slot="together" data-dot-handoff aria-hidden="true"><i class="dot-local"></i></span>
+      </div>
+      <div class="copy">
+        <h2 id="together-title">{t.home.together.title}</h2>
+        <p class="lead">{t.home.together.sub}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pin { min-block-size: 100svh; display: grid; align-items: center; padding-block: var(--site-space-16); }
+  .layout { display: grid; gap: var(--site-space-12); align-items: center; }
+  .ring-wrap { position: relative; inline-size: min(100%, 420px); aspect-ratio: 1; margin-inline: auto; }
+  .ring { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; rotate: -90deg; }
+  [dir="rtl"] .ring { rotate: -90deg; scale: -1 1; }
+  .ring circle { fill: none; stroke-width: 1.5; }
+  .ring .base { stroke: var(--idone-line); stroke-dasharray: 3 5; }
+  .ring .lit { stroke: var(--idone-accent); stroke-width: 2; pathLength: 1; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  :global(html.dot-hidden) .ring .lit, :global(html:not(.js)) .ring .lit { stroke-dashoffset: 0; }
+  .tiles { position: absolute; inset: 0; z-index: 1; } /* the dot passes behind the tiles */
+  .tile { position: absolute; left: 50%; top: 50%; translate: -50% -50%; inline-size: 29%; aspect-ratio: 1; display: grid; place-items: center; border: 1.5px solid var(--idone-ink); border-radius: var(--idone-radius-md); background: var(--idone-surface); font-family: var(--site-font-display); font-weight: 700; font-size: var(--site-step-1); text-align: center; padding: 8px; }
+  .tile[data-tile="0"] { --tx: 0; --ty: -1; }
+  .tile[data-tile="1"] { --tx: 0.87; --ty: 0.5; }
+  .tile[data-tile="2"] { --tx: -0.87; --ty: 0.5; }
+  :global(html.dot-hidden) .tile, :global(html:not(.js)) .tile { left: calc(50% + var(--tx) * 43% * var(--site-dir)); top: calc(50% + var(--ty) * 43%); }
+  .orbit { position: absolute; left: 50%; top: 7%; translate: -50% -50%; inline-size: 20px; block-size: 20px; }
+  .dot-local { display: block; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--idone-accent); opacity: 0; }
+  :global(html.dot-hidden) .dot-local { opacity: 1; }
+  .copy { display: grid; gap: var(--site-space-4); }
+  @media (min-width: 900px) { .layout { grid-template-columns: 1fr 1fr; } }
+</style>

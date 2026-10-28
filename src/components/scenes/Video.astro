@@ -1,0 +1,85 @@
+---
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const reels: { src?: string; poster?: string; title: string; tbd?: boolean; href?: string }[] = [
+  { src: `/work/boostcoach/promo-${locale}.mp4`, poster: `/work/boostcoach/promo-${locale}.webp`, title: 'BoostCoach · Day one', href: localePath(locale, '/work/boostcoach') },
+  { title: locale === 'he' ? '[להשלמה / TBD: ריל 2]' : '[TBD: reel 2]', tbd: true },
+  { title: locale === 'he' ? '[להשלמה / TBD: סרטון תדמית]' : '[TBD: brand film]', tbd: true },
+  { title: locale === 'he' ? '[להשלמה / TBD: פרסומת]' : '[TBD: ad]', tbd: true },
+  { title: locale === 'he' ? '[להשלמה / TBD: ריל 5]' : '[TBD: reel 5]', tbd: true },
+  { title: locale === 'he' ? '[להשלמה / TBD: סרטון מוצר]' : '[TBD: product video]', tbd: true },
+  { title: locale === 'he' ? '[להשלמה / TBD: ריל 7]' : '[TBD: reel 7]', tbd: true },
+];
+---
+<section class="video" id="scene-video" data-scene="video" aria-labelledby="video-title">
+  <div class="pin" data-pin>
+    <div class="container head">
+      <p class="eyebrow">{t.home.video.label}</p>
+      <h2 id="video-title"><span class="accent-word">{t.home.video.title}</span> {t.home.video.lead}</h2>
+      <ul role="list" class="points">
+        {t.home.video.points.map((p) => (<li>{p}</li>))}
+      </ul>
+      <a class="link-arrow" href={localePath(locale, '/services/video')}>{t.home.video.link}<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div class="track-wrap">
+      <ul role="list" class="track" data-track>
+        {reels.map((r, i) => (
+          <li class:list={['reel', { 'is-tbd': r.tbd }]} data-reel={i}>
+            <div class="frame">
+              {r.src ? (
+                <video class="media" data-reel-video playsinline muted loop preload="none" poster={r.poster} aria-label={r.title}>
+                  <source data-src={r.src} type="video/mp4" />
+                </video>
+              ) : (
+                <div class="media placeholder" aria-hidden="true"><span class="tbd">{r.title}</span></div>
+              )}
+              {i === 0 && (
+                <span class="dot-slot play" data-dot-slot="video" data-dot-handoff aria-hidden="true"><i class="dot-local"></i><svg class="tri" viewBox="0 0 24 24"><path d="M9 7l8 5-8 5z" fill="currentColor"/></svg></span>
+              )}
+              {r.src && <button type="button" class="play-btn" data-play aria-label={t.a11y.playReel} data-label-play={t.a11y.playReel} data-label-pause={t.a11y.pauseReel}></button>}
+            </div>
+            <p class="reel-title">{r.href ? <a href={r.href}>{r.title}</a> : r.title}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="hint eyebrow" data-hint>{t.home.video.hint}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video { background: var(--idone-surface); }
+  .pin { min-block-size: 100svh; display: flex; flex-direction: column; justify-content: center; gap: var(--site-space-12); padding-block: var(--site-space-16); overflow: clip; }
+  .head { display: grid; gap: var(--site-space-4); }
+  .head h2 { max-inline-size: 22ch; }
+  .accent-word { color: var(--idone-accent); }
+  .points { display: flex; flex-wrap: wrap; gap: var(--site-space-2) var(--site-space-6); color: var(--idone-muted); }
+  .points li::before { content: "·"; margin-inline-end: 8px; color: var(--idone-accent); }
+  .track-wrap { position: relative; inline-size: 100%; min-inline-size: 0; }
+  .track { display: flex; gap: var(--site-space-6); padding-inline: var(--site-gutter); inline-size: max-content; will-change: transform; }
+  .reel { inline-size: clamp(220px, 24vw, 340px); flex: none; display: grid; gap: var(--site-space-2); }
+  .frame { position: relative; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; background: var(--idone-ink-900); border: 1px solid var(--idone-line); }
+  .media { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .placeholder { display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--idone-surface-raised) 0 12px, var(--idone-surface) 12px 24px); color: var(--idone-muted); padding: 16px; text-align: center; }
+  .play { position: absolute; inset: 50% auto auto 50%; translate: -50% -50%; inline-size: 64px; block-size: 64px; display: grid; place-items: center; pointer-events: none; }
+  .dot-local { grid-area: 1 / 1; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--idone-accent); opacity: 0; scale: 0.3; }
+  .tri { grid-area: 1 / 1; inline-size: 28px; color: var(--idone-on-accent); opacity: 0; translate: 2px 0; }
+  [dir="rtl"] .tri { transform: scaleX(-1); translate: -2px 0; }
+  .play.is-on .dot-local, :global(html.dot-hidden) .dot-local { opacity: 1; scale: 1; }
+  .play.is-on .tri, :global(html.dot-hidden) .tri { opacity: 1; }
+  .is-playing .play .tri { opacity: 0; }
+  .play-btn { position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer; }
+  .play-btn:focus-visible { outline: var(--site-focus); outline-offset: -3px; border-radius: 18px; }
+  .reel-title { font-size: var(--site-step--1); color: var(--idone-muted); }
+  .reel-title a { color: inherit; }
+  .is-tbd .frame { border-style: dashed; }
+  .hint { padding-inline: var(--site-gutter); margin-block-start: var(--site-space-4); }
+  @media (max-width: 899px) {
+    .track-wrap { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-block-end: 4px; }
+    .track-wrap::-webkit-scrollbar { display: none; }
+    .reel { scroll-snap-align: center; inline-size: min(68vw, 300px); }
+    .pin { min-block-size: 0; }
+  }
+</style>

@@ -1,26 +1,27 @@
 {
-  "name": "idone-website",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "idone-technologies-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sync-brand": "node scripts/sync-brand.mjs",
+    "predev": "npm run sync-brand",
+    "dev": "astro dev --host",
+    "prebuild": "npm run sync-brand",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "check": "astro check"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KfirKanizo/iDone-Website.git"
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^5.18.2",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27",
+    "sharp": "^0.35.5"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/KfirKanizo/iDone-Website/issues"
-  },
-  "homepage": "https://github.com/KfirKanizo/iDone-Website#readme",
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "lighthouse": "^13.0.3",
-    "svgo": "^4.0.0"
+    "@astrojs/check": "^0.9.12",
+    "playwright": "^1.64.1",
+    "typescript": "^5.9.3"
   }
 }

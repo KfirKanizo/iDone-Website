@@ -1,0 +1,49 @@
+---
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const words = t.home.problem.words;
+---
+<section class="problem" id="scene-problem" data-scene="problem" aria-labelledby="problem-title">
+  <div class="pin" data-pin>
+    <div class="container stage">
+      <div class="row-wrap">
+        <svg class="wires" aria-hidden="true" data-wires><line data-wire="0" /><line data-wire="1" /></svg>
+        <ul role="list" class="words" data-words>
+          <li class="word" data-word="0"><span>{words[0]}</span></li>
+          <li class="sep" aria-hidden="true"><span class="dot-slot" data-dot-slot="problem" data-dot-scale="1.2"></span></li>
+          <li class="word" data-word="1"><span>{words[1]}</span></li>
+          <li class="sep" aria-hidden="true"><span class="ring"></span></li>
+          <li class="word" data-word="2"><span>{words[2]}</span></li>
+        </ul>
+      </div>
+      <div class="lines">
+        <h2 id="problem-title" class="line line-1 t-3" data-line="1">{t.home.problem.line1}</h2>
+        <p class="line line-2 t-3" data-line="2">{t.home.problem.line2}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pin { min-block-size: 100svh; display: grid; align-items: center; }
+  .stage { display: grid; gap: clamp(72px, 14vh, 140px); padding-block: var(--site-space-16); }
+  .row-wrap { position: relative; }
+  .words { display: flex; justify-content: space-between; align-items: center; gap: var(--site-space-4); position: relative; z-index: 1; }
+  .word { font-family: var(--site-font-display); font-weight: 700; font-size: clamp(1.3rem, 6.2vw, var(--site-step-4)); line-height: 1; letter-spacing: var(--site-display-tracking); white-space: nowrap; will-change: transform; }
+  .word span { display: inline-block; padding: 0.15em 0.3em; background: var(--idone-surface); }
+  .sep { display: grid; place-items: center; inline-size: 24px; block-size: 24px; }
+  .sep .dot-slot { inline-size: 18px; block-size: 18px; }
+  .ring { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--idone-ink-300); transition: border-color var(--idone-dur-base) var(--idone-ease-out), background-color var(--idone-dur-base) var(--idone-ease-out); }
+  .is-joined .ring, :global(html.dot-hidden) .ring, :global(html:not(.js)) .ring { border-color: var(--idone-ink); background: var(--idone-ink); }
+  .wires { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; overflow: visible; }
+  .wires line { stroke: var(--idone-ink-300); stroke-width: 2; stroke-dasharray: 6 8; transition: stroke var(--idone-dur-base) var(--idone-ease-out); }
+  .is-joined .wires line, :global(html.dot-hidden) .wires line, :global(html:not(.js)) .wires line { stroke: var(--idone-ink); stroke-dasharray: none; }
+  .lines { position: relative; display: grid; }
+  .line { grid-area: 1 / 1; margin: 0; }
+  .line-2 { opacity: 0; }
+  :global(html:not(.js)) .lines, :global(html.dot-hidden) .lines { gap: var(--site-space-4); }
+  :global(html:not(.js)) .line, :global(html.dot-hidden) .line { grid-area: auto; opacity: 1; }
+  @media (max-width: 640px) { .words { gap: var(--site-space-2); } .sep { inline-size: 18px; } }
+</style>

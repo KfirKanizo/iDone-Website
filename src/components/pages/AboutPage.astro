@@ -1,0 +1,55 @@
+---
+import Base from '@/layouts/Base.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const a = t.about;
+---
+<Base locale={locale} title={a.title} description={a.description} path="/about">
+  <section class="section-tight">
+    <div class="container-narrow stack">
+      <h1 class="t-4">{a.h1}</h1>
+      <p class="lead">{a.lead}</p>
+    </div>
+  </section>
+  <section class="section-tight surface-ink">
+    <div class="container grid-3">
+      {a.values.map((v, i) => (<div class="value reveal" style={`--delay:${i * 80}ms`}><span class="pip" aria-hidden="true"></span><h2 class="t-2">{v.name}</h2><p class="muted">{v.text}</p></div>))}
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container-narrow stack">
+      <h2 class="t-3 reveal">{a.howTitle}</h2>
+      <ol class="how" role="list">
+        {a.how.map((h, i) => (<li class="reveal" style={`--delay:${i * 60}ms`}><span class="num mono">0{i + 1}</span><div><h3 class="t-2">{h.name}</h3><p class="muted">{h.text}</p></div></li>))}
+      </ol>
+    </div>
+  </section>
+  <section class="section-tight surface-mist">
+    <div class="container stack reveal">
+      <h2 class="t-3">{a.stackTitle}</h2>
+      <ul role="list" class="tools">{a.stack.map((x) => (<li class="tag"><bdi>{x}</bdi></li>))}</ul>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container-narrow stack reveal">
+      <h2 class="t-3">{a.team}</h2>
+      <p>{a.teamText}</p>
+      <p class="muted">{a.languages}</p>
+    </div>
+  </section>
+  <CtaBlock locale={locale} compact />
+</Base>
+
+<style>
+  .stack { --stack: var(--site-space-6); padding-block-start: var(--site-space-8); }
+  .value { display: grid; gap: var(--site-space-3); align-content: start; }
+  .pip { inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--idone-accent); }
+  .how { display: grid; gap: var(--site-space-6); }
+  .how li { display: grid; grid-template-columns: 3ch 1fr; gap: var(--site-space-4); padding-block: var(--site-space-4); border-block-start: 1px solid var(--idone-line); }
+  .how li > div { display: grid; gap: 6px; }
+  .num { color: var(--idone-muted); padding-block-start: 0.4em; }
+  .tools { display: flex; flex-wrap: wrap; gap: var(--site-space-2); }
+</style>

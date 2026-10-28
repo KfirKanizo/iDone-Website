@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+import WorkCard from '@/components/WorkCard.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+
+type Key = 'web' | 'video' | 'automation';
+interface Props { locale: Locale; service: Key }
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+const s = t.services[service];
+const others = (['web', 'video', 'automation'] as Key[]).filter((k) => k !== service);
+const related = (await getCollection('work', (e) => e.id.startsWith(`${locale}/`) && e.data.services.includes(service)))
+  .sort((a, b) => (a.data.featured ?? 99) - (b.data.featured ?? 99) || b.data.year.localeCompare(a.data.year));
+const toolsByService: Record<Key, string[]> = {
+  web: ['Astro', 'React / Next.js', 'TypeScript', 'Capacitor', 'Node.js / Python', 'PostgreSQL', 'Docker / AWS', 'Vercel / Cloudflare', 'Claude', 'OpenAI', 'Gemini', 'Figma'],
+  video: ['Remotion', 'Higgsfield', 'Kling', 'Magnific', 'Veo', 'ElevenLabs', 'Lyria', 'Claude', 'After Effects', 'Premiere Pro', 'CapCut', 'Figma'],
+  automation: ['n8n', 'Make', 'Zapier', 'Claude', 'OpenAI', 'Gemini', 'Fireberry', 'HubSpot', 'monday', 'Airtable', 'Google Workspace', 'WhatsApp Business API', 'GreenAPI', 'Python / JS'],
+};
+const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const svc = { '@context': 'https://schema.org', '@type': 'Service', name: s.h1, description: s.description, provider: { '@id': 'https://www.idone.co.il/#org' }, areaServed: ['IL', 'Worldwide'] };
+---
+<Base locale={locale} title={s.title} description={s.description} path={`/services/${service}`} jsonLd={[svc, faq]}>
+  <section class="hero section-tight">
+    <div class="container stack">
+      <p class="eyebrow">{t.services.indexTitle} · {t.nav[service]}</p>
+      <h1 class="t-4">{s.h1}</h1>
+      <p class="lead">{s.lead}</p>
+      <p><a class="btn btn-primary" href={localePath(locale, '/contact')}><span class="dotmark" aria-hidden="true"></span>{t.cta.primary}</a></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container grid-2">
+      <div class="stack reveal">
+        <h2 class="t-3">{t.services.included}</h2>
+        <ul role="list" class="list-lines">{s.included.map((i) => (<li>{i}</li>))}</ul>
+      </div>
+      <div class="stack reveal" style="--delay:80ms">
+        <h2 class="t-3">{t.services.forWhom}</h2>
+        <ul role="list" class="list-lines">{s.forWhom.map((i) => (<li>{i}</li>))}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight surface-ink">
+    <div class="container-narrow stack reveal">
+      <h2 class="t-3">{t.services.withRest}</h2>
+      <p class="lead">{s.withRest}</p>
+      <p class="links">
+        {others.map((o) => (<a class="link-arrow" href={localePath(locale, `/services/${o}`)}>{t.nav[o]}<span class="arrow" aria-hidden="true">→</span></a>))}
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container stack reveal">
+      <h2 class="t-3">{t.services.tools}</h2>
+      <ul role="list" class="tools">{toolsByService[service].map((x) => (<li class="tag"><bdi>{x}</bdi></li>))}</ul>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section-tight surface-mist">
+      <div class="container stack">
+        <h2 class="t-3 reveal">{t.services.relatedWork}</h2>
+        <div class="grid-3">{related.map((e, i) => (<div class="reveal" style={`--delay:${i * 60}ms`}><WorkCard entry={e} locale={locale} /></div>))}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight">
+    <div class="container-narrow stack reveal">
+      <h2 class="t-3">{t.services.faq}</h2>
+      <div class="faq">
+        {s.faq.map((f) => (
+          <details class="qa"><summary><span>{f.q}</span><span class="plus" aria-hidden="true"></span></summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock locale={locale} compact />
+</Base>
+
+<style>
+  .hero { padding-block-start: var(--site-space-16); }
+  .stack { --stack: var(--site-space-6); }
+  .links { display: flex; flex-wrap: wrap; gap: var(--site-space-6); }
+  .tools { display: flex; flex-wrap: wrap; gap: var(--site-space-2); }
+  .faq { display: grid; }
+  .qa { border-block-start: 1px solid var(--idone-line); }
+  .qa:last-child { border-block-end: 1px solid var(--idone-line); }
+  .qa summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--site-space-4); padding-block: var(--site-space-4); font-weight: 600; font-size: var(--site-step-1); }
+  .qa summary::-webkit-details-marker { display: none; }
+  .plus { position: relative; inline-size: 18px; block-size: 18px; flex: none; }
+  .plus::before, .plus::after { content: ""; position: absolute; inset: 50% auto auto 50%; translate: -50% -50%; background: var(--idone-ink); inline-size: 14px; block-size: 2px; transition: rotate var(--idone-dur-fast) var(--idone-ease-out); }
+  .plus::after { rotate: 90deg; }
+  .qa[open] .plus::after { rotate: 0deg; }
+  .qa p { padding-block: 0 var(--site-space-6); color: var(--idone-muted); }
+</style>

@@ -1,0 +1,86 @@
+/* ============================================================================
+   iDone website · SITE EXTENSIONS of the brand tokens
+   ----------------------------------------------------------------------------
+   The brand tokens live in /brand/tokens/tokens.css and are NOT edited.
+   Everything here is an addition for the website, prefixed --site-*.
+   When a value here must track the brand, it references an --idone-* token.
+   ============================================================================ */
+
+:root {
+  /* ---- layout */
+  --site-container: 1200px;
+  --site-container-narrow: 760px;
+  --site-gutter: clamp(16px, 4vw, 48px);
+  --site-header-h: 72px;
+
+  /* ---- spacing scale (multiples of the brand 4px unit) */
+  --site-space-1: calc(var(--idone-unit) * 1);   /* 4  */
+  --site-space-2: calc(var(--idone-unit) * 2);   /* 8  */
+  --site-space-3: calc(var(--idone-unit) * 3);   /* 12 */
+  --site-space-4: calc(var(--idone-unit) * 4);   /* 16 */
+  --site-space-6: calc(var(--idone-unit) * 6);   /* 24 */
+  --site-space-8: calc(var(--idone-unit) * 8);   /* 32 */
+  --site-space-12: calc(var(--idone-unit) * 12); /* 48 */
+  --site-space-16: calc(var(--idone-unit) * 16); /* 64 */
+  --site-space-24: calc(var(--idone-unit) * 24); /* 96 */
+  --site-section: clamp(72px, 12vw, 160px);
+
+  /* ---- fluid type scale */
+  --site-step--1: clamp(0.875rem, 0.84rem + 0.2vw, 0.95rem);
+  --site-step-0: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
+  --site-step-1: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --site-step-2: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --site-step-3: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --site-step-4: clamp(2.25rem, 1.6rem + 3vw, 4.25rem);
+  --site-step-5: clamp(2.75rem, 1.6rem + 5.2vw, 6.5rem);
+
+  /* ---- type: display fonts per language.
+     Latin headings: Familjen Grotesk (brand). Hebrew headings: Heebo, a marked
+     extension chosen to hold very large sizes next to Familjen. Body stays
+     IBM Plex Sans Hebrew (brand) in both languages. */
+  --site-font-he-display: "Heebo", var(--idone-font-he);
+  --site-font-display: var(--idone-font-latin);
+  --site-font-body: var(--idone-font-he);
+  --site-display-tracking: -0.02em;
+  --site-display-leading: 1.02;
+  --site-body-leading: 1.6;
+
+  /* ---- colour additions (state colours the brand has no need for) */
+  --site-error: #C8321E;
+  --site-scrim: rgba(14, 26, 43, 0.6);
+  --site-line-strong: var(--idone-ink-300);
+  --site-focus: 2px solid var(--idone-accent);
+
+  /* ---- motion additions, derived from the brand curves */
+  --site-dur-leap: 720ms;      /* the dot's jump between scenes */
+  --site-dur-scene: 900ms;     /* scene-level reveals */
+  --site-stagger: 60ms;
+  --site-ease-leap: var(--idone-ease-in-out);
+  --site-ease-land: var(--idone-ease-back);
+  --site-ease-reveal: var(--idone-ease-out);
+
+  /* ---- the travelling dot */
+  --site-dot-size: clamp(14px, 1.2vw, 20px);
+
+  /* ---- reading direction as a number, for motion that moves "forward" */
+  --site-dir: 1;
+}
+
+[dir="rtl"] { --site-dir: -1; }
+
+html[lang="he"] {
+  --site-font-display: var(--site-font-he-display);
+  --site-display-tracking: 0;      /* Hebrew display type does not want negative tracking */
+  --site-display-leading: 1.08;    /* Hebrew ascenders/descenders need a little more room */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --site-error: #FF8A75; --site-line-strong: var(--idone-ink-500); }
+}
+:root[data-theme="dark"] { --site-error: #FF8A75; --site-line-strong: var(--idone-ink-500); }
+
+/* Site-level motion switch (header button) mirrors the OS setting. */
+:root[data-motion="reduced"] {
+  --idone-dur-fast: 0ms; --idone-dur-base: 0ms; --idone-dur-slow: 0ms;
+  --site-dur-leap: 0ms; --site-dur-scene: 0ms; --site-stagger: 0ms;
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="idone-mark-dark-title idone-mark-dark-desc">
+  <title id="idone-mark-dark-title">iDone</title>
+  <desc id="idone-mark-dark-desc">iDone Technologies symbol: a D whose spine is the stem of an i, with the dot locked inside. Version for dark backgrounds.</desc>
+  <style>
+    /* Palette — edit colours here */
+    :root, svg { --ink:#F4F6FA;--accent:#7D97FF; }
+    .ink{fill:var(--ink)} .ink-stroke{stroke:var(--ink)} .accent{fill:var(--accent)} .accent-stroke{stroke:var(--accent)}
+  </style>
+  <g>
+    <g id="mark">
+    <path class="ink" fill="#F4F6FA" fill-rule="evenodd" d="M10 10H32A22 22 0 0 1 32 54H10ZM22 22V42H32A10 10 0 0 0 32 22Z"/>
+    <circle class="accent" fill="#7D97FF" cx="32" cy="32" r="6"/>
+  </g>
+  </g>
+</svg>

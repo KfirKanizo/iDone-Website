@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-labelledby="fav-title">
+  <title id="fav-title">iDone</title>
+  <style>
+    :root, svg { --tile:#0E1A2B; --ink:#F4F6FA; --accent:#7D97FF; }
+    .tile{fill:var(--tile)} .ink{fill:var(--ink)} .accent{fill:var(--accent)}
+  </style>
+  <rect class="tile" fill="#0E1A2B" width="16" height="16" rx="3.5"/>
+  <path class="ink" fill="#F4F6FA" fill-rule="evenodd" d="M3 3H8A5 5 0 0 1 8 13H3ZM6 6V10H8A2 2 0 0 0 8 6Z"/>
+  <circle class="accent" fill="#7D97FF" cx="8" cy="8" r="1.6"/>
+</svg>

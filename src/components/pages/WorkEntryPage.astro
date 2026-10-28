@@ -1,0 +1,101 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+import FlowDiagram from '@/components/FlowDiagram.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale; entry: CollectionEntry<'work'>; next?: CollectionEntry<'work'> }
+const { locale, entry, next } = Astro.props;
+const t = useTranslations(locale);
+const d = entry.data;
+const slug = entry.id.split('/').slice(1).join('/');
+const serviceName = { web: t.nav.web, video: t.nav.video, automation: t.nav.automation };
+const nextSlug = next ? next.id.split('/').slice(1).join('/') : null;
+const article = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.title, description: d.summary, author: { '@id': 'https://www.idone.co.il/#org' }, dateCreated: d.year.slice(0, 4) };
+---
+<Base locale={locale} title={`${d.title} · iDone Technologies`} description={d.summary} path={`/work/${slug}`} ogType="article" jsonLd={[article]}>
+  <article class="case">
+    <header class="section-tight">
+      <div class="container head">
+        <p class="eyebrow">{d.services.map((s, i) => (<>{i > 0 && ' · '}<a href={localePath(locale, `/services/${s}`)}>{serviceName[s]}</a></>))}</p>
+        <h1 class="t-4">{d.title}</h1>
+        <p class="lead">{d.summary}</p>
+        <dl class="facts">
+          <div><dt>{t.work.client}</dt><dd class="client">{d.clientLogo && <img class:list={['client-logo', { dark: d.clientLogo.dark }]} src={d.clientLogo.src} alt="" width="40" height="40" />}{d.client}</dd></div>
+          <div><dt>{t.work.year}</dt><dd class="ltr">{d.year}</dd></div>
+          {d.tools.length > 0 && <div><dt>{t.work.toolsUsed}</dt><dd class="tools">{d.tools.map((x) => (<span class="tag"><bdi>{x}</bdi></span>))}</dd></div>}
+        </dl>
+      </div>
+    </header>
+
+    {d.media.type === 'video' && d.media.src ? (
+      <figure class="container media" style={`--ratio:${d.media.ratio}`}>
+        <video controls playsinline preload="metadata" poster={d.media.poster} aria-label={d.media.alt}>
+          <source src={d.media.src} type="video/mp4" />
+        </video>
+        {d.media.alt && <figcaption class="muted">{d.media.alt}</figcaption>}
+      </figure>
+    ) : d.media.type === 'image' && d.media.src ? (
+      <figure class="container media" style={`--ratio:${d.media.ratio}`}><img src={d.media.src} alt={d.media.alt ?? ''} loading="lazy" /></figure>
+    ) : d.media.type === 'flow' && d.flow ? (
+      <div class="container-narrow"><FlowDiagram nodes={d.flow} /></div>
+    ) : null}
+
+    {d.gallery.length > 0 && (
+      <ul role="list" class="container gallery">
+        {d.gallery.map((g) => (<li><img src={g.src} alt={g.alt} loading="lazy" width="540" height="960" /></li>))}
+      </ul>
+    )}
+
+    <section class="section-tight">
+      <div class="container-narrow story">
+        <div class="part reveal"><h2 class="t-3">{t.work.problem}</h2><p>{d.problem}</p></div>
+        <div class="part reveal"><h2 class="t-3">{t.work.built}</h2><ul role="list" class="list-lines">{d.built.map((b) => (<li>{b}</li>))}</ul></div>
+        <div class="part reveal"><h2 class="t-3">{t.work.result}</h2><ul role="list" class="results">{d.result.map((r) => (<li>{r}</li>))}</ul></div>
+        {d.quote && (
+          <blockquote class="quote reveal">{d.clientLogo && !d.clientLogo.dark && <img class="quote-logo" src={d.clientLogo.src} alt="" width="56" height="56" />}<p class="t-2">“{d.quote.text}”</p><footer class="muted">{d.quote.who}</footer></blockquote>
+        )}
+        {d.tbd.length > 0 && (
+          <aside class="tbd-list reveal" aria-label="TBD"><p class="eyebrow">TBD</p><ul>{d.tbd.map((x) => (<li><span class="tbd">[TBD: {x}]</span></li>))}</ul></aside>
+        )}
+      </div>
+    </section>
+
+    {next && nextSlug && (
+      <section class="section-tight surface-mist">
+        <div class="container next">
+          <p class="eyebrow">{t.cta.nextProject}</p>
+          <a class="t-2 next-link" href={localePath(locale, `/work/${nextSlug}`)}>{next.data.title}<span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    )}
+  </article>
+  <CtaBlock locale={locale} compact />
+</Base>
+
+<style>
+  .head { display: grid; gap: var(--site-space-6); padding-block-start: var(--site-space-8); }
+  .eyebrow a { color: inherit; }
+  .facts { display: flex; flex-wrap: wrap; gap: var(--site-space-8); margin: 0; }
+  .facts dt { font-size: var(--site-step--1); color: var(--idone-muted); }
+  .facts dd { margin: 4px 0 0; font-weight: 600; }
+  .tools { display: flex; flex-wrap: wrap; gap: 6px; }
+  .media { display: grid; gap: var(--site-space-3); justify-items: center; }
+  .media video, .media img { inline-size: 100%; max-inline-size: calc(min(70vh, 640px) * (var(--ratio))); aspect-ratio: var(--ratio); border-radius: var(--idone-radius-md); background: var(--idone-ink-900); border: 1px solid var(--idone-line); object-fit: cover; }
+  .story { display: grid; gap: var(--site-space-16); }
+  .client { display: flex; align-items: center; gap: 10px; }
+  .client-logo { inline-size: 40px; block-size: 40px; object-fit: contain; border-radius: var(--idone-radius-sm); }
+  .client-logo.dark { background: #0A0C10; padding: 4px; inline-size: 64px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--site-space-6); margin-block-start: var(--site-space-12); }
+  .gallery img { inline-size: 100%; block-size: auto; border-radius: var(--idone-radius-md); border: 1px solid var(--idone-line); }
+  .part { display: grid; gap: var(--site-space-4); }
+  .results li { padding-inline-start: 1.2em; position: relative; margin-block: 8px; }
+  .results li::before { content: ""; position: absolute; inset-inline-start: 0; inset-block-start: 0.6em; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--idone-accent); }
+  .quote { border-inline-start: 2px solid var(--idone-accent); padding-inline-start: var(--site-space-6); display: grid; gap: var(--site-space-3); }
+  .quote-logo { inline-size: 56px; block-size: 56px; object-fit: contain; }
+  .tbd-list ul { padding-inline-start: 1em; color: var(--idone-muted); }
+  .next { display: grid; gap: var(--site-space-3); }
+  .next-link { text-decoration: none; display: inline-flex; gap: 10px; align-items: center; }
+  [dir="rtl"] .next-link .arrow { transform: scaleX(-1); }
+  .next-link:hover { text-decoration: underline; }
+</style>
