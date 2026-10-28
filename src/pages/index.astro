@@ -1,0 +1,23 @@
+---
+// Root: the default language is Hebrew (idone.co.il). A stored preference for English
+// (set by the language switch) is honoured client-side; otherwise /he/.
+// No browser-language redirect: the Hebrew page only *suggests* English.
+---
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <title>iDone Technologies</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://www.idone.co.il/he/" />
+    <script is:inline>
+      (function () {
+        var to = '/he/';
+        try { if (localStorage.getItem('idone-lang') === 'en') to = '/en/'; } catch (e) {}
+        location.replace(to + location.search + location.hash);
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=/he/" />
+  </head>
+  <body><a href="/he/">iDone Technologies</a></body>
+</html>

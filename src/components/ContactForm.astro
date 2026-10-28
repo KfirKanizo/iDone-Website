@@ -1,0 +1,77 @@
+---
+import { type Locale, useTranslations } from '@/i18n';
+import { SITE, whatsappHref } from '@/lib/site';
+import { localePath } from '@/i18n';
+interface Props { locale: Locale; id?: string }
+const { locale, id = 'contact-form' } = Astro.props;
+const t = useTranslations(locale);
+const wa = whatsappHref();
+const needs = Object.entries(t.form.needOptions) as [string, string][];
+---
+<form class="contact-form" id={id} method="post" action={SITE.formEndpoint} novalidate data-contact-form
+  data-msg-required={t.form.required} data-msg-email={t.form.invalidEmail} data-msg-phone={t.form.invalidPhone} data-msg-sending={t.form.sending} data-msg-submit={t.form.submit}>
+  <input type="hidden" name="locale" value={locale} />
+  <input type="hidden" name="source" value="website" />
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  <p class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+
+  <div class="row">
+    <div class="field" data-field>
+      <label for={`${id}-name`}>{t.form.name}</label>
+      <input id={`${id}-name`} name="name" type="text" autocomplete="name" required />
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <div class="field" data-field>
+      <label for={`${id}-phone`}>{t.form.phone}</label>
+      <input id={`${id}-phone`} name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required />
+      <span class="error" aria-live="polite"></span>
+    </div>
+  </div>
+  <div class="field" data-field>
+    <label for={`${id}-email`}>{t.form.email}</label>
+    <input id={`${id}-email`} name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" required />
+    <span class="error" aria-live="polite"></span>
+  </div>
+  <fieldset class="field needs">
+    <legend>{t.form.need}</legend>
+    <div class="chips">
+      {needs.map(([k, label]) => (<label class="chip"><input type="checkbox" name="need" value={k} /><span>{label}</span></label>))}
+    </div>
+  </fieldset>
+  <div class="field" data-field>
+    <label for={`${id}-message`}>{t.form.message}</label>
+    <textarea id={`${id}-message`} name="message" rows="4"></textarea>
+    <span class="error" aria-live="polite"></span>
+  </div>
+  <div class="actions">
+    <button class="btn btn-accent submit" type="submit" data-submit><span class="dotmark" aria-hidden="true"></span><span data-submit-label>{t.form.submit}</span></button>
+    {wa ? (
+      <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">{t.cta.whatsapp}</a>
+    ) : (
+      <span class="btn btn-ghost is-tbd" title="[TBD: WhatsApp number]">{t.cta.whatsapp} <span class="tbd">TBD</span></span>
+    )}
+  </div>
+  <p class="privacy muted">{t.form.privacy} <a href={localePath(locale, '/privacy')}>{t.footer.privacy}</a></p>
+
+  <div class="status" role="status" aria-live="polite" data-status hidden>
+    <p class="status-title t-2" data-status-title></p>
+    <p class="status-text muted" data-status-text></p>
+  </div>
+  <template data-success><span data-title>{t.form.successTitle}</span><span data-text>{t.form.successText}</span></template>
+  <template data-error><span data-title>{t.form.errorTitle}</span><span data-text>{t.form.errorText}</span></template>
+</form>
+
+<style>
+  .contact-form { display: grid; gap: var(--site-space-6); position: relative; }
+  .row { display: grid; gap: var(--site-space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .hp { position: absolute; inset-inline-start: -9999px; inline-size: 1px; block-size: 1px; overflow: hidden; }
+  fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+  legend { font-weight: 600; font-size: var(--site-step--1); padding: 0; margin-block-end: var(--site-space-2); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--site-space-3); align-items: center; }
+  .is-tbd { opacity: 0.7; cursor: not-allowed; }
+  .privacy { font-size: var(--site-step--1); }
+  .status { padding-block-start: var(--site-space-4); border-block-start: 1px solid var(--idone-line); }
+  .contact-form.is-done > :not(.status) { display: none; }
+  .contact-form.is-done .status { border: 0; padding: 0; }
+  .contact-form[data-state="error"] .status-title { color: var(--site-error); }
+</style>

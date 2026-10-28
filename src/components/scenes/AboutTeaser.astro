@@ -1,0 +1,16 @@
+---
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section class="about section surface-ink" id="scene-about" data-scene="about" aria-labelledby="about-title">
+  <div class="container-narrow stack reveal">
+    <h2 id="about-title" class="t-3">{t.home.about.title}</h2>
+    <p class="lead">{t.home.about.sub}</p>
+    <p><a class="link-arrow" href={localePath(locale, '/about')}>{t.home.about.link}<span class="arrow" aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+<style>
+  .stack { --stack: var(--site-space-6); }
+</style>

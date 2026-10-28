@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import WorkCard from '@/components/WorkCard.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const items = (await getCollection('work', (e) => e.id.startsWith(`${locale}/`) && e.data.featured !== undefined))
+  .sort((a, b) => (a.data.featured ?? 99) - (b.data.featured ?? 99))
+  .slice(0, 3);
+---
+<section class="work section" id="scene-work" data-scene="work" aria-labelledby="work-title">
+  <div class="container">
+    <header class="head reveal">
+      <h2 id="work-title">{t.home.work.title}</h2>
+      <p class="lead">{t.home.work.sub}</p>
+    </header>
+    <div class="list">
+      {items.map((e, i) => (<div class="item reveal" style={`--delay:${i * 60}ms`}><WorkCard entry={e} locale={locale} large={i === 0} /></div>))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { display: grid; gap: var(--site-space-4); margin-block-end: var(--site-space-16); }
+  .list { display: grid; gap: var(--site-space-16); }
+  .item + .item { padding-block-start: var(--site-space-12); border-block-start: 1px solid var(--idone-line); }
+  @media (min-width: 900px) {
+    .list { grid-template-columns: 1fr 1fr; }
+    .item:first-child { grid-column: 1 / -1; }
+    .item + .item { border: 0; padding: 0; }
+    .item:nth-child(2), .item:nth-child(3) { padding-block-start: var(--site-space-12); border-block-start: 1px solid var(--idone-line); }
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+/**
+ * Brand-style flow diagram for automation case studies: nodes on a zigzag wire, drawn in the
+ * same language as the home page's "Connect" scene. Mirrors automatically in RTL.
+ */
+interface Props { nodes: string[]; class?: string; compact?: boolean }
+const { nodes, class: cls = '', compact = false } = Astro.props;
+const n = Math.max(2, nodes.length);
+const pad = 6;
+const pos = nodes.map((_, i) => [pad + (i * (100 - 2 * pad)) / (n - 1), i % 2 === 0 ? 30 : 12] as const);
+const path = pos.map((p, i) => (i === 0 ? `M${p[0]} ${p[1]}` : `L${p[0]} ${p[1]}`)).join(' ');
+---
+<figure class:list={['flow', cls, { compact }]} role="img" aria-label={nodes.join(' → ')}>
+  <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d={path} /></svg>
+  <ol role="list" aria-hidden="true">
+    {nodes.map((label, i) => (
+      <li style={`--x:${pos[i][0]}%; --y:${(pos[i][1] / 40) * 100}%`}><span class="pip"></span><span class="label mono"><bdi>{label}</bdi></span></li>
+    ))}
+  </ol>
+</figure>
+
+<style>
+  .flow { position: relative; aspect-ratio: 16 / 9; inline-size: 100%; margin: 0; background: var(--idone-surface-raised); border: 1px solid var(--idone-line); border-radius: var(--idone-radius-md); overflow: hidden; container-type: inline-size; }
+  svg { position: absolute; inset: 12% 0; inline-size: 100%; block-size: 76%; overflow: visible; }
+  [dir="rtl"] svg { transform: scaleX(-1); }
+  path { fill: none; stroke: var(--idone-accent); stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+  ol { position: absolute; inset: 12% 0; }
+  li { position: absolute; inset-inline-start: var(--x); inset-block-start: var(--y); translate: calc(-50% * var(--site-dir)) -50%; display: grid; justify-items: center; gap: 6px; }
+  .pip { inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--idone-accent); border: 2px solid var(--idone-surface-raised); box-shadow: 0 0 0 1.5px var(--idone-accent); }
+  li:last-child .pip { background: var(--idone-ink); box-shadow: 0 0 0 1.5px var(--idone-ink); }
+  .label { font-size: clamp(0.55rem, 2.6cqi, 0.85rem); color: var(--idone-ink); white-space: nowrap; }
+  li:nth-child(even) .label { order: -1; }
+  .compact .label { font-size: clamp(0.5rem, 2.4cqi, 0.75rem); }
+</style>

@@ -1,0 +1,29 @@
+---
+import Base from '@/layouts/Base.astro';
+import Hero from '@/components/scenes/Hero.astro';
+import Problem from '@/components/scenes/Problem.astro';
+import Build from '@/components/scenes/Build.astro';
+import Video from '@/components/scenes/Video.astro';
+import Automation from '@/components/scenes/Automation.astro';
+import Together from '@/components/scenes/Together.astro';
+import WorkFeatured from '@/components/scenes/WorkFeatured.astro';
+import Process from '@/components/scenes/Process.astro';
+import AboutTeaser from '@/components/scenes/AboutTeaser.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<Base locale={locale} title={t.home.title} description={t.home.description} path="/" bodyClass="page-home">
+  <Hero locale={locale} />
+  <Problem locale={locale} />
+  <Build locale={locale} />
+  <Video locale={locale} />
+  <Automation locale={locale} />
+  <Together locale={locale} />
+  <WorkFeatured locale={locale} />
+  <Process locale={locale} />
+  <AboutTeaser locale={locale} />
+  <CtaBlock locale={locale} />
+</Base>

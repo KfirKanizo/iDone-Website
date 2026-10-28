@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">iDone</title>
+  <rect fill="#0E1A2B" width="64" height="64"/>
+  <g transform="translate(12.8 12.8) scale(0.6)">
+    <path fill="#F4F6FA" fill-rule="evenodd" d="M10 10H32A22 22 0 0 1 32 54H10ZM22 22V42H32A10 10 0 0 0 32 22Z"/>
+    <circle fill="#7D97FF" cx="32" cy="32" r="6"/>
+  </g>
+</svg>

@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "siteName": "iDone Technologies",
+    "locale": "en",
+    "ogLocale": "en_US",
+    "langName": "English",
+    "switchLabel": "עב",
+    "switchAria": "עבור לעברית"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "motionOff": "Reduce motion",
+    "motionOn": "Enable motion",
+    "themeDark": "Switch to dark mode",
+    "themeLight": "Switch to light mode",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "logoHome": "iDone Technologies, home",
+    "introSkip": "Skip intro",
+    "playReel": "Play reel",
+    "pauseReel": "Pause reel",
+    "loading": "Loading"
+  },
+  "nav": {
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "web": "Websites & apps",
+    "video": "Video",
+    "automation": "Automation"
+  },
+  "cta": {
+    "primary": "Book a call",
+    "secondary": "See what we do",
+    "whatsapp": "Chat on WhatsApp",
+    "contact": "Get in touch",
+    "allWork": "All work",
+    "readCase": "Read the case",
+    "nextProject": "Next project"
+  },
+  "home": {
+    "title": "iDone Technologies · Web, Video & Automation Studio",
+    "description": "One studio for websites and apps, social video production and business automation. Built with an engineering mindset.",
+    "hero": {
+      "eyebrow": "Web · Video · Automation",
+      "title": "One studio. The site, the videos, and everything that connects them.",
+      "sub": "We build websites, apps and platforms, produce social video, and wire your business together with automation. Engineered, not improvised."
+    },
+    "problem": {
+      "words": ["developer", "editor", "integrator"],
+      "line1": "Usually it's three vendors who never talk.",
+      "line2": "Here, it's one table."
+    },
+    "build": {
+      "label": "01 · Build",
+      "title": "Build.",
+      "lead": "Websites, apps and platforms that hold up.",
+      "points": [
+        "Marketing sites that load fast and bring leads",
+        "Apps and platforms with an admin that makes sense",
+        "Your code, documented, ready to grow"
+      ],
+      "caption": "BoostCoach · Android fitness app we built",
+      "link": "More about development"
+    },
+    "video": {
+      "label": "02 · Film",
+      "title": "Film.",
+      "lead": "Reels, brand films and ads that earn the stop.",
+      "points": [
+        "Reels and stories at feed speed",
+        "Brand films and ads",
+        "Design, motion graphics and editing"
+      ],
+      "hint": "Scroll to browse",
+      "link": "More about video"
+    },
+    "automation": {
+      "label": "03 · Connect",
+      "title": "Connect.",
+      "lead": "A lead comes in, your systems talk, you get the message.",
+      "points": [
+        "Leads from the site straight into your CRM and WhatsApp",
+        "Chatbots that answer and log",
+        "Integrations between the systems you already run"
+      ],
+      "nodes": ["Website form", "n8n", "CRM", "WhatsApp", "Invoice", "Report"],
+      "link": "More about automation"
+    },
+    "together": {
+      "title": "One team, one loop.",
+      "sub": "The site captures, the video brings them in, the automation closes it.",
+      "tiles": ["Site", "Video", "Automation"]
+    },
+    "work": {
+      "title": "Selected work",
+      "sub": "Real projects. Where we're still collecting numbers, we say so."
+    },
+    "process": {
+      "title": "How it works",
+      "steps": [
+        { "name": "Call", "text": "We find out what's actually needed, not just what was asked for." },
+        { "name": "Plan", "text": "Clear scope, clear price, clear timeline." },
+        { "name": "Build", "text": "Short cycles, regular updates, testing before launch." },
+        { "name": "Launch & support", "text": "We measure, fix and improve. We don't disappear." }
+      ]
+    },
+    "about": {
+      "title": "Developers, editors and automation engineers who think about the process before the tool.",
+      "sub": "iDone is a studio, not a freelancer. Every project gets a team.",
+      "link": "About the studio"
+    }
+  },
+  "ctaBlock": {
+    "title": "Let's get it done.",
+    "sub": "Tell us what you need. We'll come back within one business day with a clear next step.",
+    "done": "Done."
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "need": "What do you need?",
+    "needOptions": { "web": "Website / App", "video": "Video", "automation": "Automation", "unsure": "Not sure yet" },
+    "message": "Tell us a bit",
+    "submit": "Send",
+    "sending": "Sending…",
+    "successTitle": "Got it.",
+    "successText": "We'll be in touch within one business day.",
+    "errorTitle": "Something went wrong.",
+    "errorText": "Message us on WhatsApp instead.",
+    "required": "Required",
+    "invalidEmail": "That doesn't look like an email",
+    "invalidPhone": "That doesn't look like a phone number",
+    "privacy": "We only use your details to reply to you."
+  },
+  "services": {
+    "indexTitle": "Services",
+    "included": "What's included",
+    "forWhom": "Who it's for",
+    "withRest": "How it fits with the rest",
+    "faq": "Questions we get asked",
+    "relatedWork": "Related work",
+    "tools": "Tools we work with",
+    "web": {
+      "title": "Websites & Apps · iDone Technologies",
+      "description": "Marketing websites, web apps, mobile apps and platforms built by engineers. Fast, maintainable and connected to your business systems.",
+      "h1": "Websites, apps and platforms",
+      "lead": "We build sites and systems the way you build a product: a short spec, an architecture that holds, code you can maintain. No templates that break in a month.",
+      "included": [
+        "Marketing websites and landing pages, bilingual when you need them",
+        "Web apps, admin panels and internal tools",
+        "Mobile apps (Android and iOS) built on web technology",
+        "Platforms with users, payments and permissions",
+        "Hosting, monitoring and maintenance",
+        "Performance, accessibility and SEO as part of the build, not an add-on"
+      ],
+      "forWhom": [
+        "A business that needs a site that actually brings calls, not just looks good",
+        "A service company that runs on spreadsheets and needs a real system",
+        "A founder with a product idea who wants an engineering team, not an agency"
+      ],
+      "withRest": "A site is where the lead lands. We connect its forms to your CRM and WhatsApp on day one, and the videos we produce live on it and in your ads. One team, one plan.",
+      "faq": [
+        { "q": "WordPress, Wix or custom code?", "a": "Whatever serves the goal. For most marketing sites we build custom with a static framework: faster, safer, cheaper to host. For apps and platforms it's custom code, always." },
+        { "q": "Who owns the code?", "a": "You do. You get the repository, documentation and a handover session." },
+        { "q": "How long does a site take?", "a": "A landing page, brand site or basic marketing site: a few days up to a week. Apps, complex sites and systems: it depends on the scope and complexity. We scope first, then give you a real timeline." },
+        { "q": "Do you maintain it afterwards?", "a": "Yes. Monitoring, updates and small changes, on a monthly plan or per request." }
+      ]
+    },
+    "video": {
+      "title": "Social Video Production · iDone Technologies",
+      "description": "Reels, brand films and ads for social media. Scripting, AI-assisted footage, motion graphics and editing, in Hebrew and English.",
+      "h1": "Social video that performs",
+      "lead": "Reels, brand films and ads that people watch to the end. We write, produce and edit, and we use generative tools for footage, music and voice where they make the result better, not cheaper-looking.",
+      "included": [
+        "Reels and stories for Instagram, TikTok and Facebook",
+        "Brand films and product videos",
+        "Paid ads in multiple versions for testing",
+        "Motion graphics, captions and design",
+        "AI-generated footage, music and voice-over when it serves the story",
+        "Every video delivered in Hebrew and English if you need both"
+      ],
+      "forWhom": [
+        "A business that posts regularly and needs a steady supply of reels",
+        "An agency that wants a production partner for its clients",
+        "A product launching an app or a feature"
+      ],
+      "withRest": "Because we also build the app or the site, we show the real product in the video, not a mock-up. And because we build automation, the video's traffic lands in a flow that answers within seconds.",
+      "faq": [
+        { "q": "Do you shoot on location?", "a": "We can, and we also produce with generated footage when a shoot is not needed. We tell you upfront which fits." },
+        { "q": "How fast can you turn a reel around?", "a": "Depends on the concept. A single reel from an approved script is usually days, not weeks." },
+        { "q": "Do you post for us?", "a": "We deliver the files and the post text. Posting stays with you, so your account stays yours." }
+      ]
+    },
+    "automation": {
+      "title": "Business Automation · iDone Technologies",
+      "description": "Business process automation, WhatsApp chatbots, CRM and system integrations built by software engineers with n8n, Make and custom code.",
+      "h1": "Business automation",
+      "lead": "Repetitive work that your systems should be doing for you: leads, documents, invoices, reminders, reports. We connect what you already have and write code where off-the-shelf tools stop.",
+      "included": [
+        "Lead handling: form to CRM to WhatsApp to the sales rep, in seconds",
+        "WhatsApp and web chatbots that answer, qualify and log",
+        "CRM integrations: Fireberry, HubSpot, monday and others",
+        "Documents: quotes, contracts and digital signatures from a button",
+        "Finance: payments to invoices to accounting, with checks and alerts",
+        "Reports and dashboards that update themselves"
+      ],
+      "forWhom": [
+        "Law and accounting firms that need precision in documents and billing",
+        "Agencies that need leads, CRM and client reporting in sync",
+        "Service companies with field teams, inventory and logistics",
+        "Operations managers who want a system that runs 24/7 and doesn't fall over"
+      ],
+      "withRest": "Automation is only as good as what feeds it. When we also build the site and the videos, the whole funnel is one system, with one team responsible for it.",
+      "faq": [
+        { "q": "n8n, Make or Zapier?", "a": "We work with all three and run our own n8n. We pick by cost, data sensitivity and how much custom logic you need. When a tool can't do it, we write the code." },
+        { "q": "What does it cost monthly?", "a": "Setup is a one-time project. Some flows need a subscription to an external tool, usually a small monthly fee. We tell you before we build." },
+        { "q": "What happens when something breaks?", "a": "Every flow we ship has error handling and alerts. You hear about it from us, not from your customers." }
+      ]
+    }
+  },
+  "work": {
+    "title": "Work · iDone Technologies",
+    "description": "Selected projects by iDone Technologies: apps, websites, social video and business automation.",
+    "h1": "Work",
+    "lead": "The problem, what we built, and what changed. No invented numbers.",
+    "filterAll": "All",
+    "problem": "The problem",
+    "built": "What we built",
+    "result": "The result",
+    "client": "Client",
+    "year": "Year",
+    "services": "Services",
+    "toolsUsed": "Tools",
+    "quote": "In their words"
+  },
+  "about": {
+    "title": "About · iDone Technologies",
+    "description": "iDone Technologies is a studio of developers, video editors and automation engineers. Process before tools.",
+    "h1": "A studio, not a freelancer.",
+    "lead": "iDone is a studio of developers, video editors and automation engineers. Every project gets a team, not one person doing everything. We come from software, so even a video or an automation goes through scoping, versions and testing.",
+    "values": [
+      { "name": "Process before tools", "text": "We map the flow first and pick the tool second. The tool is replaceable; the process is yours." },
+      { "name": "We say what's possible", "text": "And what isn't. A clear no early is worth more than a slow yes." },
+      { "name": "We finish", "text": "Documented, handed over, monitored. The name is a promise." }
+    ],
+    "howTitle": "How we work",
+    "how": [
+      { "name": "Discovery and architecture", "text": "We map the data flow, pick the stack and design for growth before writing a line." },
+      { "name": "Build in a sandbox", "text": "No experiments on your live systems. Everything is built and tested apart from production." },
+      { "name": "Edge cases and load", "text": "What if the internet drops? What if a hundred leads arrive at once? We test it before you find out." },
+      { "name": "Launch and hyper-care", "text": "Controlled rollout, training for your team, full documentation, and a warranty period." }
+    ],
+    "stackTitle": "The toolbox, AI included",
+    "stack": ["TypeScript / Python", "Astro / React / Next.js", "Capacitor", "PostgreSQL", "Docker / AWS", "n8n (self-hosted)", "Make", "Claude", "OpenAI", "Gemini", "Higgsfield", "Kling", "Magnific", "ElevenLabs", "Remotion", "WhatsApp Business API"],
+    "team": "The team",
+    "teamText": "We keep the studio in the background and the work in front. If you want to know who you'll be working with, ask us on the call.",
+    "languages": "We work in Hebrew and English."
+  },
+  "contact": {
+    "title": "Contact · iDone Technologies",
+    "description": "Book a consultation with iDone Technologies: websites, apps, social video and business automation.",
+    "h1": "Let's talk.",
+    "lead": "Leave your details or write to us on WhatsApp. A real person answers, within one business day.",
+    "direct": "Or directly",
+    "email": "Email",
+    "phone": "Phone",
+    "social": "Social"
+  },
+  "legal": {
+    "accessibilityTitle": "Accessibility statement · iDone Technologies",
+    "accessibilityH1": "Accessibility statement",
+    "accessibility": [
+      "We want everyone to be able to use this site. It was built to meet WCAG 2.2 level AA: semantic HTML, full keyboard navigation, visible focus, sufficient contrast, text alternatives, and a control to reduce motion. Animations respect the system's reduced-motion setting.",
+      "If you run into anything that doesn't work for you, tell us and we will fix it: support@idone.co.il or +972-52-888-8182.",
+      "Accessibility coordinator: [TBD: name]. Last reviewed: [TBD: date]."
+    ],
+    "privacyTitle": "Privacy policy · iDone Technologies",
+    "privacyH1": "Privacy policy",
+    "privacy": [
+      "This site collects personal details only when you send them through the contact form or WhatsApp: name, email, phone and your message. We use them to reply to you and for nothing else.",
+      "Form submissions are sent to our own automation server (n8n) and stored in our CRM. We do not sell or share them.",
+      "The site stores your language, theme and motion preferences in your browser only. We use no advertising trackers. [TBD: analytics tool, if any].",
+      "To view, change or delete your details, write to support@idone.co.il."
+    ]
+  },
+  "notFound": {
+    "title": "Page not found · iDone Technologies",
+    "h1": "That page isn't here.",
+    "text": "The link may be old, or the page moved. The dot is still looking.",
+    "home": "Back to the start"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "accessibility": "Accessibility",
+    "privacy": "Privacy",
+    "madeBy": "Designed and built by iDone Technologies."
+  }
+}

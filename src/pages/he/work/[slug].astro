@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import WorkEntryPage from '@/components/pages/WorkEntryPage.astro';
+export async function getStaticPaths() {
+  const all = (await getCollection('work', (e) => e.id.startsWith('he/')))
+    .sort((a, b) => (a.data.featured ?? 99) - (b.data.featured ?? 99) || b.data.year.localeCompare(a.data.year));
+  return all.map((entry, i) => ({ params: { slug: entry.id.split('/').slice(1).join('/') }, props: { entry, next: all[(i + 1) % all.length] } }));
+}
+const { entry, next } = Astro.props;
+---
+<WorkEntryPage locale="he" entry={entry} next={next} />

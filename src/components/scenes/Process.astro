@@ -1,0 +1,36 @@
+---
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const steps = t.home.process.steps;
+---
+<section class="process section surface-mist" id="scene-process" data-scene="process" aria-labelledby="process-title">
+  <div class="container">
+    <h2 id="process-title" class="reveal">{t.home.process.title}</h2>
+    <ol class="steps" role="list" data-steps>
+      <span class="rail" aria-hidden="true"></span>
+      <span class="dot-slot walker" data-dot-slot="process" data-dot-handoff aria-hidden="true"><i class="dot-local"></i></span>
+      {steps.map((s, i) => (
+        <li class="step reveal" data-step={i} style={`--delay:${i * 80}ms`}>
+          <span class="num mono">0{i + 1}</span>
+          <h3 class="t-2">{s.name}</h3>
+          <p class="muted">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  h2 { margin-block-end: var(--site-space-16); }
+  .steps { position: relative; display: grid; gap: var(--site-space-8); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); padding-block-start: var(--site-space-8); }
+  .rail { position: absolute; inset-inline: 0; inset-block-start: 0; block-size: 1px; background: var(--idone-line); }
+  .walker { position: absolute; inset-block-start: 0; inset-inline-start: 0; translate: calc(-50% * var(--site-dir)) -50%; inline-size: 16px; block-size: 16px; }
+  .dot-local { display: block; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--idone-accent); opacity: 0; }
+  :global(html.dot-hidden) .walker { display: none; }
+  .step { display: grid; gap: var(--site-space-3); align-content: start; position: relative; }
+  .step::before { content: ""; position: absolute; inset-block-start: calc(-1 * var(--site-space-8)); inset-inline-start: 0; inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--idone-line); translate: 0 -50%; transition: background var(--idone-dur-base) var(--idone-ease-out); }
+  .step.is-on::before, :global(html.dot-hidden) .step::before { background: var(--idone-ink); }
+  .num { color: var(--idone-muted); font-size: var(--site-step--1); }
+</style>

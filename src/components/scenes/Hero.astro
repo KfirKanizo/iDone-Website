@@ -1,0 +1,54 @@
+---
+import Logo from '@/components/Logo.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section class="hero" id="scene-hero" data-scene="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-logo-wrap" data-hero-logo-wrap>
+      <!-- The brand intro. Plays once per visit (see scripts/motion/hero.ts); otherwise static. -->
+      <Logo layout="horizontal" animation="intro" trigger="manual" id="hero-logo" class="hero-logo" animatedFallback />
+      <button type="button" class="skip-intro" data-skip-intro hidden>{t.a11y.introSkip}</button>
+    </div>
+    <div class="hero-copy" data-hero-copy>
+      <p class="eyebrow">{t.home.hero.eyebrow}</p>
+      <h1 id="hero-title" class="hero-title">
+        <span class="dot-slot hero-dot" data-dot-slot="hero" data-dot-scale="1.4" aria-hidden="true"></span>
+        {t.home.hero.title}
+      </h1>
+      <p class="lead">{t.home.hero.sub}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={localePath(locale, '/contact')}><span class="dotmark" aria-hidden="true"></span>{t.cta.primary}</a>
+        <a class="btn btn-ghost" href="#scene-build">{t.cta.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { min-block-size: calc(100svh - var(--site-header-h)); display: grid; align-content: center; padding-block: var(--site-space-8) var(--site-space-16); position: relative; }
+  @media (max-height: 820px), (max-width: 900px) { .hero { align-content: start; padding-block-start: var(--site-space-6); } }
+  .hero-grid { display: grid; gap: clamp(32px, 6vh, 64px); }
+  .hero-logo-wrap { position: relative; direction: ltr; inline-size: min(100%, 440px); }
+  .hero-logo { inline-size: 100%; }
+  .skip-intro { position: absolute; inset-block-start: 100%; inset-inline-start: 0; margin-block-start: 12px; background: none; border: 0; color: var(--idone-muted); font-family: var(--idone-font-mono); font-size: var(--site-step--1); padding: 4px 0; }
+  .skip-intro:hover { color: var(--idone-ink); text-decoration: underline; }
+  .hero-copy { display: grid; gap: var(--site-space-6); max-inline-size: 980px; }
+  .hero-title { position: relative; padding-inline-start: 0.5em; }
+  .hero-dot { position: absolute; inset-inline-start: 0; inset-block-start: 0.42em; inline-size: 0.22em; block-size: 0.22em; }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--site-space-3); }
+
+  /* The copy is never hidden behind the intro (content first, LCP first). While the intro runs it sits
+     slightly dimmed; when the dot lands it comes to full strength with a small lift. */
+  :global(html.js.intro-running) .hero-copy > * { opacity: 0.55; translate: 0 10px; }
+  .hero-copy > * { transition: opacity var(--site-dur-scene) var(--site-ease-reveal), translate var(--site-dur-scene) var(--site-ease-reveal); }
+  .hero-copy > *:nth-child(2) { transition-delay: calc(var(--site-stagger) * 1); }
+  .hero-copy > *:nth-child(3) { transition-delay: calc(var(--site-stagger) * 2); }
+  .hero-copy > *:nth-child(4) { transition-delay: calc(var(--site-stagger) * 3); }
+
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

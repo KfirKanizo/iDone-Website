@@ -1,0 +1,66 @@
+---
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const nodes = t.home.automation.nodes;
+/* node positions in a 100 x 40 coordinate space (x grows in reading direction) */
+const pos = [[4, 30], [22, 10], [42, 30], [60, 10], [78, 30], [96, 14]];
+const path = pos.map((p, i) => (i === 0 ? `M${p[0]} ${p[1]}` : `L${p[0]} ${p[1]}`)).join(' ');
+---
+<section class="automation surface-ink" id="scene-automation" data-scene="automation" aria-labelledby="automation-title">
+  <div class="pin" data-pin>
+    <div class="container layout">
+      <div class="copy">
+        <p class="eyebrow">{t.home.automation.label}</p>
+        <h2 id="automation-title"><span class="accent-word">{t.home.automation.title}</span> {t.home.automation.lead}</h2>
+        <ul role="list" class="points list-lines">
+          {t.home.automation.points.map((p) => (<li>{p}</li>))}
+        </ul>
+        <a class="link-arrow" href={localePath(locale, '/services/automation')}>{t.home.automation.link}<span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="flow" data-flow>
+        <svg class="wire" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path class="base" d={path} />
+          <path class="lit" d={path} data-flow-path />
+        </svg>
+        <ol class="nodes" role="list">
+          {nodes.map((n, i) => (
+            <li class="node" data-node={i} style={`--x:${pos[i][0]}%; --y:${pos[i][1] / 40 * 100}%`}>
+              <span class="pip"></span>
+              <span class="label mono">{n}</span>
+            </li>
+          ))}
+        </ol>
+        <span class="dot-slot runner" data-dot-slot="automation" data-dot-handoff aria-hidden="true" style="--x:4%; --y:75%"><i class="dot-local"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pin { min-block-size: 100svh; display: grid; align-items: center; padding-block: var(--site-space-16); }
+  .layout { display: grid; gap: var(--site-space-12); align-items: center; }
+  .copy { display: grid; gap: var(--site-space-6); }
+  .accent-word { color: var(--idone-accent); }
+  .points { max-inline-size: 48ch; }
+  .flow { position: relative; block-size: clamp(220px, 34vw, 360px); }
+  .wire { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; overflow: visible; }
+  [dir="rtl"] .wire { transform: scaleX(-1); }
+  .wire path { fill: none; stroke-width: 1.2; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
+  .wire .base { stroke: var(--idone-ink-500); stroke-dasharray: 3 4; }
+  .wire .lit { stroke: var(--idone-accent); stroke-width: 2; }
+  :global(html.js) .wire .lit { stroke-dasharray: 1; stroke-dashoffset: 1; pathLength: 1; }
+  :global(html.dot-hidden) .wire .lit, :global(html:not(.js)) .wire .lit { stroke-dashoffset: 0 !important; }
+  .nodes { position: absolute; inset: 0; }
+  .node { position: absolute; inset-inline-start: var(--x); inset-block-start: var(--y); translate: calc(-50% * var(--site-dir)) -50%; display: grid; justify-items: center; gap: 10px; }
+  .pip { inline-size: 14px; block-size: 14px; border-radius: 50%; border: 1.5px solid var(--idone-ink-300); background: var(--idone-surface); transition: background-color var(--idone-dur-fast) var(--idone-ease-out), border-color var(--idone-dur-fast) var(--idone-ease-out), scale var(--idone-dur-base) var(--idone-ease-back); }
+  .label { font-size: clamp(0.7rem, 1.1vw, 0.85rem); color: var(--idone-muted); white-space: nowrap; transition: color var(--idone-dur-fast) var(--idone-ease-out); }
+  .node.is-on .pip, :global(html.dot-hidden) .pip, :global(html:not(.js)) .pip { background: var(--idone-accent); border-color: var(--idone-accent); scale: 1.25; }
+  .node.is-on .label, :global(html.dot-hidden) .label, :global(html:not(.js)) .label { color: var(--idone-ink); }
+  .runner { position: absolute; inset-inline-start: var(--x); inset-block-start: var(--y); translate: calc(-50% * var(--site-dir)) -50%; inline-size: 18px; block-size: 18px; }
+  .dot-local { display: block; inline-size: 100%; block-size: 100%; border-radius: 50%; background: var(--idone-accent); opacity: 0; }
+  :global(html.dot-hidden) .runner { display: none; }
+  @media (min-width: 900px) { .layout { grid-template-columns: 0.9fr 1.1fr; } }
+  @media (max-width: 640px) { .label { font-size: 0.62rem; } .node:nth-child(even) .label { order: -1; } }
+</style>

@@ -1,0 +1,22 @@
+---
+import Base from '@/layouts/Base.astro';
+import Logo from '@/components/Logo.astro';
+import { localePath, type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<Base locale={locale} title={t.notFound.title} description={t.notFound.text} path="/404" noindex>
+  <section class="section">
+    <div class="container-narrow stack">
+      <div class="loader"><Logo layout="mark" animation="loop" class="mark" /></div>
+      <h1 class="t-4">{t.notFound.h1}</h1>
+      <p class="lead">{t.notFound.text}</p>
+      <p><a class="btn btn-primary" href={localePath(locale, '/')}>{t.notFound.home}</a></p>
+    </div>
+  </section>
+</Base>
+<style>
+  .stack { --stack: var(--site-space-6); }
+  .loader { inline-size: 72px; direction: ltr; }
+</style>

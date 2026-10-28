@@ -1,0 +1,19 @@
+---
+import Base from '@/layouts/Base.astro';
+import { type Locale, useTranslations } from '@/i18n';
+interface Props { locale: Locale; kind: 'accessibility' | 'privacy' }
+const { locale, kind } = Astro.props;
+const t = useTranslations(locale);
+const title = kind === 'accessibility' ? t.legal.accessibilityTitle : t.legal.privacyTitle;
+const h1 = kind === 'accessibility' ? t.legal.accessibilityH1 : t.legal.privacyH1;
+const paras = kind === 'accessibility' ? t.legal.accessibility : t.legal.privacy;
+const mark = (s: string) => s.split(/(\[[^\]]*TBD[^\]]*\])/g).map((part) => (/TBD/.test(part) ? `<span class="tbd">${part}</span>` : part)).join('');
+---
+<Base locale={locale} title={title} description={paras[0]} path={`/${kind}`} noindex={false}>
+  <section class="section">
+    <div class="container-narrow prose">
+      <h1 class="t-4">{h1}</h1>
+      {paras.map((p) => (<p set:html={mark(p)} />))}
+    </div>
+  </section>
+</Base>

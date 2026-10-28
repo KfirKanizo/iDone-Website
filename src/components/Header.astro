@@ -1,0 +1,112 @@
+---
+import Logo from './Logo.astro';
+import { localePath, otherLocale, type Locale, useTranslations } from '@/i18n';
+
+interface Props { locale: Locale; path: string; }
+const { locale, path } = Astro.props;
+const t = useTranslations(locale);
+const other = otherLocale(locale);
+const home = localePath(locale, '/');
+const alt = localePath(other, path);
+const nav = [
+  { href: localePath(locale, '/about'), label: t.nav.about },
+  { href: localePath(locale, '/contact'), label: t.nav.contact },
+];
+const services = [
+  { href: localePath(locale, '/services/web'), label: t.nav.web },
+  { href: localePath(locale, '/services/video'), label: t.nav.video },
+  { href: localePath(locale, '/services/automation'), label: t.nav.automation },
+];
+const current = (href: string) => (Astro.url.pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ? 'page' : undefined);
+---
+<header class="site-header" id="site-header">
+  <div class="container bar">
+    <a href={home} class="brand" aria-label={t.a11y.logoHome} data-header-logo>
+      <Logo layout="horizontal" animation="none" class="brand-logo" />
+    </a>
+
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <span class="visually-hidden" data-label-open>{t.a11y.menuOpen}</span>
+      <span class="visually-hidden" data-label-close hidden>{t.a11y.menuClose}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path class="l1" d="M4 7h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 17h16"/></svg>
+    </button>
+
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <ul role="list" class="nav-list">
+        <li class="has-menu">
+          <details class="menu" data-services-menu>
+            <summary>{t.nav.services}<svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>
+            <ul role="list" class="submenu">
+              {services.map((s) => (<li><a href={s.href} aria-current={current(s.href)}>{s.label}</a></li>))}
+            </ul>
+          </details>
+        </li>
+        {nav.map((n) => (<li><a href={n.href} aria-current={current(n.href)}>{n.label}</a></li>))}
+      </ul>
+      <div class="tools">
+        <a class="lang" href={alt} hreflang={other} lang={other} aria-label={t.meta.switchAria} data-lang-switch data-astro-reload>{t.meta.switchLabel}</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label={t.a11y.themeDark} data-label-dark={t.a11y.themeDark} data-label-light={t.a11y.themeLight}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle class="sun" cx="12" cy="12" r="4"/><path class="sun" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/><path class="moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        </button>
+        <button class="icon-btn" type="button" data-motion-toggle aria-pressed="false" aria-label={t.a11y.motionOff} data-label-off={t.a11y.motionOff} data-label-on={t.a11y.motionOn}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12c3-5 6-5 9 0s6 5 9 0"/><path class="off" d="M4 4l16 16"/></svg>
+        </button>
+        <a class="btn btn-primary cta" href={localePath(locale, '/contact')}><span class="dotmark" aria-hidden="true"></span>{t.cta.primary}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { position: sticky; inset-block-start: 0; z-index: 50; border-block-end: 1px solid transparent; transition: border-color var(--idone-dur-base) var(--idone-ease-out), opacity var(--idone-dur-slow) var(--idone-ease-out); }
+  :global(html.intro-running) .site-header { opacity: 0; pointer-events: none; }
+  .site-header::before { content: ""; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--idone-surface) 86%, transparent); backdrop-filter: blur(12px); }
+  .site-header.scrolled { border-color: var(--idone-line); }
+  .bar { position: relative; }
+  .bar { display: flex; align-items: center; gap: var(--site-space-6); min-block-size: var(--site-header-h); }
+  .brand { display: block; direction: ltr; flex: none; inline-size: calc(36px * 182.92 / 64); }
+  .nav { display: flex; align-items: center; gap: var(--site-space-8); margin-inline-start: auto; }
+  .nav-list { display: flex; align-items: center; gap: var(--site-space-6); }
+  .nav a { text-decoration: none; font-weight: 500; padding-block: 6px; position: relative; }
+  .nav a[aria-current="page"]::after, .nav a:hover::after { content: ""; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 2px; background: var(--idone-accent); border-radius: 2px; }
+  .tools { display: flex; align-items: center; gap: var(--site-space-3); }
+  .lang { font-family: var(--idone-font-mono); font-weight: 500; text-decoration: none; padding: 6px 10px; border-radius: var(--idone-radius-pill); border: 1px solid var(--idone-line); }
+  .lang:hover { border-color: var(--idone-ink); }
+  .cta { min-block-size: 40px; padding-inline: var(--site-space-4); }
+  .menu-btn { display: none; margin-inline-start: auto; }
+
+  details.menu { position: relative; }
+  details.menu summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-weight: 500; padding-block: 6px; }
+  details.menu summary::-webkit-details-marker { display: none; }
+  details.menu[open] .chev { rotate: 180deg; }
+  .chev { inline-size: 14px; transition: rotate var(--idone-dur-fast) var(--idone-ease-out); }
+  .submenu { position: absolute; inset-block-start: calc(100% + 10px); inset-inline-start: -12px; min-inline-size: 220px; padding: 8px; background: var(--idone-surface-raised); border: 1px solid var(--idone-line); border-radius: var(--idone-radius-md); display: grid; }
+  .submenu a { display: block; padding: 10px 12px; border-radius: var(--idone-radius-sm); }
+  .submenu a:hover { background: var(--idone-surface); }
+  .submenu a::after { display: none; }
+
+  /* theme icon states */
+  .moon { display: none; }
+  :global(html[data-theme="dark"]) .sun { display: none; }
+  :global(html[data-theme="dark"]) .moon { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme="light"])) .sun { display: none; }
+    :global(html:not([data-theme="light"])) .moon { display: block; }
+  }
+  .off { display: none; }
+  [data-motion-toggle][aria-pressed="true"] .off { display: block; }
+
+  @media (max-width: 900px) {
+    .menu-btn { display: inline-grid; }
+    .nav { position: fixed; inset: var(--site-header-h) 0 0 0; z-index: 49; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: var(--site-space-8); padding: var(--site-space-8) var(--site-gutter); background: var(--idone-surface); overflow: auto; translate: 0 -8px; opacity: 0; visibility: hidden; transition: opacity var(--idone-dur-base) var(--idone-ease-out), translate var(--idone-dur-base) var(--idone-ease-out), visibility 0s linear var(--idone-dur-base); }
+    .site-header[data-open] .nav { opacity: 1; translate: none; visibility: visible; transition-delay: 0s; }
+    :global(html:not(.js)) .nav { position: static; opacity: 1; visibility: visible; translate: none; flex-direction: row; flex-wrap: wrap; padding: 0 0 var(--site-space-4); }
+    .nav-list { flex-direction: column; align-items: stretch; gap: 0; }
+    .nav-list > li > a, details.menu summary { display: block; font-size: var(--site-step-2); font-family: var(--site-font-display); padding-block: 14px; border-block-end: 1px solid var(--idone-line); }
+    .nav a[aria-current="page"]::after, .nav a:hover::after { display: none; }
+    .submenu { position: static; border: 0; background: transparent; padding: 0 0 8px var(--site-space-4); min-inline-size: 0; }
+    .submenu a { font-size: var(--site-step-1); }
+    .tools { flex-wrap: wrap; }
+    .cta { inline-size: 100%; }
+  }
+</style>
