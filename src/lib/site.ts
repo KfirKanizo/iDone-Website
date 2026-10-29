@@ -4,6 +4,8 @@ export const SITE = {
   url: 'https://www.idone.co.il',
   /** Contact form webhook (n8n). */
   formEndpoint: 'https://n8n.idone.co.il/webhook/website-form',
+  /** Assessment questionnaire webhook (n8n, workflow "Assessment Submitted"). */
+  assessmentEndpoint: 'https://n8n.idone.co.il/webhook/assessment',
   email: 'support@idone.co.il',
   phone: '052-8888182',
   /** International format without "+" or spaces, e.g. 9725XXXXXXXX. Empty = button links to the contact page. */

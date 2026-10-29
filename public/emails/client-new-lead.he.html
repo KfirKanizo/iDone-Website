@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>קיבלנו את הפנייה שלך · iDone Technologies</title>
+<!--
+  אישור פנייה ללקוח (עברית). נשלח מ-n8n, Workflow "New Lead".
+  משתנים: {{name}} {{services}} {{message}} {{assessmentUrl}} {{whatsappUrl}} {{unsubscribeUrl}} {{privacyUrl}} {{siteUrl}} {{date}} {{year}}
+  מייל שירותי (אישור לפנייה שהלקוח יזם). לא להוסיף כאן מבצעים או תוכן שיווקי: אז הוא הופך ל"דבר פרסומת" לפי סעיף 30א לחוק התקשורת.
+-->
+<style>
+  @media (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .btn a { display: block !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F4F6FA;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#F4F6FA;">קיבלנו את הפנייה שלך. נחזור אליכם תוך יום עסקים.&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F6FA;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+      <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#FFFFFF;border:1px solid #DCE1EA;border-radius:6px;">
+        <tr>
+          <td class="px" dir="rtl" style="padding:32px 40px 8px;text-align:right;">
+            <a href="{{siteUrl}}" target="_blank" style="text-decoration:none;">
+              <img src="https://www.idone.co.il/brand/png/idone-logo-horizontal@2x.png" width="160" height="56" alt="iDone Technologies" style="display:block;width:160px;height:auto;border:0;">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" dir="rtl" style="padding:24px 40px 0;text-align:right;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;color:#0E1A2B;">
+            <h1 style="margin:0 0 16px;font-size:26px;line-height:1.3;font-weight:700;">היי {{name}}, קיבלנו.</h1>
+            <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#24324A;">תודה שפניתם ל-iDone Technologies. הפנייה שלכם הגיעה אלינו, ונחזור אליכם תוך יום עסקים.</p>
+            <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#24324A;">כדי שנגיע לשיחה מוכנים, אפשר כבר עכשיו למלא טופס אפיון קצר. זה לוקח כמה דקות וחוסך לנו ולכם זמן בשיחה.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="px btn" dir="rtl" style="padding:0 40px 8px;text-align:right;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right">
+              <tr>
+                <td style="background:#2F5BFF;border-radius:6px;">
+                  <a href="{{assessmentUrl}}" target="_blank" style="display:inline-block;padding:14px 28px;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;font-size:16px;font-weight:600;color:#FFFFFF;text-decoration:none;">למילוי טופס האפיון</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" dir="rtl" style="padding:8px 40px 28px;text-align:right;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;font-size:15px;line-height:1.7;color:#4A5870;">
+            רוצים לדבר כבר עכשיו? <a href="{{whatsappUrl}}" target="_blank" style="color:#2F5BFF;font-weight:600;">כתבו לנו בוואטסאפ</a>, או פשוט השיבו למייל הזה.
+          </td>
+        </tr>
+        <tr>
+          <td class="px" dir="rtl" style="padding:0 40px 32px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F6FA;border-radius:6px;">
+              <tr>
+                <td dir="rtl" style="padding:20px 24px;text-align:right;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;color:#0E1A2B;">
+                  <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#4A5870;">מה שלחתם לנו</p>
+                  <p style="margin:0 0 6px;font-size:15px;line-height:1.6;"><strong>מה צריך:</strong> {{services}}</p>
+                  <p style="margin:0;font-size:15px;line-height:1.6;white-space:pre-line;"><strong>ההודעה:</strong> {{message}}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" dir="rtl" style="padding:0 40px 32px;text-align:right;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;font-size:15px;line-height:1.6;color:#0E1A2B;">
+            נשתמע בקרוב,<br><strong>הצוות של iDone Technologies</strong>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" dir="rtl" style="padding:20px 40px 28px;border-top:1px solid #DCE1EA;text-align:right;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif;font-size:12px;line-height:1.7;color:#4A5870;">
+            <p style="margin:0 0 8px;">קיבלתם את המייל הזה כי השארתם פרטים בטופס יצירת הקשר באתר <a href="{{siteUrl}}" target="_blank" style="color:#4A5870;">idone.co.il</a> בתאריך {{date}}. זהו אישור לפנייה שלכם ואינו דבר פרסומת. לא השארתם פרטים? אפשר להתעלם מהמייל, או לכתוב לנו ונמחק אותם.</p>
+            <p style="margin:0 0 8px;"><strong style="color:#0E1A2B;">iDone Technologies</strong> · <a href="mailto:support@idone.co.il" style="color:#4A5870;"><span dir="ltr">support@idone.co.il</span></a> · <a href="tel:+972528888182" style="color:#4A5870;"><span dir="ltr">052-8888182</span></a></p>
+            <p style="margin:0;"><a href="{{privacyUrl}}" target="_blank" style="color:#4A5870;">מדיניות פרטיות</a> · <a href="{{unsubscribeUrl}}" target="_blank" style="color:#4A5870;">הסרה מרשימת התפוצה</a></p>
+          </td>
+        </tr>
+      </table>
+      <p style="margin:16px 0 0;font-family:Arial,sans-serif;font-size:11px;color:#A3ADBD;">© {{year}} iDone Technologies</p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
