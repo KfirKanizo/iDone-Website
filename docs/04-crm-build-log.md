@@ -309,3 +309,111 @@
 **לא נבדק:** כתיבה ומחיקה ב-Data Tables של יומן ההודעות והנתונים הגולמיים. ב-MCP אין כלי למחיקת שורות, ולכן לא נכתבה בהן שורת בדיקה שאי אפשר יהיה לנקות. זה ייבדק דרך Workflow בשלב 2.
 
 **הערה:** שדות הזמן של המערכת (נוצר ב, עודכן ב, שלב עודכן ב) מוצגים בפורמט מקומי של 12 שעות. ה-MCP לא מאפשר לשנות את הפורמט שלהם. אפשר לשנות אותו בממשק, וזה משפיע רק על התצוגה.
+
+---
+
+## שלב 2 · תתי-Workflows (29.10.2026) · הושלם
+
+### החלטות שהתקבלו בשלב
+- **גישה ל-Airtable:** דרך צומת Airtable של n8n, לבחירתך. בבדיקה התברר שהצומת מקבל מזהי שדות (`fld…`) בכתיבה ובנוסחאות סינון, ולכן כל הכתיבה והסינון הם לפי מזהים. הקריאה חוזרת לפי שמות השדות, כי כך הצומת מחזיר. לכן **שינוי שם של שדה שנקרא באחד מצמתי ה-Code ישבור את הקריאה** (הכתיבה לא תיפגע).
+- **ניסיונות חוזרים:** 3 ניסיונות, 5 שניות ביניהם, על כל קריאה ל-Airtable, Gmail, GreenAPI ולטעינת התבניות מהאתר.
+- **טוקן וגיבוב:** `require('crypto')` חסום ב-Code node (`Module 'crypto' is disallowed`), וגם `globalThis.crypto` לא קיים. במקומם: UUID מצומת Crypto גרסה 1 (`generate` / `uuid`), ו-SHA-256 מהפונקציה `.hash('sha256')` בביטוי. לא נדרש שינוי בהגדרות השרת.
+- **הפעלה:** חמשת תתי-ה-Workflows הופעלו (Publish), באישורך. אין להם Webhook, וקוראים להם רק Workflows של אותו בעלים. ה-Harness לא מופעל.
+- **תיקייה:** `iDone CRM` (`vFd81k0WPTp3nX5C`), בתוך `iDone - Automations`.
+
+### Workflows
+
+| שם | מזהה | מצב |
+|---|---|---|
+| CRM · SUB-01 Find or Create Contact | `t8Q5IEpd5CmMRxEl` | מופעל |
+| CRM · SUB-02 Record Consent | `Bn3sKfP4HCwQnpVx` | מופעל |
+| CRM · SUB-03 Send Message | `xFAiltqLJKEe73D9` | מופעל |
+| CRM · SUB-04 Notify Team | `iCp0uo17HFOy2VP7` | מופעל |
+| CRM · SUB-05 Token & Links | `MKJBFJlpFHCkaqRb` | מופעל |
+| CRM · Test Harness (stage 2) | `o7DitKdIIyz4wvx5` | לא מופעל. רץ רק במצב בדיקה, `POST /webhook-test/crm-test-harness-7f3a` עם `{ sub, input }` |
+| CRM · probe (temporary) | `Ee9HgGsQpUpSKt7Z` | בארכיון (בדיקת יכולות, אפשר למחוק) |
+
+בכולם: Error Workflow = `tD6fj0TGkLPMbn4U`, אזור זמן `Asia/Jerusalem`, `callerPolicy = workflowsFromSameOwner`.
+
+**קלט ופלט:**
+- **SUB-01:**
+  - **קלט:** `name, email, phone, locale, source, refToken`.
+  - **פלט:** `contactId, contactToken, isNew, firstName, name, locale, emailStatus, whatsappStatus, fullBlock, duplicateSuspect`.
+  - **קריאות ל-Airtable:** חיפוש אחד (מייל, טלפון בינלאומי וטוקן הממליץ באותה נוסחה), ועוד כתיבה אחת לכל היותר.
+  - **`source`:** אחד מערכי "מקור ראשון". ערך לא מוכר נשמר כ"אחר".
+- **SUB-02:**
+  - **קלט:** `contactId, channel (מייל|וואטסאפ), action (הסכמה|הסרה|בקשה להפסיק כל פנייה), source, wording, wordingVersion, page, ip, userAgent, performedBy`.
+  - **פלט:** `contactId, consentId, emailStatus, whatsappStatus, fullBlock`.
+  - **הגיבוב:** SHA-256 של המייל באותיות קטנות, או של הטלפון הבינלאומי לערוץ וואטסאפ.
+- **SUB-03:**
+  - **קלט:** `contactId, templateKey, channels (email|whatsapp|both), vars (אובייקט), dealId, projectId, dedupeKey`.
+  - **פלט:** `email{status,reason}, whatsapp{status,reason}, sentCount, allFailed`.
+  - **משתנים שנוספים אוטומטית:** `firstName, name, prefsUrl, unsubscribeUrl (= prefsUrl), siteUrl, privacyUrl, whatsappUrl, date, year`.
+  - **סדר הבדיקות:**
+    1. תבנית לא פעילה.
+    2. ערוץ שאין לו נוסח בתבנית.
+    3. חסימה מלאה, באיש הקשר או לפי גיבוב.
+    4. שיווקי בוואטסאפ.
+    5. שיווקי בלי "הסכים", או "הוסר" לפי גיבוב.
+    6. `dedupeKey` שכבר נשלח באותו ערוץ.
+    7. אין נמען.
+  - **מתי רצה בדיקת הגיבוב:** רק כשלאיש הקשר אין שורות הסכמה.
+- **SUB-04:**
+  - **קלט:** `title, lines, recordUrl, urgency (רגיל|דחוף), templateKey, vars`.
+  - **איך ההודעה נבנית:** עם `templateKey` (למשל `team.newLead`), ההודעה נבנית מהתבנית. בלעדיו היא נבנית מהתבנית המשותפת `team-notify.he.html`.
+  - **מאיפה הטלפון והמייל:** מ-`crm_settings`.
+  - **`vars.replyTo`:** כתובת התשובה למייל.
+- **SUB-05:**
+  - **קלט:** `op (create|verify), entity (contact|deal), token`.
+  - **פלט:** `{found, token}` או `{found, entity, recordId, record}`.
+  - **טוקן לא תקין או לא קיים:** מחזיר `found:false` בלי פרטים.
+
+### Airtable · תבניות הודעות
+
+| מפתח | מזהה רשומה | פעילה | הערה |
+|---|---|---|---|
+| `lead.confirm` (M01) | `recFBGovPbCeq8EjX` | כן | הנוסחים שחיים היום ב-New Lead, בלי שינוי. המשתנים בפורמט `[[…]]` |
+| `team.newLead` (M02) | `rec89ulgnYOZEa9sR` | כן | הנוסח הנוכחי לצוות, בלי שינוי |
+| `prefs.confirm` (M33) | `rechooaROKTbhh57y` | **לא** | נוסח חדש, מחכה לאישור שלך ולמיזוג קבצי המייל באתר |
+
+### n8n · Data Tables
+- `crm_settings`: נוספה השורה `email_templates_base` = `https://www.idone.co.il/emails/`.
+
+### באתר (בראנץ' `crm/stage-2-email-templates`)
+- `public/emails/prefs-confirm.he.html`, `public/emails/prefs-confirm.en.html` (M33).
+- `public/emails/team-notify.he.html` (התבנית המשותפת להתראות לצוות).
+- עד המיזוג, SUB-03 עם `prefs.confirm` ו-SUB-04 בלי `templateKey` נכשלים במייל (הקובץ מחזיר 404). הכשל נרשם כ"נכשל", והוואטסאפ ממשיך לצאת.
+
+### מה נבדק
+כל הבדיקות רצו דרך ה-Harness, במצב בדיקה, עם `kfir.kanizo@gmail.com`, `kfir.kanizo+b@gmail.com` (בדיקת חסימה, לא נשלח אליו כלום) והטלפון 052-8888182.
+
+| בדיקה | תוצאה |
+|---|---|
+| SUB-01: איש קשר חדש. מייל עם אותיות גדולות ורווח נשמר כ-`kfir.kanizo@gmail.com`, הטלפון נשמר כ-`972528888182`, עם טוקן ו"אין הסכמה" בשני הערוצים | עובר |
+| SUB-01: אותו מייל עם שם ושפה אחרים. נמצא אותו איש קשר, והשם והשפה לא נדרסו | עובר |
+| SUB-01: `refToken` של איש קשר קיים. "הופנה על ידי" ו"הפנה את" מקושרים | עובר |
+| SUB-01: מייל של אחד וטלפון של אחר. נבחר לפי המייל, `duplicateSuspect: true`, ונפתחה משימה "לבדוק כפילות" עם שני הלינקים | עובר |
+| SUB-05: טוקן קיים (גם באותיות גדולות) נמצא. טוקן לא קיים, ומחרוזת עם `'` (ניסיון הזרקה), מחזירים `found:false`. `create` מחזיר UUID | עובר |
+| SUB-03: `lead.confirm` בשני הערוצים. מייל ווואטסאפ אמיתיים יצאו לכפיר, הלינק בוואטסאפ קוצר ל-`idone.short.gy`, נכתבו 2 שורות ב-`crm_message_log`, ו"הודעה אחרונה" עודכנה | עובר |
+| SUB-03: escape ל-HTML. `<b>` בהודעה הוצג כטקסט | עובר |
+| SUB-03: אותו `dedupeKey` שוב. שני הערוצים "דולג" | עובר |
+| SUB-02: הסכמה במייל. שורה עם גיבוב (זהה ל-SHA-256 שחושב מקומית), ומצב "הסכים" | עובר |
+| SUB-03: תבנית שיווקית (זמנית) למי שהסכים. המייל נשלח, הוואטסאפ "נחסם: שיווקי בוואטסאפ חסום תמיד" | עובר |
+| SUB-02 + SUB-03: אחרי הסרה, המייל השיווקי "נחסם: שיווקי בלי הסכמה (הוסר)" | עובר |
+| SUB-02 + SUB-03: "בקשה להפסיק כל פנייה". חסימה מלאה, ו-`lead.confirm` נחסם בשני הערוצים | עובר |
+| SUB-03: איש הקשר נמחק ונוצר מחדש עם אותו מייל. "נחסם: חסימה מלאה לפי גיבוב" | עובר |
+| SUB-03: כשל ערוץ (קובץ המייל לא קיים). 3 ניסיונות, "נכשל", ומשימה "שליחה נכשלה" לצוות | עובר |
+| SUB-04: `team.newLead`. מייל ווואטסאפ לצוות יצאו, ונרשמו כ"פנימי לצוות" | עובר |
+| SUB-04: התראה כללית. הוואטסאפ יצא, המייל "נכשל" כי `team-notify.he.html` עוד לא באתר (צפוי עד המיזוג) | עובר |
+| ניקוי: מחיקת שורות `crm_message_log` דרך צומת Data Table ב-Harness (15 שורות) | עובר |
+| מחיקת רשומות הבדיקה ב-Airtable: 3 אנשי קשר, 2 משימות, 3 הסכמות, תבנית `test.marketing` | בוצע |
+
+**לא נבדק:**
+- **המייל של M33 ושל `team-notify`:** ייבדקו אחרי מיזוג ה-PR של האתר.
+- **`crm_raw_submissions`:** לא נכתבה בו שורה, כי ישמש רק החל מ-WF-01 (שלב 3).
+- **מגבלת הקריאות ל-Airtable:** לא נמדדה.
+
+**הערות להמשך:**
+- **אחראי במשימות:** במשימות שנוצרות אוטומטית שדה "אחראי" ריק, ולכן הן לא מופיעות ב-View "המשימות שלי". אפשר להוסיף שיוך ל-iDone Automations.
+- **לינק ההסרה:** במיילים הוא מוביל עכשיו ל-`/he/preferences/?t=…`. העמוד ייבנה בשלב 6 (WF-03). עד אז New Lead החי ממשיך עם לינק ההסרה הישן, ו-SUB-03 לא מחובר לשום תהליך חי.
+- **"מחוץ לשעות העבודה":** SUB-04 שולח וואטסאפ תמיד, כי `work_days_hours` עדיין [להשלמה].
