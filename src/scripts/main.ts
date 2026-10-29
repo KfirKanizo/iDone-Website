@@ -4,12 +4,14 @@
 import { initUI } from './ui';
 import { initForms } from './form';
 import { initPreferences } from './preferences';
+import { initChat } from './chat';
 import { initMotion, destroyMotion } from './motion/index';
 
 function boot() {
   initUI();
   initForms();
   initPreferences();
+  initChat();
   initMotion();
 }
 
