@@ -13,6 +13,9 @@ const needs = Object.entries(t.form.needOptions) as [string, string][];
   <input type="hidden" name="locale" value={locale} />
   <input type="hidden" name="source" value="website" />
   <input type="hidden" name="page" value={Astro.url.pathname} />
+  <input type="hidden" name="consentWording" value={t.form.consent} />
+  <input type="hidden" name="privacyVersion" value={SITE.privacyVersion} />
+  {['utm_source', 'utm_medium', 'utm_campaign', 'ref'].map((k) => (<input type="hidden" name={k} data-attribution={k} />))}
   <p class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
 
   <div class="row">
@@ -43,6 +46,7 @@ const needs = Object.entries(t.form.needOptions) as [string, string][];
     <textarea id={`${id}-message`} name="message" rows="4"></textarea>
     <span class="error" aria-live="polite"></span>
   </div>
+  <label class="consent"><input type="checkbox" name="marketingConsent" value="true" data-bool /><span>{t.form.consent}</span></label>
   <div class="actions">
     <button class="btn btn-accent submit" type="submit" data-submit><span class="dotmark" aria-hidden="true"></span><span data-submit-label>{t.form.submit}</span></button>
     {wa ? (
@@ -51,7 +55,7 @@ const needs = Object.entries(t.form.needOptions) as [string, string][];
       <span class="btn btn-ghost is-tbd" title="[TBD: WhatsApp number]">{t.cta.whatsapp} <span class="tbd">TBD</span></span>
     )}
   </div>
-  <p class="privacy muted">{t.form.privacy} <a href={localePath(locale, '/privacy')}>{t.footer.privacy}</a></p>
+  <p class="privacy muted">{t.form.privacy} <a href={localePath(locale, '/privacy')}>{t.form.privacyLink}</a></p>
 
   <div class="status" role="status" aria-live="polite" data-status hidden>
     <p class="status-title t-2" data-status-title></p>
@@ -70,6 +74,9 @@ const needs = Object.entries(t.form.needOptions) as [string, string][];
   .actions { display: flex; flex-wrap: wrap; gap: var(--site-space-3); align-items: center; }
   .is-tbd { opacity: 0.7; cursor: not-allowed; }
   .privacy { font-size: var(--site-step--1); }
+  .consent { display: flex; gap: var(--site-space-3); align-items: flex-start; font-size: var(--site-step--1); cursor: pointer; }
+  .consent input { flex: none; inline-size: 18px; block-size: 18px; margin: 3px 0 0; accent-color: var(--idone-accent); cursor: pointer; }
+  .consent input:focus-visible { outline: var(--site-focus); outline-offset: 2px; }
   .status { padding-block-start: var(--site-space-4); border-block-start: 1px solid var(--idone-line); }
   .contact-form.is-done > :not(.status) { display: none; }
   .contact-form.is-done .status { border: 0; padding: 0; }

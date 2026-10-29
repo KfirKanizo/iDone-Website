@@ -1,0 +1,74 @@
+---
+import Base from '@/layouts/Base.astro';
+import { type Locale, useTranslations } from '@/i18n';
+import { SITE } from '@/lib/site';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const p = t.prefs;
+---
+<Base locale={locale} title={p.title} description={p.lead} path="/preferences" noindex>
+  <section class="section-tight">
+    <div class="container-narrow intro">
+      <h1 class="t-4">{p.h1}</h1>
+      <p class="lead">{p.lead}</p>
+    </div>
+  </section>
+  <section class="section-tight">
+    <!-- state: nojs (initial) | loading | ready | error | saved | invalid. Set by src/scripts/preferences.ts -->
+    <div class="container-narrow prefs" data-prefs data-state="nojs" data-endpoint={SITE.preferencesEndpoint} data-locale={locale}>
+      <p class="muted" data-show="loading" role="status">{p.loading}</p>
+
+      <div data-show="invalid" role="status">
+        <p class="t-2">{p.invalidTitle}</p>
+        <p class="muted">{p.invalidText}</p>
+      </div>
+
+      <form data-show="ready error" novalidate data-prefs-form>
+        <label class="opt"><input type="checkbox" name="emailMarketing" /><span>{p.emailLabel}</span></label>
+        <label class="opt"><input type="checkbox" name="stopAll" /><span>{p.stopLabel}</span></label>
+        <div class="confirm" data-stop-confirm hidden>
+          <p class="warn">{p.stopWarn}</p>
+          <label class="opt"><input type="checkbox" name="stopConfirm" /><span>{p.stopConfirm}</span></label>
+        </div>
+        <div class="actions">
+          <button class="btn btn-accent" type="submit" data-submit data-saving={p.saving}><span class="dotmark" aria-hidden="true"></span><span data-submit-label>{p.save}</span></button>
+        </div>
+        <div class="status" data-show="error" role="status">
+          <p class="t-2 error-title">{p.errorTitle}</p>
+          <p class="muted">{p.errorText}</p>
+        </div>
+      </form>
+
+      <div data-show="saved" role="status">
+        <p class="t-2">{p.savedTitle}</p>
+        <p class="muted">{p.savedText}</p>
+      </div>
+
+      <noscript><p class="muted">{p.noscript}</p></noscript>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { display: grid; gap: var(--site-space-4); padding-block-start: var(--site-space-8); }
+  .prefs { display: grid; gap: var(--site-space-6); }
+  .prefs [data-show] { display: none; }
+  .prefs[data-state="loading"] [data-show~="loading"],
+  .prefs[data-state="invalid"] [data-show~="invalid"],
+  .prefs[data-state="ready"] [data-show~="ready"],
+  .prefs[data-state="error"] [data-show~="error"],
+  .prefs[data-state="saved"] [data-show~="saved"] { display: grid; gap: var(--site-space-3); }
+  form { gap: var(--site-space-6) !important; }
+  .opt { display: flex; gap: var(--site-space-3); align-items: flex-start; cursor: pointer; }
+  .opt input { flex: none; inline-size: 20px; block-size: 20px; margin: 2px 0 0; accent-color: var(--idone-accent); cursor: pointer; }
+  .opt input:focus-visible { outline: var(--site-focus); outline-offset: 2px; }
+  .opt input:disabled + span { opacity: 0.5; }
+  .confirm { display: grid; gap: var(--site-space-3); padding: var(--site-space-4); border: 1px solid var(--idone-line); border-radius: var(--idone-radius-md); }
+  .confirm[hidden] { display: none; }
+  .confirm[data-invalid="true"] { border-color: var(--site-error); }
+  .warn { font-size: var(--site-step--1); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--site-space-3); align-items: center; }
+  .status { padding-block-start: var(--site-space-4); border-block-start: 1px solid var(--idone-line); }
+  .error-title { color: var(--site-error); }
+</style>
