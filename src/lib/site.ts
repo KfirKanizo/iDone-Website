@@ -8,6 +8,8 @@ export const SITE = {
   assessmentEndpoint: 'https://n8n.idone.co.il/webhook/assessment',
   /** Email preferences webhook (n8n, WF-03). GET ?t=&l= returns the current state, POST saves it. */
   preferencesEndpoint: 'https://n8n.idone.co.il/webhook/preferences',
+  /** Chatbot proxy (n8n). POST {messages, locale, page} → {reply}. The Anthropic API key lives only in n8n. */
+  chatEndpoint: 'https://n8n.idone.co.il/webhook/site-chat',
   /** Version of the privacy notice next to the forms. Sent with every inquiry; bump when the wording changes. */
   privacyVersion: '2026-10-29',
   email: 'support@idone.co.il',

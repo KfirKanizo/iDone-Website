@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /chat-knowledge/
 
 Sitemap: https://www.idone.co.il/sitemap-index.xml

@@ -364,6 +364,28 @@
     "text": "The link may be old, or the page moved. The dot is still looking.",
     "home": "Back to the start"
   },
+  "chat": {
+    "open": "Open chat",
+    "close": "Close chat",
+    "title": "Ask us",
+    "subtitle": "iDone's digital assistant",
+    "welcome": "Hi! I'm iDone's digital assistant. Ask me about websites and apps, video, automation, or our past work.",
+    "suggestions": ["What do you build?", "How do we start working together?", "Can I see some projects?"],
+    "placeholder": "Type a message…",
+    "send": "Send",
+    "thinking": "Typing…",
+    "disclosure": "The assistant is an AI and can make mistakes. For anything binding, talk to the team.",
+    "error": "Something went wrong. You can try again, or message us on WhatsApp.",
+    "tooLong": "That message is too long. Could you shorten it a little?",
+    "limit": "This conversation has reached its maximum length. Start a new one or talk to us directly.",
+    "newChat": "New chat",
+    "leadTitle": "We'll get back to you",
+    "leadText": "Leave your details and someone from the team will reply within one business day.",
+    "leadSubmit": "Send to the team",
+    "leadCancel": "Not now",
+    "leadSuccess": "Got it, thank you! We'll get back to you within one business day.",
+    "leadFrom": "Inquiry from the website chat"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "accessibility": "Accessibility",
