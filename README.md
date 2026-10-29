@@ -76,6 +76,13 @@ scripts/qa-flows.mjs        בדיקות אינטראקציה (פתיח, מתג 
 
 ה-webhook צריך להחזיר 2xx (וכותרות CORS לדומיין האתר). שדה `website` הוא honeypot ולא נשלח. בלי JavaScript הטופס נשלח כ-`application/x-www-form-urlencoded` לאותה כתובת; כדאי ש-n8n יענה ב-redirect ל-`/he/contact/`.
 
+## אוטומציית לידים (n8n + Airtable)
+
+- **New Lead** (`/webhook/website-form`): בודק את הטופס, שומר ב-Base בשם iDone CRM ב-Airtable, שולח ללקוח אישור פנייה (עברית או אנגלית) ולצוות התראה במייל ובוואטסאפ, ורושם כל שליחה ביומן.
+- **תבניות המיילים** יושבות ב-`public/emails/` ו-n8n מושך אותן מ-`https://www.idone.co.il/emails/`, כך ששינוי בתבנית נכנס לתוקף אחרי פריסה. משתנים כותבים כ-`{{name}}`.
+- **הסרה מדיוור** (`/webhook/unsubscribe?r=<record>&l=he`): דף אישור, ורק לחיצה על הכפתור מסירה. מייל האישור הוא שירותי בלבד; לא מוסיפים לו תוכן שיווקי.
+- **טופס אפיון**: `/he/assessment/?lead=<record>` (לא באינדקס ולא ב-sitemap), נשלח ל-`/webhook/assessment`.
+
 ## בדיקות
 
 ```bash

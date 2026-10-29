@@ -7,6 +7,9 @@ export function initForms() {
   document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
     if (form.dataset.bound) return;
     form.dataset.bound = '1';
+    // hidden inputs filled from the URL, e.g. ?lead=rec… on the assessment page
+    const params = new URLSearchParams(location.search);
+    form.querySelectorAll<HTMLInputElement>('input[data-query]').forEach((el) => { el.value = params.get(el.dataset.query!) || ''; });
     form.addEventListener('submit', (e) => { e.preventDefault(); submit(form); });
     form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((el) => {
       el.addEventListener('blur', () => validateField(form, el));
@@ -62,9 +65,10 @@ async function submit(form: HTMLFormElement) {
 
   const fd = new FormData(form);
   const payload: Record<string, unknown> = {};
+  const isList = (k: string) => !!form.querySelector(`input[type="checkbox"][name="${k}"]`);
   fd.forEach((v, k) => {
     if (k === 'website') return;
-    if (k === 'need') { (payload.need ||= []) as string[]; (payload.need as string[]).push(String(v)); }
+    if (isList(k)) { ((payload[k] ||= []) as string[]).push(String(v)); }
     else payload[k] = String(v);
   });
   payload.submittedAt = new Date().toISOString();

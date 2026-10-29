@@ -1,0 +1,163 @@
+---
+import Base from '@/layouts/Base.astro';
+import { type Locale, useTranslations, localePath } from '@/i18n';
+import { SITE } from '@/lib/site';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const a = t.assessment;
+const opts = (o: Record<string, string>) => Object.entries(o) as [string, string][];
+const id = 'assessment';
+---
+<Base locale={locale} title={a.title} description={a.description} path="/assessment" noindex>
+  <section class="section-tight">
+    <div class="container-narrow intro">
+      <h1 class="t-4">{a.h1}</h1>
+      <p class="lead">{a.lead}</p>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container-narrow">
+      <form class="contact-form assessment" id={id} method="post" action={SITE.assessmentEndpoint} novalidate data-contact-form
+        data-msg-required={t.form.required} data-msg-email={t.form.invalidEmail} data-msg-phone={t.form.invalidPhone} data-msg-sending={t.form.sending}>
+        <input type="hidden" name="locale" value={locale} />
+        <input type="hidden" name="lead" data-query="lead" />
+        <p class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+
+        <fieldset class="group">
+          <legend class="t-2">{a.s1}</legend>
+          <div class="row">
+            <div class="field" data-field>
+              <label for={`${id}-name`}>{a.fullName}</label>
+              <input id={`${id}-name`} name="name" type="text" autocomplete="name" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="field" data-field>
+              <label for={`${id}-business`}>{a.business}</label>
+              <input id={`${id}-business`} name="business" type="text" autocomplete="organization" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" data-field>
+              <label for={`${id}-email`}>{t.form.email}</label>
+              <input id={`${id}-email`} name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="field" data-field>
+              <label for={`${id}-phone`}>{t.form.phone}</label>
+              <input id={`${id}-phone`} name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required />
+              <span class="error" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="t-2">{a.s2}</legend>
+          <div class="field" data-field>
+            <label for={`${id}-about`}>{a.about}</label>
+            <textarea id={`${id}-about`} name="about" rows="3" required></textarea>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for={`${id}-team`}>{a.team}</label>
+              <select id={`${id}-team`} name="team">
+                <option value=""></option>
+                {opts(a.teamOptions).map(([k, l]) => (<option value={k}>{l}</option>))}
+              </select>
+            </div>
+            <div class="field" data-field>
+              <label for={`${id}-site`}>{a.website}</label>
+              <input id={`${id}-site`} name="siteUrl" type="url" inputmode="url" dir="ltr" placeholder="https://" />
+              <span class="error" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="t-2">{a.s3}</legend>
+          <fieldset class="field needs">
+            <legend>{a.services}</legend>
+            <div class="chips">
+              {opts(t.form.needOptions).map(([k, l]) => (<label class="chip"><input type="checkbox" name="services" value={k} /><span>{l}</span></label>))}
+            </div>
+          </fieldset>
+          <fieldset class="field needs only only-web">
+            <legend>{a.webWhat}</legend>
+            <div class="chips">{opts(a.webOptions).map(([k, l]) => (<label class="chip"><input type="checkbox" name="webScope" value={k} /><span>{l}</span></label>))}</div>
+          </fieldset>
+          <fieldset class="field needs only only-video">
+            <legend>{a.videoWhere}</legend>
+            <div class="chips">{opts(a.videoOptions).map(([k, l]) => (<label class="chip"><input type="checkbox" name="videoChannels" value={k} /><span dir="ltr">{l}</span></label>))}</div>
+          </fieldset>
+          <div class="field only only-video">
+            <label for={`${id}-volume`}>{a.videoVolume}</label>
+            <select id={`${id}-volume`} name="videoVolume">
+              <option value=""></option>
+              {opts(a.videoVolumeOptions).map(([k, l]) => (<option value={k}>{l}</option>))}
+            </select>
+          </div>
+          <fieldset class="field needs only only-automation">
+            <legend>{a.autoTasks}</legend>
+            <div class="chips">{opts(a.autoOptions).map(([k, l]) => (<label class="chip"><input type="checkbox" name="autoTasks" value={k} /><span>{l}</span></label>))}</div>
+          </fieldset>
+          <div class="field" data-field>
+            <label for={`${id}-tools`}>{a.tools}</label>
+            <input id={`${id}-tools`} name="tools" type="text" placeholder={a.toolsHint} />
+            <span class="error" aria-live="polite"></span>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="t-2">{a.s4}</legend>
+          <div class="field" data-field>
+            <label for={`${id}-goal`}>{a.goal}</label>
+            <textarea id={`${id}-goal`} name="goal" rows="4"></textarea>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <fieldset class="field needs">
+            <legend>{a.start}</legend>
+            <div class="chips">{opts(a.startOptions).map(([k, l]) => (<label class="chip"><input type="radio" name="start" value={k} /><span>{l}</span></label>))}</div>
+          </fieldset>
+        </fieldset>
+
+        <div class="actions">
+          <button class="btn btn-accent submit" type="submit" data-submit><span class="dotmark" aria-hidden="true"></span><span data-submit-label>{a.submit}</span></button>
+        </div>
+        <p class="privacy muted">{a.privacy} <a href={localePath(locale, '/privacy')}>{t.footer.privacy}</a></p>
+
+        <div class="status" role="status" aria-live="polite" data-status hidden>
+          <p class="status-title t-2" data-status-title></p>
+          <p class="status-text muted" data-status-text></p>
+        </div>
+        <template data-success><span data-title>{a.successTitle}</span><span data-text>{a.successText}</span></template>
+        <template data-error><span data-title>{t.form.errorTitle}</span><span data-text>{t.form.errorText}</span></template>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { --stack: var(--site-space-6); display: grid; gap: var(--site-space-4); padding-block-start: var(--site-space-8); }
+  .contact-form { display: grid; gap: var(--site-space-12); position: relative; }
+  .group { display: grid; gap: var(--site-space-6); border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+  .group > legend { padding: 0; margin-block-end: var(--site-space-4); }
+  .row { display: grid; gap: var(--site-space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .hp { position: absolute; inset-inline-start: -9999px; inline-size: 1px; block-size: 1px; overflow: hidden; }
+  fieldset.needs { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+  fieldset.needs > legend { font-weight: 600; font-size: var(--site-step--1); padding: 0; margin-block-end: var(--site-space-2); }
+  select { font: inherit; inline-size: 100%; padding: 12px 14px; border-radius: var(--idone-radius-md); border: 1px solid var(--idone-line); background: var(--idone-surface-raised); color: var(--idone-ink); }
+  select:focus { outline: none; border-color: var(--idone-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--idone-accent) 25%, transparent); }
+  /* service-specific questions appear once the matching service is chosen (no JS needed) */
+  .only { display: none; }
+  .assessment:has(input[name="services"][value="web"]:checked) .only-web,
+  .assessment:has(input[name="services"][value="video"]:checked) .only-video,
+  .assessment:has(input[name="services"][value="automation"]:checked) .only-automation { display: grid; }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--site-space-3); align-items: center; }
+  .privacy { font-size: var(--site-step--1); margin-block-start: calc(-1 * var(--site-space-6)); }
+  .status { padding-block-start: var(--site-space-4); border-block-start: 1px solid var(--idone-line); }
+  .contact-form.is-done > :not(.status) { display: none; }
+  .contact-form.is-done .status { border: 0; padding: 0; }
+  .contact-form[data-state="error"] .status-title { color: var(--site-error); }
+</style>
