@@ -82,7 +82,7 @@ const shot = (page, name) => page.screenshot({ path: path.join(out, name + '.png
   await ctx.addInitScript(() => sessionStorage.setItem('idone-intro', 'seen'));
   const page = await ctx.newPage();
   let posted = null;
-  await page.route('https://n8n.idone.co.il/webhook/website-form', async (route) => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  await page.route('https://n8n.idone.co.il/webhook/website-form-v2', async (route) => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
   await page.goto(`${base}/he/contact/`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(600);
   await page.click('#contact-form [data-submit]'); await page.waitForTimeout(200);
@@ -98,8 +98,8 @@ const shot = (page, name) => page.screenshot({ path: path.join(out, name + '.png
   check('form posts JSON to the webhook', !!posted && posted.name === 'בדיקה' && Array.isArray(posted.need) && posted.locale === 'he', JSON.stringify(posted));
   check('success state: dot lands in the D, mark shows its dot, "סגרנו" appears', done.state === 'success' && done.statusTitle.includes('קיבלנו') && done.landed && done.accent === 'rgb(47, 91, 255)' && done.doneText, JSON.stringify(done));
   // error path
-  await page.unroute('https://n8n.idone.co.il/webhook/website-form');
-  await page.route('https://n8n.idone.co.il/webhook/website-form', (route) => route.fulfill({ status: 500, body: 'nope' }));
+  await page.unroute('https://n8n.idone.co.il/webhook/website-form-v2');
+  await page.route('https://n8n.idone.co.il/webhook/website-form-v2', (route) => route.fulfill({ status: 500, body: 'nope' }));
   await page.goto(`${base}/en/contact/`, { waitUntil: 'networkidle' });
   await page.fill('#contact-form-name', 'Test'); await page.fill('#contact-form-phone', '+972501234567'); await page.fill('#contact-form-email', 'test@example.com');
   await page.click('#contact-form [data-submit]'); await page.waitForTimeout(800);
@@ -190,7 +190,7 @@ const shot = (page, name) => page.screenshot({ path: path.join(out, name + '.png
   await ctx.addInitScript(() => sessionStorage.setItem('idone-intro', 'seen'));
   const page = await ctx.newPage();
   let posted = null;
-  await page.route('https://n8n.idone.co.il/webhook/website-form', async (route) => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  await page.route('https://n8n.idone.co.il/webhook/website-form-v2', async (route) => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
   // land with campaign params on the home page, then reach the contact page
   await page.goto(`${base}/he/?utm_source=qa&utm_medium=test&utm_campaign=stage3&ref=${TOKEN}`, { waitUntil: 'networkidle' });
   await page.goto(`${base}/he/contact/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
@@ -210,7 +210,7 @@ const shot = (page, name) => page.screenshot({ path: path.join(out, name + '.png
 
   // assessment keeps ?lead= and adds ?t=
   let assessed = null;
-  await page.route('https://n8n.idone.co.il/webhook/assessment', async (route) => { assessed = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  await page.route('https://n8n.idone.co.il/webhook/assessment-v2', async (route) => { assessed = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
   await page.goto(`${base}/he/assessment/?t=${TOKEN}&lead=recTEST`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
   await page.fill('#assessment-name', 'בדיקה'); await page.fill('#assessment-business', 'עסק'); await page.fill('#assessment-email', 'test@example.com'); await page.fill('#assessment-phone', '0501234567'); await page.fill('#assessment-about', 'בדיקה');
   await page.click('#assessment [data-submit]'); await page.waitForTimeout(800);

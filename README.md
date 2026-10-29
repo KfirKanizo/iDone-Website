@@ -67,7 +67,7 @@ scripts/qa-flows.mjs        בדיקות אינטראקציה (פתיח, מתג 
 
 ## טופס יצירת קשר
 
-נשלח כ-JSON ל-`https://n8n.idone.co.il/webhook/website-form` (ב-`src/lib/site.ts`):
+נשלח כ-JSON ל-`https://n8n.idone.co.il/webhook/website-form-v2` (ב-`src/lib/site.ts`). טופס הליד בצ'אטבוט שולח לאותה כתובת עם `"source": "chat"`:
 
 ```json
 { "name": "", "phone": "", "email": "", "need": ["web","video","automation","unsure"], "message": "",
@@ -78,10 +78,11 @@ scripts/qa-flows.mjs        בדיקות אינטראקציה (פתיח, מתג 
 
 ## אוטומציית לידים (n8n + Airtable)
 
-- **New Lead** (`/webhook/website-form`): בודק את הטופס, שומר ב-Base בשם iDone CRM ב-Airtable, שולח ללקוח אישור פנייה (עברית או אנגלית) ולצוות התראה במייל ובוואטסאפ, ורושם כל שליחה ביומן.
+- **CRM · WF-01 Intake** (`/webhook/website-form-v2`): בודק את הטופס, יוצר או מוצא איש קשר, פנייה והזדמנות ב-iDone CRM, שולח ללקוח אישור פנייה (עברית או אנגלית) ולצוות התראה במייל ובוואטסאפ, ורושם כל שליחה ב-`crm_message_log`. הפירוט ב-`docs/04-crm-build-log.md`.
+- **New Lead** (`/webhook/website-form`, הישן): נשאר פעיל עד 12.11.2026 בשביל דפים ששמורים בדפדפן, ואחר כך מעביר ל-v2.
 - **תבניות המיילים** יושבות ב-`public/emails/` ו-n8n מושך אותן מ-`https://www.idone.co.il/emails/`, כך ששינוי בתבנית נכנס לתוקף אחרי פריסה. משתנים כותבים כ-`{{name}}`.
-- **הסרה מדיוור** (`/webhook/unsubscribe?r=<record>&l=he`): דף אישור, ורק לחיצה על הכפתור מסירה. מייל האישור הוא שירותי בלבד; לא מוסיפים לו תוכן שיווקי.
-- **טופס אפיון**: `/he/assessment/?lead=<record>` (לא באינדקס ולא ב-sitemap), נשלח ל-`/webhook/assessment`.
+- **העדפות דיוור**: `/he/preferences/?t=<token>` מול `/webhook/preferences` (WF-03). לינקים ישנים `/webhook/unsubscribe?r=<record>&l=he` מפנים לעמוד הזה לפי "מזהה ישן". מיילים ללקוח הם שירותיים בלבד; לא מוסיפים להם תוכן שיווקי.
+- **טופס אפיון**: `/he/assessment/?t=<token>` (או `?lead=<record>` בלינקים ישנים; לא באינדקס ולא ב-sitemap), נשלח ל-`/webhook/assessment-v2`.
 
 ## בדיקות
 

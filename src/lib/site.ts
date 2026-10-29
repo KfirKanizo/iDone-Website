@@ -2,10 +2,10 @@
 export const SITE = {
   name: 'iDone Technologies',
   url: 'https://www.idone.co.il',
-  /** Contact form webhook (n8n). */
-  formEndpoint: 'https://n8n.idone.co.il/webhook/website-form',
-  /** Assessment questionnaire webhook (n8n, workflow "Assessment Submitted"). */
-  assessmentEndpoint: 'https://n8n.idone.co.il/webhook/assessment',
+  /** Contact form and chatbot lead webhook (n8n, CRM · WF-01 Intake). */
+  formEndpoint: 'https://n8n.idone.co.il/webhook/website-form-v2',
+  /** Assessment questionnaire webhook (n8n, CRM · WF-02 Assessment). Accepts ?t= (deal token) and the older ?lead=. */
+  assessmentEndpoint: 'https://n8n.idone.co.il/webhook/assessment-v2',
   /** Email preferences webhook (n8n, WF-03). GET ?t=&l= returns the current state, POST saves it. */
   preferencesEndpoint: 'https://n8n.idone.co.il/webhook/preferences',
   /** Chatbot proxy (n8n). POST {messages, locale, page} → {reply}. The Anthropic API key lives only in n8n. */
