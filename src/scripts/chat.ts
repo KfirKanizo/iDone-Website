@@ -203,7 +203,7 @@ export function initChat() {
     const payload = {
       name: get('name'), phone: get('phone'), email: get('email'),
       message: `[${d.leadFrom}]\n${transcript}`,
-      locale: d.locale, source: 'website', page: location.pathname,
+      locale: d.locale, source: 'chat', page: location.pathname,
       consentWording: d.consent, privacyVersion: d.privacyVersion,
       marketingConsent: (leadForm.elements.namedItem('marketingConsent') as HTMLInputElement).checked,
       ...attribution(),
