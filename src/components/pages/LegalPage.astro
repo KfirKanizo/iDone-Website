@@ -9,11 +9,16 @@ const h1 = kind === 'accessibility' ? t.legal.accessibilityH1 : t.legal.privacyH
 const paras = kind === 'accessibility' ? t.legal.accessibility : t.legal.privacy;
 const mark = (s: string) => s.split(/(\[[^\]]*TBD[^\]]*\])/g).map((part) => (/TBD/.test(part) ? `<span class="tbd">${part}</span>` : part)).join('');
 ---
-<Base locale={locale} title={title} description={paras[0]} path={`/${kind}`} noindex={false}>
+<Base locale={locale} title={title} description={paras.find((p) => !p.startsWith('## ')) ?? ''} path={`/${kind}`} noindex={false}>
   <section class="section">
     <div class="container-narrow prose">
       <h1 class="t-4">{h1}</h1>
-      {paras.map((p) => (<p set:html={mark(p)} />))}
+      {paras.map((p) => (p.startsWith('## ') ? <h2 class="t-2">{p.slice(3)}</h2> : <p set:html={mark(p)} />))}
     </div>
   </section>
 </Base>
+
+<style>
+  /* policy sections ("## " lines) read as sub-headings under the page title */
+  .prose h2 { font-size: var(--site-step-2); margin-block-start: var(--site-space-8); }
+</style>

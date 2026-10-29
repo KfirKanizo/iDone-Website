@@ -183,6 +183,95 @@ const shot = (page, name) => page.screenshot({ path: path.join(out, name + '.png
   await ctx.close();
 }
 
+/* 10. consent + privacy (CRM stage 3): consent box, UTM/ref carried across pages, ?t= on the assessment, preferences page, privacy policy */
+{
+  const TOKEN = '01a83283-f9ed-411e-9d2b-8eb9772d030b';
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: 'he-IL' });
+  await ctx.addInitScript(() => sessionStorage.setItem('idone-intro', 'seen'));
+  const page = await ctx.newPage();
+  let posted = null;
+  await page.route('https://n8n.idone.co.il/webhook/website-form', async (route) => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  // land with campaign params on the home page, then reach the contact page
+  await page.goto(`${base}/he/?utm_source=qa&utm_medium=test&utm_campaign=stage3&ref=${TOKEN}`, { waitUntil: 'networkidle' });
+  await page.goto(`${base}/he/contact/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
+  const box = await page.evaluate(() => { const el = document.querySelector('#contact-form input[name="marketingConsent"]'); return { exists: !!el, checked: el?.checked, required: el?.required, label: el?.closest('label')?.textContent.trim() }; });
+  check('consent box is separate, unchecked and optional', box.exists && box.checked === false && box.required === false, JSON.stringify(box));
+  await page.fill('#contact-form-name', 'בדיקה'); await page.fill('#contact-form-phone', '0501234567'); await page.fill('#contact-form-email', 'test@example.com');
+  await page.check('#contact-form input[name="marketingConsent"]');
+  await shot(page, '20-consent-checked-he');
+  await page.click('#contact-form [data-submit]'); await page.waitForTimeout(800);
+  check('payload carries consent, wording, privacy version, UTM and ref', !!posted && posted.marketingConsent === true && posted.consentWording === box.label && posted.privacyVersion === '2026-10-29' && posted.utm_source === 'qa' && posted.utm_medium === 'test' && posted.utm_campaign === 'stage3' && posted.ref === TOKEN && !Array.isArray(posted.marketingConsent), JSON.stringify(posted));
+  // without the box ticked → false, not missing
+  posted = null;
+  await page.goto(`${base}/he/contact/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
+  await page.fill('#contact-form-name', 'בדיקה'); await page.fill('#contact-form-phone', '0501234567'); await page.fill('#contact-form-email', 'test@example.com');
+  await page.click('#contact-form [data-submit]'); await page.waitForTimeout(800);
+  check('unticked consent is sent as false', !!posted && posted.marketingConsent === false, JSON.stringify(posted && { marketingConsent: posted.marketingConsent }));
+
+  // assessment keeps ?lead= and adds ?t=
+  let assessed = null;
+  await page.route('https://n8n.idone.co.il/webhook/assessment', async (route) => { assessed = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  await page.goto(`${base}/he/assessment/?t=${TOKEN}&lead=recTEST`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
+  await page.fill('#assessment-name', 'בדיקה'); await page.fill('#assessment-business', 'עסק'); await page.fill('#assessment-email', 'test@example.com'); await page.fill('#assessment-phone', '0501234567'); await page.fill('#assessment-about', 'בדיקה');
+  await page.click('#assessment [data-submit]'); await page.waitForTimeout(800);
+  check('assessment sends both t and lead', !!assessed && assessed.t === TOKEN && assessed.lead === 'recTEST', JSON.stringify(assessed && { t: assessed.t, lead: assessed.lead }));
+
+  // preferences: no token → invalid; valid token → loads state, saves; stop-all needs the confirm box
+  await page.goto(`${base}/he/preferences/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(300);
+  const noTok = await page.evaluate(() => document.querySelector('[data-prefs]').dataset.state);
+  await shot(page, '21-prefs-invalid-he');
+  check('preferences without a token shows the invalid-link state', noTok === 'invalid', noTok);
+  let saved = null; let lookup = null;
+  await page.route('https://n8n.idone.co.il/webhook/preferences**', async (route) => {
+    const req = route.request();
+    if (req.method() === 'GET') { lookup = req.url(); await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true, emailMarketing: true, fullBlock: false }) }); }
+    else { saved = req.postDataJSON(); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); }
+  });
+  await page.goto(`${base}/he/preferences/?t=${TOKEN}`, { waitUntil: 'networkidle' }); await page.waitForTimeout(500);
+  const ready = await page.evaluate(() => ({ state: document.querySelector('[data-prefs]').dataset.state, email: document.querySelector('[name="emailMarketing"]').checked, stop: document.querySelector('[name="stopAll"]').checked }));
+  await shot(page, '22-prefs-ready-he');
+  check('preferences loads the current state by token', ready.state === 'ready' && ready.email && !ready.stop && lookup.includes(`t=${TOKEN}`) && lookup.includes('l=he'), JSON.stringify({ ready, lookup }));
+  await page.check('[name="stopAll"]'); await page.click('[data-prefs-form] [data-submit]'); await page.waitForTimeout(300);
+  const guard = await page.evaluate(() => ({ state: document.querySelector('[data-prefs]').dataset.state, invalid: document.querySelector('[data-stop-confirm]').dataset.invalid, emailDisabled: document.querySelector('[name="emailMarketing"]').disabled }));
+  await shot(page, '23-prefs-stop-confirm-he');
+  check('stop-all asks for confirmation before saving', guard.state === 'ready' && guard.invalid === 'true' && guard.emailDisabled && saved === null, JSON.stringify(guard));
+  await page.uncheck('[name="stopAll"]'); await page.uncheck('[name="emailMarketing"]');
+  await page.click('[data-prefs-form] [data-submit]'); await page.waitForTimeout(600);
+  const done = await page.evaluate(() => document.querySelector('[data-prefs]').dataset.state);
+  await shot(page, '24-prefs-saved-he');
+  check('preferences saves the change', done === 'saved' && !!saved && saved.t === TOKEN && saved.emailMarketing === false && saved.stopAll === false && saved.locale === 'he', JSON.stringify(saved));
+  await page.unroute('https://n8n.idone.co.il/webhook/preferences**');
+  await page.route('https://n8n.idone.co.il/webhook/preferences**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":false}' }));
+  await page.goto(`${base}/en/preferences/?t=${TOKEN}`, { waitUntil: 'networkidle' }); await page.waitForTimeout(500);
+  const unknown = await page.evaluate(() => ({ state: document.querySelector('[data-prefs]').dataset.state, dir: document.documentElement.dir }));
+  await shot(page, '25-prefs-invalid-en');
+  check('unknown token shows the generic invalid state (English, LTR)', unknown.state === 'invalid' && unknown.dir === 'ltr', JSON.stringify(unknown));
+
+  // privacy policy: sections render as headings in both languages
+  for (const l of ['he', 'en']) {
+    await page.goto(`${base}/${l}/privacy/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(200);
+    const pr = await page.evaluate(() => ({ h2: document.querySelectorAll('main h2').length, raw: document.body.innerText.includes('## ') }));
+    await shot(page, `26-privacy-${l}`);
+    check(`privacy policy (${l}) has its sections and no raw markers`, pr.h2 >= 8 && !pr.raw, JSON.stringify(pr));
+  }
+  await ctx.close();
+
+  // mobile: consent and preferences fit with no horizontal scroll
+  const m = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'he-IL' });
+  await m.addInitScript(() => sessionStorage.setItem('idone-intro', 'seen'));
+  const mp = await m.newPage();
+  await mp.route('https://n8n.idone.co.il/webhook/preferences**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true, emailMarketing: false, fullBlock: false }) }));
+  const widths = {};
+  for (const [name, url] of [['contact-he', '/he/contact/'], ['contact-en', '/en/contact/'], ['prefs-he', `/he/preferences/?t=${TOKEN}`], ['prefs-en', `/en/preferences/?t=${TOKEN}`]]) {
+    await mp.goto(base + url, { waitUntil: 'networkidle' }); await mp.waitForTimeout(400);
+    if (name.startsWith('contact')) await mp.evaluate(() => document.querySelector('#contact-form input[name="marketingConsent"]').scrollIntoView({ block: 'center' }));
+    widths[name] = await mp.evaluate(() => document.documentElement.scrollWidth);
+    await shot(mp, `27-mobile-${name}`);
+  }
+  check('mobile: no horizontal scroll on contact and preferences', Object.values(widths).every((w) => w <= 390), JSON.stringify(widths));
+  await m.close();
+}
+
 await browser.close();
 fs.writeFileSync(path.join(out, '_results.json'), JSON.stringify(results, null, 2));
 const failed = results.filter((r) => !r.ok).length;

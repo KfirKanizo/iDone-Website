@@ -133,7 +133,9 @@
     "required": "Required",
     "invalidEmail": "That doesn't look like an email",
     "invalidPhone": "That doesn't look like a phone number",
-    "privacy": "We only use your details to reply to you."
+    "privacy": "We'll use your details to handle your inquiry, get back to you, and send a confirmation and a questionnaire link by email and WhatsApp. You're not legally required to give them, but without them we can't reply. Your details are stored with our service providers, some outside Israel, and are deleted one year after your last activity. You can ask to see, correct or delete them.",
+    "privacyLink": "Privacy policy",
+    "consent": "I'd like to receive news and marketing content from iDone Technologies by email. You can unsubscribe at any time."
   },
   "services": {
     "indexTitle": "Services",
@@ -314,11 +316,47 @@
     "privacyTitle": "Privacy policy · iDone Technologies",
     "privacyH1": "Privacy policy",
     "privacy": [
-      "This site collects personal details only when you send them through the contact form or WhatsApp: name, email, phone and your message. We use them to reply to you and for nothing else.",
-      "Form submissions are sent to our own automation server (n8n) and stored in our CRM. We do not sell or share them.",
-      "The site stores your language, theme and motion preferences in your browser only. We use no advertising trackers. [TBD: analytics tool, if any].",
-      "To view, change or delete your details, write to support@idone.co.il."
+      "## Who we are",
+      "iDone Technologies is responsible for the information collected on this site and in our work with clients. For any question or request: support@idone.co.il or +972-52-888-8182.",
+      "## What we collect",
+      "When you contact us through the form, WhatsApp or email: your name, phone, email, what you need and your message. In the project questionnaire, also your business name, what it does, team size, existing website and your answers about the project. Later in the work, also your business's invoicing details, and a business or VAT number only if the invoice requires it.",
+      "We don't collect ID numbers or sensitive information. When you submit a form we also store when it was sent, the page, your browser, and any campaign details (UTM) or referral code in the address.",
+      "## Why we use it",
+      "To handle your inquiry and get back to you, to send confirmations, reminders and updates about your inquiry or project by email and WhatsApp, to prepare a quote, to do the work and for accounting. These are service messages, not advertising.",
+      "Marketing content is sent only if you explicitly ticked that you want it, and only by email. Every email includes a link to your email preferences, and you can unsubscribe at any time.",
+      "## Do you have to give us this information",
+      "You're not legally required to. Without your name and contact details we can't get back to you or handle your inquiry.",
+      "## Who it is shared with",
+      "We don't sell information. It is stored and processed by providers who work for us: Airtable (client management), n8n (automation, on our own server), Google (Gmail, Drive and Docs), GreenAPI (sending WhatsApp messages), Cal.com (booking meetings), short.io (shortening links in messages), and our invoicing system [TBD: invoicing system].",
+      "Some of these providers store information outside Israel, including Airtable, Google, GreenAPI and the n8n server. Access to the information is limited to our team.",
+      "## How long we keep it",
+      "Information is deleted one year after your last activity with us (an inquiry, a message or work together). Two exceptions: if you asked us not to send you messages, we keep a hash of your email or phone (a one-way fingerprint your details can't be recovered from) so your request keeps applying. And accounting documents are kept for as long as tax law requires.",
+      "## Your rights",
+      "You can ask to see your information, correct it, delete it or stop receiving marketing from us. Write to support@idone.co.il. We'll reply within a week, usually within one business day. To protect you, we may ask to confirm the request came from you.",
+      "You can also change your email preferences through the link in every email from us.",
+      "## This website",
+      "The site stores your language, display and motion preferences in your browser, and during your visit also the campaign details or referral code you arrived with, so they can be attached to your inquiry. There are no advertising trackers. [TBD: analytics tool, if any].",
+      "Last updated: 29 October 2026."
     ]
+  },
+  "prefs": {
+    "title": "Email preferences · iDone Technologies",
+    "h1": "Email preferences",
+    "lead": "Choose here whether to receive news and marketing content from us by email. Messages about an inquiry or an active project will keep coming either way.",
+    "loading": "Loading your preferences…",
+    "emailLabel": "Receive news and marketing content by email",
+    "stopLabel": "Stop all contact from us, including messages about an inquiry or project",
+    "stopWarn": "After saving we won't send you any message, not even about an inquiry or an active project.",
+    "stopConfirm": "Yes, stop all contact",
+    "save": "Save",
+    "saving": "Saving…",
+    "savedTitle": "Your preferences are saved.",
+    "savedText": "We'll send you a confirmation.",
+    "invalidTitle": "This link isn't valid.",
+    "invalidText": "Write to us at support@idone.co.il and we'll update it for you.",
+    "errorTitle": "Something went wrong while saving.",
+    "errorText": "Try again, or write to us at support@idone.co.il.",
+    "noscript": "Changing your preferences here needs JavaScript. You can also write to us at support@idone.co.il."
   },
   "notFound": {
     "title": "Page not found · iDone Technologies",

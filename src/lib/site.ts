@@ -6,6 +6,10 @@ export const SITE = {
   formEndpoint: 'https://n8n.idone.co.il/webhook/website-form',
   /** Assessment questionnaire webhook (n8n, workflow "Assessment Submitted"). */
   assessmentEndpoint: 'https://n8n.idone.co.il/webhook/assessment',
+  /** Email preferences webhook (n8n, WF-03). GET ?t=&l= returns the current state, POST saves it. */
+  preferencesEndpoint: 'https://n8n.idone.co.il/webhook/preferences',
+  /** Version of the privacy notice next to the forms. Sent with every inquiry; bump when the wording changes. */
+  privacyVersion: '2026-10-29',
   email: 'support@idone.co.il',
   phone: '052-8888182',
   /** International format without "+" or spaces, e.g. 9725XXXXXXXX. Empty = button links to the contact page. */

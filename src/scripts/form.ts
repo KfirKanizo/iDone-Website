@@ -3,13 +3,32 @@
  * Success dispatches `form:success` so the CTA scene can land the dot in the D.
  * Without JavaScript the form posts natively to the same endpoint.
  */
+const ATTRIBUTION_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'ref'];
+const ATTRIBUTION_STORE = 'idone-attribution';
+
+/** UTM and ?ref= from the landing URL, kept for the visit so a form on a later page still sends them. First value wins. */
+function attribution(): Record<string, string> {
+  let saved: Record<string, string> = {};
+  try { saved = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORE) || '{}') || {}; } catch {}
+  const params = new URLSearchParams(location.search);
+  let changed = false;
+  ATTRIBUTION_KEYS.forEach((k) => {
+    const v = (params.get(k) || '').trim().slice(0, 200);
+    if (v && !saved[k]) { saved[k] = v; changed = true; }
+  });
+  if (changed) { try { sessionStorage.setItem(ATTRIBUTION_STORE, JSON.stringify(saved)); } catch {} }
+  return saved;
+}
+
 export function initForms() {
+  const attr = attribution();
   document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
     if (form.dataset.bound) return;
     form.dataset.bound = '1';
-    // hidden inputs filled from the URL, e.g. ?lead=rec… on the assessment page
+    // hidden inputs filled from the URL, e.g. ?lead=rec… or ?t=… on the assessment page
     const params = new URLSearchParams(location.search);
     form.querySelectorAll<HTMLInputElement>('input[data-query]').forEach((el) => { el.value = params.get(el.dataset.query!) || ''; });
+    form.querySelectorAll<HTMLInputElement>('input[data-attribution]').forEach((el) => { el.value = attr[el.dataset.attribution!] || ''; });
     form.addEventListener('submit', (e) => { e.preventDefault(); submit(form); });
     form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((el) => {
       el.addEventListener('blur', () => validateField(form, el));
@@ -65,12 +84,15 @@ async function submit(form: HTMLFormElement) {
 
   const fd = new FormData(form);
   const payload: Record<string, unknown> = {};
-  const isList = (k: string) => !!form.querySelector(`input[type="checkbox"][name="${k}"]`);
+  const isBool = (k: string) => !!form.querySelector(`input[type="checkbox"][name="${k}"][data-bool]`);
+  const isList = (k: string) => !isBool(k) && !!form.querySelector(`input[type="checkbox"][name="${k}"]`);
   fd.forEach((v, k) => {
-    if (k === 'website') return;
+    if (k === 'website' || isBool(k)) return;
     if (isList(k)) { ((payload[k] ||= []) as string[]).push(String(v)); }
     else payload[k] = String(v);
   });
+  // single yes/no checkboxes (e.g. marketingConsent) are sent as true/false, never omitted
+  form.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-bool]').forEach((el) => { payload[el.name] = el.checked; });
   payload.submittedAt = new Date().toISOString();
   payload.userAgent = navigator.userAgent;
 

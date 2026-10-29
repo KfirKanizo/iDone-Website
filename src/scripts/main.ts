@@ -3,11 +3,13 @@
  */
 import { initUI } from './ui';
 import { initForms } from './form';
+import { initPreferences } from './preferences';
 import { initMotion, destroyMotion } from './motion/index';
 
 function boot() {
   initUI();
   initForms();
+  initPreferences();
   initMotion();
 }
 

@@ -15,7 +15,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'he', locales: { he: 'he-IL', en: 'en' } },
-      filter: (page) => !page.includes('/404') && !page.includes('/assessment') && page !== 'https://www.idone.co.il/',
+      filter: (page) => !page.includes('/404') && !page.includes('/assessment') && !page.includes('/preferences') && page !== 'https://www.idone.co.il/',
     }),
   ],
   vite: { build: { assetsInlineLimit: 0 } },
