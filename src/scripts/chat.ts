@@ -132,9 +132,12 @@ export function initChat() {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
     try {
+      // the API wants the conversation to open with a user turn, so a window cut mid-conversation drops leading bot turns
+      const windowed = state.messages.slice(-SEND_WINDOW);
+      while (windowed.length && windowed[0].role !== 'user') windowed.shift();
       const res = await fetch(d.endpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctrl.signal,
-        body: JSON.stringify({ messages: state.messages.slice(-SEND_WINDOW), locale: d.locale, page: location.pathname }),
+        body: JSON.stringify({ messages: windowed, locale: d.locale, page: location.pathname }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
