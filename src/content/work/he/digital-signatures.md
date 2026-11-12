@@ -20,7 +20,7 @@ tools:
   - "CRM"
   - "חתימה דיגיטלית"
   - "Google Drive"
-featured: 3
+featured: 4
 media:
   type: "flow"
   ratio: "16 / 9"

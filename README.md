@@ -109,8 +109,9 @@ python scripts/sheet.py "qa/shots/he-desktop-dark-home-*.png" qa/sheet.jpg 5 384
 | `src/lib/site.ts` | עיר (ל-structured data), LinkedIn אם יש. אימייל/טלפון/וואטסאפ נלקחו מהאתר הקודם (support@idone.co.il, 052-8888182); לוודא שהוואטסאפ על אותו מספר |
 | `src/i18n/*.json` → `legal.accessibility` | שם רכז נגישות, תאריך בדיקה |
 | `src/i18n/*.json` → `legal.privacy` | כלי אנליטיקס (אם יש) |
-| `src/components/scenes/Video.astro` | 6 ריילס/סרטונים נוספים במקום ה-placeholders (קובץ + פוסטר + קישור לפרויקט) |
+| `src/components/scenes/Video.astro` | 3 סרטונים נוספים במקום ה-placeholders: תדמית, פרסומת, סרטון מוצר (קובץ + פוסטר + קישור לפרויקט) |
 | `src/content/work/*/boostcoach.md` | מספר הורדות/דירוג, קישור ל-Google Play |
+| `src/content/work/*/midda.md` | מספר משתמשים רשומים או פרויקטים (הריילס מ-`midda-video-studio/out`, מכווצים ל-720p) |
 | `src/content/work/*/lead-automation.md`, `client-onboarding.md`, `reports-dashboard.md` | שם לקוח ואישור פרסום, נתון אמיתי אחד |
 | `src/content/work/*/digital-signatures.md`, `whatsapp-chatbot.md` | אישור מחודש לציטוטים ולשמות (הועתקו מהאתר הקיים) |
 | `src/content/work/*/idone-noc.md` | צילום מסך אמיתי של הדשבורד (כרגע תרשים זרימה) |

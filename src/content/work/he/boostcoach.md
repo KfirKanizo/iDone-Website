@@ -23,7 +23,7 @@ tools:
   - "Remotion"
   - "Kling"
   - "Python"
-featured: 1
+featured: 2
 media:
   type: "video"
   src: "/work/boostcoach/promo-he.mp4"
