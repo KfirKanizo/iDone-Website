@@ -4,13 +4,13 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const reels: { src?: string; poster?: string; title: string; tbd?: boolean; href?: string }[] = [
+  { src: '/work/midda/under-20-min.mp4', poster: '/work/midda/under-20-min.webp', title: locale === 'he' ? 'מידה · מתוכנית מכר לסיור' : 'Midda · Sales plan to walk-through', href: localePath(locale, '/work/midda') },
   { src: `/work/boostcoach/promo-${locale}.mp4`, poster: `/work/boostcoach/promo-${locale}.webp`, title: 'BoostCoach · Day one', href: localePath(locale, '/work/boostcoach') },
-  { title: locale === 'he' ? '[להשלמה / TBD: ריל 2]' : '[TBD: reel 2]', tbd: true },
+  { src: '/work/midda/plan-check.mp4', poster: '/work/midda/plan-check.webp', title: locale === 'he' ? 'מידה · 18 ס"מ זה הרבה' : 'Midda · 18 cm is a lot', href: localePath(locale, '/work/midda') },
+  { src: '/work/midda/plan-to-3d.mp4', poster: '/work/midda/plan-to-3d.webp', title: locale === 'he' ? 'מידה · מנייר לתלת־ממד' : 'Midda · Paper to 3D', href: localePath(locale, '/work/midda') },
   { title: locale === 'he' ? '[להשלמה / TBD: סרטון תדמית]' : '[TBD: brand film]', tbd: true },
   { title: locale === 'he' ? '[להשלמה / TBD: פרסומת]' : '[TBD: ad]', tbd: true },
-  { title: locale === 'he' ? '[להשלמה / TBD: ריל 5]' : '[TBD: reel 5]', tbd: true },
   { title: locale === 'he' ? '[להשלמה / TBD: סרטון מוצר]' : '[TBD: product video]', tbd: true },
-  { title: locale === 'he' ? '[להשלמה / TBD: ריל 7]' : '[TBD: reel 7]', tbd: true },
 ];
 ---
 <section class="video" id="scene-video" data-scene="video" aria-labelledby="video-title">

@@ -32,8 +32,14 @@ const work = defineCollection({
       .default({ type: 'none', ratio: '16 / 9' }),
     /** Node labels for a brand-style flow diagram (media.type = 'flow'). */
     flow: z.array(z.string()).optional(),
-    /** Extra images for the case page. */
-    gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
+    /** More 9:16 videos for the case page, shown under the main media. */
+    videos: z.array(z.object({ src: z.string(), poster: z.string(), title: z.string() })).default([]),
+    /** Extra images for the case page. Pass width/height for landscape shots (wider grid). */
+    gallery: z
+      .array(z.object({ src: z.string(), alt: z.string(), width: z.number().optional(), height: z.number().optional() }))
+      .default([]),
+    /** Link to the live product, shown in the case header. */
+    link: z.object({ href: z.string().url(), label: z.string() }).optional(),
     /** Client logo (SVG/WebP). `dark: true` means it is artwork on a dark background. */
     clientLogo: z.object({ src: z.string(), dark: z.boolean().default(false) }).optional(),
     quote: z.object({ text: z.string(), who: z.string() }).optional(),

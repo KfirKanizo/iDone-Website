@@ -16,7 +16,7 @@ const vps = ((args.find((a) => a.startsWith('--vp=')) || '--vp=desktop,mobile').
 fs.mkdirSync(out, { recursive: true });
 
 const viewports = { desktop: { width: 1440, height: 900 }, mobile: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 } };
-const pages = ['/', '/services/web', '/services/video', '/services/automation', '/work/boostcoach', '/about', '/contact', '/accessibility', '/404'];
+const pages = ['/', '/services/web', '/services/video', '/services/automation', '/work/boostcoach', '/work/midda', '/about', '/contact', '/accessibility', '/404'];
 
 const browser = await chromium.launch();
 const log = [];

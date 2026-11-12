@@ -20,7 +20,7 @@ tools:
   - "Fireberry"
   - "WhatsApp Business API"
   - "OpenAI API"
-featured: 2
+featured: 3
 media:
   type: "flow"
   ratio: "16 / 9"

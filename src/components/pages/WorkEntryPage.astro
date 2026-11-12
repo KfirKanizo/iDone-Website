@@ -25,6 +25,9 @@ const article = { '@context': 'https://schema.org', '@type': 'CreativeWork', nam
           <div><dt>{t.work.year}</dt><dd class="ltr">{d.year}</dd></div>
           {d.tools.length > 0 && <div><dt>{t.work.toolsUsed}</dt><dd class="tools">{d.tools.map((x) => (<span class="tag"><bdi>{x}</bdi></span>))}</dd></div>}
         </dl>
+        {d.link && (
+          <p><a class="btn btn-primary live-link" href={d.link.href} target="_blank" rel="noopener">{d.link.label}<span class="arrow" aria-hidden="true">↗</span></a></p>
+        )}
       </div>
     </header>
 
@@ -41,9 +44,22 @@ const article = { '@context': 'https://schema.org', '@type': 'CreativeWork', nam
       <div class="container-narrow"><FlowDiagram nodes={d.flow} /></div>
     ) : null}
 
+    {d.videos.length > 0 && (
+      <ul role="list" class="container reels">
+        {d.videos.map((v) => (
+          <li>
+            <video controls playsinline preload="none" poster={v.poster} aria-label={v.title} width="720" height="1280">
+              <source src={v.src} type="video/mp4" />
+            </video>
+            <p class="muted">{v.title}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+
     {d.gallery.length > 0 && (
-      <ul role="list" class="container gallery">
-        {d.gallery.map((g) => (<li><img src={g.src} alt={g.alt} loading="lazy" width="540" height="960" /></li>))}
+      <ul role="list" class:list={['container gallery', { wide: d.gallery.some((g) => (g.width ?? 0) > (g.height ?? 1)) }]}>
+        {d.gallery.map((g) => (<li><img src={g.src} alt={g.alt} loading="lazy" width={g.width ?? 540} height={g.height ?? 960} /></li>))}
       </ul>
     )}
 
@@ -87,6 +103,12 @@ const article = { '@context': 'https://schema.org', '@type': 'CreativeWork', nam
   .client-logo { inline-size: 40px; block-size: 40px; object-fit: contain; border-radius: var(--idone-radius-sm); }
   .client-logo.dark { background: #0A0C10; padding: 4px; inline-size: 64px; }
   .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--site-space-6); margin-block-start: var(--site-space-12); }
+  .gallery.wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .reels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 280px)); justify-content: center; gap: var(--site-space-6); margin-block-start: var(--site-space-12); }
+  .reels li { display: grid; gap: var(--site-space-2); }
+  .reels video { inline-size: 100%; block-size: auto; aspect-ratio: 9 / 16; border-radius: var(--idone-radius-md); border: 1px solid var(--idone-line); background: var(--idone-ink-900); }
+  .reels p { font-size: var(--site-step--1); }
+  .live-link { display: inline-flex; gap: 8px; align-items: center; }
   .gallery img { inline-size: 100%; block-size: auto; border-radius: var(--idone-radius-md); border: 1px solid var(--idone-line); }
   .part { display: grid; gap: var(--site-space-4); }
   .results li { padding-inline-start: 1.2em; position: relative; margin-block: 8px; }
