@@ -28,7 +28,8 @@ src/content.config.ts       סכמת הפרויקטים
 src/styles/tokens-ext.css   הרחבות האתר ל-tokens (קידומת --site-*)
 src/styles/global.css       בסיס, טיפוגרפיה, כפתורים, הנקודה, טפסים
 src/layouts/Base.astro      <head> (קוד המותג, hreflang, OG, JSON-LD), כותרת, פוטר, הנקודה
-src/components/scenes/      סצנות עמוד הבית (HTML + CSS בלבד)
+src/home/                   עמוד הבית (/he/, /en/): home.html (מבנה), dict.js (טקסטים בשתי השפות), home.css, home.js (תנועה, טופס). עמוד עצמאי בלי Base.astro; HomePage.astro מוסיף את ה-SEO והצ'אטבוט
+src/components/scenes/      סצנות עמוד הבית הקודם (לא בשימוש בעמוד הבית)
 src/scripts/motion/         GSAP: dot.ts (הנקודה), scenes/*.ts (כוריאוגרפיה לכל סצנה)
 src/scripts/ui.ts           כותרת, מצב כהה, מתג תנועה, מתג שפה (שומר סצנה), reveal, וידאו עצל
 src/scripts/form.ts         טופס: ולידציה, שליחה ל-webhook, מצבי הצלחה/שגיאה
