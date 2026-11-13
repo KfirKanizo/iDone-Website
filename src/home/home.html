@@ -1,0 +1,519 @@
+<a class="skip-link" href="#main" data-i18n="a11y.skip">דלגו לתוכן</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="art-midda" viewBox="0 0 160 100">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <rect x="32" y="18" width="96" height="60"/>
+        <path d="M32 48H70M70 18V60M70 60H98M98 60V78M98 42H128M98 18V30"/>
+        <path d="M46 48a9 9 0 0 1 9-9M98 42a9 9 0 0 0-9-9" stroke-opacity=".6"/>
+        <path d="M32 88H128M32 85v6M128 85v6M20 18V78M17 18h6M17 78h6" stroke-opacity=".5"/>
+        <rect x="40" y="24" width="18" height="12" stroke-opacity=".5"/><rect x="106" y="54" width="14" height="18" stroke-opacity=".5"/>
+      </g>
+    </symbol>
+    <symbol id="art-boost" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="20" r="6"/>
+        <path d="M50 28V52M50 34L35 44L31 31M50 34L65 44L69 31M50 52L37 66L40 84M50 52L63 66L60 84"/>
+        <path d="M22 88H78" stroke-opacity=".5"/>
+      </g>
+      <g fill="currentColor"><circle cx="50" cy="34" r="1.8"/><circle cx="35" cy="44" r="1.8"/><circle cx="65" cy="44" r="1.8"/><circle cx="50" cy="52" r="1.8"/><circle cx="37" cy="66" r="1.8"/><circle cx="63" cy="66" r="1.8"/></g>
+    </symbol>
+    <symbol id="art-flow" viewBox="0 0 160 100">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <rect x="12" y="38" width="36" height="24" rx="3"/><rect x="62" y="38" width="36" height="24" rx="3"/><rect x="112" y="38" width="36" height="24" rx="3"/>
+        <path d="M48 50H62M98 50H112"/>
+        <path d="M20 46H40M20 52H34M70 46H90M70 52H84M120 46H140M120 52H134" stroke-opacity=".5"/>
+      </g>
+      <circle cx="55" cy="50" r="2.4" fill="currentColor"/>
+    </symbol>
+    <symbol id="art-sign" viewBox="0 0 160 100">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <rect x="52" y="12" width="56" height="76" rx="2"/>
+        <path d="M60 24H100M60 31H94M60 38H100M60 45H86" stroke-opacity=".5"/>
+        <path d="M60 74H100" stroke-opacity=".6"/>
+        <path d="M62 68c4-9 7 5 11-2s5-9 8-1 6 4 9-2 5-1 8 1" stroke-width="1.4"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="logo logo--inline" href="#scene-hero" aria-label="iDone Technologies">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path class="lg-d" fill="currentColor" fill-rule="evenodd" d="M10 10H32A22 22 0 0 1 32 54H10ZM22 22V42H32A10 10 0 0 0 32 22Z"/><circle class="lg-dot" cx="32" cy="32" r="6" fill="var(--accent)"/></svg>
+      <span class="txt"><span class="word">iDone</span><span class="tech">TECHNOLOGIES</span></span>
+    </a>
+    <nav id="site-nav" class="site-nav" aria-label="ניווט ראשי" data-i18n-attr="aria-label:a11y.navMain">
+      <details class="menu">
+        <summary><span data-i18n="nav.services">שירותים</span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+        <ul class="submenu">
+          <li><a href="{{base}}/services/web/" data-i18n="nav.web">אתרים ואפליקציות</a></li>
+          <li><a href="{{base}}/services/video/" data-i18n="nav.video">וידאו</a></li>
+          <li><a href="{{base}}/services/automation/" data-i18n="nav.automation">אוטומציה</a></li>
+        </ul>
+      </details>
+      <a class="u-link" href="#scene-about" data-nav="scene-about" data-i18n="nav.about">עלינו</a>
+      <a class="u-link" href="#contact" data-nav="contact" data-i18n="nav.contact">צור קשר</a>
+    </nav>
+    <div class="tools">
+      <a class="icon-btn lang-switch mono" href="{{alt}}" hreflang="{{other}}" lang="{{other}}" aria-label="Switch to English" data-i18n="meta.switchLabel" data-i18n-attr="aria-label:meta.switchAria">EN</a>
+      <button class="icon-btn needs-js" id="theme-toggle" type="button" aria-label="מצב כהה">
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></svg>
+      </button>
+      <button class="icon-btn needs-js" id="motion-toggle" type="button" aria-pressed="false" aria-label="השבת אנימציות">
+        <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle needs-js" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתח תפריט"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section id="scene-hero" class="scene hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-logo-wrap">
+      <div class="logo hero-logo" id="hero-logo" role="img" aria-label="iDone Technologies">
+        <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+          <g class="lg-d">
+            <rect class="lg-spine" x="10" y="10" width="12" height="44" fill="currentColor"/>
+            <path class="lg-bowl" d="M16 48H32A16 16 0 0 0 32 16H16" fill="none" stroke="currentColor" stroke-width="12" pathLength="1"/>
+          </g>
+          <circle class="lg-dot" cx="32" cy="32" r="6" fill="var(--accent)"/>
+        </svg>
+        <span class="txt" aria-hidden="true">
+          <span class="word"><span class="ch ch-i"><span class="i-stem">i</span><span class="i-dot">i</span></span><span class="ch">D</span><span class="ch">o</span><span class="ch">n</span><span class="ch">e</span></span>
+          <span class="tech">TECHNOLOGIES</span>
+        </span>
+      </div>
+      <button type="button" class="intro-skip needs-js" id="intro-skip" data-i18n="a11y.introSkip">דלגו על הפתיח</button>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow" style="--i:0" data-i18n="hero.eyebrow">פיתוח · וידאו · אוטומציה</p>
+      <h1 id="hero-title" style="--i:1"><span class="dot-slot hero-dot" data-dot-slot="hero" data-dot-scale="1.4" style="--dot-scale:1.4" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="hero.title">סטודיו אחד. האתר, הסרטונים, וכל מה שמחבר ביניהם.</span></h1>
+      <p class="lead" style="--i:2" data-i18n="hero.sub">אנחנו בונים אתרים, אפליקציות ופלטפורמות, מפיקים סרטונים לרשתות, ומחברים את העסק בתהליכים אוטומטיים. בחשיבה של מהנדסים, לא באלתור.</p>
+      <div class="hero-actions" style="--i:3">
+        <a class="btn btn-primary" href="#contact"><span class="dotmark" aria-hidden="true"></span><span data-i18n="cta.primary">לשיחת ייעוץ</span></a>
+        <a class="btn btn-ghost" href="#scene-build" data-i18n="cta.secondary">מה אנחנו עושים</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM · ONE TABLE ============ -->
+<section class="scene onetable" id="scene-problem" data-scene="problem" aria-labelledby="problem-title">
+  <div class="pin" data-pin>
+    <div class="container stage">
+      <h2 id="problem-title" class="t-3 line line-1" data-line="1" data-i18n="home.problem.line1">בדרך כלל זה שלושה ספקים שלא מדברים.</h2>
+      <p class="visually-hidden" role="img" aria-label="איור: שלוש תחנות עבודה (אתר, וידאו, אוטומציה) שמתחברות לשולחן אחד." data-i18n-attr="aria-label:home.problem.ariaDesk"></p>
+      <div class="desk" data-desk aria-hidden="true">
+        <figure class="station st-build reveal" data-station="0" style="--delay:0ms">
+          <figcaption class="mono" data-i18n="home.together.tiles.0">אתר</figcaption>
+          <svg viewBox="0 0 120 78">
+            <g class="fl"><circle cx="5" cy="5" r="1.6"/><circle cx="10.5" cy="5" r="1.6"/><circle cx="16" cy="5" r="1.6"/></g>
+            <path class="ln" d="M0 11H120"/>
+            <g class="fl"><rect x="4" y="16" width="14" height="3" rx="1.5"/><rect x="22" y="16" width="10" height="3" rx="1.5"/><rect x="36" y="16" width="10" height="3" rx="1.5"/></g>
+            <g class="fl"><rect x="4" y="26" width="60" height="5" rx="1"/><rect x="4" y="34" width="36" height="5" rx="1"/></g>
+            <rect class="ln" x="4" y="46" width="26" height="26" rx="2"/><rect class="ln" x="34" y="46" width="26" height="26" rx="2"/>
+            <g class="fl"><rect x="72" y="56" width="6" height="16"/><rect x="81" y="44" width="6" height="28"/><rect x="90" y="50" width="6" height="22"/><rect x="99" y="36" width="6" height="36"/><rect x="108" y="46" width="6" height="26"/></g>
+            <path class="ln" d="M70 72H116"/>
+          </svg>
+        </figure>
+        <figure class="station st-video reveal" data-station="1" style="--delay:var(--stagger)">
+          <figcaption class="mono" data-i18n="home.together.tiles.1">וידאו</figcaption>
+          <svg viewBox="0 0 120 78">
+            <rect class="ln" x="50" y="1" width="20" height="35.5" rx="2"/>
+            <path class="fl" d="M57.5 15.5v7l6-3.5z"/>
+            <g class="ln">
+              <rect x="4" y="43" width="34" height="7" rx="3.5"/><rect x="42" y="43" width="22" height="7" rx="3.5"/><rect x="68" y="43" width="46" height="7" rx="3.5"/>
+              <rect x="12" y="54" width="28" height="7" rx="3.5"/><rect x="44" y="54" width="52" height="7" rx="3.5"/>
+              <rect x="4" y="65" width="18" height="7" rx="3.5"/><rect x="26" y="65" width="32" height="7" rx="3.5"/><rect x="62" y="65" width="26" height="7" rx="3.5"/>
+            </g>
+            <g class="playhead"><path class="ln" d="M4 40V76"/><path class="fl" d="M1.5 37.5h5l-2.5 3.5z"/></g>
+          </svg>
+        </figure>
+        <figure class="station st-auto reveal" data-station="2" style="--delay:calc(var(--stagger)*2)">
+          <figcaption class="mono" data-i18n="home.together.tiles.2">אוטומציה</figcaption>
+          <svg viewBox="0 0 120 78">
+            <path class="ln" d="M20 22L62 16L100 36L54 60"/>
+            <path class="ln broken" d="M54 60L39.9 44.2M34.1 37.8L20 22"/>
+            <path class="gap-fill" d="M39.9 44.2L34.1 37.8"/>
+            <g class="ring"><circle cx="20" cy="22" r="6"/><circle cx="62" cy="16" r="6"/><circle cx="100" cy="36" r="6"/><circle cx="54" cy="60" r="6"/></g>
+          </svg>
+        </figure>
+        <svg class="links reveal" data-links viewBox="0 0 100 100" preserveAspectRatio="none" style="--delay:calc(var(--stagger)*3)"><path data-link="0" d="M16 50H50"/><path data-link="1" d="M50 50H84"/></svg>
+        <i class="table" data-table></i>
+        <span class="dot-slot" data-dot-slot="problem" data-dot-scale="1.2" style="--dot-scale:1.2"><i class="dot-static"></i><i class="pulse"></i></span>
+      </div>
+      <p class="line line-2 t-3" data-line="2" data-i18n="home.problem.line2">אצלנו זה שולחן אחד.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILD ============ -->
+<section id="scene-build" class="scene scene-build surface-ink" aria-labelledby="build-title">
+  <div class="pin" data-pin>
+    <div class="container two-col">
+      <div class="copy reveal">
+        <p class="eyebrow" data-i18n="build.label">01 · בונים</p>
+        <h2 id="build-title"><span class="accent-word" data-i18n="build.title">בונים.</span> <span data-i18n="build.lead">אתרים, אפליקציות ופלטפורמות שמחזיקות מעמד.</span></h2>
+        <ul class="list-lines">
+          <li><span data-i18n="build.points.0">אתרי שיווק שנטענים מהר ומביאים פניות</span></li>
+          <li><span data-i18n="build.points.1">אפליקציות ופלטפורמות עם ממשק ניהול שמובן</span></li>
+          <li><span data-i18n="build.points.2">קוד שלכם, מתועד, מוכן לגדול</span></li>
+        </ul>
+        <a class="link-arrow" href="{{base}}/services/web/"><span data-i18n="build.link">עוד על פיתוח</span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone" role="img" aria-label="BoostCoach" data-i18n-attr="aria-label:build.caption">
+          <div class="screen">
+            <div class="blocks" aria-hidden="true">
+              <div class="blk nav"><i></i><i></i><i></i></div>
+              <div class="blk heroblk"><i class="long"></i><i class="short"></i></div>
+              <div class="blk card"></div>
+              <div class="blk card"></div>
+              <div class="blk chart"><i style="--h:40%"></i><i style="--h:70%"></i><i style="--h:55%"></i><i style="--h:90%"></i><i style="--h:65%"></i></div>
+              <div class="blk cta"></div>
+            </div>
+            <div class="shot" data-shot aria-hidden="true">
+              <div class="shot-bar"><span>BoostCoach</span><i></i></div>
+              <div class="shot-cam"><svg><use href="#art-boost"/></svg></div>
+              <div class="shot-meta"><i></i><i></i><i class="shot-btn"></i></div>
+            </div>
+          </div>
+        </div>
+        <p class="caption"><span class="dot-slot caret-slot" data-dot-slot="build" data-dot-handoff data-dot-scale=".5" aria-hidden="true"><i class="dot-local caret"></i></span><span class="caption-text" data-i18n="build.caption">BoostCoach · אפליקציית כושר לאנדרואיד שפיתחנו</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO ============ -->
+<section id="scene-video" class="scene scene-video" aria-labelledby="video-title">
+  <div class="container video-head reveal">
+    <div class="copy">
+      <p class="eyebrow" data-i18n="video.label">02 · מצלמים ועורכים</p>
+      <h2 id="video-title"><span class="accent-word" data-i18n="video.title">מצלמים ועורכים.</span> <span data-i18n="video.lead">ריילס, סרטוני תדמית ופרסומות שעוצרים את הגלילה.</span></h2>
+    </div>
+    <div class="copy">
+      <ul class="list-lines">
+        <li><span data-i18n="video.points.0">ריילס וסטוריז בקצב של הפיד</span></li>
+        <li><span data-i18n="video.points.1">סרטוני תדמית ופרסומות</span></li>
+        <li><span data-i18n="video.points.2">עיצוב, מושן גרפיקס ועריכה</span></li>
+      </ul>
+      <a class="link-arrow" href="{{base}}/services/video/"><span data-i18n="video.link">עוד על וידאו</span><span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="pin reel-stage" data-pin>
+    <div class="container">
+      <p class="hint mono"><span data-i18n="video.hint">גללו כדי לדפדף</span><span class="link-arrow"><span class="arrow" aria-hidden="true">→</span></span></p>
+      <ul class="track">
+        <li class="reel" data-reel="midda">
+          <div class="frame">
+            <svg class="art" aria-hidden="true"><use href="#art-midda"/></svg>
+            <video playsinline muted loop preload="none" aria-label="מידה — דירה בתלת־ממד" data-i18n-attr="aria-label:video.reels.0"></video>
+            <span class="progress" aria-hidden="true"></span>
+            <button type="button" class="play-btn dot-slot fit" data-dot-slot="video" data-dot-handoff data-dot-scale="fit" aria-pressed="false" aria-label="נגן ריל">
+              <i class="dot-local"></i>
+              <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z" fill="currentColor"/></svg>
+              <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <p class="reel-title" data-i18n="video.reels.0">מידה — דירה בתלת־ממד</p>
+        </li>
+        <li class="reel" data-reel="boostcoach">
+          <div class="frame">
+            <svg class="art" aria-hidden="true"><use href="#art-boost"/></svg>
+            <video playsinline muted loop preload="none" aria-label="BoostCoach — אפליקציית כושר" data-i18n-attr="aria-label:video.reels.1"></video>
+            <span class="progress" aria-hidden="true"></span>
+            <button type="button" class="play-btn dot-slot fit no-static" data-dot-slot="video" data-dot-handoff data-dot-scale="fit" aria-pressed="false" aria-label="נגן ריל">
+              <i class="dot-local"></i>
+              <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z" fill="currentColor"/></svg>
+              <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <p class="reel-title" data-i18n="video.reels.1">BoostCoach — אפליקציית כושר</p>
+        </li>
+        <li class="reel is-tbd">
+          <div class="frame"><p class="tbd mono"><span class="dot-slot no-static" data-dot-slot="video" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="video.soon">בקרוב</span></p></div>
+        </li>
+        <li class="reel is-tbd">
+          <div class="frame"><p class="tbd mono"><span class="dot-slot no-static" data-dot-slot="video" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="video.soon">בקרוב</span></p></div>
+        </li>
+        <li class="reel is-tbd">
+          <div class="frame"><p class="tbd mono"><span class="dot-slot no-static" data-dot-slot="video" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="video.soon">בקרוב</span></p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTOMATION ============ -->
+<section id="scene-automation" class="scene scene-automation surface-ink" aria-labelledby="automation-title">
+  <div class="pin" data-pin>
+    <div class="container two-col">
+      <div class="copy reveal">
+        <p class="eyebrow" data-i18n="automation.label">03 · מחברים</p>
+        <h2 id="automation-title"><span class="accent-word" data-i18n="automation.title">מחברים.</span> <span data-i18n="automation.lead">הליד נכנס, המערכות מדברות, ואתם מקבלים הודעה.</span></h2>
+        <ul class="list-lines">
+          <li><span data-i18n="automation.points.0">ליד מהאתר ישר ל-CRM ולוואטסאפ</span></li>
+          <li><span data-i18n="automation.points.1">צ'אטבוטים שעונים ומתעדים</span></li>
+          <li><span data-i18n="automation.points.2">חיבורים בין המערכות שכבר יש לכם</span></li>
+        </ul>
+        <a class="link-arrow" href="{{base}}/services/automation/"><span data-i18n="automation.link">עוד על אוטומציה</span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="flow">
+        <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path class="base" d="M8 34L24.8 22L41.6 30L58.4 14L75.2 22L92 6"/>
+          <path class="lit" d="M8 34L24.8 22L41.6 30L58.4 14L75.2 22L92 6"/>
+        </svg>
+        <ol>
+          <li class="node" style="--x:8;--y:85"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.0">טופס באתר</span></li>
+          <li class="node" style="--x:24.8;--y:55"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.1">n8n</span></li>
+          <li class="node" style="--x:41.6;--y:75"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.2">CRM</span></li>
+          <li class="node" style="--x:58.4;--y:35"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.3">וואטסאפ</span></li>
+          <li class="node" style="--x:75.2;--y:55"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.4">חשבונית</span></li>
+          <li class="node" style="--x:92;--y:15"><span class="pip" aria-hidden="true"></span><span class="lbl" data-i18n="automation.nodes.5">דוח</span></li>
+        </ol>
+        <span class="dot-slot runner-slot" data-dot-slot="automation" data-dot-handoff aria-hidden="true"><i class="dot-local dot-round"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOGETHER ============ -->
+<section id="scene-together" class="scene scene-together" aria-labelledby="together-title">
+  <div class="pin" data-pin>
+    <div class="container two-col">
+      <div class="ring-box">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="base" cx="100" cy="100" r="86"/><circle class="lit" cx="100" cy="100" r="86" pathLength="1"/></svg>
+        <span class="dot-slot orbit-slot" data-dot-slot="together" data-dot-handoff aria-hidden="true"><i class="dot-local dot-round"></i></span>
+        <ul>
+          <li class="tile mono" style="--tx:0;--ty:-1" data-i18n="together.tiles.0">אתר</li>
+          <li class="tile mono" style="--tx:.87;--ty:.5" data-i18n="together.tiles.1">וידאו</li>
+          <li class="tile mono" style="--tx:-.87;--ty:.5" data-i18n="together.tiles.2">אוטומציה</li>
+        </ul>
+      </div>
+      <div class="tg-copy">
+        <h2 id="together-title" data-i18n="together.title">וכשזה אותו צוות, הכול מתחבר.</h2>
+        <p class="lead" data-i18n="together.sub">האתר אוסף, הסרטון מביא, האוטומציה סוגרת.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="scene-work" class="scene section" aria-labelledby="work-title">
+  <div class="container">
+    <div class="work-head reveal">
+      <h2 id="work-title" class="bullet-title"><span class="dot-slot" data-dot-slot="work" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="work.title">עבודות נבחרות</span></h2>
+      <p class="lead" data-i18n="work.sub">פרויקטים אמיתיים. איפה שעוד אין לנו מספרים, אנחנו אומרים את זה.</p>
+    </div>
+    <div class="work-list">
+      <a class="work-card is-large reveal" id="work-midda" href="https://midda.idone.co.il/" target="_blank" rel="noopener noreferrer" data-site="midda" style="--delay:0ms">
+        <div class="media surface-mist"><svg class="art" aria-hidden="true"><use href="#art-midda"/></svg></div>
+        <div class="work-text">
+          <p class="client mono"><span class="dot-slot no-static" data-dot-slot="work" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="work.items.0.client">מידה · מוצר של iDone</span></p>
+          <h3 class="t-3" data-i18n="work.items.0.title">מידה</h3>
+          <p data-i18n="work.items.0.summary">מתוכנית המכר של הקבלן לדירה בתלת־ממד, במידות אמיתיות</p>
+          <ul class="tags"><li data-i18n="work.tags.web">אתר</li><li data-i18n="work.tags.video">וידאו</li></ul>
+          <span class="link-arrow"><span><span data-i18n="work.visit.midda">לאתר מידה</span> <span class="visually-hidden" data-i18n="work.newTab">(נפתח בטאב חדש)</span></span><span class="arrow arrow-ext" aria-hidden="true">↗</span></span>
+        </div>
+      </a>
+      <a class="work-card reveal" id="work-boostcoach" href="https://fit.idone.co.il/#/landing" target="_blank" rel="noopener noreferrer" data-site="boostcoach" style="--delay:60ms">
+        <div class="media surface-mist"><svg class="art" aria-hidden="true"><use href="#art-boost"/></svg></div>
+        <div class="work-text">
+          <p class="client mono"><span class="dot-slot no-static" data-dot-slot="work" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="work.items.1.client">BoostCoach · אפליקציית אנדרואיד</span></p>
+          <h3 class="t-3" data-i18n="work.items.1.title">BoostCoach</h3>
+          <p data-i18n="work.items.1.summary">אפליקציית כושר שסופרת חזרות במצלמה</p>
+          <ul class="tags"><li data-i18n="work.tags.app">אפליקציה</li></ul>
+          <span class="link-arrow"><span><span data-i18n="work.visit.boostcoach">לאתר BoostCoach</span> <span class="visually-hidden" data-i18n="work.newTab">(נפתח בטאב חדש)</span></span><span class="arrow arrow-ext" aria-hidden="true">↗</span></span>
+        </div>
+      </a>
+      <article class="work-card reveal" id="work-leads" style="--delay:120ms">
+        <div class="media surface-mist"><svg class="art" aria-hidden="true"><use href="#art-flow"/></svg></div>
+        <div class="work-text">
+          <p class="client mono"><span class="dot-slot no-static" data-dot-slot="work" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="work.items.2.client">חברת שירותים</span></p>
+          <h3 class="t-3" data-i18n="work.items.2.title">אוטומציית לידים</h3>
+          <p data-i18n="work.items.2.summary">ליד מהאתר לאיש המכירות תוך שניות</p>
+          <ul class="tags"><li data-i18n="work.tags.automation">אוטומציה</li></ul>
+          <a class="quiet-link" href="#contact" data-i18n="work.similar">רוצים משהו דומה?</a>
+        </div>
+      </article>
+      <article class="work-card reveal" id="work-sign" style="--delay:180ms">
+        <div class="media surface-mist"><svg class="art" aria-hidden="true"><use href="#art-sign"/></svg></div>
+        <div class="work-text">
+          <p class="client mono"><span class="dot-slot no-static" data-dot-slot="work" data-dot-scale=".6" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="work.items.3.client">AGN נדל"ן (נדל"ן ביוון)</span></p>
+          <h3 class="t-3" data-i18n="work.items.3.title">חתימות דיגיטליות</h3>
+          <p data-i18n="work.items.3.summary">חוזה לחתימה דיגיטלית בלחיצה אחת מה-CRM</p>
+          <ul class="tags"><li data-i18n="work.tags.automation">אוטומציה</li></ul>
+          <a class="quiet-link" href="#contact" data-i18n="work.similar">רוצים משהו דומה?</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="scene-process" class="scene section surface-mist" aria-labelledby="process-title">
+  <div class="container">
+    <h2 id="process-title" class="reveal" data-i18n="process.title">איך זה עובד</h2>
+    <ol class="steps">
+      <li class="step reveal" style="--delay:0ms">
+        <span class="num mono">01</span>
+        <span class="tick" aria-hidden="true"><span class="marker"><span class="dot-slot walker-slot" data-dot-slot="process" data-dot-handoff><i class="dot-local dot-round"></i></span></span></span>
+        <svg class="viz v-call" viewBox="0 0 40 40" aria-hidden="true"><circle class="a" cx="15" cy="20" r="9"/><circle class="b" cx="25" cy="20" r="9"/></svg>
+        <h3 data-i18n="process.steps.0.title">שיחה</h3>
+        <p data-i18n="process.steps.0.text">מבינים מה באמת צריך, לא רק מה ביקשו.</p>
+      </li>
+      <li class="step reveal" style="--delay:80ms">
+        <span class="num mono">02</span>
+        <span class="tick" aria-hidden="true"><span class="marker"></span></span>
+        <svg class="viz v-plan" viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="5" height="5"/><rect x="5" y="17.5" width="5" height="5"/><rect x="5" y="26" width="5" height="5"/><path class="l" d="M14 11.5H34"/><path class="l" d="M14 20H34"/><path class="l" d="M14 28.5H28"/></svg>
+        <h3 data-i18n="process.steps.1.title">אפיון</h3>
+        <p data-i18n="process.steps.1.text">תוכנית ברורה, מחיר ברור, לוח זמנים ברור.</p>
+      </li>
+      <li class="step reveal" style="--delay:160ms">
+        <span class="num mono">03</span>
+        <span class="tick" aria-hidden="true"><span class="marker"></span></span>
+        <svg class="viz v-build" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 34H37"/><rect class="b" x="6" y="24" width="7" height="10"/><rect class="b" x="16.5" y="16" width="7" height="18"/><rect class="b" x="27" y="8" width="7" height="26"/></svg>
+        <h3 data-i18n="process.steps.2.title">בנייה</h3>
+        <p data-i18n="process.steps.2.text">שלבים קצרים, עדכונים קבועים, בדיקות לפני העלייה לאוויר.</p>
+      </li>
+      <li class="step reveal" style="--delay:240ms">
+        <span class="num mono">04</span>
+        <span class="tick" aria-hidden="true"><span class="marker"></span></span>
+        <svg class="viz v-launch" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="12"/><g class="orbit"><circle class="sat" cx="20" cy="8" r="2.4"/></g></svg>
+        <h3 data-i18n="process.steps.3.title">השקה וליווי</h3>
+        <p data-i18n="process.steps.3.text">מודדים, מתקנים, משפרים. לא נעלמים.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="scene-about" class="scene section surface-ink" aria-labelledby="about-title">
+  <div class="container narrow about-inner reveal">
+    <h2 id="about-title" class="t-3 bullet-title"><span class="dot-slot" data-dot-slot="about" aria-hidden="true"><i class="dot-static"></i></span><span data-i18n="about.title">מפתחים, עורכים ומומחי אוטומציה, שחושבים קודם על התהליך ורק אחר כך על הכלי.</span></h2>
+    <p class="lead" data-i18n="about.sub">iDone הוא סטודיו, לא פרילנסר. כל פרויקט מקבל צוות.</p>
+    <a class="link-arrow" href="{{base}}/about/"><span data-i18n="about.link">על הסטודיו</span><span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section id="contact" class="scene section" aria-labelledby="cta-title" tabindex="-1">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-mark" id="cta-mark" data-dot-slot="cta-done" data-dot-handoff data-dot-scale="fit" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path class="lg-d" fill="currentColor" fill-rule="evenodd" d="M10 10H32A22 22 0 0 1 32 54H10ZM22 22V42H32A10 10 0 0 0 32 22Z"/><circle class="lg-ring" cx="32" cy="32" r="5.5"/><circle class="lg-dot dot-local" cx="32" cy="32" r="6" fill="var(--accent)"/></svg>
+        <span class="dot-slot fit cta-wait" data-dot-slot="cta" data-dot-scale="fit"><i class="dot-static"></i></span>
+      </div>
+      <div class="cta-head">
+        <div class="cta-open">
+          <h2 id="cta-title" data-i18n="ctaBlock.title">בואו נסגור את זה.</h2>
+          <p class="lead" data-i18n="ctaBlock.sub">ספרו לנו מה צריך. נחזור אליכם תוך יום עסקים עם צעד הבא ברור.</p>
+        </div>
+        <div class="cta-donebox" role="status" aria-live="polite">
+          <p class="p-line" style="font-size:var(--step-4)" data-i18n="ctaBlock.done">סגרנו.</p>
+          <p class="lead"><span data-i18n="form.successTitle">קיבלנו.</span> <span data-i18n="form.successText">נחזור אליכם תוך יום עסקים.</span></p>
+        </div>
+      </div>
+
+      <form class="contact" id="contact-form" method="post" action="https://n8n.idone.co.il/webhook/website-form-v2">
+        <div class="field">
+          <label for="f-name" data-i18n="form.name">שם</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="err-name">
+          <p class="err" id="err-name" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="f-email" data-i18n="form.email">אימייל</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required dir="ltr" aria-describedby="err-email">
+          <p class="err" id="err-email" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="form.phone">טלפון</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" required dir="ltr" aria-describedby="err-phone">
+          <p class="err" id="err-phone" aria-live="polite"></p>
+        </div>
+        <fieldset class="field">
+          <legend data-i18n="form.need">מה צריך?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="need" value="web"><span data-i18n="form.needOptions.web">אתר / אפליקציה</span></label>
+            <label class="chip"><input type="radio" name="need" value="video"><span data-i18n="form.needOptions.video">וידאו</span></label>
+            <label class="chip"><input type="radio" name="need" value="automation"><span data-i18n="form.needOptions.automation">אוטומציה</span></label>
+            <label class="chip"><input type="radio" name="need" value="unsure"><span data-i18n="form.needOptions.unsure">עוד לא בטוח</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="f-message" data-i18n="form.message">ספרו לנו בכמה מילים</label>
+          <textarea id="f-message" name="message" rows="4" dir="auto"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="privacy"><span data-i18n="form.privacy">נשתמש בפרטים כדי לטפל בפנייה, לחזור אליכם ולשלוח אישור ולינק לאפיון במייל ובוואטסאפ. אין חובה חוקית למסור אותם, אבל בלעדיהם לא נוכל לחזור אליכם. הפרטים נשמרים אצל ספקים שלנו, חלקם מחוץ לישראל, ונמחקים שנה אחרי הפעילות האחרונה. אפשר לבקש לעיין בהם, לתקן או למחוק.</span> <a href="{{base}}/privacy/" data-i18n="form.privacyLink">מדיניות פרטיות</a></p>
+        <label class="consent"><input type="checkbox" name="marketingConsent" value="true"><span data-i18n="form.consent">אשמח לקבל מ-iDone Technologies עדכונים ותוכן שיווקי במייל. אפשר להסיר בכל רגע.</span></label>
+        <div class="form-error" id="form-error" role="alert" hidden>
+          <p><strong data-i18n="form.errorTitle">משהו השתבש בשליחה.</strong> <span data-i18n="form.errorText">אפשר לכתוב לנו בוואטסאפ.</span></p>
+          <a class="btn btn-ghost" href="https://wa.me/972528888182" target="_blank" rel="noopener" data-i18n="cta.whatsapp">דברו איתנו בוואטסאפ</a>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="form-submit"><span class="dotmark dot-slot fit no-static-keep send-slot" data-dot-slot="cta-send" data-dot-handoff data-dot-scale="fit" aria-hidden="true"><i class="dot-local dotmark"></i></span><span id="form-submit-label" data-i18n="form.submit">שליחה</span></button>
+        </div>
+      </form>
+
+      <div class="direct">
+        <a href="mailto:support@idone.co.il" dir="ltr">support@idone.co.il</a>
+        <a href="tel:+972528888182" dir="ltr">052-8888182</a>
+        <a class="btn btn-ghost" href="https://wa.me/972528888182" target="_blank" rel="noopener" data-i18n="cta.whatsapp">דברו איתנו בוואטסאפ</a>
+        <a href="https://www.facebook.com/profile.php?id=61578292571197" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/idoneautomations/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer surface-ink">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo logo--stacked" role="img" aria-label="iDone Technologies">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M10 10H32A22 22 0 0 1 32 54H10ZM22 22V42H32A10 10 0 0 0 32 22Z"/><circle cx="32" cy="32" r="6" fill="var(--accent)"/></svg>
+          <span class="txt" aria-hidden="true"><span class="word">iDone</span><span class="tech">TECHNOLOGIES</span></span>
+        </span>
+        <p class="eyebrow" data-i18n="hero.eyebrow">פיתוח · וידאו · אוטומציה</p>
+      </div>
+      <nav class="footer-nav" aria-label="ניווט תחתון" data-i18n-attr="aria-label:a11y.navFooter">
+        <ul>
+          <li><a href="{{base}}/services/web/" data-i18n="nav.web">אתרים ואפליקציות</a></li>
+          <li><a href="{{base}}/services/video/" data-i18n="nav.video">וידאו</a></li>
+          <li><a href="{{base}}/services/automation/" data-i18n="nav.automation">אוטומציה</a></li>
+          <li><a href="{{base}}/about/" data-i18n="nav.about">עלינו</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">צור קשר</a></li>
+        </ul>
+      </nav>
+      <address class="footer-contact">
+        <a href="mailto:support@idone.co.il" dir="ltr">support@idone.co.il</a>
+        <a href="tel:+972528888182" dir="ltr">052-8888182</a>
+        <a href="https://wa.me/972528888182" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.facebook.com/profile.php?id=61578292571197" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/idoneautomations/" target="_blank" rel="noopener">Instagram</a>
+      </address>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> iDone Technologies. <span data-i18n="footer.rights">כל הזכויות שמורות.</span></p>
+      <nav aria-label="משפטי" data-i18n-attr="aria-label:a11y.navLegal">
+        <a href="{{base}}/accessibility/" data-i18n="footer.accessibility">הצהרת נגישות</a>
+        <a href="{{base}}/privacy/" data-i18n="footer.privacy">פרטיות</a>
+      </nav>
+      <p data-i18n="footer.madeBy">עוצב ונבנה על ידי iDone Technologies.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="dot" class="travel-dot" aria-hidden="true"></div>

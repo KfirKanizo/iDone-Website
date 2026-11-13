@@ -7,7 +7,7 @@ const ATTRIBUTION_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'ref'];
 const ATTRIBUTION_STORE = 'idone-attribution';
 
 /** UTM and ?ref= from the landing URL, kept for the visit so a form on a later page still sends them. First value wins. */
-function attribution(): Record<string, string> {
+export function attribution(): Record<string, string> {
   let saved: Record<string, string> = {};
   try { saved = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORE) || '{}') || {}; } catch {}
   const params = new URLSearchParams(location.search);

@@ -1,29 +1,138 @@
 ---
-import Base from '@/layouts/Base.astro';
-import Hero from '@/components/scenes/Hero.astro';
-import Problem from '@/components/scenes/Problem.astro';
-import Build from '@/components/scenes/Build.astro';
-import Video from '@/components/scenes/Video.astro';
-import Automation from '@/components/scenes/Automation.astro';
-import Together from '@/components/scenes/Together.astro';
-import WorkFeatured from '@/components/scenes/WorkFeatured.astro';
-import Process from '@/components/scenes/Process.astro';
-import AboutTeaser from '@/components/scenes/AboutTeaser.astro';
-import CtaBlock from '@/components/CtaBlock.astro';
-import { type Locale, useTranslations } from '@/i18n';
+/**
+ * Homepage (/he/, /en/). A standalone document with its own header, footer, styles and motion
+ * (src/home/*), so it does not use Base.astro. The head keeps the site's SEO block, and the page
+ * mounts the shared chatbot. Text is rendered on the server per locale from src/home/dict.js;
+ * the same dictionary is used in the browser for labels that change at runtime.
+ */
+import '@/styles/tokens-ext.css';
+import '@/home/home.css';
+import markup from '@/home/home.html?raw';
+import { DICT } from '@/home/dict.js';
+import Chatbot from '@/components/Chatbot.astro';
+import { LOCALES, DEFAULT_LOCALE, dirOf, localePath, otherLocale, useTranslations, type Locale } from '@/i18n';
+import { SITE } from '@/lib/site';
+
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const d = DICT[locale];
+const other = otherLocale(locale);
+const dir = dirOf(locale);
+const title: string = d.meta.title;
+const description: string = d.meta.description;
+
+const canonical = new URL(localePath(locale, '/'), SITE.url).href;
+const alternates = LOCALES.map((l) => ({ lang: l === 'he' ? 'he-IL' : 'en', href: new URL(localePath(l, '/'), SITE.url).href }));
+const xDefault = new URL(localePath(DEFAULT_LOCALE, '/'), SITE.url).href;
+const ogImageAbs = new URL('/brand/png/og-image.png', SITE.url).href;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#org`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/brand/png/idone-mark-1024.png`,
+  image: ogImageAbs,
+  description: t.home.description,
+  sameAs: [SITE.social.facebook, SITE.social.instagram].filter(Boolean),
+  address: { '@type': 'PostalAddress', addressLocality: SITE.address.locality, addressCountry: SITE.address.country },
+  areaServed: ['IL', 'Worldwide'],
+  availableLanguage: ['he', 'en'],
+  knowsAbout: ['Web development', 'Mobile apps', 'Video production', 'Business automation', 'CRM integration', 'Chatbots'],
+};
+
+/* Facts the browser script needs (src/home/home.js reads #home-config). */
+const config = {
+  formEndpoint: SITE.formEndpoint,
+  privacyVersion: SITE.privacyVersion,
+  media: { midda: '/work/midda/under-20-min.mp4', boostcoach: `/work/boostcoach/promo-${locale}.mp4` },
+};
+
+/* ---- server-side i18n: same rules as applyI18n() in home.js ---- */
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const tr = (path: string): unknown => path.split('.').reduce<any>((o, k) => (o == null ? o : o[k]), d);
+let html = markup
+  .replaceAll('{{base}}', `/${locale}`)
+  .replaceAll('{{alt}}', localePath(other, '/'))
+  .replaceAll('{{other}}', other);
+// text: elements whose content is plain text
+html = html.replace(/<([a-z][a-z0-9]*)(\s(?:[^>]*?\s)?data-i18n="([^"]+)"[^>]*)>([^<]*)<\/\1>/g, (m, tag, attrs, key, _text) => {
+  const v = tr(key);
+  return typeof v === 'string' ? `<${tag}${attrs}>${esc(v)}</${tag}>` : m;
+});
+// attributes: data-i18n-attr="aria-label:key;placeholder:key"
+html = html.replace(/<[a-z][^>]*\sdata-i18n-attr="([^"]+)"[^>]*>/g, (tagSrc, spec: string) => {
+  let out = tagSrc;
+  for (const pair of spec.split(';')) {
+    const i = pair.indexOf(':'); if (i < 0) continue;
+    const attr = pair.slice(0, i).trim(); const v = tr(pair.slice(i + 1).trim());
+    if (typeof v !== 'string') continue;
+    const re = new RegExp(`(\\s${attr}=")[^"]*(")`);
+    out = re.test(out) ? out.replace(re, `$1${esc(v)}$2`) : out.replace(/^<([a-z][a-z0-9]*)/, `<$1 ${attr}="${esc(v)}"`);
+  }
+  return out;
+});
 ---
-<Base locale={locale} title={t.home.title} description={t.home.description} path="/" bodyClass="page-home">
-  <Hero locale={locale} />
-  <Problem locale={locale} />
-  <Build locale={locale} />
-  <Video locale={locale} />
-  <Automation locale={locale} />
-  <Together locale={locale} />
-  <WorkFeatured locale={locale} />
-  <Process locale={locale} />
-  <AboutTeaser locale={locale} />
-  <CtaBlock locale={locale} />
-</Base>
+<!doctype html>
+<html lang={locale} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (<link rel="alternate" hreflang={a.lang} href={a.href} />))}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+
+    <link rel="icon" href="/brand/favicon/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/brand/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#0E1A2B" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={locale === 'he' ? 'en_US' : 'he_IL'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Heebo:wght@500;600;700&display=swap" />
+    <!-- brand tokens: the shared chatbot styles read --idone-* / --site-* -->
+    <link rel="stylesheet" href="/brand/tokens/tokens.css" />
+
+    <!-- before paint: theme, motion, intro (same rules as home.js) -->
+    <script is:inline>
+      (function () {
+        var r = document.documentElement, ls = {}, ss = null;
+        try { ls.theme = localStorage.getItem('idone-theme'); ls.motion = localStorage.getItem('idone-motion'); ss = sessionStorage.getItem('idone-intro'); } catch (e) {}
+        r.classList.add('js');
+        r.setAttribute('data-theme', ls.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        var low = (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.connection && navigator.connection.saveData);
+        var reduced = ls.motion ? ls.motion === 'reduced' : (matchMedia('(prefers-reduced-motion: reduce)').matches || !!low);
+        r.setAttribute('data-motion', reduced ? 'reduced' : 'full');
+        if (!reduced && !ss && window.scrollY < 40) r.classList.add('intro-pending', 'intro-running');
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify([org])} />
+  </head>
+  <body class="page-home">
+    <Fragment set:html={html} />
+    <Chatbot locale={locale} />
+    <script type="application/json" id="home-config" set:html={JSON.stringify(config)} />
+    <script src="../../home/home.js"></script>
+  </body>
+</html>
